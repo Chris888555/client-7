@@ -11,7 +11,7 @@ class AdminController extends Controller
     {
         // Check if the user is authenticated and is an admin
         if (!auth()->check() || auth()->user()->is_admin == 0) {
-            return redirect()->route('admin.login');
+            return redirect()->route('login');
         }
 
         $view = $request->get('view', 'approved'); // Default to 'approved'
@@ -144,4 +144,41 @@ class AdminController extends Controller
             'search' => request('search')  // Keep the search parameter
         ])->with('error', 'User is already a regular user.');
     }
+    public function revertToPending(User $user)
+{
+    // Update the user's 'approved' status to false
+    $user->approved = false;
+    $user->save();
+
+    return redirect()->route('admin.manage-users')->with('success', 'User has been reverted to pending.');
+}
+public function bulkAction(Request $request)
+{
+    $action = $request->input('action');
+    // Ensure that we properly handle the comma-separated string for user_ids
+    $userIds = explode(',', $request->input('user_ids'));
+
+    switch ($action) {
+        case 'make_admin':
+            User::whereIn('id', $userIds)->update(['is_admin' => true]);
+            break;
+        case 'revert_admin':
+            User::whereIn('id', $userIds)->update(['is_admin' => false]);
+            break;
+        case 'revert_pending':
+            User::whereIn('id', $userIds)->update(['approved' => false]);
+            break;
+        case 'approve':
+            User::whereIn('id', $userIds)->update(['approved' => true]);
+            break;
+        case 'delete':
+            User::whereIn('id', $userIds)->delete();
+            break;
+        default:
+            return redirect()->route('admin.manage-users')->with('error', 'Invalid action');
+    }
+
+    return redirect()->route('admin.manage-users')->with('success', 'Action applied successfully');
+}
+
 }

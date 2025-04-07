@@ -109,4 +109,22 @@ class ProfileController extends Controller
         // Pass the user data to the view
         return view('includes.admin-header', compact('user'));
     }
+
+// Update name and email
+public function updateDetails(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . auth()->id(),
+    ]);
+
+    $user = auth()->user();
+    $user->name = $request->name; // <-- this is the correct column
+    $user->email = $request->email;
+    $user->save();
+
+    return back()->with('success', 'Your details have been updated successfully.');
+}
+
+
 }

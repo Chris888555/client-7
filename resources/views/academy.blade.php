@@ -4,26 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academy | Video Playlist</title>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Vite -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     @vite(['resources/css/app.css'])
 
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Academy | Video Playlist</title>
+
+
 </head>
 
+<!-- Include Sidebar -->
+@include('includes.nav')
+
 <body class="bg-gray-100 font-sans">
-    <!-- Main Header -->
-    @include('includes.student-header')
+
 
     <!-- Main Content Section -->
-    <div class="container w-full max-w-7xl mt-0 mb-0 m-auto p-4 sm:p-8">
+       <div class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
         <h1 class="text-4xl font-extrabold text-left mb-8 
            bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text
            drop-shadow-lg tracking-wide uppercase relative inline-block">
-            DW Academy
+           Academy
 
         </h1>
 
@@ -116,7 +118,7 @@
         <!-- Close Button -->
 
 
-        <button id="closeModal" class="absolute top-[80px] right-2 text-gray-600 hover:text-gray-900 text-2xl z-50">
+        <button id="closeModal" class="absolute top-[32px] right-8 text-gray-600 hover:text-gray-900 text-2xl z-50">
             <svg class="h-8 w-8 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />

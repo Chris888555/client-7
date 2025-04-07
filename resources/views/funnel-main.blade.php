@@ -4,18 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Funnel Links</title>
-    @vite(['resources/css/app.css'])
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/css/icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    @vite(['resources/css/app.css'])
+
+    <title>Sales Funnel Link</title>
+
+
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <!-- Include Sidebar -->
-@include('includes.student-header')
+@include('includes.nav')
 
-<body class="bg-gray-100 p-5 md:p-10">
-    <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white shadow-lg rounded-lg p-6 mt-[100px]">
+<body class="bg-gray-100 p-5 md:p-10 ">
+    <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white  p-8 rounded-2xl border-2 border-gray-200 p-6 mt-10">
+        <!-- Success Message -->
+        @if(session('success'))
+        <div id="success-message"
+            class="flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
+            <div class="flex items-center justify-center w-12 bg-emerald-500">
+                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                </svg>
+            </div>
+
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-200">{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Hide the success message after 3 seconds
+        setTimeout(function() {
+            document.getElementById('success-message').style.display = 'none';
+        }, 5000);
+        </script>
+        @endif
+
+
+
         <h1 class="text-2xl md:text-3xl font-bold text-center mb-4">Sales Funnel Links</h1>
         <p class="text-gray-600 text-center mb-4">Manage and share your custom funnel links.</p>
 
@@ -45,38 +81,20 @@
                         class="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 flex items-center w-full md:w-auto">
                         <i class="ph ph-pencil-simple mr-2"></i> Update Subdomain
                     </button>
-                </div>
+
+                    <!-- Edit Funnel Button -->
+                    <a href="{{ route('edit-funnel') }}"
+                        class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600 hover:shadow-lg flex items-center w-full md:w-auto transition-all duration-300">
+                        <i class="ph ph-pencil mr-2"></i> Edit Funnel
+                    </a>
+
+
+
             </li>
         </ul>
 
     </div>
 
-
-    @if(session('success'))
-    <div id="successAlert"
-        class="fixed top-[90px] right-5 bg-green-100 text-green-700 border border-green-400 p-3 rounded-md shadow-lg flex items-center space-x-2">
-        <i class="ph ph-check-circle text-green-600 text-lg"></i>
-        <span>{{ session('success') }}</span>
-    </div>
-    <script>
-    setTimeout(() => {
-        document.getElementById('successAlert').style.display = 'none';
-    }, 5000); // Hide after 3 seconds
-    </script>
-    @endif
-
-    @if($errors->has('subdomain'))
-    <div id="errorAlert"
-        class="fixed top-[90px] right-5 bg-red-100 text-red-700 border border-red-400 p-3 rounded-md shadow-lg">
-        <i class="ph ph-warning-circle"></i> <!-- Warning Icon -->
-        <span>{{ $errors->first('subdomain') }}</span>
-    </div>
-    <script>
-    setTimeout(() => {
-        document.getElementById('errorAlert').style.display = 'none';
-    }, 5000); // Hide after 3 seconds
-    </script>
-    @endif
 
     <!-- MODAL -->
     <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden p-4">
@@ -103,6 +121,37 @@
                         class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-full md:w-auto">Save</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <div class="container w-full max-w-7xl mt-6 mb-10 mx-auto sm:p-8">
+        <div x-data="{ open: false }" class="w-[90%] sm:max-w-[800px] mx-auto p-6 bg-white  p-8 rounded-2xl border-2 border-gray-200">
+            <button @click="open = !open"
+                class="text-xl font-bold text-gray-800 w-full text-left flex justify-between items-center">
+                Paano Gamitin ang Sales Funnel
+                <span x-text="open ? '▲' : '▼'"></span>
+            </button>
+
+            <div x-show="open" x-transition class="mt-4 bg-yellow-300 p-6 rounded-lg">
+                <p class="text-gray-600 mb-4">Ang sales funnel ay proseso ng pag-convert ng mga bisita sa customers.
+                    Narito ang simpleng hakbang:</p>
+
+                <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                    <li><span class="font-semibold">Maghanap ng mga potensyal na kliyente –</span> Mahalaga na may
+                        makakita ng iyong sales funnel. Maaari kang mag-run ng ads o mag-post sa social media upang
+                        makahanap ng mga interesadong kliyente.</li>
+                    <li><span class="font-semibold">Ipasok sila sa sales funnel –</span> Siguraduhing dumaan sila sa
+                        sales funnel upang ma-educate sila nang tama tungkol sa iyong produkto o serbisyo.</li>
+                    <li><span class="font-semibold">Gawing epektibo ang follow-up –</span> Mahalaga ang follow-up upang
+                        mapabalik sila sa iyong funnel. Maaari kang magbigay ng valuable information na makakatulong sa
+                        kanila sa pagdedesisyon.</li>
+                </ul>
+
+                <p class="mt-4 text-gray-800 font-semibold">Tandaan, ang tamang diskarte at tuloy-tuloy na follow-up ang
+                    susi sa mas mataas na conversion!</p>
+            </div>
         </div>
     </div>
 

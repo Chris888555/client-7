@@ -6,19 +6,15 @@ use App\Models\User;
 
 class SalesFunnelController extends Controller
 {
-    public function showFunnel()
+    public function showFunnel($subdomain)
     {
-        // Get the logged-in user
-        $user = auth()->user();
+        // Siguraduhin na Eloquent Model ang query result
+        $user = User::where('subdomain', $subdomain)->firstOrFail();
 
-        // If no user is logged in, show a 404 error
-        if (!$user) {
-            abort(404, 'Sales funnel not found');
-        }
-
-        // Load the sales funnel page for the logged-in user
         return view('sales_funnel', compact('user'));
     }
+
+
 
     public function updateSubdomain(Request $request)
     {

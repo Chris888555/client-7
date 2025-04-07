@@ -3,16 +3,23 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\SalesFunnelController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AcademyController;
 use App\Http\Controllers\PlaylistController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\MarketingController;
+
+
+
+
+Route::get('/edit-funnel', [AuthController::class, 'showForm'])->name('edit-funnel');
+Route::post('/edit-funnel', [AuthController::class, 'save'])->name('save-funnel');
+
+
 
 // Home Page
 Route::get('/', function () {
@@ -25,6 +32,10 @@ Route::get('/footer', function () {
     return view('includes.footer'); // <-- Dapat may 'includes.'
 })->name('footer');
 
+// Nav Bar
+Route::get('/nav', function () {
+    return view('includes.nav'); // <-- Dapat may 'includes.'
+})->name('nav');
 
 
 // Registration 
@@ -63,62 +74,37 @@ Route::get('/dashboard', function () {
 Route::get('/academy', [AcademyController::class, 'academy'])->name('academy');
 
 
+// Marketing Content
+Route::get('/upload-marketing', [MarketingController::class, 'upload'])->name('marketing.index');
+Route::post('/marketing/store', [MarketingController::class, 'store'])->name('store.marketing');
+Route::delete('/marketing/delete/{id}', [MarketingController::class, 'destroy'])->name('delete.marketing');
+
+Route::get('/downloadable-marketing', [MarketingController::class, 'showDownloadable'])->name('marketing.downloadable');
+
 
 // Upload Playlist
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/upload-playlist', function () {
-        if (auth()->user()->is_admin != 1) {
-            return redirect()->route('admin.login');
-        }
-        return app(PlaylistController::class)->create();
-    })->name('admin.upload-playlist');
-});
+Route::get('/admin/upload-playlist', function () {
+    if (!Auth::check() || Auth::user()->is_admin != 1) {
+        return redirect()->route('login');
+    }
+    return app(PlaylistController::class)->create();
+})->name('admin.upload-playlist');
 Route::post('/admin/upload-playlist', [PlaylistController::class, 'store'])->name('playlists.store');
 
 
+// Edit Playlist
+Route::get('/admin/update-playlist', function () {
+    if (!Auth::check() || Auth::user()->is_admin != 1) {
+        return redirect()->route('login');
+    }
+    return app(PlaylistController::class)->edit();
+})->name('admin.update-playlist');
 
-// Upload Products
-Route::middleware(['auth'])->group(function () {
-    Route::get('/upload-product', function () {
-        if (auth()->user()->is_admin != 1) {
-            return redirect()->route('admin.login');
-        }
-        return app(ProductController::class)->showUploadProduct();
-    })->name('products.create');
-});
-Route::post('/upload-product', [ProductController::class, 'uploadProduct'])->name('products.store');
-Route::post('store-brand', [ProductController::class, 'storeBrand'])->name('brands.store');
+// Route for deleting a playlist (still requires id)
+Route::delete('/admin/delete-playlist/{id}', [PlaylistController::class, 'destroy'])->name('admin.delete-playlist');
 
-
-
-// Shop
-Route::get('/shop', [ProductController::class, 'showShop'])->name('shop');
-
-
-
-// Product Edit
-Route::middleware(['auth'])->group(function () {
-    Route::get('/product-edit', function () {
-        if (auth()->user()->is_admin != 1) {
-            return redirect()->route('admin.login');
-        }
-        return app(ProductController::class)->showEditProduct();
-    })->name('product.edit');
-});
-Route::put('/product/{id}', [ProductController::class, 'updateProduct'])->name('product.update');
-
-
-
-// Check Out
-Route::get('/checkout', [CheckoutController::class, 'view'])->name('checkout.view');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-Route::get('/thank-you/{order}', [CheckoutController::class, 'thankYou'])->name('thank-you');
-
-
-
-// Order Details
-Route::get('/order-details', [OrderController::class, 'orderShow'])->name('order.details');
-Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+// Route for updating a playlist (requires id)
+Route::put('/admin/update-playlist/{id}', [PlaylistController::class, 'update'])->name('admin.update-playlist.submit');
 
 
 
@@ -137,6 +123,9 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // User Profile 
 Route::middleware(['auth'])->get('profile/upload', [ProfileController::class, 'showUploadForm'])->name('profile.uploadForm');
 Route::middleware(['auth'])->post('profile/upload', [ProfileController::class, 'uploadProfilePhoto'])->name('profile.upload');
+Route::put('/profile/update-details', [ProfileController::class, 'updateDetails'])->name('profile.update-details');
+
+
 
 
 // Sales Funnel Setting
@@ -152,6 +141,15 @@ Route::post('/users/{user}/approve', [AdminController::class, 'approveUser'])->n
 Route::delete('/users/{user}/delete', [AdminController::class, 'deleteUser'])->name('users.delete');
 Route::post('/users/{user}/promote', [AdminController::class, 'promoteToAdmin'])->name('users.promoteToAdmin');
 Route::post('/users/revert-to-regular/{user}', [AdminController::class, 'revertToRegular'])->name('admin.revertToRegular');
+Route::post('/users/{user}/revert-to-pending', [AdminController::class, 'revertToPending'])->name('users.revertToPending');
+
+// In your web.php
+Route::post('/users/bulk-action', [AdminController::class, 'bulkAction'])->name('users.bulkAction');
+
+
+
+
+
 
 
 // Admin Login
@@ -160,10 +158,14 @@ Route::post('/admin/admin-login', [AdminAuthController::class, 'login'])->name('
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout')->middleware('auth');
 
 
-// Subdomain 
-Route::get('/{subdomain}', [SalesFunnelController::class, 'showFunnel']);
-
 
 // Edit Subdomain
 Route::middleware(['auth'])->get('/subdomain/update/{id}', [SalesFunnelController::class, 'editSubdomain'])->name('update.subdomain');
 Route::middleware(['auth'])->post('/subdomain/update/{id}', [SalesFunnelController::class, 'updateSubdomain'])->name('update.subdomain');
+
+
+// Subdomain 
+Route::get('/{subdomain}', [SalesFunnelController::class, 'showFunnel']);
+
+
+
