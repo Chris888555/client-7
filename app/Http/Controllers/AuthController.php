@@ -134,7 +134,7 @@ class AuthController extends Controller
         return back();
     }
 
-    // Check if email exists
+    
     // Check if email exists
 public function checkEmail(Request $request)
 {
@@ -169,8 +169,10 @@ public function resetPassword(Request $request)
         'password' => Hash::make($request->password),
     ]);
 
-    return back()->with('status', 'Password successfully updated.');
+    // Redirect to login with a success message
+    return redirect()->route('login')->with('status', 'Password successfully updated. Please log in with your new password.');
 }
+
 
 
 

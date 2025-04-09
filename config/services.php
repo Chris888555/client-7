@@ -33,6 +33,13 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+        
+    ],
+    // Add Google OAuth Configuration
+   'google' => [
+        'client_id' => '',
+        'client_secret' => '',
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
     ],
 
 ];

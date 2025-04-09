@@ -15,28 +15,104 @@
         }
     </style>
 </head>
-<body class="body-bg h-screen flex items-center justify-center px-4" style="font-family:'Lato',sans-serif;">
+<body class="body-bg h-screen flex items-center justify-center px-4 overflow-y-auto" style="font-family:'Lato',sans-serif;">
+
 <main class="bg-white w-[95%] sm:w-[600px] md:w-[700px] lg:w-[500px] p-8 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
     <section>
         <h3 class="font-bold text-2xl text-gray-800 text-left">Sign In</h3>
         <p class="text-gray-600 pt-2 text-left">Welcome back! Please log in to your account.</p>
     </section>
 
-    @if ($errors->any())
-    <div class="bg-red-100 text-red-700 border border-red-400 p-2 sm:p-2 rounded-md mt-3 sm:mt-5 max-w-[100%] sm:max-w-lg mx-auto text-sm sm:text-base">
-        <ul class="list-disc pl-4 sm:pl-5">
-            @foreach ($errors->all() as $error)
-                <li class="flex items-center">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.0043 13.3333V9.16663M9.99984 6.66663H10.0073M9.99984 18.3333C5.39746 18.3333 1.6665 14.6023 1.6665 9.99996C1.6665 5.39759 5.39746 1.66663 9.99984 1.66663C14.6022 1.66663 18.3332 5.39759 18.3332 9.99996C18.3332 14.6023 14.6022 18.3333 9.99984 18.3333Z" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    {{ $error }}
-                </li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+ 
+ <!-- Success Message -->
+      @if (session('status'))
+        <div id="success-message"
+            class="mt-4 flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 ">
+            <div class="flex items-center justify-center w-12 bg-emerald-500">
+                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                </svg>
+            </div>
+
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-200"> {{ session('status') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Hide the success message after 3 seconds
+        setTimeout(function() {
+            document.getElementById('success-message').style.display = 'none';
+        },10000);
+        </script>
+        @endif
+
     
+<!-- Alert Message -->
+@if ($errors->any())
+<div id="alert-message"
+    class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
+    <div class="flex items-center justify-center w-12 bg-yellow-500">
+        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+        </svg>
+    </div>
+
+    <div class="px-4 py-2 -mx-3">
+        <div class="mx-3">
+            <span class="font-semibold text-yellow-500 dark:text-yellow-400">Alert</span>
+            <p class="text-sm text-gray-600 dark:text-gray-200">
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span><br>
+                @endforeach
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Hide the alert message after 10 seconds
+setTimeout(function() {
+    document.getElementById('alert-message').style.display = 'none';
+}, 10000);
+</script>
+@endif
+
+
+
+    <!-- Alert Message -->
+@if(Session::has('message'))
+<div id="alert-message"
+    class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
+    <div class="flex items-center justify-center w-12 bg-yellow-500">
+        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+        </svg>
+    </div>
+
+    <div class="px-4 py-2 -mx-3">
+        <div class="mx-3">
+            <span class="font-semibold text-yellow-500 dark:text-yellow-400">Alert</span>
+            <p class="text-sm text-gray-600 dark:text-gray-200">  {{ Session::get('message') }}</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Hide the alert message after 10 seconds
+setTimeout(function() {
+    document.getElementById('alert-message').style.display = 'none';
+}, 10000);
+</script>
+@endif
+
+
 
 
     <section class="mt-10">
@@ -55,15 +131,40 @@
                 </span>
             </div>
 
+               <!-- Remember Me & Forgot Password -->
+            <div class="flex items-center justify-between mb-4">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" name="remember" class="rounded border-gray-300">
+                    <span class="text-gray-700 text-sm">Remember Me</span>
+                </label>
+                <a href="{{ route('password.request') }}" class="text-blue-500 text-sm hover:underline">
+                    Forgot Password?
+                </a>
+            </div>
+
             <button class="bg-gradient-to-br from-indigo-600 to-purple-500 text-white font-bold py-4 rounded shadow-lg hover:shadow-xl transition duration-200 hover:from-indigo-700 hover:to-purple-600" type="submit">
                 Login
             </button>
         </form>
     </section>
 
+     <div class="text-center mt-6">
+            <a href="{{ url('auth/google') }}" class="w-full">
+                <button
+                    class="w-full px-4 py-3 border flex gap-3 items-center justify-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                    <img class="w-8 h-8" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"
+                        alt="Google logo" />
+                    <span class="font-semibold">Login with Google</span>
+                </button>
+            </a>
+        </div>
+
     <div class="text-center mt-6">
         <p class="text-gray-800">Don't have an account? <a href="{{ route('register') }}" class="font-bold hover:underline">Sign up</a>.</p>
     </div>
+
+   
+
 </main>
 
 <script>

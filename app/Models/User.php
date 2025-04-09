@@ -10,30 +10,46 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
     protected $fillable = [
-        'name', 'email', 'password', 'password_reset_token',
-        'password_reset_expires', 'is_admin', 'approved',
-        'profile_picture', 'default_profile', 'is_online', 'subdomain',
-        'referral_code', 'referred_by', 'facebook_link',
-        'join_fb_group', 'group_toggle', 'page_link', 'page_toggle',
+        'name',
+        'email',
+        'password',
+        'google_id',
+        'subdomain',
+        'is_admin',
+        'approved',
+        'default_profile',
+        'is_online',
+        'facebook_link',
+        'join_fb_group',
+        'group_toggle',
+        'page_link',
+        'page_toggle',
     ];
-    
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array
+     */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
-        'password_reset_expires' => 'datetime',
-        'is_admin' => 'boolean',
-        'approved' => 'boolean',
-        'is_online' => 'boolean',
-        'page_toggle' => 'boolean', // Ensure 'page_toggle' is cast as a boolean
+        'email_verified_at' => 'datetime',
     ];
-
-    // In the User model (App\Models\User.php)
-public function clients()
-{
-    return $this->hasMany(Client::class);
 }
 
-}

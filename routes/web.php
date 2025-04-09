@@ -12,8 +12,13 @@ use App\Http\Controllers\AcademyController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\MarketingController;
+use App\Http\Controllers\GoogleController;
 
 
+
+// Google OAuth Routes
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
 Route::get('/edit-funnel', [AuthController::class, 'showForm'])->name('edit-funnel');
