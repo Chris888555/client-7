@@ -1,20 +1,14 @@
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title', 'Upload Profile Photo')
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-    @vite(['resources/css/app.css'])
+@section('content')
 
-    <title>Upload Profile Photo</title>
-
-</head>
 @include('includes.nav')
-<!-- Main Content Area -->
 
-<body class="bg-gray-100 flex items-center justify-center h-screen px-2  ">
+
+
+<body class="bg-gray-100 flex items-center justify-center px-2  ">
     <div class="mt-24 bg-white  rounded-2xl border-2 border-gray-200 w-[90%] max-w-[500px] mx-auto py-5 px-1 sm:py-8 ">
         <h2 class="text-2xl font-bold text-center mb-4">Upload Profile Photo</h2>
 
@@ -78,7 +72,7 @@
 
 
         <!-- Update Name and Email Section -->
-        <div class="mt-6 bg-white pt-4 px-4 rounded-2xl border-2 border-gray-200 w-[90%] max-w-[500px] mx-auto sm:px-6">
+        <div class="mt-6 bg-white pt-4 px-4 rounded-2xl border-2 border-gray-200 w-[90%] max-w-[500px] mx-auto p-6">
             <h2 class="text-xl font-bold text-left mb-4">Update Name & Email</h2>
 
             <form action="{{ route('profile.update-details') }}" method="POST">
@@ -122,7 +116,7 @@
                 <button id="crop-btn" class="bg-green-500 text-white p-2 rounded-md">Crop</button>
                 <button id="close-modal-btn" class="bg-red-500 text-white p-2 rounded-md">Cancel</button>
             </div>
-        </div>
+    </div>
 
     </div>
     </main>
@@ -187,6 +181,4 @@
     });
     </script>
 
-</body>
-
-</html>
+@endsection

@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
-    @vite(['resources/css/app.css'])
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-    <style>
-    .body-bg {
-        background-color: #ffffff;
-    }
-    </style>
-</head>
+@section('title', 'Register')
+<!-- Custom title for this page -->
 
-<body class="body-bg h-screen flex items-center justify-center px-4 overflow-y-auto " style="font-family:'Lato',sans-serif;">
-    <main
+@section('content')
+<main class=" h-screen flex items-center justify-center px-4 overflow-y-auto">
+
+    <div
         class="bg-white w-[95%] sm:w-[600px] md:w-[700px] lg:w-[500px] p-8 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
         <section>
             <h3 class="font-bold text-2xl text-gray-800 text-left">Create an Account</h3>
@@ -182,23 +170,24 @@
             <p class="text-gray-800">Already have an account? <a href="{{ route('login') }}"
                     class="font-bold hover:underline">Sign in</a>.</p>
         </div>
-    </main>
+    </div>
+</main>
 
-    <script>
-    function togglePassword(fieldId, iconId) {
-        const passwordField = document.getElementById(fieldId);
-        const icon = document.getElementById(iconId);
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
+<script>
+function togglePassword(fieldId, iconId) {
+    const passwordField = document.getElementById(fieldId);
+    const icon = document.getElementById(iconId);
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
     }
-    </script>
+}
+</script>
 </body>
 
 </html>

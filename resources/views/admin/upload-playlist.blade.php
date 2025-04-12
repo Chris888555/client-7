@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Playlist</title>
-    @vite(['resources/css/app.css'])
-    <!-- Include Vite compiled CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@section('title', 'Upload Playlist')
 
-<!-- Include Sidebar -->
+@section('content')
+
 @include('includes.nav')
 
-<body class="bg-white min-h-screen flex items-center justify-center">
 
-
+<body class=" min-h-screen flex items-center justify-center">
 
     <!-- Playlist Upload Form -->
     <div class="w-[90%] max-w-[700px] mx-auto bg-white  p-8 rounded-2xl border-2 border-gray-200 mt-[100px]">
@@ -102,9 +94,4 @@
 
 
 
-
-
-
-</body>
-
-</html>
+@endsection

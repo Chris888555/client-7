@@ -1,12 +1,6 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
-    @vite(['resources/css/app.css'])
-</head>
+@section('title', 'Forgot Password')
 
 
 
@@ -14,7 +8,7 @@
     <div class="bg-white p-8 rounded-lg shadow-md w-[90%] max-w-[400px] mx-auto">
         <h2 class="text-2xl font-bold text-center mb-4">Forgot Password</h2>
 
-         <!-- Alert Message -->
+        <!-- Alert Message -->
         @if ($errors->any())
         <div id="alert-message"
             class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
@@ -58,4 +52,5 @@
         </form>
     </div>
 </body>
+
 </html>

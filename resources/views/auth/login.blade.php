@@ -1,31 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    @vite(['resources/css/app.css'])
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-    <style>
-        .body-bg {
-            background-color: #ffffff;
-        }
-    </style>
-</head>
-<body class="body-bg h-screen flex items-center justify-center px-4 overflow-y-auto" style="font-family:'Lato',sans-serif;">
+@extends('layouts.app')
 
-<main class="bg-white w-[95%] sm:w-[600px] md:w-[700px] lg:w-[500px] p-8 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-    <section>
-        <h3 class="font-bold text-2xl text-gray-800 text-left">Sign In</h3>
-        <p class="text-gray-600 pt-2 text-left">Welcome back! Please log in to your account.</p>
-    </section>
+@section('title', 'Login')
+<!-- Custom title for this page -->
 
- 
- <!-- Success Message -->
-      @if (session('status'))
+@section('content')
+<main class="h-screen flex items-center justify-center px-4 overflow-y-auto">
+    <div
+        class="bg-white w-[95%] sm:w-[600px] md:w-[700px] lg:w-[500px] p-8 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+        <section>
+            <h3 class="font-bold text-2xl text-gray-800 text-left">Sign In</h3>
+            <p class="text-gray-600 pt-2 text-left">Welcome back! Please log in to your account.</p>
+        </section>
+
+
+        <!-- Success Message -->
+        @if (session('status'))
         <div id="success-message"
             class="mt-4 flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 ">
             <div class="flex items-center justify-center w-12 bg-emerald-500">
@@ -47,108 +36,113 @@
         // Hide the success message after 3 seconds
         setTimeout(function() {
             document.getElementById('success-message').style.display = 'none';
-        },10000);
+        }, 10000);
         </script>
         @endif
 
-    
-<!-- Alert Message -->
-@if ($errors->any())
-<div id="alert-message"
-    class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
-    <div class="flex items-center justify-center w-12 bg-yellow-500">
-        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-        </svg>
-    </div>
 
-    <div class="px-4 py-2 -mx-3">
-        <div class="mx-3">
-            <span class="font-semibold text-yellow-500 dark:text-yellow-400">Alert</span>
-            <p class="text-sm text-gray-600 dark:text-gray-200">
-                @foreach ($errors->all() as $error)
-                    <span>{{ $error }}</span><br>
-                @endforeach
-            </p>
+        <!-- Alert Message -->
+        @if ($errors->any())
+        <div id="alert-message"
+            class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
+            <div class="flex items-center justify-center w-12 bg-yellow-500">
+                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                </svg>
+            </div>
+
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-yellow-500 dark:text-yellow-400">Alert</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-200">
+                        @foreach ($errors->all() as $error)
+                        <span>{{ $error }}</span><br>
+                        @endforeach
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<script>
-// Hide the alert message after 10 seconds
-setTimeout(function() {
-    document.getElementById('alert-message').style.display = 'none';
-}, 10000);
-</script>
-@endif
+        <script>
+        // Hide the alert message after 10 seconds
+        setTimeout(function() {
+            document.getElementById('alert-message').style.display = 'none';
+        }, 10000);
+        </script>
+        @endif
 
 
 
-    <!-- Alert Message -->
-@if(Session::has('message'))
-<div id="alert-message"
-    class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
-    <div class="flex items-center justify-center w-12 bg-yellow-500">
-        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-        </svg>
-    </div>
+        <!-- Alert Message -->
+        @if(Session::has('message'))
+        <div id="alert-message"
+            class="mt-4 flex w-full overflow-hidden bg-yellow-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-yellow-800">
+            <div class="flex items-center justify-center w-12 bg-yellow-500">
+                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                </svg>
+            </div>
 
-    <div class="px-4 py-2 -mx-3">
-        <div class="mx-3">
-            <span class="font-semibold text-yellow-500 dark:text-yellow-400">Alert</span>
-            <p class="text-sm text-gray-600 dark:text-gray-200">  {{ Session::get('message') }}</p>
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-yellow-500 dark:text-yellow-400">Alert</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-200"> {{ Session::get('message') }}</p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<script>
-// Hide the alert message after 10 seconds
-setTimeout(function() {
-    document.getElementById('alert-message').style.display = 'none';
-}, 10000);
-</script>
-@endif
+        <script>
+        // Hide the alert message after 10 seconds
+        setTimeout(function() {
+            document.getElementById('alert-message').style.display = 'none';
+        }, 10000);
+        </script>
+        @endif
 
 
 
 
-    <section class="mt-10">
-        <form class="flex flex-col" method="POST" action="{{ route('login.post') }}">
-            @csrf
-            <div class="mb-6 pt-3 rounded bg-gray-200">
-                <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="email">Email</label>
-                <input type="email" id="email" name="email" required class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3">
-            </div>
+        <section class="mt-10">
+            <form class="flex flex-col" method="POST" action="{{ route('login.post') }}">
+                @csrf
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="email">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3">
+                </div>
 
-            <div class="mb-6 pt-3 rounded bg-gray-200 relative">
-                <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="password">Password</label>
-                <input type="password" id="password" name="password" required class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3 pr-10">
-                <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer" onclick="togglePassword('password', 'eyeIcon')">
-                    <i id="eyeIcon" class="fas fa-eye text-gray-600"></i>
-                </span>
-            </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200 relative">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="password">Password</label>
+                    <input type="password" id="password" name="password" required
+                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3 pr-10">
+                    <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+                        onclick="togglePassword('password', 'eyeIcon')">
+                        <i id="eyeIcon" class="fas fa-eye text-gray-600"></i>
+                    </span>
+                </div>
 
-               <!-- Remember Me & Forgot Password -->
-            <div class="flex items-center justify-between mb-4">
-                <label class="flex items-center space-x-2">
-                    <input type="checkbox" name="remember" class="rounded border-gray-300">
-                    <span class="text-gray-700 text-sm">Remember Me</span>
-                </label>
-                <a href="{{ route('password.request') }}" class="text-blue-500 text-sm hover:underline">
-                    Forgot Password?
-                </a>
-            </div>
+                <!-- Remember Me & Forgot Password -->
+                <div class="flex items-center justify-between mb-4">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" name="remember" class="rounded border-gray-300">
+                        <span class="text-gray-700 text-sm">Remember Me</span>
+                    </label>
+                    <a href="{{ route('password.request') }}" class="text-blue-500 text-sm hover:underline">
+                        Forgot Password?
+                    </a>
+                </div>
 
-            <button class="bg-gradient-to-br from-indigo-600 to-purple-500 text-white font-bold py-4 rounded shadow-lg hover:shadow-xl transition duration-200 hover:from-indigo-700 hover:to-purple-600" type="submit">
-                Login
-            </button>
-        </form>
-    </section>
+                <button
+                    class="bg-gradient-to-br from-indigo-600 to-purple-500 text-white font-bold py-4 rounded shadow-lg hover:shadow-xl transition duration-200 hover:from-indigo-700 hover:to-purple-600"
+                    type="submit">
+                    Login
+                </button>
+            </form>
+        </section>
 
-     <div class="text-center mt-6">
+        <div class="text-center mt-6">
             <a href="{{ url('auth/google') }}" class="w-full">
                 <button
                     class="w-full px-4 py-3 border flex gap-3 items-center justify-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
@@ -159,28 +153,25 @@ setTimeout(function() {
             </a>
         </div>
 
-    <div class="text-center mt-6">
-        <p class="text-gray-800">Don't have an account? <a href="{{ route('register') }}" class="font-bold hover:underline">Sign up</a>.</p>
+        <div class="text-center mt-6">
+            <p class="text-gray-800">Don't have an account? <a href="{{ route('register') }}"
+                    class="font-bold hover:underline">Sign up</a>.</p>
+        </div>
     </div>
-
-   
-
 </main>
-
 <script>
-    function togglePassword(fieldId, iconId) {
-        const passwordField = document.getElementById(fieldId);
-        const icon = document.getElementById(iconId);
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
+function togglePassword(fieldId, iconId) {
+    const passwordField = document.getElementById(fieldId);
+    const icon = document.getElementById(iconId);
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
     }
+}
 </script>
-</body>
-</html>
+@endsection

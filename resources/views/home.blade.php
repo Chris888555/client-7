@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title', 'Home')
 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    @vite(['resources/css/app.css'])
+@section('content')
 
-    <title>Home</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
     <style>
         /* Custom Styles */
         .welcome-text {
@@ -55,7 +50,7 @@
 
 @include('includes.main-header')
 
-<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+<body class="text-gray-900 flex flex-col min-h-screen">
 
     <!-- Main Content Wrapper -->
     <main class="flex-grow flex flex-col items-center justify-center mt-[10%]">

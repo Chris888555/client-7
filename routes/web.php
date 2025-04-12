@@ -16,15 +16,11 @@ use App\Http\Controllers\GoogleController;
 
 
 
-// Google OAuth Routes
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+use App\Http\Controllers\VideoController;
 
-
-Route::get('/edit-funnel', [AuthController::class, 'showForm'])->name('edit-funnel');
-Route::post('/edit-funnel', [AuthController::class, 'save'])->name('save-funnel');
-
-
+Route::post('/save-video-progress', [VideoController::class, 'saveVideoProgress']);
+Route::get('/video-analytics', [VideoController::class, 'showAnalytics'])->name('video.analytics');
+Route::delete('/video-analytics/delete-selected', [VideoController::class, 'deleteSelectedAnalytics'])->name('video-analytics.delete');
 
 // Home Page
 Route::get('/', function () {
@@ -48,6 +44,10 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
 
+// Google OAuth Routes
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
 
 // Student Login 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -57,11 +57,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 // Dashboad Logout
 Route::post('/logout', function () { Auth::logout(); return redirect('/login'); })->name('logout');
-
-
-
-// Student Header
-Route::get('/student-header', function () { return view('includes.student-header'); })->name('student.header');
 
 
 
@@ -76,7 +71,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+Route::get('/edit-funnel', [SalesFunnelController::class, 'showForm'])->name('edit-funnel');
+Route::post('/edit-funnel', [SalesFunnelController::class, 'save'])->name('save-funnel');
+
+
 Route::get('/academy', [AcademyController::class, 'academy'])->name('academy');
+
 
 
 // Marketing Content
@@ -171,6 +172,4 @@ Route::middleware(['auth'])->post('/subdomain/update/{id}', [SalesFunnelControll
 
 // Subdomain 
 Route::get('/{subdomain}', [SalesFunnelController::class, 'showFunnel']);
-
-
 

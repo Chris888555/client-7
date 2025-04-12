@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title', 'Upload Marketing Content')
 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    @vite(['resources/css/app.css'])
+@section('content')
 
-    <title>Upload Marketing Content</title>
-
-
-
-</head>
-<!-- Include Sidebar -->
 @include('includes.nav')
 
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+ 
+<body class="flex items-center justify-center ">
       <div class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
         <h1 class="text-xl font-bold text-left mb-6 text-gray-800">Upload Marketing Content</h1>
 
@@ -131,7 +122,7 @@
                 </div>
             </div>
 
-        </div>
+    </div>
 
         <script>
         // Select the input field and the element to show the file path
@@ -152,6 +143,4 @@
         </script>
 
 
-</body>
-
-</html>
+@endsection

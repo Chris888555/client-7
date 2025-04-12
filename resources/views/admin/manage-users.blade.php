@@ -1,26 +1,12 @@
-@if(!Auth::check())
-<script>
-window.location = "{{ route('admin.login') }}";
-</script>
-@endif
 
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
+@section('title', 'Downloadable')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Panel - Manage Users</title>
+@section('content')
 
-    <!-- Include Tailwind CSS via Vite -->
-    @vite(['resources/css/app.css'])
+@include('includes.nav')
 
-    <!-- Include FontAwesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script>
     // This function updates the URL query without reloading the page
@@ -28,13 +14,8 @@ window.location = "{{ route('admin.login') }}";
         window.location.search = '?view=' + view + '&search=' + document.getElementById('search-input').value;
     }
     </script>
-</head>
-<!-- Include Sidebar -->
-@include('includes.nav')
 
-<body class="bg-gray-50">
-
-    <div class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
+    <main class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
 
         <h1 class="text-xl font-bold mb-6">Manage Users</h1>
 
@@ -233,7 +214,7 @@ window.location = "{{ route('admin.login') }}";
                 </div>
                 @endif
             </div>
-        </div>
+    </main>
         <script>
         const bulkActionForm = document.getElementById('bulk-action-form');
         const bulkActionDropdown = document.getElementById('bulk-action-dropdown');
@@ -303,6 +284,4 @@ window.location = "{{ route('admin.login') }}";
         </script>
 
 
-</body>
-
-</html>
+@endsection

@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title', 'Academy | Video Playlist')
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    @vite(['resources/css/app.css'])
+@section('content')
 
-    <title>Academy | Video Playlist</title>
-
-
-</head>
-
-<!-- Include Sidebar -->
 @include('includes.nav')
-
-<body class="bg-gray-100 font-sans">
 
 
     <!-- Main Content Section -->
-       <div class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
+       <main class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
         <h1 class="text-4xl font-extrabold text-left mb-8 
            bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text
            drop-shadow-lg tracking-wide uppercase relative inline-block">
@@ -140,7 +127,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</main>
 
     <script>
     function isYouTube(url) {
@@ -177,6 +164,4 @@
         }
     });
     </script>
-</body>
-
-</html>
+@endsection

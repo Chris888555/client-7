@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title', 'Sales Funnel Link')
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/css/icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    @vite(['resources/css/app.css'])
+@section('content')
 
-    <title>Sales Funnel Link</title>
-
-
-    <!-- SweetAlert2 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-
-<!-- Include Sidebar -->
 @include('includes.nav')
 
-<body class="bg-gray-100 p-5 md:p-10 ">
     <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white  p-8 rounded-2xl border-2 border-gray-200 p-6 mt-10">
         <!-- Success Message -->
         @if(session('success'))
@@ -198,6 +182,4 @@
     }
     </script>
 
-</body>
-
-</html>
+@endsection

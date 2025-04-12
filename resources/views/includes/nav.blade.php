@@ -11,7 +11,7 @@
 
 <body class="bg-gray-100 flex">
 
-    <!-- Sidebar -->
+ <!-- ############ PC Sidebar #####################################################################-->
     <aside id="sidebar"
         class="fixed w-[280px] bg-[#3e377b] text-white h-screen p-5 hidden md:block transition-all duration-300 overflow-y-auto">
         <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 sidebar-item px-4 ">My Logo
@@ -26,8 +26,14 @@
 
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                <span class="material-icons">insert_chart</span> <!-- Representing charts or analytics -->
+                <span class="material-icons">trending_up</span> <!-- Representing charts or analytics -->
                 <a href="{{ route('funnel.main') }}" class="block p-2 sidebar-text">Sales Funnel</a>
+            </li>
+
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">insert_chart</span> <!-- Representing charts or analytics -->
+                <a href="{{ route('video.analytics') }}" class="block p-2 sidebar-text">Video Analytics</a>
             </li>
 
             <li
@@ -143,7 +149,8 @@
 
         </header>
 
-        <!-- Mobile Sidebar -->
+
+        <!-- ############ Mobile Sidebar #####################################################################-->
         <div id="mobile-sidebar"
             class="fixed inset-0 bg-[#3e377b] text-white z-50 p-5 transform -translate-x-full transition-transform md:hidden">
             <div class="flex justify-end">

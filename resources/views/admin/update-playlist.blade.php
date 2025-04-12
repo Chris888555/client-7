@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Playlist</title>
-    @vite(['resources/css/app.css'])
-    <!-- Include Vite compiled CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Include AlpineJS for handling expand/collapse functionality -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-</head>
+@extends('layouts.app')
 
-<body>
+@section('title', 'Update Playlist')
 
-<!-- Include Sidebar -->
+@section('content')
+
 @include('includes.nav')
+
+
 
 <div class="container w-full max-w-7xl mt-0 mb-0 m-auto p-4 sm:p-8">
         <h1 class="text-xl font-semibold mb-4">Update Playlist</h1>
@@ -124,6 +116,4 @@
             @endforeach
         </ul>
     </div>
-</body>
-
-</html>
+@endsection

@@ -10,7 +10,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +30,9 @@ class User extends Authenticatable
         'group_toggle',
         'page_link',
         'page_toggle',
+        'headline',
+        'subheadline',
+        'video_link',
     ];
 
     /**
@@ -52,4 +54,3 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
-

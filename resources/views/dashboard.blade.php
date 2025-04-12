@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    @vite(['resources/css/app.css'])
-</head>
+@section('title', 'Dashboard')
+<!-- Custom title for this page -->
+
+@section('content')
 
 @include('includes.nav')
 
-<body class="bg-gray-100">
-      <div class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
-        <!-- Welcome Section -->
+
+      <main class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
+       
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h1 class="text-3xl font-semibold text-blue-900">Welcome, {{ Auth::user()->name }}!</h1>
             <p class="mt-4 text-lg text-gray-700">
@@ -46,7 +43,7 @@
                 Use this tool to build trust and convert interest into real opportunities.
             </p>
         </div>
-    </div>
+</main>
 
     <script>
     function copyLink() {
@@ -68,6 +65,4 @@
         alert('Sales funnel link copied to clipboard!');
     }
     </script>
-</body>
-
-</html>
+@endsection
