@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -86,29 +87,7 @@ class ProfileController extends Controller
         return redirect()->route('profile.uploadForm')->with('success', 'Profile photo updated successfully!');
     }
 
-    public function showAdminHeader()
-    {
-        // Ensure the user is authenticated
-        if (!Auth::check()) {
-            return redirect()->route('admin.login'); // Redirect to admin login
-        }
-
-        // Get the logged-in user
-        $user = Auth::user();
-
-        // Ensure only admins can access
-        if (!$user->is_admin) {
-            return redirect()->route('admin.login'); // Redirect if not admin
-        }
-
-        // Ensure a profile picture exists
-        if (!$user->profile_picture) {
-            $user->profile_picture = $user->default_profile ?? 'profile_photos/default.jpg';
-        }
-
-        // Pass the user data to the view
-        return view('includes.admin-header', compact('user'));
-    }
+  
 
 // Update name and email
 public function updateDetails(Request $request)
@@ -123,7 +102,23 @@ public function updateDetails(Request $request)
     $user->email = $request->email;
     $user->save();
 
-    return back()->with('success', 'Your details have been updated successfully.');
+    return back()->with('success', 'Your details updated successfully.');
+}
+
+// Update password
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => ['required', 'current_password'],
+        'new_password' => ['required', 'string', 'min:3', 'confirmed'],
+    ]);
+
+    $user = auth()->user();
+    $user->update([
+        'password' => Hash::make($request->new_password),
+    ]);
+
+    return back()->with('success', 'Password changed successfully.');
 }
 
 

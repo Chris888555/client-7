@@ -58,8 +58,12 @@ class GoogleController extends Controller
             $imagePath = 'profile_photos/' . $imageName;
 
             // Set video link
-            $defaultYouTube = 'https://youtu.be/ccbp7R1li3w?si=fkLI7dCiltZhGNel';
-            $videoLink = $this->processVideoLink($defaultYouTube);
+           // Choose one default video link (uncomment your preferred option)
+// $defaultVideoLink = 'https://youtu.be/ccbp7R1li3w?si=fkLI7dCiltZhGNel'; // ✅ YouTube
+$defaultVideoLink = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // ✅ MP4
+
+// Final video link assignment using the processor
+$videoLink = $this->processVideoLink($defaultVideoLink);
 
             // Default headline and subheadline
             $headline = "Struggling to Make Sales? This Funnel Does the Selling For You";
@@ -75,10 +79,10 @@ class GoogleController extends Controller
                 'is_admin' => 0,
                 'default_profile' => $imagePath,
                 'is_online' => 0,
-                'facebook_link' => 'https://www.facebook.com/your-messenger-link',
-                'join_fb_group' => 'https://www.facebook.com/your-gc-group-link',
+                'facebook_link' => 'https://www.example.com/your-link',
+                'join_fb_group' => 'https://www.example.com/your-link',
                 'group_toggle' => 0,
-                'page_link' => 'https://www.facebook.com/page-link',
+                'page_link' => 'https://www.example.com/your-link',
                 'page_toggle' => 0,
                 'headline' => $headline,
                 'subheadline' => $subheadline,

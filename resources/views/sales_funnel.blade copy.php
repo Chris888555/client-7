@@ -28,13 +28,9 @@
         width: 100%;
     }
     
- #custom-video::-webkit-media-controls {
+#custom-video::-webkit-media-controls {
       display: none !important;
     }
-    
-#custom-video {
-    cursor: pointer; /* shows hand icon when hovering */
-}
 
 
     </style>
@@ -106,7 +102,7 @@
             <!-- Play Button for only mp4 video, hide this to the youtube video -->
             <div id="play-button" class="absolute inset-0 flex items-center justify-center cursor-pointer">
                 <img src="https://d1yei2z3i6k35z.cloudfront.net/1841686/67e55a7e66930_Sybbex.png" alt="Play Button"
-                    class=" mt-4 w-12 h-12 md:w-16 md:h-16 opacity-90 transition transform hover:scale-110 mb-9"
+                    class="w-10 h-10 md:w-16 md:h-16 opacity-90 transition transform hover:scale-110 mb-9"
                     onclick="playVideo()">
             </div>
         </div>
@@ -191,7 +187,7 @@
     <footer class="bg-gray-800 text-gray-400 py-10">
         <div class="container mx-auto text-center">
             <p class="text-sm">
-                © 2025 <a href="https://www.businessforhome.com" class="hover:underline">BusinessForHome</a>. All Rights
+                Â© 2025 <a href="https://www.businessforhome.com" class="hover:underline">Sybbex Team Ph</a>. All Rights
                 Reserved.
             </p>
             <p class="text-xs mt-2 px-4">
@@ -204,80 +200,77 @@
     </footer>
 
     <script>
+    // MP4 Analytics Script
     const video = document.getElementById('custom-video');
-const playButton = document.getElementById('play-button');
-const youtubeVideo = document.getElementById('youtube-video');
+    const playButton = document.getElementById('play-button');
+    const youtubeVideo = document.getElementById('youtube-video');
 
+    // Function to get the cookie value by name
 let userCookie = localStorage.getItem('user_cookie');
 if (!userCookie) {
     userCookie = 'user_' + Math.random().toString(36).substr(2, 9);
-    localStorage.setItem('user_cookie', userCookie);
+    localStorage.setItem('user_cookie', userCookie); // Persist in localStorage
 }
 
-let progressInterval;
-let maxProgress = 0;
 
-if (video) {
-    // Start with play button visible
-    playButton.style.display = 'flex';
 
-    // ✅ PLAY via button
-    playButton.addEventListener('click', () => {
-        video.play();
-    });
+    let progressInterval;
+    let maxProgress = 0; // Variable to track the highest progress
 
-    // ✅ When video plays, hide play button
-    video.addEventListener('play', () => {
-        playButton.style.display = 'none';
-        trackProgress();
-    });
+    if (video) {
+        playButton.style.display = 'flex'; // Ensure play button is visible for MP4 videos
 
-    // ✅ When video pauses, show play button
-    video.addEventListener('pause', () => {
-        playButton.style.display = 'flex';
-        clearInterval(progressInterval);
-    });
-
-    // ✅ Clicking the video will pause only (not play)
-    video.addEventListener('click', () => {
-        if (!video.paused) {
-            video.pause();
-        }
-    });
-
-    function trackProgress() {
-        progressInterval = setInterval(() => {
-            const progress = (video.currentTime / video.duration) * 100;
-            maxProgress = Math.max(maxProgress, progress);
-            sendProgressToBackend(progress, maxProgress);
-        }, 1000);
-    }
-
-    function sendProgressToBackend(progress, maxProgress) {
-        const videoLink = "{{ $user->video_link }}";
-        const subdomain = "{{ $user->subdomain }}";
-
-        fetch('/save-video-progress', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify({
-                user_cookie: userCookie,
-                video_link: videoLink,
-                subdomain: subdomain,
-                progress: progress,
-                max_watch_percentage: maxProgress
-            })
+        video.addEventListener('play', () => {
+            playButton.style.display = 'none'; // Hide play button when video starts playing
+            trackProgress(); // Start tracking video progress
         });
+
+        video.addEventListener('pause', () => {
+            playButton.style.display = 'flex'; // Show play button when video is paused
+            clearInterval(progressInterval); // Stop tracking progress when paused
+        });
+
+        // Function to play the video when the play button is clicked
+        function playVideo() {
+            video.play(); // Play the video
+            playButton.style.display = 'none'; // Hide the play button
+        }
+
+        // Track the video progress
+        function trackProgress() {
+            progressInterval = setInterval(() => {
+                const progress = (video.currentTime / video.duration) * 100; // Calculate progress as percentage
+                maxProgress = Math.max(maxProgress, progress); // Update max progress
+                sendProgressToBackend(progress, maxProgress); // Send progress to the backend
+            }, 1000); // Send progress every second
+        }
+
+        // Function to send progress to the backend
+        function sendProgressToBackend(progress, maxProgress) {
+            const videoLink = "{{ $user->video_link }}";
+            const subdomain = "{{ $user->subdomain }}";
+
+            fetch('/save-video-progress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify({
+                    user_cookie: userCookie,
+                    video_link: videoLink,
+                    subdomain: subdomain,
+                    progress: progress,
+                    max_watch_percentage: maxProgress // Send max watch percentage
+                })
+            });
+        }
     }
-}
 
-if (youtubeVideo) {
-    playButton.style.display = 'none';
-}
 
+    if (youtubeVideo) {
+        playButton.style.display = 'none';
+    }
     </script>
 
 

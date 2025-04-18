@@ -7,8 +7,8 @@
 @include('includes.nav')
 
 
-<main class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
-    <div class="mb-4">
+<main class="container m-auto p-4 sm:p-8 max-w-full">
+    <!-- <div class="mb-4">
         <a href="{{ route('funnel.main') }}"
             class="inline-flex items-center px-4 py-2 bg-gradient-to-br from-indigo-600 to-purple-500 text-white rounded-lg hover:bg-blue-600">
             <svg class="h-6 w-6 text-white mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -20,36 +20,11 @@
             </svg>
             Go Back
         </a>
-    </div>
+    </div> -->
 
-    <!-- Success Message -->
-    @if(session('success'))
-    <div id="success-message"
-        class="flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
-        <div class="flex items-center justify-center w-12 bg-emerald-500">
-            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-            </svg>
-        </div>
 
-        <div class="px-4 py-2 -mx-3">
-            <div class="mx-3">
-                <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
-                <p class="text-sm text-gray-600 dark:text-gray-200">{{ session('success') }}</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    // Hide the success message after 3 seconds
-    setTimeout(function() {
-        document.getElementById('success-message').style.display = 'none';
-    }, 5000);
-    </script>
-    @endif
-
-    <h1 class="text-2xl font-semibold mb-4">Update Funnel Links</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-left">Update Your Funnel</h1>
+        <p class="text-gray-600 text-left mb-4">Manage your sales funnel details</p>
 
     <form action="{{ route('save-funnel') }}" method="POST">
         @csrf
@@ -58,7 +33,7 @@
         <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="headline" class="block text-lg font-medium">Headline</label>
             <input type="text" name="headline" id="headline"
-                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('headline', $user->headline) }}">
             @error('headline')
             <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
@@ -68,7 +43,7 @@
         <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="subheadline" class="block text-lg font-medium">Subheadline</label>
             <input type="text" name="subheadline" id="subheadline"
-                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('subheadline', $user->subheadline) }}">
             @error('subheadline')
             <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
@@ -76,9 +51,9 @@
         </div>
 
         <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-            <label for="video_link" class="block text-lg font-medium">Video Link</label>
+            <label for="video_link" class="block text-lg font-medium">Sales Funnel Video (mp4 or youtube video link)</label>
             <input type="url" name="video_link" id="video_link"
-                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('video_link', $user->video_link) }}">
             @error('video_link')
             <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
@@ -89,7 +64,7 @@
         <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="facebook_link" class="block text-lg font-medium">Messenger Or Fb Link</label>
             <input type="url" name="facebook_link" id="facebook_link"
-                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('facebook_link', $user->facebook_link) }}">
             @error('facebook_link')
             <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
@@ -99,7 +74,7 @@
         <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="join_fb_group" class="block text-lg font-medium">Your Inquiry Group Chat Link</label>
             <input type="url" name="join_fb_group" id="join_fb_group"
-                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('join_fb_group', $user->join_fb_group) }}">
             @error('join_fb_group')
             <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
@@ -119,7 +94,7 @@
         <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="page_link" class="block text-lg font-medium">Your Referral Link</label>
             <input type="url" name="page_link" id="page_link"
-                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('page_link', $user->page_link) }}">
             @error('page_link')
             <div class="text-red-500 text-sm mt-2">{{ $message }}</div>

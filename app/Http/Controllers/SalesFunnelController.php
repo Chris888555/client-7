@@ -99,7 +99,7 @@ public function save(Request $request)
     $user->save();
 
     // Redirect back with a success message
-    return redirect()->route('edit-funnel')->with('success', 'Links and other details updated successfully!');
+    return redirect()->route('edit-funnel')->with('success', 'Details updated successfully!');
 }
 
 

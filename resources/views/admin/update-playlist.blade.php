@@ -7,38 +7,16 @@
 
 @include('includes.nav')
 
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
 
-<div class="container w-full max-w-7xl mt-0 mb-0 m-auto p-4 sm:p-8">
-        <h1 class="text-xl font-semibold mb-4">Update Playlist</h1>
+<div class="container m-auto p-4 sm:p-8 max-w-full">
+      <h1 class="text-2xl md:text-3xl font-bold text-left">Manage Playlist Videos</h1>
+        <p class="text-gray-600 text-left mb-4">Manage your playlist by editing or removing videos as needed.</p>
 
-       <!-- Success Message -->
-        @if(session('success'))
-        <div id="success-message"
-            class="flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
-            <div class="flex items-center justify-center w-12 bg-emerald-500">
-                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-                </svg>
-            </div>
 
-            <div class="px-4 py-2 -mx-3">
-                <div class="mx-3">
-                    <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
-                    <p class="text-sm text-gray-600 dark:text-gray-200">{{ session('success') }}</p>
-                </div>
-            </div>
-        </div>
 
-        <script>
-        // Hide the success message after 3 seconds
-        setTimeout(function() {
-            document.getElementById('success-message').style.display = 'none';
-        }, 5000);
-        </script>
-        @endif
-
+    
         <!-- Playlist List -->
         <ul>
             @foreach($playlists as $playlist)
@@ -93,16 +71,16 @@
                         <!-- Title Input -->
                         <label for="title" class="block text-sm font-semibold">Title</label>
                         <input type="text" name="title" value="{{ $playlist->title }}"
-                            class="w-full p-2 mb-4 border rounded" required>
+                            class="mt-1 mb-4 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800" required>
 
                         <!-- Video Link Input -->
                         <label for="video_link" class="block text-sm font-semibold">Video Link</label>
                         <input type="url" name="video_link" value="{{ $playlist->video_link }}"
-                            class="w-full p-2 mb-4 border rounded" required>
+                            class="mt-1 mb-4 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800" required>
 
                         <!-- Thumbnail Upload -->
                         <label for="thumbnail" class="block text-sm font-semibold">Thumbnail (Optional)</label>
-                        <input type="file" name="thumbnail" class="w-full p-2 mb-4 border rounded">
+                        <input type="file" name="thumbnail" class="mt-1 block w-full p-[10px] border bg-white border-gray-300 rounded-lg text-gray-800 cursor-pointer hover:bg-gray-100">
 
                         <div class="flex gap-2 mt-4">
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>

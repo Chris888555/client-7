@@ -6,42 +6,14 @@
 
 @include('includes.nav')
 
-    <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white  p-8 rounded-2xl border-2 border-gray-200 p-6 mt-10">
-        <!-- Success Message -->
-        @if(session('success'))
-        <div id="success-message"
-            class="flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
-            <div class="flex items-center justify-center w-12 bg-emerald-500">
-                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-                </svg>
-            </div>
-
-            <div class="px-4 py-2 -mx-3">
-                <div class="mx-3">
-                    <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
-                    <p class="text-sm text-gray-600 dark:text-gray-200">{{ session('success') }}</p>
-                </div>
-            </div>
-        </div>
-
-        <script>
-        // Hide the success message after 3 seconds
-        setTimeout(function() {
-            document.getElementById('success-message').style.display = 'none';
-        }, 5000);
-        </script>
-        @endif
-
-
-
-        <h1 class="text-2xl md:text-3xl font-bold text-center mb-4">Sales Funnel Links</h1>
-        <p class="text-gray-600 text-center mb-4">Manage and share your custom funnel links.</p>
+     <div class="container m-auto p-4 sm:p-8 max-w-full">
+     
+        <h1 class="text-2xl md:text-3xl font-bold text-left">Sales Funnel Links</h1>
+        <p class="text-gray-600 text-left mb-4">Manage and share your custom funnel links.</p>
 
         <ul class="space-y-4">
             <!-- Loop through only the logged-in user's data -->
-            <li class="bg-gray-200 p-4 rounded-lg shadow-md">
+            <li class="bg-white p-8 rounded-lg border-2 border-gray-200">
 
                 <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
                     <p class="text-blue-600 font-medium text-center break-all">{{ url($user->subdomain) }}</p>
@@ -110,8 +82,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-    <div class="container w-full max-w-7xl mt-6 mb-10 mx-auto sm:p-8">
-        <div x-data="{ open: false }" class="w-[90%] sm:max-w-[800px] mx-auto p-6 bg-white  p-8 rounded-2xl border-2 border-gray-200">
+    <div class="container m-auto p-4 sm:p-8 max-w-full">
+        <div x-data="{ open: false }" class="w-full mx-auto p-6 bg-white  p-8 rounded-lg  border-2 border-gray-200">
             <button @click="open = !open"
                 class="text-xl font-bold text-gray-800 w-full text-left flex justify-between items-center">
                 Paano Gamitin ang Sales Funnel

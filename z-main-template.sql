@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2025 at 10:23 PM
+-- Generation Time: Apr 16, 2025 at 11:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `natalie_realty`
+-- Database: `z-main-template`
 --
 
 -- --------------------------------------------------------
@@ -61,6 +61,29 @@ CREATE TABLE `clients` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `funnel_page_views`
+--
+
+CREATE TABLE `funnel_page_views` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `user_cookie` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `funnel_page_views`
+--
+
+INSERT INTO `funnel_page_views` (`id`, `user_id`, `user_cookie`, `created_at`, `updated_at`) VALUES
+(12, 152, 'user-rBQ6P4', '2025-04-16 06:42:33', '2025-04-16 06:42:33'),
+(13, 152, 'd8c2400c-0054-4044-95f3-f2a3d3f8582e', '2025-04-16 06:44:29', '2025-04-16 06:44:29'),
+(14, 152, 'dbd2e396-35b6-48fd-a0ba-3aef798c3f73', '2025-04-16 07:52:02', '2025-04-16 07:52:02');
 
 -- --------------------------------------------------------
 
@@ -120,7 +143,31 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2025_03_17_220437_add_shipping_rules_to_products_table', 12),
 (25, '2025_03_31_191410_create_funnel_pages_table', 13),
 (26, '2025_03_31_201956_create_clients_table', 14),
-(27, '2025_04_12_134254_create_video_view_progress_table', 15);
+(27, '2025_04_12_134254_create_video_view_progress_table', 15),
+(28, '2025_04_16_164633_create_nav_settings_table', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nav_settings`
+--
+
+CREATE TABLE `nav_settings` (
+  `id` int(11) NOT NULL,
+  `nav_bg_color` varchar(20) DEFAULT NULL,
+  `nav_text_color` varchar(20) DEFAULT NULL,
+  `nav_text_list_hover_color` varchar(20) DEFAULT NULL,
+  `nav_list_bg_hover_color` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nav_settings`
+--
+
+INSERT INTO `nav_settings` (`id`, `nav_bg_color`, `nav_text_color`, `nav_text_list_hover_color`, `nav_list_bg_hover_color`, `created_at`, `updated_at`) VALUES
+(3, '#6243b6', '#f2f2f2', '#555190', '#ffffff', '2025-04-16 12:47:38', '2025-04-16 13:23:13');
 
 -- --------------------------------------------------------
 
@@ -179,9 +226,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5njEbF1p7hVnbEYZzlSxD0F9LTI8yFs5jcAvdzWY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiekZiV1ZYdURSTldaRHNGelBvR2Jlc2xTVHlVQ3N4N1p2UjdYUG5hbiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744489247),
-('QbqvhDT4M1kke3FfWHpZRuB68VdnU3nqQFciznUv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibGhYdFNkeW4wM3J0U0taWmNzOHVjQ2tpaVJ1RFZXZE1jbVIweW92YSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744489247),
-('Ry9oNtumil7iZIJoL7jlKpUmoWM2148Xv6eZCd06', 152, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMDFUUGFWMDdnS3BST0ZoTTZTdUZHbjJYWnlWZWtYRGhqc29tZmpvWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC92aWRlby1hbmFseXRpY3M/cGFnZT0xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTUyO30=', 1744489276);
+('BE4D7lA4gzbHQn5YUwmXxnriIKMLUajkTO4OUmKb', 174, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSHhLaDh2OTlGOXFOYnNFSUNjMktOaWlHbXZMUzQ0RVdDOU9oNVB1cCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNzQ7fQ==', 1744839362),
+('tRLtySYkDnokECN8tjkJJVpdyusOxDNqS8DFuMEo', 152, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZXR6OEZGTFAxS21vSlBOTUQ4SGNPQ1U3aUxvdTIxRkNPdjFDTlhIZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9uYXYtc2V0dGluZ3MiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNTI7fQ==', 1744839438);
 
 -- --------------------------------------------------------
 
@@ -221,7 +267,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `name`, `email`, `subdomain`, `email_verified_at`, `password`, `created_at`, `updated_at`, `password_reset_token`, `password_reset_expires`, `is_admin`, `approved`, `profile_picture`, `default_profile`, `is_online`, `facebook_link`, `join_fb_group`, `page_link`, `page_toggle`, `group_toggle`, `headline`, `subheadline`, `video_link`) VALUES
-(152, NULL, 'Christian De Lumnen', 'admin@gmail.com', 'admin', NULL, '$2y$12$WuGqW5AGL6Cc1zNoK4u2IOff60groGEA1gJUDNa6sc.FKtEv2pvOq', '2025-04-12 10:14:01', '2025-04-12 10:14:01', NULL, NULL, 1, 1, NULL, 'profile_photos/profile_1744481641.jpg', 0, 'https://www.facebook.com/your-messenger-link', 'https://www.facebook.com/your-gc-group-link', 'https://www.facebook.com/page-link', 0, 0, 'Struggling to Make Sales? This Funnel Does the Selling For You', 'Automate your leads, boost your sales, and grow your business — even while you sleep', 'https://www.youtube.com/embed/ccbp7R1li3w');
+(152, NULL, 'Christian De Lumnen', 'admin@gmail.com', 'admin3', NULL, '$2y$12$xbDX48//thrU0UfZbvqZJ.YcrBntExIxVcVP0Hm5nuVDF0Sjm2ufC', '2025-04-12 10:14:01', '2025-04-16 07:55:43', NULL, NULL, 1, 1, 'profile_photos/profile_1744812101.jpg', 'profile_photos/profile_1744481641.jpg', 0, 'https://www.facebook.com/your-messenger-link', 'https://www.facebook.com/your-gc-group-link', 'https://www.facebook.com/page-link', 0, 0, 'Struggling to Make Sales? This Funnel Does the Selling For You2', 'Automate your leads, boost your sales, and grow your business — even while you sleep', 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'),
+(174, NULL, 'Maylene Gaspar', 'maylene@gmail.com', 'maylene', NULL, '$2y$12$cfK0.r.bcvuIjXEQlNsZqOd3v2PBd35aVdYz04aaBKSd6hx2ldaHK', '2025-04-15 07:25:29', '2025-04-16 12:26:06', NULL, NULL, 0, 1, 'profile_photos/profile_1744807765.jpg', 'profile_photos/profile_1744730728.jpg', 0, 'https://www.facebook.com/your-messenger-link', 'https://www.facebook.com/your-gc-group-link', 'https://www.facebook.com/page-link', 0, 0, 'Struggling to Make Sales? This Funnel Does the Selling For You2', 'Automate your leads, boost your sales, and grow your business — even while you sleep', 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4');
 
 -- --------------------------------------------------------
 
@@ -245,9 +292,7 @@ CREATE TABLE `video_watch_progress` (
 --
 
 INSERT INTO `video_watch_progress` (`id`, `user_id`, `video_link`, `progress`, `max_watch_percentage`, `user_cookie`, `created_at`, `updated_at`) VALUES
-(10, 152, 'https://www.youtube.com/embed/ccbp7R1li3w', 40.8164, 85.5651, 'user_l6ssnxcj9', '2025-04-12 11:52:45', '2025-04-12 11:54:58'),
-(12, 152, 'https://www.youtube.com/embed/ccbp7R1li3w', 40.7668, 40.7668, 'user_kw2m2ww2o', '2025-04-12 12:03:23', '2025-04-12 12:03:40'),
-(13, 152, 'https://www.youtube.com/embed/ccbp7R1li3w', 0.158624, 0.158624, 'user_8est4gtfs', '2025-04-12 12:04:05', '2025-04-12 12:04:12');
+(36, 152, 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4', 5.47638, 62.7758, 'user_slxc5hdw0', '2025-04-16 07:39:16', '2025-04-16 07:46:27');
 
 --
 -- Indexes for dumped tables
@@ -274,6 +319,12 @@ ALTER TABLE `clients`
   ADD KEY `clients_page_id_foreign` (`page_id`);
 
 --
+-- Indexes for table `funnel_page_views`
+--
+ALTER TABLE `funnel_page_views`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `marketing_contents`
 --
 ALTER TABLE `marketing_contents`
@@ -283,6 +334,12 @@ ALTER TABLE `marketing_contents`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nav_settings`
+--
+ALTER TABLE `nav_settings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -332,16 +389,28 @@ ALTER TABLE `clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `funnel_page_views`
+--
+ALTER TABLE `funnel_page_views`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `marketing_contents`
 --
 ALTER TABLE `marketing_contents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `nav_settings`
+--
+ALTER TABLE `nav_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `playlists`
@@ -353,13 +422,13 @@ ALTER TABLE `playlists`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT for table `video_watch_progress`
 --
 ALTER TABLE `video_watch_progress`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables

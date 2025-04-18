@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
+
 public function saveVideoProgress(Request $request)
 {
     // Retrieve the user based on the subdomain

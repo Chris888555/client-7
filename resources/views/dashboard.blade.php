@@ -7,10 +7,9 @@
 
 @include('includes.nav')
 
-
-      <main class="container w-full mt-0 mb-0 m-auto p-4 sm:p-8">
+      <main class="container m-auto p-4 sm:p-8 max-w-full">
        
-        <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
             <h1 class="text-3xl font-semibold text-blue-900">Welcome, {{ Auth::user()->name }}!</h1>
             <p class="mt-4 text-lg text-gray-700">
                 We're excited to have you as a part of our community! You can now start sharing your sales funnel link
@@ -19,7 +18,7 @@
         </div>
 
         <!-- Funnel Link Section -->
-        <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
+        <div class="bg-white p-6 mt-6 rounded-lg shadow hover:shadow-lg transition">
             <h2 class="text-2xl font-semibold text-blue-900">Your Sales Funnel Link</h2>
             <p class="mt-4 text-lg text-gray-700">
                 Simply click the button below to go to the next page where you can copy your sales funnel link and share
@@ -36,7 +35,7 @@
         </div>
 
         <!-- Lead Collection and Follow-up Section -->
-        <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
+        <div class="bg-white p-6 mt-6 rounded-lg shadow hover:shadow-lg transition">
             <h3 class="text-2xl font-semibold text-blue-900">Educate and Convert</h3>
             <p class="mt-4 text-lg text-gray-700">
                 Once you've shared your link, your clients can learn about your offers at any time of the day, 24/7.

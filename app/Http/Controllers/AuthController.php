@@ -66,13 +66,20 @@ public function register(Request $request)
 
     // Set video link
     $providedLink = $request->video_link;
-    $defaultYouTube = 'https://youtu.be/ccbp7R1li3w?si=fkLI7dCiltZhGNel';
+    $defaultYouTube = 'https://youtu.be/ccbp7R1li3w?si=fkLI7dCiltZhGNel'; // ✅ YouTube 
+    $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // ✅ MP4 
 
-    if ($providedLink) {
-        $videoLink = $this->processVideoLink($providedLink);
+    // Choose which default video to use (uncomment one)
+    // $defaultVideoLink = $defaultYouTube;
+    $defaultVideoLink = $defaultMP4;
+
+    // Final video link assignment
+    if ($request->video_link) {
+        $videoLink = $this->processVideoLink($request->video_link);
     } else {
-        $videoLink = $this->processVideoLink($defaultYouTube);
+        $videoLink = $this->processVideoLink($defaultVideoLink);
     }
+
 
     // Default headline and subheadline
     $headline = $request->headline ?? "Struggling to Make Sales? This Funnel Does the Selling For You";
@@ -88,10 +95,10 @@ public function register(Request $request)
         'approved' => 0,
         'default_profile' => $imagePath,
         'is_online' => 0,
-        'facebook_link' => 'https://www.facebook.com/your-messenger-link',
-        'join_fb_group' => 'https://www.facebook.com/your-gc-group-link',
+        'facebook_link' => 'https://www.example.com/your-link',
+        'join_fb_group' => 'https://www.example.com/your-link',
         'group_toggle' => 0,
-        'page_link' => 'https://www.facebook.com/page-link',
+        'page_link' => 'https://www.example.com/your-link',
         'page_toggle' => 0,
         'headline' => $headline,
         'subheadline' => $subheadline,

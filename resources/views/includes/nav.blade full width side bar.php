@@ -33,6 +33,8 @@
     background-color: {{ $navSettings->nav_list_bg_hover_color ?? '#cccccc' }};
     color: {{ $navSettings->nav_text_list_hover_color ?? '#ffffff' }};
 }
+
+
 </style>
 
 
@@ -225,11 +227,9 @@
 
 
         <!-- ############ Mobile Sidebar #####################################################################-->
-        <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden md:hidden z-40"></div> <!-- Overlay -->
-
         <div id="mobile-sidebar"
-            class="fixed inset-0 z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto"
-            style="width: 300px; background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
+            class="fixed inset-0  z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto"
+             style="background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
             <div class="flex justify-end">
                 <button id="close-sidebar" class="text-white text-lg">
                     <svg class="h-8 w-8 text-gray-200" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -240,7 +240,8 @@
                     </svg>
                 </button>
             </div>
-            <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4  ">My Logo </h2>
+            <h2 id="sidebar-logo"
+                class="text-lg font-bold mb-6 flex items-center space-x-2 px-4  ">My Logo </h2>
 
             <ul>
                 <li
@@ -344,21 +345,11 @@
         // Mobile Sidebar Toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-sidebar').classList.remove('-translate-x-full');
-            document.getElementById('overlay').classList.remove('hidden');
         });
 
-        // Close Sidebar
         document.getElementById('close-sidebar').addEventListener('click', function() {
             document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
-            document.getElementById('overlay').classList.add('hidden');
         });
-
-        // Close sidebar when clicking on the overlay
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
-            document.getElementById('overlay').classList.add('hidden');
-        });
-
 
         // PC Sidebar Toggle
         document.getElementById('pc-menu-toggle').addEventListener('click', function() {

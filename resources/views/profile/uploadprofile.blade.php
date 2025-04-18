@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Upload Profile Photo')
+@section('title', 'Manage Your Account')
 
 @section('content')
 
@@ -9,99 +9,161 @@
 
 
 <body class="bg-gray-100 flex items-center justify-center px-2  ">
-    <div class="mt-24 bg-white  rounded-2xl border-2 border-gray-200 w-[90%] max-w-[500px] mx-auto py-5 px-1 sm:py-8 ">
-        <h2 class="text-2xl font-bold text-center mb-4">Upload Profile Photo</h2>
+    <div class="container m-auto p-4 sm:p-8 max-w-full">
+      
+ <h1 class="text-2xl md:text-3xl font-bold text-left">Manage Your Account</h1>
+        <p class="text-gray-600 text-left mb-4">Update your profile photo and personal details.</p>
 
 
-        <!-- Success Message -->
-        @if(session('success'))
-        <div id="success-message"
-            class="flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
-            <div class="flex items-center justify-center w-12 bg-emerald-500">
-                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-                </svg>
-            </div>
 
-            <div class="px-4 py-2 -mx-3">
-                <div class="mx-3">
-                    <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
-                    <p class="text-sm text-gray-600 dark:text-gray-200">{{ session('success') }}</p>
-                </div>
-            </div>
+        @if ($errors->any())
+    <div id="error-message"
+        class="flex w-full overflow-hidden bg-red-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
+        <div class="flex items-center justify-center w-12 bg-red-500">
+            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM22.5 26.6666H17.5V21.6666H22.5V26.6666ZM22.5 18.3333H17.5V13.3333H22.5V18.3333Z" />
+            </svg>
         </div>
 
+        <div class="px-4 py-2 -mx-3">
+            <div class="mx-3">
+                <span class="font-semibold text-red-500 dark:text-red-400">Error</span>
+                <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-200">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
 
-
-        <script>
-        // Hide the success message after 3 seconds
+    <script>
+        // Hide the error message after 5 seconds
         setTimeout(function() {
-            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
         }, 5000);
-        </script>
-        @endif
+    </script>
+@endif
 
+    
 
-        <!-- Image Preview and Upload Icon -->
-        <div class="flex justify-center mb-4 ">
-            <div class="relative">
+       <!-- Profile Section -->
+<div class="bg-white p-8 rounded-2xl border-2 border-gray-200 flex flex-col md:flex-row gap-8">
+    
+    <!-- Left: Profile Image Upload -->
+    <div class="flex flex-col items-center md:items-start w-full md:w-1/3">
+        <div class="relative">
                 <img id="profile-photo-preview"
                     src="{{ asset('storage/' . ($user->profile_picture ? $user->profile_picture : 'profile_photos/' . $user->default_profile)) }}"
                     alt="Profile Photo"
-                    class="h-24 w-24 object-cover rounded-full border-2 border-gray-300 cursor-pointer"
+                    class="h-24 w-24 object-cover rounded-full border-8 border-gray-300 cursor-pointer"
                     onclick="triggerFileInput()">
 
                 <label for="profile_photo"
-                    class="absolute bottom-0 right-[-10px]  text-white rounded-full p-2 cursor-pointer">
+                    class="absolute bottom-0 right-[-13px]  text-white rounded-full p-2 cursor-pointer">
                     <img src="https://static.wixstatic.com/media/632b5a_5ba6f3f001ca4e61a7fd95228e1bffba~mv2.png"
                         alt="Upload Image Icon" class="w-[30px] h-[30px] ">
                 </label>
                 <input type="file" id="profile_photo" name="profile_photo" style="display: none;"
                     onchange="previewImage(event)">
             </div>
-        </div>
+        <p class="mt-4 text-sm text-gray-500">Click the image to upload a new profile photo</p>
+    </div>
 
-
-        <!-- Hidden Form for Cropped Image Data -->
+    <!-- Hidden Form for Cropped Image Data -->
         <form id="crop-form" method="POST" action="{{ route('profile.upload') }}" enctype="multipart/form-data"
             class="space-y-4">
             @csrf
             <input type="hidden" name="cropped_profile_photo" id="cropped_profile_photo">
         </form>
 
+    <!-- Right: Update Form -->
+    <div class="w-full md:w-2/3">
+        <form action="{{ route('profile.update-details') }}" method="POST">
+            @csrf
+            @method('PUT')
 
-        <!-- Update Name and Email Section -->
-        <div class="mt-6 bg-white pt-4 px-4 rounded-2xl border-2 border-gray-200 w-[90%] max-w-[500px] mx-auto p-6">
-            <h2 class="text-xl font-bold text-left mb-4">Update Name & Email</h2>
+            <div class="mb-4">
+                <label for="name" class="block font-semibold mb-1">Full Name</label>
+                <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
 
-            <form action="{{ route('profile.update-details') }}" method="POST">
-                @csrf
-                @method('PUT')
+            <div class="mb-4">
+                <label for="email" class="block font-semibold mb-1">Email</label>
+                <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
 
-                <div class="mb-4">
-                    <label for="name" class="block font-semibold mb-1">Full Name</label>
-                    <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}"
-                        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+            <div class="text-left">
+                <button type="submit"
+                     class="rounded-lg bg-blue-700 px-6 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center">
+    
+    <!-- SVG Icon before the text, vertically centered -->
+    <svg class="h-6 w-6 text-slate-50 inline-block mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <line x1="20" y1="12" x2="10" y2="12" />
+        <line x1="20" y1="12" x2="16" y2="16" />
+        <line x1="20" y1="12" x2="16" y2="8" />
+        <line x1="4" y1="4" x2="4" y2="20" />
+    </svg>
 
-                <div class="mb-4">
-                    <label for="email" class="block font-semibold mb-1">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}"
-                        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+                    Update Details
+                </button>
+            </div>
+        </form>
 
-                <div class="text-center">
-                    <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">
-                        Update Details
-                    </button>
-                </div>
-            </form>
+        <!-- Change Password Section -->
+<div class=" mt-8 ">
+    
+    <form action="{{ route('profile.change-password') }}" method="POST">
+        @csrf
+        @method('PUT')
+
+        <!-- Current Password -->
+        <div class="mb-4">
+            <label for="current_password" class="block font-semibold mb-1">Current Password</label>
+            <input type="password" name="current_password" id="current_password"
+                class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
 
+        <!-- New Password -->
+        <div class="mb-4">
+            <label for="new_password" class="block font-semibold mb-1">New Password</label>
+            <input type="password" name="new_password" id="new_password"
+                class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Confirm New Password -->
+        <div class="mb-4">
+            <label for="new_password_confirmation" class="block font-semibold mb-1">Confirm New Password</label>
+            <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <div class="text-left">
+            <button type="submit"
+                 class="rounded-lg bg-blue-700 px-6 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center">
+    
+    <!-- SVG Icon before the text, vertically centered -->
+    <svg class="h-6 w-6 text-slate-50 inline-block mr-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <line x1="20" y1="12" x2="10" y2="12" />
+        <line x1="20" y1="12" x2="16" y2="16" />
+        <line x1="20" y1="12" x2="16" y2="8" />
+        <line x1="4" y1="4" x2="4" y2="20" />
+    </svg>
+
+                Change Password
+            </button>
+        </div>
+    </form>
+</div>
 
     </div>
+</div>
+
 
 
 
@@ -113,7 +175,7 @@
                 <img id="image-to-crop" src="" alt="Image to Crop" class="max-w-full rounded-lg">
             </div>
             <div class="flex justify-center space-x-4">
-                <button id="crop-btn" class="bg-green-500 text-white p-2 rounded-md">Crop</button>
+                <button id="crop-btn" class="bg-green-500 text-white p-2 rounded-md">Crop & Save</button>
                 <button id="close-modal-btn" class="bg-red-500 text-white p-2 rounded-md">Cancel</button>
             </div>
     </div>

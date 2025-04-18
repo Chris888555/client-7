@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\View\Composers\SidebarComposer;
 use App\Http\View\Composers\AdminHeaderComposer;
-use App\Models\NavSetting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,12 +23,6 @@ class AppServiceProvider extends ServiceProvider
                 (new SidebarComposer())->compose($view);
             }
         });
-
-        // Fetch data from nav_settings table
-        $navSettings = NavSetting::first();  // Or use any logic to fetch the data
-
-        // Share the navSettings globally with all views
-        View::share('navSettings', $navSettings);
     }
 
     public function register()

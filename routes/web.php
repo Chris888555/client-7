@@ -13,10 +13,21 @@ use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\MarketingController;
 use App\Http\Controllers\GoogleController;
-
-
-
+use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\FunnelSettingsController;
+use App\Http\Controllers\Navs\NavController;
+
+
+use App\Http\Controllers\NavSettingController;
+
+Route::get('/nav-settings', [NavSettingController::class, 'index'])->name('nav-settings.index');
+Route::put('/nav-settings', [NavSettingController::class, 'update'])->name('nav-settings.update');
+
+
+Route::get('/funnel-settings', [FunnelSettingsController::class, 'index'])->name('funnel.settings');
+Route::post('/funnel-settings/save', [FunnelSettingsController::class, 'save'])->name('funnel.settings.save');
+
 
 Route::post('/save-video-progress', [VideoController::class, 'saveVideoProgress']);
 Route::get('/video-analytics', [VideoController::class, 'showAnalytics'])->name('video.analytics');
@@ -33,10 +44,9 @@ Route::get('/footer', function () {
     return view('includes.footer'); // <-- Dapat may 'includes.'
 })->name('footer');
 
-// Nav Bar
-Route::get('/nav', function () {
-    return view('includes.nav'); // <-- Dapat may 'includes.'
-})->name('nav');
+
+
+Route::get('/nav', [NavController::class, 'showNav'])->name('nav');
 
 
 // Registration 
@@ -130,6 +140,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 Route::middleware(['auth'])->get('profile/upload', [ProfileController::class, 'showUploadForm'])->name('profile.uploadForm');
 Route::middleware(['auth'])->post('profile/upload', [ProfileController::class, 'uploadProfilePhoto'])->name('profile.upload');
 Route::put('/profile/update-details', [ProfileController::class, 'updateDetails'])->name('profile.update-details');
+Route::put('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
 
 
 
@@ -169,7 +180,11 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admi
 Route::middleware(['auth'])->get('/subdomain/update/{id}', [SalesFunnelController::class, 'editSubdomain'])->name('update.subdomain');
 Route::middleware(['auth'])->post('/subdomain/update/{id}', [SalesFunnelController::class, 'updateSubdomain'])->name('update.subdomain');
 
+Route::get('/page-view', [PageViewController::class, 'pageViewAnalytics'])->name('pageView.analytics');
+
 
 // Subdomain 
 Route::get('/{subdomain}', [SalesFunnelController::class, 'showFunnel']);
 
+
+Route::get('/{subdomain}', [PageViewController::class, 'track']);

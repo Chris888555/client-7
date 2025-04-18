@@ -142,7 +142,7 @@
             </form>
         </section>
 
-        <div class="text-center mt-6">
+        <!-- <div class="text-center mt-6">
             <a href="{{ url('auth/google') }}" class="w-full">
                 <button
                     class="w-full px-4 py-3 border flex gap-3 items-center justify-center border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
@@ -151,7 +151,7 @@
                     <span class="font-semibold">Login with Google</span>
                 </button>
             </a>
-        </div>
+        </div> -->
 
         <div class="text-center mt-6">
             <p class="text-gray-800">Don't have an account? <a href="{{ route('register') }}"
