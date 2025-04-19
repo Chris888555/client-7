@@ -10,7 +10,7 @@
 <body class=" min-h-screen flex items-center justify-center">
 
     <!-- Playlist Upload Form -->
-    <div class="container m-auto p-4 sm:p-8 max-w-full">
+    <div class="container m-auto p-4 sm:p-8 max-w-full ">
         <h1 class="text-2xl md:text-3xl font-bold text-left">Upload Playlist Videos</h1>
         <p class="text-gray-600 text-left mb-4">Easily upload your videos and organize them into a playlist for better viewing experience.</p>
 
@@ -55,18 +55,20 @@
 
 
             <!-- Submit Button -->
-            <button type="submit"
-                class="cursor-pointer bg-blue-700 w-full text-white py-3 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center space-x-2">
-                <svg class="h-6 w-6 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <path d="M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
-                    <polyline points="9 15 12 12 15 15" />
-                    <line x1="12" y1="12" x2="12" y2="21" />
-                </svg>
-                <span>Upload Playlist</span>
-            </button>
+             <button type="submit"
+                    class="cursor-pointer bg-blue-700 w-full sm:max-w-[300px] text-white py-3 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center mt-6">
 
+                    <!-- SVG Icon -->
+                    <svg class="h-5 w-5 text-slate-50 mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                        <circle cx="12" cy="14" r="2" />
+                        <polyline points="14 4 14 8 8 8 8 4" />
+                    </svg>
+
+                    Upload Playlist
+                </button>
 
         </form>
 

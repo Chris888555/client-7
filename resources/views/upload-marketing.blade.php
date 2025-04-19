@@ -51,7 +51,7 @@
 
                     <div class="flex justify-end">
                         <button type="submit"
-                            class="w-[70%] m-auto flex items-center justify-center gap-2 px-6 py-2 text-white rounded-lg shadow-md bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:bg-blue-800">
+                            class="w-[70%] m-auto flex items-center justify-center gap-2 px-6 py-2 text-white rounded-lg shadow-md bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:bg-blue-800 shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center">
                             <svg class="h-5 w-5 text-white transition-all" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

@@ -18,12 +18,12 @@ class AppServiceProvider extends ServiceProvider
         // Register AdminHeaderComposer for 'includes.admin-header' view
         View::composer('includes.admin-header', AdminHeaderComposer::class);
 
-        // Apply SidebarComposer to all views EXCEPT 'sales_funnel'
-        View::composer('*', function ($view) {
-            if ($view->getName() !== 'sales_funnel') {
-                (new SidebarComposer())->compose($view);
-            }
-        });
+        // Apply SidebarComposer to all views EXCEPT 'sales_funnel' and 'payment-form'
+    View::composer('*', function ($view) {
+        if ($view->getName() !== 'sales_funnel' && $view->getName() !== 'payment-form') {
+            (new SidebarComposer())->compose($view);
+        }
+    });
 
         // Fetch data from nav_settings table
         $navSettings = NavSetting::first();  // Or use any logic to fetch the data

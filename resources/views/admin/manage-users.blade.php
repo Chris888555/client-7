@@ -38,12 +38,12 @@ function updateView(view) {
         <!-- Buttons to switch between approved and pending users -->
         <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
-                class="px-4 py-2 border border-gray-200 bg-green-500 text-white rounded-md hover:bg-green-600 w-full sm:w-auto"
+                class="px-4 py-2 border border-gray-200 bg-green-500 text-white rounded-md hover:bg-green-600 w-full sm:w-auto shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center"
                 onclick="window.location='?view=approved&search={{ $search }}'">
                 Approved Users ( {{ $totalApprovedUsers }} )
             </button>
             <button
-                class="px-4 py-2  border border-blue-500 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto"
+                class="px-4 py-2  border border-blue-500 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center"
                 onclick="window.location='?view=pending&search={{ $search }}'">
                 Pending Users ( {{ $totalPendingUsers }} )
             </button>

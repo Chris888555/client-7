@@ -24,13 +24,14 @@
 
 
     <h1 class="text-2xl md:text-3xl font-bold text-left">Update Your Funnel</h1>
-        <p class="text-gray-600 text-left mb-4">Manage your sales funnel details</p>
+    <p class="text-gray-600 text-left mb-4">Manage your sales funnel details</p>
 
     <form action="{{ route('save-funnel') }}" method="POST">
         @csrf
 
         <!-- New Fields for Headline, Subheadline, and Video Link -->
-        <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+        <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="headline" class="block text-lg font-medium">Headline</label>
             <input type="text" name="headline" id="headline"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
@@ -40,7 +41,8 @@
             @enderror
         </div>
 
-        <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+        <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="subheadline" class="block text-lg font-medium">Subheadline</label>
             <input type="text" name="subheadline" id="subheadline"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
@@ -50,8 +52,10 @@
             @enderror
         </div>
 
-        <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-            <label for="video_link" class="block text-lg font-medium">Sales Funnel Video (mp4 or youtube video link)</label>
+        <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+            <label for="video_link" class="block text-lg font-medium">Sales Funnel Video (mp4 or youtube video
+                link)</label>
             <input type="url" name="video_link" id="video_link"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('video_link', $user->video_link) }}">
@@ -61,7 +65,8 @@
         </div>
 
         <!-- Existing Form Fields -->
-        <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+        <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="facebook_link" class="block text-lg font-medium">Messenger Or Fb Link</label>
             <input type="url" name="facebook_link" id="facebook_link"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
@@ -71,7 +76,8 @@
             @enderror
         </div>
 
-        <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+        <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="join_fb_group" class="block text-lg font-medium">Your Inquiry Group Chat Link</label>
             <input type="url" name="join_fb_group" id="join_fb_group"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
@@ -91,7 +97,8 @@
             </div>
         </div>
 
-        <div class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+        <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
             <label for="page_link" class="block text-lg font-medium">Your Referral Link</label>
             <input type="url" name="page_link" id="page_link"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
@@ -112,12 +119,17 @@
         </div>
 
         <button type="submit"
-            class="w-48 px-4 py-2 bg-blue-500 text-white rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 mr-2 text-white" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="M12 5l7 7-7 7"></path>
+            class="cursor-pointer bg-blue-700 w-full sm:max-w-[300px] text-white py-2 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center mt-6">
+
+            <!-- SVG Icon -->
+            <svg class="h-5 w-5 text-slate-50 mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                <circle cx="12" cy="14" r="2" />
+                <polyline points="14 4 14 8 8 8 8 4" />
             </svg>
+
             Save Changes
         </button>
 

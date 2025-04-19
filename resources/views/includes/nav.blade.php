@@ -73,6 +73,12 @@
                 <a href="{{ route('pageView.analytics') }}" class="block p-2 sidebar-text">Page View Analytics</a>
             </li>
 
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">payment</span>
+                <a href="{{ route('my-payments') }}" class="block p-2 sidebar-text">Client Payments</a>
+            </li>
+
 
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
@@ -87,6 +93,7 @@
                 <a href="{{ route('academy') }}" class="block p-2 sidebar-text">Academy</a>
             </li>
 
+            
 
             @if(Auth::user()->is_admin == 1)
             <hr class="border-t- border-t-gray-500 mt-8 mb-8">

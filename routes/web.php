@@ -17,9 +17,25 @@ use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\FunnelSettingsController;
 use App\Http\Controllers\Navs\NavController;
-
-
 use App\Http\Controllers\NavSettingController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentMethodController;
+
+// upload payment method
+Route::get('/upload-payment-method', [PaymentMethodController::class, 'create'])->name('payment-method.create');
+Route::post('/upload-payment-method', [PaymentMethodController::class, 'store'])->name('payment-method.store');
+
+Route::put('/payment-method/{id}/update', [PaymentMethodController::class, 'update'])->name('payment-method.update');
+Route::delete('/payment-method/{id}/delete', [PaymentMethodController::class, 'destroy'])->name('payment-method.destroy');
+
+// payment form
+Route::get('/{subdomain}/payment-form', [PaymentController::class, 'create'])->name('payment.form');
+Route::post('/{subdomain}/payment/store', [PaymentController::class, 'store'])->name('payment.store');
+
+// Fetch payments of my clients
+Route::get('/my-payments', [PaymentController::class, 'myPayments'])->middleware('auth')->name('my-payments');
+Route::delete('/payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+
 
 Route::get('/nav-settings', [NavSettingController::class, 'index'])->name('nav-settings.index');
 Route::put('/nav-settings', [NavSettingController::class, 'update'])->name('nav-settings.update');
