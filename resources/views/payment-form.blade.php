@@ -81,7 +81,7 @@
         
         <!-- STARTER PACKAGE 1 -->
         <div class="bg-white p-6 rounded-lg border-4 border-gray-300 text-center flex-1 mt-0 sm:mt-4">
-            <h3 class="text-2xl font-semibold mb-4">Starter Package</h3>
+            <h3 class="text-2xl font-semibold mb-4">Basic Plan</h3>
             <p class="text-lg text-gray-600 mb-4">Perfect for students.</p>
             <div class="text-3xl font-bold text-gray-900 mb-4">₱2,500</div>
             <ul class="list-none text-left text-gray-600 mb-6">
@@ -109,7 +109,7 @@
 
         <!-- STARTER PACKAGE 2 -->
         <div class="bg-white p-6 rounded-lg border-4 border-gray-300 text-center flex-1 mt-0 sm:mt-4">
-            <h3 class="text-2xl font-semibold mb-4">Elite Package</h3>
+            <h3 class="text-2xl font-semibold mb-4">Advance Plan</h3>
             <p class="text-lg text-gray-600 mb-4">Best for business.</p>
             <div class="text-3xl font-bold text-gray-900 mb-4">₱10,000</div>
             <ul class="list-none text-left text-gray-600 mb-6">

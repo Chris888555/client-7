@@ -56,8 +56,8 @@ public function store(Request $request, $subdomain)
 
     $payment->save();
 
-    // Redirect back with a success message
-    return redirect()->back()->with('success', 'Payment details saved successfully!');
+    return redirect()->route('payment-thank-you-page')->with('success', 'Payment details saved successfully!');
+
 }
 
 // fetch function
@@ -73,13 +73,19 @@ public function myPayments()
 }
 
 // function to delete
-    public function destroy($id)
-{
-    $method = Payment::findOrFail($id);
-    $method->delete();
 
+ public function destroy($id)
+    {
+        $method = Payment::findOrFail($id);
+
+        // Delete image from storage
+        Storage::disk('public')->delete($method->image);
+
+        // Delete from database
+        $method->delete();
+
+         // Redirect with success message
     return redirect()->route('my-payments')->with('success', 'Payment deleted successfully.');
 }
-
 
 }

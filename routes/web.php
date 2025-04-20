@@ -21,6 +21,10 @@ use App\Http\Controllers\NavSettingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 
+Route::get('/payment-thank-you-page', function () {
+    return view('payment-thank-you');
+})->name('payment-thank-you-page');
+
 // upload payment method
 Route::get('/upload-payment-method', [PaymentMethodController::class, 'create'])->name('payment-method.create');
 Route::post('/upload-payment-method', [PaymentMethodController::class, 'store'])->name('payment-method.store');

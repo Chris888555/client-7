@@ -77,16 +77,14 @@
                 <button type="submit"
                     class="rounded-lg bg-blue-700 px-6 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center">
 
-                    <!-- SVG Icon before the text, vertically centered -->
-                    <svg class="h-6 w-6 text-slate-50 inline-block mr-2" width="16" height="16" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <line x1="20" y1="12" x2="10" y2="12" />
-                        <line x1="20" y1="12" x2="16" y2="16" />
-                        <line x1="20" y1="12" x2="16" y2="8" />
-                        <line x1="4" y1="4" x2="4" y2="20" />
-                    </svg>
+                       <!-- SVG Icon -->
+        <svg class="h-5 w-5 text-white mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+            <circle cx="12" cy="14" r="2" />
+            <polyline points="14 4 14 8 8 8 8 4" />
+        </svg>
 
                     Save Settings
                 </button>

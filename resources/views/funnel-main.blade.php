@@ -57,7 +57,7 @@
 
                 <!-- Edit Funnel Button -->
                 <a href="{{ route('edit-funnel') }}"
-                    class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600 hover:shadow-lg flex items-center w-full md:w-auto transition-all duration-300">
+                    class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600  flex items-center w-full md:w-auto transition-all duration-300">
                     <i class="ph ph-pencil mr-2"></i> Edit Funnel
                 </a>
 
@@ -76,7 +76,8 @@
                     <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />
                     <line x1="8" y1="12" x2="16" y2="12" />
                 </svg>
-                <p class="text-blue-600 font-medium text-center break-all  ">{{ url($user->subdomain) }}/payment-form</p>
+                <p class="text-blue-600 font-medium text-center break-all  ">{{ url($user->subdomain) }}/payment-form
+                </p>
             </div>
         </div>
 
@@ -90,15 +91,15 @@
             <!-- View Funnel Button -->
             <a href="{{ url($user->subdomain) }}/payment-form" target="_blank"
                 class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 flex items-center w-full md:w-auto">
-                <i class="ph ph-eye mr-2"></i> View Funnel
+                <i class="ph ph-eye mr-2"></i> View Form
             </a>
 
 
 
             <!-- Edit Funnel Button -->
             <a href="{{ route('payment-method.create') }}"
-                class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600 hover:shadow-lg flex items-center w-full md:w-auto transition-all duration-300">
-                <i class="ph ph-pencil mr-2"></i> Edit Funnel
+                class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600 flex items-center w-full md:w-auto transition-all duration-300">
+                <i class="ph ph-pencil mr-2"></i> Edit Payment Method
             </a>
         </div>
 

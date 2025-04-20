@@ -54,7 +54,7 @@
 
         <div
             class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-            <label for="video_link" class="block text-lg font-medium">Sales Funnel Video (mp4 or youtube video
+            <label for="video_link" class="block text-lg font-medium">Sales funnel video (mp4 or youtube video
                 link)</label>
             <input type="url" name="video_link" id="video_link"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
@@ -67,7 +67,7 @@
         <!-- Existing Form Fields -->
         <div
             class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-            <label for="facebook_link" class="block text-lg font-medium">Messenger Or Fb Link</label>
+            <label for="facebook_link" class="block text-lg font-medium">Messenger or fb link</label>
             <input type="url" name="facebook_link" id="facebook_link"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('facebook_link', $user->facebook_link) }}">
@@ -76,9 +76,30 @@
             @enderror
         </div>
 
+         <div
+            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+            <label for="page_link" class="block text-lg font-medium">Your referral link or payment-form</label>
+            <input type="url" name="page_link" id="page_link"
+                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
+                value="{{ old('page_link', $user->page_link) }}">
+            @error('page_link')
+            <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
+            @enderror
+
+            <div class="mt-4 flex items-center">
+                <label for="page_toggle" class="text-red-500 block text-[15px] sm:text-lg font-medium mr-4">Check To
+                    Show On Page | Uncheck To Hide
+                    On Page</label>
+                <input type="hidden" name="page_toggle" value="0">
+                <input type="checkbox" name="page_toggle" id="page_toggle"
+                    class="h-6 w-6 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-lg" value="1"
+                    {{ old('page_toggle', $user->page_toggle) ? 'checked' : '' }}>
+            </div>
+        </div>
+
         <div
             class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-            <label for="join_fb_group" class="block text-lg font-medium">Your Inquiry Group Chat Link</label>
+            <label for="join_fb_group" class="block text-lg font-medium">Your inquiry group chat link</label>
             <input type="url" name="join_fb_group" id="join_fb_group"
                 class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                 value="{{ old('join_fb_group', $user->join_fb_group) }}">
@@ -97,26 +118,7 @@
             </div>
         </div>
 
-        <div
-            class="mb-4 p-6 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-            <label for="page_link" class="block text-lg font-medium">Your Referral Link</label>
-            <input type="url" name="page_link" id="page_link"
-                class="mt-2  block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
-                value="{{ old('page_link', $user->page_link) }}">
-            @error('page_link')
-            <div class="text-red-500 text-sm mt-2">{{ $message }}</div>
-            @enderror
-
-            <div class="mt-4 flex items-center">
-                <label for="page_toggle" class="text-red-500 block text-[15px] sm:text-lg font-medium mr-4">Check To
-                    Show On Page | Uncheck To Hide
-                    On Page</label>
-                <input type="hidden" name="page_toggle" value="0">
-                <input type="checkbox" name="page_toggle" id="page_toggle"
-                    class="h-6 w-6 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-lg" value="1"
-                    {{ old('page_toggle', $user->page_toggle) ? 'checked' : '' }}>
-            </div>
-        </div>
+       
 
         <button type="submit"
             class="cursor-pointer bg-blue-700 w-full sm:max-w-[300px] text-white py-2 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center mt-6">
