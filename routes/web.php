@@ -21,6 +21,57 @@ use App\Http\Controllers\NavSettingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 
+
+##########################################################
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+
+// Shop
+Route::get('/{subdomain}/shop', [ProductController::class, 'showShop'])->name('shop');
+
+// Checkout page
+Route::get('/{subdomain}/checkout', [CheckoutController::class, 'view'])->name('checkout.view');
+Route::post('/{subdomain}/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/{subdomain}/thank-you/{order}', [CheckoutController::class, 'thankYou'])->name('thank-you');
+
+
+
+// Order Details
+Route::get('/order-details', function (Request $request) {
+    if (!Auth::check()) {
+        return redirect()->route('login');
+    }
+    return app(OrderController::class)->orderShow($request);
+})->name('order.details');
+
+Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+
+
+// Product Edit
+Route::get('/product-edit', function () {
+    if (!Auth::check() || Auth::user()->is_admin != 1) {
+        return redirect()->route('login');
+    }
+    return app(ProductController::class)->showEditProduct();
+})->name('product.edit');
+Route::put('/product/{id}', [ProductController::class, 'updateProduct'])->name('product.update');
+
+
+// Upload Products
+Route::get('/upload-product', function () {
+    if (!Auth::check() || Auth::user()->is_admin != 1) {
+        return redirect()->route('login');
+    }
+    return app(ProductController::class)->showUploadProduct();
+})->name('products.create');
+Route::post('/upload-product', [ProductController::class, 'uploadProduct'])->name('products.store');
+Route::post('store-brand', [ProductController::class, 'storeBrand'])->name('brands.store');
+
+
+##########################################################
+
 Route::get('/payment-thank-you-page', function () {
     return view('payment-thank-you');
 })->name('payment-thank-you-page');

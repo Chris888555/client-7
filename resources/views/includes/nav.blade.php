@@ -93,6 +93,12 @@
                 <a href="{{ route('academy') }}" class="block p-2 sidebar-text">Academy</a>
             </li>
 
+             <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">shopping_bag</span>
+                <a href="{{ route('order.details') }}" class="block p-2 sidebar-text">My Orders</a>
+            </li>
+
             
 
             @if(Auth::user()->is_admin == 1)
@@ -111,7 +117,7 @@
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">cloud_upload</span>
-                <a href="{{ route('marketing.index') }}" class="block p-2 sidebar-text">Upload Downloadable</a>
+                <a href="{{ route('marketing.index') }}" class="block p-2 sidebar-text">Upload Posting</a>
             </li>
             @endif
 
@@ -139,6 +145,26 @@
                 <span class="material-icons">account_circle</span>
                 <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
             </li>
+            
+            <!--For shop start code -->
+              <hr class="border-t- border-t-gray-500 mt-8 mb-8">
+         @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">cloud_upload</span>
+                <a href="{{ route('products.create') }}" class="block p-2 sidebar-text">Upload Products</a>
+            </li>
+            @endif
+
+             @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">settings</span>
+                <a href="{{ route('product.edit') }}" class="block p-2 sidebar-text">Manage Products</a>
+            </li>
+            @endif
+
+            <!--For shop end code -->
 
             <li @if(Auth::user()->is_admin == 1)
                 <hr class="border-t border-t-gray-500 mt-8 mb-8">
@@ -150,6 +176,8 @@
             </li>
 
             @endif
+
+            
         </ul>
 
     </aside>
@@ -287,6 +315,12 @@
                     <a href="{{ route('academy') }}" class="block p-2 sidebar-text">Academy</a>
                 </li>
 
+                 <li
+                    class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                    <span class="material-icons">shopping_bag</span>
+                    <a href="{{ route('order.details') }}" class="block p-2 sidebar-text">My Orders</a>
+                </li>
+
 
                 @if(Auth::user()->is_admin == 1)
                 <hr class="border-t border-t-gray-500 mt-8 mb-8">
@@ -331,6 +365,26 @@
                     <span class="material-icons">account_circle</span>
                     <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
                 </li>
+
+                 <!--For shop start code -->
+              <hr class="border-t- border-t-gray-500 mt-8 mb-8">
+         @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">cloud_upload</span>
+                <a href="{{ route('products.create') }}" class="block p-2 sidebar-text">Upload Products</a>
+            </li>
+            @endif
+
+             @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">settings</span>
+                <a href="{{ route('product.edit') }}" class="block p-2 sidebar-text">Manage Products</a>
+            </li>
+            @endif
+
+            <!--For shop end code -->
 
                 <li @if(Auth::user()->is_admin == 1)
                     <hr class="border-t border-t-gray-500 mt-8 mb-8">

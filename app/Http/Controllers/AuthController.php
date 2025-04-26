@@ -96,7 +96,7 @@ public function register(Request $request)
         'default_profile' => $imagePath,
         'is_online' => 0,
         'facebook_link' => 'https://www.example.com/your-link',
-        'join_fb_group' => 'https://www.example.com/your-link',
+        'join_fb_group' => 'https://www.facebook.com/share/g/18fgBfPq4L',
         'group_toggle' => 0,
         'page_link' => 'https://www.example.com/your-link',
         'page_toggle' => 0,

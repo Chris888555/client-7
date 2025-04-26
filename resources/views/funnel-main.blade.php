@@ -102,11 +102,38 @@
                 <i class="ph ph-pencil mr-2"></i> Edit Payment Method
             </a>
         </div>
-
-        <!-- Payment form end -->
-
     </div>
 
+    <!-- Payment form end -->
+
+    <!-- Shop Link -->
+        <div class="bg-white p-8 rounded-lg border-2 border-gray-200 mt-8">
+        <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+            <div class="flex items-left justify-start space-x-2 ">
+                <svg class="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />
+                    <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                <p class="text-blue-600 font-medium text-center break-all  ">{{ url($user->subdomain) }}/shop
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap justify-start gap-2 mt-4">
+            <!-- Copy Link Button -->
+            <button onclick="copyToClipboard('{{ url($user->subdomain) }}/shop')"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center w-full md:w-auto">
+                <i class="ph ph-copy mr-2"></i> Copy Link
+            </button>
+
+            <!-- View Funnel Button -->
+            <a href="{{ url($user->subdomain) }}/shop" target="_blank"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 flex items-center w-full md:w-auto">
+                <i class="ph ph-eye mr-2"></i> View Shop
+            </a>
+        </div>
+<!-- Shop Link End -->
 
 
     <!-- MODAL -->

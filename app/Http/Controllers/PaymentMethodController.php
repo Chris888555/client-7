@@ -13,6 +13,8 @@ class PaymentMethodController extends Controller
     return view('upload-payment-method', compact('paymentMethods'));
 }
 
+
+
     // Store the uploaded payment method details
     public function store(Request $request)
     {
