@@ -226,13 +226,6 @@
             <div class="p-4 relative">
                 <h2 class="text-2xl font-bold text-gray-700">Shopping Cart</h2>
                 <!-- Cart Sidebar Close Button with Custom SVG Icon -->
-
-               <p id="congratulations-message" class="hidden text-[14px] bg-yellow-200 text-black border-l-4 border-gray-500 p-4 rounded-lg text-left mt-4">
-    <strong>Congratulations!</strong> Your items are ready. <span class="font-semibold">Please check out now to proceed with the payment.</span>
-</p>
-
-
-
                 <button id="close-cart"
                     class="rounded-[2px] absolute top-4 right-7 text-red-500 text-xl shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
                     <svg class="h-6 w-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -341,91 +334,66 @@
                     0; // Default to highest rule if none match
             }
 
-    function updateCart() {
-    let cartItems = document.getElementById('cart-items');
-    let cartTotal = document.getElementById('cart-total');
-    let cartCount = document.getElementById('cart-count');
-    let checkoutButton = document.getElementById('checkout-button');
-    let emptyCartMessage = document.getElementById('empty-cart-message');
-    let congratulationsMessage = document.getElementById('congratulations-message'); // New message element
+            function updateCart() {
+                let cartItems = document.getElementById('cart-items');
+                let cartTotal = document.getElementById('cart-total');
+                let cartCount = document.getElementById('cart-count');
+                let checkoutButton = document.getElementById('checkout-button');
+                let emptyCartMessage = document.getElementById('empty-cart-message');
 
-    cartItems.innerHTML = '';
-    let total = 0;
-    let count = 0;
+                cartItems.innerHTML = '';
+                let total = 0;
+                let count = 0;
 
-    if (cart.length === 0) {
-        // If the cart is empty, display message and disable checkout button
-        emptyCartMessage.classList.remove('hidden');
-        checkoutButton.disabled = true;
-        congratulationsMessage.classList.add('hidden'); // Hide congratulations message if cart is empty
-    } else {
-        // If there are items in the cart, hide the empty message and enable the checkout button
-        emptyCartMessage.classList.add('hidden');
-        checkoutButton.disabled = false;
+                if (cart.length === 0) {
+                    // If the cart is empty, display message and disable checkout button
+                    emptyCartMessage.classList.remove('hidden');
+                    checkoutButton.disabled = true;
+                } else {
+                    // If there are items in the cart, hide the empty message and enable the checkout button
+                    emptyCartMessage.classList.add('hidden');
+                    checkoutButton.disabled = false;
 
-        // Display congratulations message
-        congratulationsMessage.classList.remove('hidden'); // Show the message when the cart is not empty
+                    cart.forEach((item, index) => {
+                        total += item.totalPrice + item.shippingFee;
+                        count += item.quantity;
+                        cartItems.innerHTML += `
+                    <li class='border-b p-4 flex'>
+                        <img src="${item.image}" class="border border-gray-300 w-[80px] h-[auto] sm:w-[20%] sm:h-[20%] object-fill aspect-[1/1] rounded mr-4" alt="${item.name}">
+                        <div class="flex-grow">
+                            <p class="font-semibold mb-2">${item.name}</p>
+                            <p class="text-sm text-gray-700">Total Price: <span class="font-bold">&#8369;${item.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
+                            <p class="text-sm text-gray-700">Shipping Fee: <span class="font-bold">&#8369;${item.shippingFee.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
+                            <p class="text-sm text-gray-700">Quantity: <span class="font-bold">${item.quantity}</span></p>
+                        </div>
+                        <button class="delete-item text-red-500 text-lg ml-2" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </li>`;
+                    });
+                }
 
-        cart.forEach((item, index) => {
-            total += item.totalPrice + item.shippingFee;
-            count += item.quantity;
-            cartItems.innerHTML += `
-                <li class='border-b p-4 flex'>
-                    <img src="${item.image}" class="border border-gray-300 w-[80px] h-[auto] sm:w-[20%] sm:h-[20%] object-fill aspect-[1/1] rounded mr-4" alt="${item.name}">
-                    <div class="flex-grow">
-                        <p class="font-semibold mb-2">${item.name}</p>
-                        <p class="text-sm text-gray-700">Total Price: <span class="font-bold">&#8369;${item.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
-                        <p class="text-sm text-gray-700">Shipping Fee: <span class="font-bold">&#8369;${item.shippingFee.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
-                        <p class="text-sm text-gray-700">Quantity: 
-                            <button class="quantity-btn decrease px-2 py-1 rounded" data-product-id="${item.id}">&minus;</button>
-                            <span class="font-bold">${item.quantity}</span>
-                            <button class="quantity-btn increase px-2 py-1 rounded" data-product-id="${item.id}">+</button>
-                        </p>
-                    </div>
-                    <button class="delete-item text-red-500 text-lg ml-2" data-index="${index}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </li>`;
-        });
-    }
-
-    // Display only the symbol if the cart is empty
-    if (total === 0) {
-        cartTotal.textContent = `₱0.00`; // Ensure 0 is formatted as ₱0.00
-    } else {
-        cartTotal.textContent = `₱${total.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
-    }
-    cartCount.textContent = count; // Display the cart item count
-
-    // Save cart to sessionStorage
-    sessionStorage.setItem('cart', JSON.stringify(cart));
-
-    // Add event listeners to delete buttons
-    document.querySelectorAll('.delete-item').forEach(button => {
-        button.addEventListener('click', function() {
-            let index = this.dataset.index;
-            cart.splice(index, 1); // Remove the item from the cart
-            updateCart(); // Re-render the cart after deletion
-        });
-    });
-
-    // Add event listeners to quantity buttons
-    document.querySelectorAll('.quantity-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            let productId = this.dataset.productId;
-            let product = cart.find(item => item.id === productId);
-            let currentQuantity = product ? product.quantity : 0;
-
-            if (this.classList.contains('decrease') && currentQuantity > 1) {
-                updateCartQuantity(productId, currentQuantity - 1);
-            } else if (this.classList.contains('increase')) {
-                updateCartQuantity(productId, currentQuantity + 1);
-            }
-        });
-    });
+               // Display only the symbol if the cart is empty
+if (total === 0) {
+    cartTotal.textContent = `₱0.00`; // Ensure 0 is formatted as ₱0.00
+} else {
+    cartTotal.textContent = `₱${total.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 }
+cartCount.textContent = count; // Display the cart item count
 
 
+                // Save cart to sessionStorage
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        let index = this.dataset.index;
+                        cart.splice(index, 1);
+                        updateCart();
+                    });
+                });
+            }
 
             function fetchCartAndRedirect() {
                 // Get cart data from sessionStorage before redirecting
@@ -473,19 +441,18 @@
                 });
             });
 
-           // Function to update the cart quantity
-function updateCartQuantity(productId, newQuantity) {
-    let product = cart.find(item => item.id === productId);
-    if (product) {
-        product.quantity = newQuantity;
-        let shippingRules = JSON.parse(document.querySelector(
-                `.quantity-input[data-product-id='${productId}']`)
-            .dataset.shippingRules);
-        product.shippingFee = calculateShipping(newQuantity, product.weight, shippingRules);  // Update shipping fee
-        product.totalPrice = product.price * newQuantity;  // Recalculate total price
-        updateCart();
-    }
-}
+            function updateCartQuantity(productId, newQuantity) {
+                let product = cart.find(item => item.id === productId);
+                if (product) {
+                    product.quantity = newQuantity;
+                    let shippingRules = JSON.parse(document.querySelector(
+                            `.quantity-input[data-product-id='${productId}']`)
+                        .dataset.shippingRules);
+                    product.shippingFee = calculateShipping(newQuantity, shippingRules);
+                    product.totalPrice = product.price * newQuantity;
+                    updateCart();
+                }
+            }
 
             function showSuccessAlert(itemName) {
                 // SweetAlert message

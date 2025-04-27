@@ -17,7 +17,8 @@ class OrderController extends Controller
         $userId = Auth::id(); // Get the logged-in user's ID
 
         // Base query filtered by user_id
-        $query = Checkout::where('user_id', $userId);
+          $query = Checkout::where('user_id', $userId)
+                     ->orderBy('created_at', 'desc');
 
         if ($view === 'pending') {
             $query->where('status', 0);

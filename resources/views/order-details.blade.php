@@ -152,27 +152,25 @@
                 <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
 
                 <div class="space-y-4 border-b pb-4">
-                    @php
-                    $cartData = json_decode($checkout->cart_data, true);
-                    $grandTotal = $cartData['grand_total'] ?? 0;
-                    unset($cartData['grand_total']);
-                    @endphp
+                              @php
+    $cartData = json_decode($checkout->cart_data, true);
+    $grandTotal = $cartData['grand_total'] ?? 0;
+    unset($cartData['grand_total']);
+    $cartItems = $cartData['cart'] ?? []; // Ensure we target the correct 'cart' array
+@endphp
 
-                    @foreach($cartData as $item)
-                    <div class="flex items-center space-x-4 border rounded-lg p-3">
-                        <img src="{{ $item['image'] }}" class="w-16 h-16 object-cover rounded"
-                            alt="{{ $item['name'] }}">
-                        <div class="flex-grow">
-                            <p class="font-semibold">{{ $item['name'] }}</p>
-                            <p class="text-sm text-gray-600">Price: <span
-                                    class="font-bold">₱{{ number_format($item['price'], 2) }}</span></p>
-                            <p class="text-sm text-gray-600">Shipping: <span
-                                    class="font-bold">₱{{ number_format($item['shippingFee'] ?? 0, 2) }}</span></p>
-                            <p class="text-sm text-gray-600">Quantity: <span
-                                    class="font-bold">{{ $item['quantity'] }}</span></p>
-                        </div>
-                    </div>
-                    @endforeach
+@foreach($cartItems as $item)
+    <div class="flex items-center space-x-4 border rounded-lg p-3">
+        <img src="{{ $item['image'] ?? 'default_image_url.jpg' }}" class="w-16 h-16 object-cover rounded"
+            alt="{{ $item['name'] }}">
+        <div class="flex-grow">
+            <p class="font-semibold">{{ $item['name'] }}</p>
+            <p class="text-sm text-gray-600">Price: <span class="font-bold">₱{{ number_format($item['totalPrice'], 2) }}</span></p>
+            <p class="text-sm text-gray-600">Shipping: <span class="font-bold">₱{{ number_format($item['shippingFee'] ?? 0, 2) }}</span></p>
+            <p class="text-sm text-gray-600">Quantity: <span class="font-bold">{{ $item['quantity'] }}</span></p>
+        </div>
+    </div>
+@endforeach
                 </div>
 
                 <!-- Grand Total -->

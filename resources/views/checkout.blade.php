@@ -266,7 +266,7 @@
                 <img src="${item.image}" class="w-20 sm:w-40 h-auto object-cover rounded mr-4" alt="${item.name}">
                 <div class="flex-grow">
                     <p class="mb-1 text-[15px] sm:mb-2 sm:text-[20px] font-semibold text-gray-700">${item.name}</p>
-                    <p class="text-[15px] sm:text-xl text-gray-600">Price: <span class="font-bold">₱${item.price.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
+                      <p class="text-[15px] sm:text-xl text-gray-600">Prduct Price: <span class="font-bold">&#8369;${item.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
                     <p class="text-[15px] sm:text-xl text-gray-600">Shipping Fee: <span class="font-bold">₱${item.shippingFee.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span></p>
                     <p class="text-[15px] sm:text-xl text-gray-600">Quantity: <span class="font-bold">${item.quantity}</span></p>
                 </div>
@@ -274,9 +274,13 @@
             `;
         });
 
-        cartTotalElement.textContent = `₱${total.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
-        cartDataInput.value = JSON.stringify(cart);
+       // Set the calculated grand total in the input field and show it
+    cartTotalElement.textContent = `₱${total.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+    cartDataInput.value = JSON.stringify({
+        cart: cart,
+        grand_total: total
     });
+});
     </script>
 
 </body>
