@@ -53,8 +53,8 @@
             alt="{{ $item['name'] }}">
         <div class="flex-grow">
             <p class="font-semibold">{{ $item['name'] }}</p>
-            <p class="text-sm text-gray-600">Price: <span class="font-bold">₱{{ number_format($item['totalPrice'], 2) }}</span></p>
-            <p class="text-sm text-gray-600">Shipping: <span class="font-bold">₱{{ number_format($item['shippingFee'] ?? 0, 2) }}</span></p>
+            <p class="text-sm text-gray-600">Product Price: <span class="font-bold">₱{{ fmod($item['totalPrice'], 1) !== 0.00 ? number_format($item['totalPrice'], 2) : number_format($item['totalPrice']) }}</span></p>
+            <p class="text-sm text-gray-600">Shipping Fee: <span class="font-bold">₱{{ fmod($item['shippingFee'] ?? 0, 1) !== 0.00 ? number_format($item['shippingFee'] ?? 0, 2) : number_format($item['shippingFee'] ?? 0) }}</span></p>
             <p class="text-sm text-gray-600">Quantity: <span class="font-bold">{{ $item['quantity'] }}</span></p>
         </div>
     </div>
@@ -65,13 +65,14 @@
             <!-- Grand Total -->
             <div class="mt-4 text-lg font-bold text-gray-700 flex justify-start gap-4">
                 <span>Grand Total:</span>
-                <span class="text-red-500">₱{{ number_format($grandTotal, 2) }}</span>
+                <span class="text-red-500">₱{{ fmod($grandTotal, 1) !== 0.00 ? number_format($grandTotal, 2) : number_format($grandTotal) }}</span>
+
             </div>
         </div>
 
         <!-- Customer Information Section -->
         <div class="mt-6 bg-white p-6 rounded-lg shadow-[inset_0px_3px_34px_1px_#00000024] border-2 border-gray-300">
-            <h3 class="text-xl font-semibold mb-4">Customer Information</h3>
+            <h3 class="text-xl font-semibold mb-4">Your Information</h3>
             <p><strong>Name:</strong> {{ $checkout->first_name }} {{ $checkout->last_name }}</p>
             <p><strong>Phone:</strong> {{ $checkout->phone }}</p>
             <p><strong>Address:</strong> {{ $checkout->address }}, {{ $checkout->barangay }}, {{ $checkout->city }},
