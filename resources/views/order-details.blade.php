@@ -9,7 +9,7 @@
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
 
-    <h1 class="text-2xl md:text-3xl font-bold text-left">Mange Orders</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Mange Orders</h1>
     <p class="text-gray-600 text-left mb-4">View, update, and organize all incoming orders in one place for a seamless
         experience.</p>
 

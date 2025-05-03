@@ -17,38 +17,43 @@ class AdminController extends Controller
         $view = $request->get('view', 'approved'); // Default to 'approved'
         $search = $request->get('search', ''); // Get search query
     
-        // Get the total counts for approved and pending users
-        $totalApprovedUsers = User::where('approved', 1)
+        // Count approved users (excluding super admins)
+    $totalApprovedUsers = User::where('approved', 1)
+        ->where('super_admin', 0)
+        ->where(function($query) use ($search) {
+            $query->where('name', 'like', "%$search%")
+                  ->orWhere('email', 'like', "%$search%");
+        })
+        ->count();
+    
+        // Count pending users (excluding super admins)
+    $totalPendingUsers = User::where('approved', 0)
+        ->where('super_admin', 0)
+        ->where(function($query) use ($search) {
+            $query->where('name', 'like', "%$search%")
+                  ->orWhere('email', 'like', "%$search%");
+        })
+        ->count();
+
+        // Paginate users based on view and search, excluding super admins
+    if ($view == 'approved') {
+        $users = User::where('approved', 1)
+            ->where('super_admin', 0)
             ->where(function($query) use ($search) {
                 $query->where('name', 'like', "%$search%")
                       ->orWhere('email', 'like', "%$search%");
             })
-            ->count();
-    
-        $totalPendingUsers = User::where('approved', 0)
+            ->paginate(10);
+            } else {
+        $users = User::where('approved', 0)
+            ->where('super_admin', 0)
             ->where(function($query) use ($search) {
                 $query->where('name', 'like', "%$search%")
                       ->orWhere('email', 'like', "%$search%");
             })
-            ->count();
-    
-        // Paginate the users based on their approval status and search criteria
-        if ($view == 'approved') {
-            $users = User::where('approved', 1)
-                ->where(function($query) use ($search) {
-                    $query->where('name', 'like', "%$search%")
-                          ->orWhere('email', 'like', "%$search%");
-                })
-                ->paginate(10); // Paginate 10 approved users per page
-        } else {
-            $users = User::where('approved', 0)
-                ->where(function($query) use ($search) {
-                    $query->where('name', 'like', "%$search%")
-                          ->orWhere('email', 'like', "%$search%");
-                })
-                ->paginate(10); // Paginate 10 pending users per page
-        }
-    
+            ->paginate(10);
+    }
+
         // Appending the view and search parameter to maintain filtering when navigating between pages
         return view('admin.manage-users', compact('users', 'view', 'search', 'totalApprovedUsers', 'totalPendingUsers'));
     }

@@ -23,8 +23,63 @@ use App\Http\Controllers\PaymentMethodController;
 
 
 
+
+use App\Http\Controllers\FunnelPlanController;
+
+Route::get('/manage-funnel-plan', [FunnelPlanController::class, 'index'])->name('manage-funnel-plan');
+
+Route::post('/manage-funnel-plan/toggle-feature', [FunnelPlanController::class, 'toggleFeature'])->name('manage-funnel-plan.toggle');
+Route::post('/manage-funnel-plan/store', [FunnelPlanController::class, 'store'])->name('manage-funnel-plan.store');
+
+
+Route::put('/manage-funnel-plan/{id}', [FunnelPlanController::class, 'update'])->name('manage-funnel-plan.update');
+Route::delete('/manage-funnel-plan/{id}', [FunnelPlanController::class, 'destroy'])->name('manage-funnel-plan.destroy');
+
+
 ##########################################################
 
+use App\Http\Controllers\UserFunnelController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/manual-approval', [UserFunnelController::class, 'showManualApprovalPage'])->name('manual-approval');
+    Route::put('/manual-approval/{id}/approve', [UserFunnelController::class, 'manualApproveFunnel'])->name('manual.approveFunnel');
+    Route::put('/manual-approval/{id}/reject', [UserFunnelController::class, 'manualRejectFunnel'])->name('manual.rejectFunnel');
+    Route::put('/manual-approval/{id}/pending', [UserFunnelController::class, 'manualPendingFunnel'])->name('manual.pendingFunnel');
+
+
+    Route::get('/manual-approval/status/{status}', [UserFunnelController::class, 'filterByStatus'])->name('funnels.status');
+});
+
+Route::post('/manual/bulk-delete', [UserFunnelController::class, 'bulkDeleteFunnel'])->name('manual.bulkDelete');
+
+
+Route::put('/manual/bulk-update-status', [UserFunnelController::class, 'bulkUpdateStatus'])->name('manual.bulkUpdateStatus');
+
+Route::post('/funnel/resubmit', [UserFunnelController::class, 'resubmit'])->name('funnel.resubmit');
+
+
+
+##########################################################
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/funnel', [UserFunnelController::class, 'showFunnelPage'])->name('funnel.page');
+    Route::post('/funnel/submit', [UserFunnelController::class, 'submitFunnel'])->name('funnel.submit');
+    Route::post('/funnel/activate-direct', [UserFunnelController::class, 'activateDirect'])->name('funnel.activate.direct');
+
+});
+
+
+##########################################################
+
+
+
+use App\Http\Controllers\PsgcController;
+
+Route::get('/address-form', [PsgcController::class, 'index']);
+Route::get('/provinces/{regionCode}', [PsgcController::class, 'getProvinces']);
+Route::get('/cities/{provinceCode}', [PsgcController::class, 'getCities']);
+Route::get('/barangays/{cityCode}', [PsgcController::class, 'getBarangays']);
 
 
 ##########################################################
@@ -100,9 +155,15 @@ Route::delete('/payments/{payment}', [PaymentController::class, 'destroy'])->nam
 Route::get('/nav-settings', [NavSettingController::class, 'index'])->name('nav-settings.index');
 Route::put('/nav-settings', [NavSettingController::class, 'update'])->name('nav-settings.update');
 
-
-Route::get('/funnel-settings', [FunnelSettingsController::class, 'index'])->name('funnel.settings');
+// Route for funnel settings (User model)
+Route::get('/funnel-settings/', [FunnelSettingsController::class, 'index'])->name('funnel.settings');
 Route::post('/funnel-settings/save', [FunnelSettingsController::class, 'save'])->name('funnel.settings.save');
+
+// Route for admin toggle (AdminSetting model)
+Route::get('/funnel-settings/admin-toggle', [FunnelSettingsController::class, 'admintoggle'])->name('funnel.settings.admin');
+Route::post('/funnel-settings/admin-toggle', [FunnelSettingsController::class, 'update'])->name('settings.update');
+
+
 
 
 Route::post('/save-video-progress', [VideoController::class, 'saveVideoProgress']);
@@ -253,14 +314,16 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admi
 
 
 // Edit Subdomain
-Route::middleware(['auth'])->get('/subdomain/update/{id}', [SalesFunnelController::class, 'editSubdomain'])->name('update.subdomain');
-Route::middleware(['auth'])->post('/subdomain/update/{id}', [SalesFunnelController::class, 'updateSubdomain'])->name('update.subdomain');
+Route::middleware(['auth'])->get('/subdomain/update/{id}', [UserFunnelController::class, 'editSubdomain'])->name('update.subdomain'); 
+Route::middleware(['auth'])->post('/subdomain/update/{id}', [UserFunnelController::class, 'updateSubdomain'])->name('update.subdomain');
 
 Route::get('/page-view', [PageViewController::class, 'pageViewAnalytics'])->name('pageView.analytics');
 
 
-// Subdomain 
-Route::get('/{subdomain}', [SalesFunnelController::class, 'showFunnel']);
+Route::get('{subdomain}', [PageViewController::class, 'track'])
+    ->where('subdomain', '[a-zA-Z0-9_-]+');
 
 
-Route::get('/{subdomain}', [PageViewController::class, 'track']);
+Route::get('/funnel/{subdomain}', [UserFunnelController::class, 'showFunnel'])
+    ->where('subdomain', '[a-zA-Z0-9_-]+');
+

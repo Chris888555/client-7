@@ -9,7 +9,7 @@
 
 <main class="container m-auto p-4 sm:p-8 max-w-full">
 
- <h1 class="text-2xl md:text-3xl font-bold text-left">Start To Learn</h1>
+ <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Start To Learn</h1>
     <p class="text-gray-600 text-left mb-4">Explore our training programs to level up your skills and unlock new
         opportunities for success.</p>
    

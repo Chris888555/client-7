@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\FunnelPageView;
-use App\Http\Controllers\SalesFunnelController;
+use App\Http\Controllers\UserFunnelController;
 use Illuminate\Support\Facades\DB;
+
 
 class PageViewController extends Controller
 {
@@ -45,7 +46,7 @@ class PageViewController extends Controller
         }
 
         // 4. Show funnel
-        return app(SalesFunnelController::class)->showFunnel($subdomain, $request);
+        return app(UserFunnelController::class)->showFunnel($subdomain, $request);
     }
 
 

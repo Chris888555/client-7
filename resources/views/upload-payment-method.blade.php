@@ -17,7 +17,7 @@
 
     <!-- Upload Form -->
     <div class="mt-0">
-        <h1 class="text-2xl md:text-3xl font-bold text-left">Upload Payment Method</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Upload Payment Method</h1>
         <p class="text-gray-600 text-left mb-6">Please fill in the details for your payment method to be added.</p>
 
         <form method="POST" action="{{ route('payment-method.store') }}" class="space-y-4">

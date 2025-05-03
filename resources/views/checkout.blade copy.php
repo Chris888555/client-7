@@ -7,10 +7,6 @@
     <title>Checkout</title>
     @vite(['resources/css/app.css'])
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body class="bg-gray-50">
@@ -73,39 +69,34 @@
 
                     
 
-   <div>
-    <!-- Region Dropdown -->
-    <select id="region" name="region" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <option value="">Select Region</option>
-    @foreach($regions as $region)
-        <option value="{{ $region['code'] }}">{{ $region['name'] }}</option>
-    @endforeach
-</select>
-
-</div>
-
-
+                    <!-- City -->
 <div>
-    <!-- Province Dropdown -->
-    <select id="state" name="state" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <option value="">Select Province</option>
-    </select>
+    <label class="block text-sm font-medium text-gray-700 mb-2">City/Municipality</label>
+    <input type="text" name="city" required
+        class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
 </div>
 
+                    <!-- State -->
 <div>
-    <!-- City/Municipality Dropdown -->
-    <select id="city" name="city" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <option value="">Select City/Municipality</option>
-    </select>
+    <label class="block text-sm font-medium text-gray-700 mb-2">State/Province</label>
+    <input type="text" name="state" required
+        class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
 </div>
 
-<div>
-    <!-- Barangay Dropdown -->
-    <select id="barangay" name="barangay" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <option value="">Select Barangay</option>
-    </select>
-</div>
 
+                    <!-- Barangay and Zip Code -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Barangay</label>
+        <input type="text" name="barangay" required
+            class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+                         <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code</label>
+        <input type="text" name="zip_code" required
+            class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+</div>
 
                     <!-- House Number/Street/Landmark -->
 <div>
@@ -114,13 +105,7 @@
         class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
 </div>
 
-                 <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code</label>
-        <input type="text" name="zip_code" required
-            class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    </div>
-
- <!-- Payment Option -->
+                 <!-- Payment Option -->
 <div>
     <label for="payment-option" class="block text-sm font-medium text-gray-700 mb-2">Choose Payment Option</label>
     <select id="payment-option" name="payment_option" onchange="showPaymentDetails()" required
@@ -159,82 +144,6 @@
         </div>
     </div>
 </div>
-
-  <script>
-$(document).ready(function() {
-    // When Region is selected
-    $('#region').change(function() {
-        var regionCode = $(this).val();
-        $('#state').html('<option value="">Loading...</option>');  // Reset state dropdown
-        $('#city').html('<option value="">Select City/Municipality</option>');  // Reset city dropdown
-        $('#barangay').html('<option value="">Select Barangay</option>');  // Reset barangay dropdown
-
-        if (regionCode) {
-            $.get('/provinces/' + regionCode, function(data) {
-                var options = '<option value="">Select Province</option>';  // Default option for non-NCR regions
-                if (regionCode === '13') {  // Check if region is NCR (Region Code 13)
-                    options = '<option value="">Select District</option>';  // Change 'Province' to 'District'
-                    $.each(data, function(key, district) {
-                        options += '<option value="' + district.code + '">' + district.name + '</option>';
-                    });
-                } else {
-                    // For non-NCR regions, display provinces
-                    $.each(data, function(key, province) {
-                        options += '<option value="' + province.code + '">' + province.name + '</option>';
-                    });
-                }
-                $('#state').html(options);  // Update the state dropdown with districts or provinces
-            });
-        }
-    });
-
-    // When State (formerly Province or District) is selected
-    $('#state').change(function() {
-        var stateCode = $(this).val();
-        $('#city').html('<option value="">Loading...</option>');  // Reset city dropdown
-        $('#barangay').html('<option value="">Select Barangay</option>');  // Reset barangay dropdown
-
-        if (stateCode) {
-            if (stateCode === '13') {  // Handle selection for NCR district
-                $.get('/districts/' + stateCode + '/cities.json', function(data) {
-                    var options = '<option value="">Select City/Municipality</option>';
-                    $.each(data, function(key, city) {
-                        options += '<option value="' + city.code + '">' + city.name + '</option>';
-                    });
-                    $('#city').html(options);  // Update city dropdown for NCR
-                });
-            } else {
-                // For non-NCR states, fetch cities from provinces
-                $.get('/cities/' + stateCode, function(data) {
-                    var options = '<option value="">Select City/Municipality</option>';
-                    $.each(data, function(key, city) {
-                        options += '<option value="' + city.code + '">' + city.name + '</option>';
-                    });
-                    $('#city').html(options);  // Update city dropdown
-                });
-            }
-        }
-    });
-
-    // When City is selected
-    $('#city').change(function() {
-        var cityCode = $(this).val();
-        $('#barangay').html('<option value="">Loading...</option>');  // Reset barangay dropdown
-
-        if (cityCode) {
-            $.get('/barangays/' + cityCode, function(data) {
-                var options = '<option value="">Select Barangay</option>';
-                $.each(data, function(key, barangay) {
-                    options += '<option value="' + barangay.code + '">' + barangay.name + '</option>';
-                });
-                $('#barangay').html(options);  // Update barangay dropdown
-            });
-        }
-    });
-});
-
-</script>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -373,8 +282,6 @@ $(document).ready(function() {
     });
 });
     </script>
-
-
 
 </body>
 

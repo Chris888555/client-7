@@ -7,7 +7,7 @@
 @include('includes.nav')
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
-    <h1 class="text-2xl md:text-3xl font-bold text-left">Product Settings</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Product Settings</h1>
     <p class="text-gray-600 text-left mb-4">Easily upload and showcase your products in the shop, reaching more
         customers effortlessly</p>
 
@@ -27,7 +27,7 @@
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg dark:bg-gray-800 dark:text-white">
                     </div>
                     <button type="submit"
-                        class="cursor-pointer bg-blue-700 w-full sm:max-w-[200px] text-white py-2 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center mt-6">
+                        class="rounded-lg bg-blue-500 px-6 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center">
 
                         <!-- SVG Icon -->
                         <svg class="h-5 w-5 text-slate-50 mr-2" width="24" height="24" viewBox="0 0 24 24"
@@ -172,7 +172,7 @@
                     <!-- Submit and Reset Buttons -->
                     <div class="flex items-center space-x-4 mt-6">
                         <button type="submit"
-                            class="cursor-pointer bg-blue-700 w-full sm:max-w-[200px] text-white py-2 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center ">
+                            class="rounded-lg bg-blue-500 px-6 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center ">
 
                             <!-- SVG Icon -->
                             <svg class="h-5 w-5 text-slate-50 mr-2" width="24" height="24" viewBox="0 0 24 24"
@@ -188,7 +188,7 @@
                         </button>
 
                         <button type="reset"
-                            class="text-red-600 border border-red-600 hover:bg-red-600 hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            class="text-red-600 border border-red-600 hover:bg-red-600 hover:text-white  rounded-lg text-sm px-6 py-2 text-sm font-medium text-center">
                             Clear
                         </button>
 

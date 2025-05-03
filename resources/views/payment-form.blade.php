@@ -9,7 +9,7 @@
 
     <div class="bg-white p-8 sm:px-16 sm: py-10 rounded-lg shadow max-w-4xl mx-auto ">
 
-        <h1 class="text-2xl md:text-3xl font-bold text-left">Fill out the form to complete your payment.</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Fill out the form to complete your payment.</h1>
         <p class="text-gray-600 text-left mb-6">Please fill in the required details to finalize your payment process
             securely.</p>
 

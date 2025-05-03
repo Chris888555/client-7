@@ -45,8 +45,12 @@
         style="background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
 
 
-        <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4 ">My
-            Logo </h2>
+    <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4">
+        My Logo
+    </h2>
+
+
+            <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3>
 
         <ul>
 
@@ -58,7 +62,7 @@
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">trending_up</span> <!-- Representing charts or analytics -->
-                <a href="{{ route('funnel.main') }}" class="block p-2 sidebar-text">Sales Funnel</a>
+                <a href="{{ route('funnel.page') }}" class="block p-2 sidebar-text">Sales Funnel</a>
             </li>
 
             <li
@@ -99,11 +103,19 @@
                 <a href="{{ route('order.details') }}" class="block p-2 sidebar-text">My Orders</a>
             </li>
 
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">account_circle</span>
+                <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+            </li>
+
             
 
             @if(Auth::user()->is_admin == 1)
+            
             <hr class="border-t- border-t-gray-500 mt-8 mb-8">
 
+            <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3>
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">manage_accounts</span>
@@ -138,17 +150,19 @@
             </li>
             @endif
 
+             @if(Auth::user()->is_admin == 1)
+                <li
+                    class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                    <span class="material-icons">payment</span>
+                    <a href="{{ route('manual-approval') }}" class="block p-2 sidebar-text">Payment Approval</a>
+                </li>
+                @endif
 
-
-            <li
-                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                <span class="material-icons">account_circle</span>
-                <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
-            </li>
             
-            <!--For shop start code -->
-              <hr class="border-t- border-t-gray-500 mt-8 mb-8">
+           
          @if(Auth::user()->is_admin == 1)
+          <!--For shop start code -->
+              <hr class="border-t- border-t-gray-500 mt-8 mb-8">
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">cloud_upload</span>
@@ -277,6 +291,8 @@
             </div>
             <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4  ">My Logo </h2>
 
+            <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3>
+
             <ul>
                 <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
@@ -287,7 +303,7 @@
                 <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                     <span class="material-icons">trending_up</span> <!-- Representing charts or analytics -->
-                    <a href="{{ route('funnel.main') }}" class="block p-2 sidebar-text">Sales Funnel</a>
+                    <a href="{{ route('funnel.page') }}" class="block p-2 sidebar-text">Sales Funnel</a>
                 </li>
 
                 <li
@@ -321,9 +337,16 @@
                     <a href="{{ route('order.details') }}" class="block p-2 sidebar-text">My Orders</a>
                 </li>
 
+                 <li
+                    class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                    <span class="material-icons">account_circle</span>
+                    <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+                </li>
+
 
                 @if(Auth::user()->is_admin == 1)
                 <hr class="border-t border-t-gray-500 mt-8 mb-8">
+                 <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3>
 
                 <li
                     class=" mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
@@ -359,12 +382,16 @@
                 </li>
                 @endif
 
-
+               
+                @if(Auth::user()->is_admin == 1)
                 <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                    <span class="material-icons">account_circle</span>
-                    <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+                    <span class="material-icons">payment</span>
+                    <a href="{{ route('manual-approval') }}" class="block p-2 sidebar-text">Payment Approval</a>
                 </li>
+                @endif
+
+               
 
                  <!--For shop start code -->
               <hr class="border-t- border-t-gray-500 mt-8 mb-8">

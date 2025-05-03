@@ -7,7 +7,7 @@
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
  
-     <h1 class="text-2xl md:text-3xl font-bold text-left">Page View Analytics</h1>
+     <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Page View Analytics</h1>
         <p class="text-gray-600 text-left mb-4">Monitor how many users visit your sales funnel page.</p>
 
 

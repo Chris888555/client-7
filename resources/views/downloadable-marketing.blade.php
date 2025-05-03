@@ -8,7 +8,7 @@
 
 
 <main class="container m-auto p-4 sm:p-8 max-w-full">
-  <h1 class="text-2xl md:text-3xl font-bold text-left">Downloadable Materials</h1>
+  <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Downloadable Materials</h1>
         <p class="text-gray-600 text-left mb-4">Download your marketing materials to attract clients to your business.</p>
 
 

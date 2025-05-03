@@ -53,4 +53,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function userFunnels()
+    {
+        return $this->hasMany(UserFunnel::class);
+    }
 }

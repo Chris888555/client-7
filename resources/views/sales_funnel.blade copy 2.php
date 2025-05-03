@@ -45,13 +45,11 @@
 
         <h1
             class="text-[35px] leading-[40px] sm:leading-[50px] sm:text-5xl font-bold text-yellow-400 capitalize font-[Roboto]">
-            {{ $funnel_content['headline'] ?? 'Default Headline' }}</h1>
+            {{ $user->headline }}</h1>
 
-        <p class="text-2xl sm:text-3xl text-gray-200 mt-2 capitalize">{{ $funnel_content['subheadline'] ?? 'Default Subheadline' }}
+        <p class="text-2xl sm:text-3xl text-gray-200 mt-2 capitalize">{{ $user->subheadline }}
         </p>
 
-        
-       
         <!-- <p class="text-base sm:text-lg text-[#38e6d6] mt-2 italic font-[Lato]">
             No Inviting, No Selling, Daily Passive Income, Daily Payout
         </p> -->
@@ -76,8 +74,8 @@
 
 
         <div class="relative w-full">
-           @php
-            $isMp4 = Str::endsWith($funnel_content['video_link'], '.mp4');
+            @php
+            $isMp4 = Str::endsWith($user->video_link, '.mp4');
             @endphp
 
             @if ($isMp4)
@@ -85,7 +83,7 @@
             <video id="custom-video" controls
                 class="w-full border-x-8 border-b-8 border-gray-200 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl"
                 poster="http://127.0.0.1:8000/storage/marketing_image/mgyZOswCeGIk46PQheD0HQpgnn6GrL1sJif8owCD.jpg">
-                  <source src="{{ $funnel_content['video_link'] }}" type="video/mp4">
+                <source src="{{ $user->video_link }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             @else
@@ -94,7 +92,7 @@
             <!-- Show YouTube Embed -->
             <div id="youtube-video"
                 class="w-full aspect-video border-x-8 border-b-8 border-gray-200 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl overflow-hidden">
-                <iframe id="youtube-iframe" width="100%" height="100%" src="{{ $funnel_content['video_link'] }}?enablejsapi=1"
+                <iframe id="youtube-iframe" width="100%" height="100%" src="{{ $user->video_link }}?enablejsapi=1"
                     title="Sales Funnel Video" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
@@ -118,41 +116,25 @@
 
 
 
-       
-    
         <!--For Messenger Link Button -->
-        @if($funnel_content['Messenger_link_toggle'] ?? false)
-    <div class="w-full flex justify-center sm:w-[700px] m-auto">
-        <a href="{{ $funnel_content['Messenger_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
-        text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
-            Chat On Messenger 
-            <span class="block text-sm font-normal text-gray-700">Click Here Now To Message Us </span>
-        </a>
-    </div>
-@endif
+        <!-- <a href="{{ $user->facebook_link }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
+           text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
 
 
-<!--For Referral Link Button -->
-        @if($funnel_content['Referral_link_toggle'] ?? false)
-    <div class="w-full flex justify-center sm:w-[700px] m-auto">
-        <a href="{{ $funnel_content['Referral_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
-        text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
-            Reserve Your Slot Now
-            <span class="block text-sm font-normal text-gray-700">Click Here Now To Reserve Your Slot</span>
-        </a>
-    </div>
-@endif
+       Message Me Here
+            <span class="block text-sm font-normal text-gray-700">Click Here To Message Us Now</span>
+        </a> -->
 
-<!--For Group Chat Link Button -->
-        @if($funnel_content['Group_chat_link_toggle'] ?? false)
-    <div class="w-full flex justify-center sm:w-[700px] m-auto">
-        <a href="{{ $funnel_content['Group_chat_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
-        text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
-            Join Group Chat
-            <span class="block text-sm font-normal text-gray-700">Click Here Now To Join Group Chat</span>
-        </a>
-    </div>
-@endif
+        <!--For Referral Link Button -->
+        @if($user->page_toggle == 1)
+        <div class="w-full flex justify-center sm:w-[700px] m-auto">
+            <a href="{{ $user->page_link }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
+            text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
+                Reserve Your Slot Now
+                <span class="block text-sm font-normal text-gray-700">Click Here Now To Reserve Your Slot</span>
+            </a>
+        </div>
+        @endif
 
     </div>
 
@@ -194,8 +176,15 @@
 
 
 
- 
-   
+    @if($user->group_toggle == 1)
+    <div class="w-full flex justify-center sm:w-[700px] m-auto mb-8">
+        <a href="{{ $user->join_fb_group }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
+            text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
+            Join Messenger Group
+            <span class="block text-sm font-normal text-gray-700">Click To Join Group Chat</span>
+        </a>
+    </div>
+    @endif
 
 
     </div>
@@ -267,7 +256,7 @@
         }
 
         function sendProgressToBackend(progress, maxProgress) {
-            const videoLink = "{{ $funnel_content['video_link'] }}";
+            const videoLink = "{{ $user->video_link }}";
             const subdomain = "{{ $user->subdomain }}";
 
             fetch('/save-video-progress', {
@@ -329,7 +318,7 @@
     }
 
     function sendYTProgressToBackend(progress, maxProgress) {
-        const videoLink = "{{ $funnel_content['video_link'] }}";
+        const videoLink = "{{ $user->video_link }}";
         const subdomain = "{{ $user->subdomain }}";
 
         fetch('/save-video-progress', {
@@ -364,14 +353,14 @@
         </button>
 
         <!-- Card -->
-        <!-- <div x-show="open" @click.outside="open = false" x-transition
+        <div x-show="open" @click.outside="open = false" x-transition
             class="mt-2 bg-white p-5 rounded-lg shadow-lg w-80 absolute bottom-16 right-0 border-4 border-gray-300" style="display: none;">
             <p class="text-gray-800 text-lg">Need help? Message us now on Messenger.</p>
-            <a href="#" target="_blank"
+            <a href="{{ $user->facebook_link }}" target="_blank"
                 class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full">
                 Message us on Messenger
             </a>
-        </div> -->
+        </div>
 
     </div>
 

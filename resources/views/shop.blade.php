@@ -69,7 +69,7 @@
         <!-- <h1 class="text-2xl md:text-3xl font-bold text-left">Salveo Barley Grass</h1> -->
 
          @foreach($brands as $brand)
-        <h1 class="text-2xl md:text-3xl font-bold text-left">{{ $brand->brand_name }}</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">{{ $brand->brand_name }}</h1>
         @endforeach
         <p class="text-gray-600 text-left mb-4">The ultimate superfood designed to nourish your body and fuel your life.
         </p>

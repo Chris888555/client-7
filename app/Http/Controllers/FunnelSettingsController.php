@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\AdminSetting;
 
 class FunnelSettingsController extends Controller
 {
     /**
-     * Show the funnel settings form.
+     * Show the funnel settings form for admin and default values for all users.
      */
-   public function index()
-{
-    $defaults = User::first(); // Get first user's settings as default values
+    public function index()
+    {
+        $defaults = User::first(); // Get first user's settings as default values
+        $setting = AdminSetting::first(); // Fetch the admin setting for toggle functionality
 
-    return view('funnel-setting', compact('defaults'));
-}
+        return view('funnel-setting', compact('defaults', 'setting'));
+    }
 
     /**
      * Save settings and update all users.
@@ -56,5 +58,29 @@ class FunnelSettingsController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Funnel settings updated for all users!');
+    }
+
+    /**
+     * Update the toggle setting.
+     */
+    public function update(Request $request)
+    {
+        // Fetch the first setting
+        $setting = AdminSetting::first();
+
+        if (!$setting) {
+            return redirect()->back()->with('error', 'No setting found to update!');
+        }
+
+        // Validate toggle value (ON or OFF)
+        $request->validate([
+            'setting_value' => 'required|in:ON,OFF',
+        ]);
+
+        // Save the new setting value from toggle
+        $setting->setting_value = $request->setting_value;
+        $setting->save();
+
+        return redirect()->back()->with('success', 'Setting updated successfully!');
     }
 }

@@ -11,7 +11,7 @@
 
     <!-- Playlist Upload Form -->
     <div class="container m-auto p-4 sm:p-8 max-w-full ">
-        <h1 class="text-2xl md:text-3xl font-bold text-left">Upload Playlist Videos</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Upload Playlist Videos</h1>
         <p class="text-gray-600 text-left mb-4">Easily upload your videos and organize them into a playlist for better viewing experience.</p>
 
 
@@ -56,7 +56,7 @@
 
             <!-- Submit Button -->
              <button type="submit"
-                    class="cursor-pointer bg-blue-700 w-full sm:max-w-[300px] text-white py-3 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-800 flex items-center justify-center mt-6">
+                    class="cursor-pointer bg-blue-500 w-full sm:max-w-[300px] text-white py-3 rounded-lg  text-lg transition-all duration-300 hover:bg-blue-600 flex items-center justify-center mt-6">
 
                     <!-- SVG Icon -->
                     <svg class="h-5 w-5 text-slate-50 mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
