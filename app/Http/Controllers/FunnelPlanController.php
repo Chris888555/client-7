@@ -20,7 +20,7 @@ class FunnelPlanController extends Controller
     }
 
     // Toggle the funnel plan feature (Enable/Disable)
-    // Toggle the funnel plan feature (Enable/Disable)
+   // Toggle the funnel plan feature (Enable/Disable)
 public function toggleFeature(Request $request)
 {
     // Validate the setting value (ON/OFF)
@@ -28,8 +28,8 @@ public function toggleFeature(Request $request)
         'setting_value' => 'required|in:ON,OFF',
     ]);
 
-    // Update ALL records with the new setting value
-    FunnelPlan::query()->update($validatedData);
+    // Update ALL records' setting_value with the new setting value
+    FunnelPlan::query()->update(['setting_value' => $validatedData['setting_value']]);
 
     return redirect()->route('manage-funnel-plan')->with('success', 'Feature toggled successfully!');
 }

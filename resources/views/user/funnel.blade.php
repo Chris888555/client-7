@@ -311,13 +311,23 @@
                     <span class="material-icons text-gray-500">layers</span>
                     <p class="text-sm text-gray-600">Your Funnel Link :</p>
                 </div>
-                <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+
+            <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+                <span class="material-icons text-blue-500">link</span>
+                <a href="{{ url($user->subdomain . '/' . $funnel->page_link_1) }}"
+                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
+                    {{ url($user->subdomain . '/' . $funnel->page_link_1) }}
+                </a>
+            </div>
+
+
+                <!-- <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
                     <span class="material-icons text-blue-500">link</span>
                     <a href="{{ url($user->subdomain) }}"
                         class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
                         {{ url($user->subdomain) }}
                     </a>
-                </div>
+                </div> -->
 
             </div>
             @endif
@@ -328,7 +338,7 @@
         <div class="flex row justify-start gap-2 mt-4">
 
             <!-- Copy Link Button -->
-            <button id="copyBtn" onclick="copyToClipboard('{{ url($user->subdomain) }}')"
+            <button id="copyBtn" onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_1) }}')"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
                 <i class="ph ph-copy mr-2"></i> <span id="copyBtnText">Copy Link</span>
             </button>
@@ -358,7 +368,7 @@
             </a> -->
 
             <!-- Edit Funnel Button -->
-            <a href="{{ route('edit-funnel') }}"
+            <a href="{{ route('edit.funnel') }}"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto transition-all duration-300">
                 <i class="ph ph-pencil mr-2"></i> Edit Funnel
             </a>

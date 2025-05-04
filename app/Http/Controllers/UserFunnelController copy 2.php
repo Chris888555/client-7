@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
 use App\Models\UserFunnel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,13 +70,8 @@ class UserFunnelController extends Controller
         }
     }
 
-    // Generate 6-character random strings for page_link_1 and page_link_2
-    $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
-    $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
-
     // Save the funnel data
     $funnel->save();
-
 
     // Redirect to the funnel page with a success message
     return redirect()->route('funnel.page')->with('success', 'Funnel submitted for review.');
@@ -102,67 +96,40 @@ public function activateDirect(Request $request)
         $funnel->status = 'approved';
         $funnel->is_active = true;
         $funnel->approval_date = now();
-        $funnel->plan_duration = '99999'; 
+        $funnel->plan_duration = 'lifetime'; 
         $funnel->expiration_date = null;
 
      
-// 1. Copy default video thumbnail from public/assets/images to storage/app/public/funnel_video_thumbnail
-            $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
-            $targetVideoPath = 'funnel_video_thumbnail/default_thumbnail.png';
+        $funnel->funnel_content = json_encode([
+    'headline' => 'NEGOSYONG PATOK AT WALANG LUGI',
+    'subheadline' => 'PROVEN AND TESTED INCOME GENERATING SYSTEM',
+    'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+    'testimonial_headline' => 'What Our Clients Say',
+    'testimonial_subheadline' => 'Real results from real people',
+    'testimonial_images' => [
+        'http://127.0.0.1:8000/storage/marketing_image/4AIltHa0PBsWrTythfBKfvMULHFqKUQVXhJlZWlP.jpg',
+        'ihttp://127.0.0.1:8000/storage/marketing_image/4AIltHa0PBsWrTythfBKfvMULHFqKUQVXhJlZWlP.jpg',
+        'ihttp://127.0.0.1:8000/storage/marketing_image/4AIltHa0PBsWrTythfBKfvMULHFqKUQVXhJlZWlP.jpg',
+    ],
+    'testimonial_video_link' => [
+        'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+        'hhttps://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+    ],
+    'fomo_countdown' => [
+        'days' => 2,
+        'hours' => 6,
+        'minutes' => 45
+    ],
+    'Messenger_link' => 'https://m.me/yourpage',
+    'Referral_link' => 'https://yourdomain.com/referral-code',
+    'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
+    
+    // All toggles set to false by default
+    'Messenger_link_toggle' => false,
+    'Referral_link_toggle' => false,
+    'Group_chat_link_toggle' => false
+]);
 
-            if (File::exists($defaultVideoThumbnail) && !Storage::disk('public')->exists($targetVideoPath)) {
-                Storage::disk('public')->put(
-                    $targetVideoPath,
-                    File::get($defaultVideoThumbnail)
-                );
-            }
-
-            // 2. Copy default testimonial images from public/assets/images to storage/app/public/testimonial_images
-            $testimonialImages = ['default1.png', 'default2.png', 'default3.png'];
-
-            foreach ($testimonialImages as $image) {
-                $sourcePath = public_path("assets/images/{$image}");
-                $targetPath = "testimonial_images/{$image}";
-
-                if (File::exists($sourcePath) && !Storage::disk('public')->exists($targetPath)) {
-                    Storage::disk('public')->put(
-                        $targetPath,
-                        File::get($sourcePath)
-                    );
-                }
-            }
-             // Generate 6-character random strings for page_link_1 and page_link_2
-    $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
-    $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
-                        
-             $funnel->funnel_content = json_encode([
-                'headline' => 'Empowering the Digital Future with Smart IT Solutions',
-                'subheadline' => 'Modernize your operations with trusted IT infrastructure and expert support',
-                'video_thumbnail' => Storage::url('funnel_video_thumbnail/default_thumbnail.png'),
-                'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
-                'testimonial_headline' => 'What Our Clients Say',
-                'testimonial_subheadline' => 'Real results from real people',
-                'testimonial_images' => [
-                    Storage::url('testimonial_images/default1.png'),
-                    Storage::url('testimonial_images/default2.png'),
-                    Storage::url('testimonial_images/default3.png'),
-                ],
-                'testimonial_video_link' => [
-                    'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
-                    'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
-                ],
-                'fomo_countdown' => [
-                    'days' => 2,
-                    'hours' => 6,
-                    'minutes' => 45
-                ],
-                'Messenger_link' => 'https://m.me/yourpage',
-                'Referral_link' => 'https://yourdomain.com/referral-code',
-                'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
-                'Messenger_link_toggle' => true,
-                'Referral_link_toggle' => true,
-                'Group_chat_link_toggle' => true
-            ]);
 
         $funnel->save(); 
 
@@ -347,45 +314,9 @@ public function bulkUpdateStatus(Request $request)
 
     // Handle delete case
     if ($action === 'delete') {
-        // Get all the funnels to delete
-        $funnels = UserFunnel::whereIn('id', $ids)->get();
-
-        // Loop through each funnel and delete the associated files from storage
-        foreach ($funnels as $funnel) {
-            // Delete the video thumbnail
-            if (!empty($funnel->funnel_content)) {
-                $funnelContent = json_decode($funnel->funnel_content, true);
-                $videoThumbnailPath = str_replace(Storage::url(''), '', $funnelContent['video_thumbnail']);
-                if (Storage::disk('public')->exists($videoThumbnailPath)) {
-                    Storage::disk('public')->delete($videoThumbnailPath);
-                }
-
-                // Delete testimonial images
-                if (!empty($funnelContent['testimonial_images'])) {
-                    foreach ($funnelContent['testimonial_images'] as $image) {
-                        $imagePath = str_replace(Storage::url(''), '', $image);
-                        if (Storage::disk('public')->exists($imagePath)) {
-                            Storage::disk('public')->delete($imagePath);
-                        }
-                    }
-                }
-            }
-             // ✅ Delete the proof_image if it exists
-        if (!empty($funnel->proof_image)) {
-            $proofImagePath = str_replace(Storage::url(''), '', $funnel->proof_image);
-            if (Storage::disk('public')->exists($proofImagePath)) {
-                Storage::disk('public')->delete($proofImagePath);
-            }
-        }
-    }
-        
-        // Delete the funnels from the database
         UserFunnel::whereIn('id', $ids)->delete();
-        return redirect()->back()->with('success', 'Selected funnels and their associated files have been deleted.');
+        return redirect()->back()->with('success', 'Selected funnels have been deleted.');
     }
-
-
-   
 
     // Update the status for selected funnels
     UserFunnel::whereIn('id', $ids)->update(['status' => $action]);
@@ -487,12 +418,6 @@ public function bulkUpdateStatus(Request $request)
 // ################ Update sales funnel Function ##################################
 public function updateFunnel(Request $request)
 {
-
-    // Validate the input
-    $request->validate([
-        'page_link_1' => ['nullable', 'regex:/^[a-zA-Z0-9-]*$/'], // Allow only letters, numbers, and dashes
-    ]);
-    
     $userId = Auth::id();
     $funnel = UserFunnel::where('user_id', $userId)->first();
 
@@ -500,137 +425,82 @@ public function updateFunnel(Request $request)
         return redirect()->back()->with('error', 'Funnel not found.');
     }
 
-    // Decode funnel content if it is stored as a JSON string in the database
-    $funnelContent = $funnel ? json_decode($funnel->funnel_content, true) : null;
+    $funnelContent = json_decode($funnel->funnel_content, true) ?? [];
 
-
-    // VIDEO THUMBNAIL
+    // Handle video thumbnail upload
     if ($request->hasFile('video_thumbnail')) {
-        $videoThumb = $request->file('video_thumbnail');
-        $thumbPath = $videoThumb->store('funnel_video_thumbnail', 'public');
-        $videoThumbnailUrl = Storage::url($thumbPath);
+        $uploadedFile = $request->file('video_thumbnail');
+        $originalName = $uploadedFile->getClientOriginalName();
 
-        if (($funnelContent['video_thumbnail'] ?? '') !== $videoThumbnailUrl) {
-            if (!empty($funnelContent['video_thumbnail'])) {
-                $oldPath = str_replace(Storage::url(''), '', $funnelContent['video_thumbnail']);
-                if (Storage::disk('public')->exists($oldPath)) {
-                    Storage::disk('public')->delete($oldPath);
-                }
-            }
-            $funnelContent['video_thumbnail'] = $videoThumbnailUrl;
+        $existingPath = $funnelContent['video_thumbnail'] ?? null;
+        $existingRelativePath = $existingPath ? str_replace('/storage/', '', $existingPath) : null;
+        $existingFileName = $existingRelativePath ? basename($existingRelativePath) : null;
+
+        if ($existingFileName && $originalName === $existingFileName && Storage::exists('public/' . $existingRelativePath)) {
+            Storage::putFileAs('public/' . dirname($existingRelativePath), $uploadedFile, $existingFileName);
+            $funnelContent['video_thumbnail'] = Storage::url('public/' . $existingRelativePath);
+        } else {
+            $newFileName = time() . '_' . $originalName;
+            $newPath = $uploadedFile->storeAs('public/funnel_video_thumbnail/funnel_video_thumbnail-stored', $newFileName);
+            $funnelContent['video_thumbnail'] = Storage::url($newPath);
         }
     }
 
-    // TESTIMONIAL IMAGES
-    if ($request->hasFile('testimonial_images')) {
-        $newUploaded = [];
+    // Handle testimonial images
+    for ($i = 1; $i <= 3; $i++) {
+        $field = "testimonial_image_$i";
+        if ($request->hasFile($field)) {
+            $uploadedFile = $request->file($field);
+            $originalName = $uploadedFile->getClientOriginalName();
 
-        foreach ($request->file('testimonial_images') as $image) {
-            if ($image) {
-                $path = $image->store('testimonial_images', 'public');
-                $newUploaded[] = Storage::url($path);
+            $existingPath = $funnelContent['testimonial_images'][$i - 1] ?? null;
+            $existingRelativePath = $existingPath ? str_replace('/storage/', '', $existingPath) : null;
+            $existingFileName = $existingRelativePath ? basename($existingRelativePath) : null;
+
+            if ($existingFileName && $originalName === $existingFileName && Storage::exists('public/' . $existingRelativePath)) {
+                Storage::putFileAs('public/' . dirname($existingRelativePath), $uploadedFile, $existingFileName);
+                $funnelContent['testimonial_images'][$i - 1] = Storage::url('public/' . $existingRelativePath);
+            } else {
+                $newFileName = time() . '_' . $originalName;
+                $newPath = $uploadedFile->storeAs('public/testimonial_images', $newFileName);
+                $funnelContent['testimonial_images'][$i - 1] = Storage::url($newPath);
             }
-        }
-
-        // Remove all old images if any
-        if (!empty($funnelContent['testimonial_images'])) {
-            foreach ($funnelContent['testimonial_images'] as $oldImage) {
-                $oldPath = str_replace(Storage::url(''), '', $oldImage);
-                if (Storage::disk('public')->exists($oldPath)) {
-                    Storage::disk('public')->delete($oldPath);
-                }
-            }
-        }
-
-        $funnelContent['testimonial_images'] = $newUploaded;
-    } elseif ($request->has('testimonial_images') && empty($request->input('testimonial_images'))) {
-        $funnelContent['testimonial_images'] = [
-            Storage::url('testimonial_images/default1.png'),
-            Storage::url('testimonial_images/default2.png'),
-            Storage::url('testimonial_images/default3.png')
-        ];
-    }
-
-    // TEXT FIELDS
-    $fields = [
-        'headline', 'subheadline', 'video_link',
-        'testimonial_headline', 'testimonial_subheadline'
-    ];
-    foreach ($fields as $field) {
-        if ($request->filled($field)) {
-            $funnelContent[$field] = $request->input($field);
         }
     }
 
-    // TESTIMONIAL VIDEO LINKS
+    // Text and link fields
+    $funnelContent['headline'] = $request->input('headline', $funnelContent['headline'] ?? '');
+    $funnelContent['subheadline'] = $request->input('subheadline', $funnelContent['subheadline'] ?? '');
+    $funnelContent['video_link'] = $request->input('video_link', $funnelContent['video_link'] ?? '');
+    $funnelContent['testimonial_headline'] = $request->input('testimonial_headline', $funnelContent['testimonial_headline'] ?? '');
+    $funnelContent['testimonial_subheadline'] = $request->input('testimonial_subheadline', $funnelContent['testimonial_subheadline'] ?? '');
+
+    // Testimonial video links
     $testimonialVideos = [];
-    if ($request->filled('testimonial_video_1')) {
-        $testimonialVideos[] = $request->input('testimonial_video_1');
-    }
-    if ($request->filled('testimonial_video_2')) {
-        $testimonialVideos[] = $request->input('testimonial_video_2');
-    }
-    if (!empty($testimonialVideos)) {
-        $funnelContent['testimonial_video_link'] = $testimonialVideos;
-    }
+    $testimonialVideos[] = $request->input('testimonial_video_1', $funnelContent['testimonial_video_link'][0] ?? '');
+    $testimonialVideos[] = $request->input('testimonial_video_2', $funnelContent['testimonial_video_link'][1] ?? '');
+    $funnelContent['testimonial_video_link'] = $testimonialVideos;
 
-    // FOMO COUNTDOWN
-    $fomoInput = [
-        'days' => $request->input('fomo_days'),
-        'hours' => $request->input('fomo_hours'),
-        'minutes' => $request->input('fomo_minutes'),
-    ];
+    // FOMO countdown
+    $funnelContent['fomo_countdown']['days'] = $request->input('fomo_days', $funnelContent['fomo_countdown']['days'] ?? 0);
+    $funnelContent['fomo_countdown']['hours'] = $request->input('fomo_hours', $funnelContent['fomo_countdown']['hours'] ?? 0);
+    $funnelContent['fomo_countdown']['minutes'] = $request->input('fomo_minutes', $funnelContent['fomo_countdown']['minutes'] ?? 0);
 
-    if (array_filter($fomoInput, fn($v) => $v !== null && $v !== '')) {
-        $funnelContent['fomo_countdown'] = [
-            'days' => $fomoInput['days'] !== '' ? (int)$fomoInput['days'] : 0,
-            'hours' => $fomoInput['hours'] !== '' ? (int)$fomoInput['hours'] : 0,
-            'minutes' => $fomoInput['minutes'] !== '' ? (int)$fomoInput['minutes'] : 0,
-        ];
-    }
+    // Social links and toggles
+    $funnelContent['Messenger_link'] = $request->input('Messenger_link', $funnelContent['Messenger_link'] ?? '');
+    $funnelContent['Messenger_link_toggle'] = $request->has('Messenger_link_toggle');
 
-    // SOCIAL LINKS & TOGGLES
-    $socialFields = ['Messenger', 'Referral', 'Group_chat'];
-    foreach ($socialFields as $field) {
-        $linkKey = $field . '_link';
-        $toggleKey = $field . '_link_toggle';
+    $funnelContent['Referral_link'] = $request->input('Referral_link', $funnelContent['Referral_link'] ?? '');
+    $funnelContent['Referral_link_toggle'] = $request->has('Referral_link_toggle');
 
-        if ($request->filled($linkKey)) {
-            $funnelContent[$linkKey] = $request->input($linkKey);
-        }
+    $funnelContent['Group_chat_link'] = $request->input('Group_chat_link', $funnelContent['Group_chat_link'] ?? '');
+    $funnelContent['Group_chat_link_toggle'] = $request->has('Group_chat_link_toggle');
 
-        $funnelContent[$toggleKey] = $request->boolean($toggleKey); // uses `true` or `false`
-    }
+    // Save the updated content
+    $funnel->funnel_content = json_encode($funnelContent);
+    $funnel->save();
 
-  // Update page_link_1 (direct column)
-if ($request->filled('page_link_1')) {
-    $funnel->page_link_1 = $request->input('page_link_1');
+    return redirect()->back()->with('success', 'Funnel updated successfully!');
 }
 
-// FINAL SAVE
-$funnel->funnel_content = json_encode($funnelContent);
-$wasChanged = $funnel->isDirty('funnel_content') || $funnel->isDirty('page_link_1');
-$funnel->save();
-
-
-    return redirect()->back()->with($wasChanged ? 'success' : 'error', $wasChanged ? 'Funnel updated successfully!' : 'No changes were made.');
 }
-
-
-public function editFunnel()
-{
-    // Fetch the funnel content for the logged-in user
-    $funnel = UserFunnel::where('user_id', Auth::id())->first();
-
-    // Decode funnel content if it is stored as a JSON string in the database
-    $funnelContent = $funnel ? json_decode($funnel->funnel_content, true) : null;
-
-    // Pass the funnel content to the view
- return view('edit-funnel', compact('funnel', 'funnelContent'));
-
-}
-}
-
-
-
-

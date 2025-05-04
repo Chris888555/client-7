@@ -15,16 +15,18 @@ use App\Http\Controllers\MarketingController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\VideoController;
-use App\Http\Controllers\FunnelSettingsController;
 use App\Http\Controllers\Navs\NavController;
 use App\Http\Controllers\NavSettingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
-
-
-
-
+use App\Http\Controllers\UserFunnelController;
 use App\Http\Controllers\FunnelPlanController;
+
+use App\Http\Controllers\PsgcController;
+
+
+
+##########################################################
 
 Route::get('/manage-funnel-plan', [FunnelPlanController::class, 'index'])->name('manage-funnel-plan');
 
@@ -38,7 +40,6 @@ Route::delete('/manage-funnel-plan/{id}', [FunnelPlanController::class, 'destroy
 
 ##########################################################
 
-use App\Http\Controllers\UserFunnelController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/manual-approval', [UserFunnelController::class, 'showManualApprovalPage'])->name('manual-approval');
@@ -62,6 +63,7 @@ Route::post('/funnel/resubmit', [UserFunnelController::class, 'resubmit'])->name
 ##########################################################
 
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/funnel', [UserFunnelController::class, 'showFunnelPage'])->name('funnel.page');
     Route::post('/funnel/submit', [UserFunnelController::class, 'submitFunnel'])->name('funnel.submit');
@@ -69,12 +71,20 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+ Route::middleware(['auth'])->group(function () {
+    Route::get('/edit-funnel', [UserFunnelController::class, 'editFunnel'])->name('edit.funnel');
+    Route::post('/update-funnel', [UserFunnelController::class, 'updateFunnel'])->name('update.funnel');
+});
 
 ##########################################################
 
 
+// Route for funnel settings (User model)
+Route::get('/funnel-settings/', [FunnelPlanController::class, 'index'])->name('funnel.settings');
+Route::post('/funnel-settings/save', [FunnelPlanController::class, 'save'])->name('funnel.settings.save');
 
-use App\Http\Controllers\PsgcController;
+
+
 
 Route::get('/address-form', [PsgcController::class, 'index']);
 Route::get('/provinces/{regionCode}', [PsgcController::class, 'getProvinces']);
@@ -155,9 +165,6 @@ Route::delete('/payments/{payment}', [PaymentController::class, 'destroy'])->nam
 Route::get('/nav-settings', [NavSettingController::class, 'index'])->name('nav-settings.index');
 Route::put('/nav-settings', [NavSettingController::class, 'update'])->name('nav-settings.update');
 
-// Route for funnel settings (User model)
-Route::get('/funnel-settings/', [FunnelSettingsController::class, 'index'])->name('funnel.settings');
-Route::post('/funnel-settings/save', [FunnelSettingsController::class, 'save'])->name('funnel.settings.save');
 
 // Route for admin toggle (AdminSetting model)
 Route::get('/funnel-settings/admin-toggle', [FunnelSettingsController::class, 'admintoggle'])->name('funnel.settings.admin');
@@ -218,9 +225,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-
-Route::get('/edit-funnel', [SalesFunnelController::class, 'showForm'])->name('edit-funnel');
-Route::post('/edit-funnel', [SalesFunnelController::class, 'save'])->name('save-funnel');
 
 
 Route::get('/academy', [AcademyController::class, 'academy'])->name('academy');
@@ -320,10 +324,13 @@ Route::middleware(['auth'])->post('/subdomain/update/{id}', [UserFunnelControlle
 Route::get('/page-view', [PageViewController::class, 'pageViewAnalytics'])->name('pageView.analytics');
 
 
-Route::get('{subdomain}', [PageViewController::class, 'track'])
-    ->where('subdomain', '[a-zA-Z0-9_-]+');
+Route::get('{subdomain}/{page_link_1}', [PageViewController::class, 'track'])
+    ->where('subdomain', '[a-zA-Z0-9_-]+')
+    ->where('page_link_1', '[a-zA-Z0-9_-]+');
 
 
-Route::get('/funnel/{subdomain}', [UserFunnelController::class, 'showFunnel'])
-    ->where('subdomain', '[a-zA-Z0-9_-]+');
+Route::get('/funnel/{subdomain}/{page_link_1}', [UserFunnelController::class, 'showFunnel'])
+    ->where('subdomain', '[a-zA-Z0-9_-]+')
+    ->where('page_link_1', '[a-zA-Z0-9_-]+');
+
 

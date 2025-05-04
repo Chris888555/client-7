@@ -43,13 +43,12 @@
     <div class=" w-full sm:max-w-[900px] p-6 text-center mx-auto mt-2 sm:mt-10">
 
 
-      <h1 class="text-[35px] leading-[40px] sm:leading-[50px] sm:text-5xl font-bold text-yellow-400 first-letter:uppercase font-[Roboto]">
-    {{ $funnel_content['headline'] ?? 'Default Headline' }}
-</h1>
+        <h1
+            class="text-[35px] leading-[40px] sm:leading-[50px] sm:text-5xl font-bold text-yellow-400 capitalize font-[Roboto]">
+            {{ $funnel_content['headline'] ?? 'Default Headline' }}</h1>
 
-<p class="text-2xl sm:text-3xl text-gray-200 mt-2 first-letter:uppercase">
-    {{ $funnel_content['subheadline'] ?? 'Default Subheadline' }}
-</p>
+        <p class="text-2xl sm:text-3xl text-gray-200 mt-2 capitalize">{{ $funnel_content['subheadline'] ?? 'Default Subheadline' }}
+        </p>
 
         
        
@@ -81,16 +80,15 @@
             $isMp4 = Str::endsWith($funnel_content['video_link'], '.mp4');
             @endphp
 
-           @if ($isMp4)
-                <!-- Show MP4 Video -->
-                <video id="custom-video" controls
-                    class="w-full border-x-8 border-b-8 border-gray-200 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl"
-                    poster="{{ $funnel_content['video_thumbnail'] }}">
-                    <source src="{{ $funnel_content['video_link'] }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            @if ($isMp4)
+            <!-- Show MP4 Video -->
+            <video id="custom-video" controls
+                class="w-full border-x-8 border-b-8 border-gray-200 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl"
+                poster="http://127.0.0.1:8000/storage/marketing_image/mgyZOswCeGIk46PQheD0HQpgnn6GrL1sJif8owCD.jpg">
+                  <source src="{{ $funnel_content['video_link'] }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             @else
-
 
 
             <!-- Show YouTube Embed -->
@@ -114,163 +112,68 @@
             </div>
         </div>
 
-<!-- FOMO Countdown -->
-<div class="fomo-countdown text-center p-4 rounded-md shadow text-white mt-6">
-    
-    <div class="flex justify-center space-x-2 sm:space-x-3 md:space-x-4">
-        <!-- Days -->
-        <div class="count-box bg-yellow-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="days" class="text-xl font-bold">{{ $funnel_content['fomo_countdown']['days'] ?? 0 }}</p>
-            <p class="text-xs">Days</p>
-        </div>
-        <!-- Hours -->
-        <div class="count-box bg-blue-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="hours" class="text-xl font-bold">{{ $funnel_content['fomo_countdown']['hours'] ?? 0 }}</p>
-            <p class="text-xs">Hours</p>
-        </div>
-        <!-- Minutes -->
-        <div class="count-box bg-green-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="minutes" class="text-xl font-bold">{{ $funnel_content['fomo_countdown']['minutes'] ?? 0 }}</p>
-            <p class="text-xs">Minutes</p>
-        </div>
-        <!-- Seconds -->
-        <div class="count-box bg-red-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="seconds" class="text-xl font-bold">00</p>
-            <p class="text-xs">Seconds</p>
-        </div>
-    </div>
-</div>
-
-<!-- Custom CSS for Smaller Display -->
-<style>
-    .count-box {
-        width: 64px; /* base width for desktop */
-        padding: 8px;
-    }
-
-    .count-box p {
-        font-size: 1.25rem; /* 20px */
-        line-height: 1.2;
-    }
-
-    .count-box p.text-xs {
-        font-size: 0.75rem; /* 12px */
-    }
-
-    @media (max-width: 640px) {
-        .count-box {
-            width: 56px !important;
-            padding: 6px !important;
-        }
-
-        .count-box p {
-            font-size: 1rem !important; /* 16px */
-        }
-
-        .count-box p.text-xs {
-            font-size: 10px !important;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .count-box {
-            width: 50px !important;
-        }
-
-        .count-box p {
-            font-size: 0.875rem !important; /* 14px */
-        }
-
-        .count-box p.text-xs {
-            font-size: 8px !important;
-        }
-    }
-</style>
-
         <p class="text-sm text-gray-300 rounded-lg mt-6">
             Ready to start your business? Click the button below to sign up and start earning.
         </p>
+
+
+
+       
+    
+        <!--For Messenger Link Button -->
+        @if($funnel_content['Messenger_link_toggle'] ?? false)
+    <div class="w-full flex justify-center sm:w-[700px] m-auto">
+        <a href="{{ $funnel_content['Messenger_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
+        text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
+            Chat On Messenger 
+            <span class="block text-sm font-normal text-gray-700">Click Here Now To Message Us </span>
+        </a>
+    </div>
+@endif
 
 
 <!--For Referral Link Button -->
         @if($funnel_content['Referral_link_toggle'] ?? false)
     <div class="w-full flex justify-center sm:w-[700px] m-auto">
         <a href="{{ $funnel_content['Referral_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
-        text-lg px-6 py-2 md:text-2xl md:px-8 md:py-3 lg:text-3xl lg:px-10 lg:py-3 w-[80%] sm:w-[60%] text-center">
+        text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
             Reserve Your Slot Now
             <span class="block text-sm font-normal text-gray-700">Click Here Now To Reserve Your Slot</span>
         </a>
     </div>
 @endif
-       
+
+<!--For Group Chat Link Button -->
+        @if($funnel_content['Group_chat_link_toggle'] ?? false)
+    <div class="w-full flex justify-center sm:w-[700px] m-auto">
+        <a href="{{ $funnel_content['Group_chat_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
+        text-lg px-6 py-3 md:text-2xl md:px-8 md:py-4 lg:text-3xl lg:px-10 lg:py-4 w-[80%] sm:w-[60%] text-center">
+            Join Group Chat
+            <span class="block text-sm font-normal text-gray-700">Click Here Now To Join Group Chat</span>
+        </a>
+    </div>
+@endif
 
     </div>
-
-
- 
-
-<script>
-    // Get dynamic countdown data from the server
-    const days = {{ $funnel_content['fomo_countdown']['days'] ?? 0 }};
-    const hours = {{ $funnel_content['fomo_countdown']['hours'] ?? 0 }};
-    const minutes = {{ $funnel_content['fomo_countdown']['minutes'] ?? 0 }};
-    const seconds = 0; // Start from zero seconds for countdown
-
-    // Convert the current countdown data into a future target timestamp
-    const now = new Date();
-    const targetDate = new Date(now.getTime() + (days * 24 * 60 * 60 * 1000) + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
-
-    // Function to update the countdown
-    function updateCountdown() {
-        const currentTime = new Date();
-        const timeRemaining = targetDate - currentTime;
-
-        if (timeRemaining <= 0) {
-            document.getElementById("days").textContent = "00";
-            document.getElementById("hours").textContent = "00";
-            document.getElementById("minutes").textContent = "00";
-            document.getElementById("seconds").textContent = "00";
-            return;
-        }
-
-        // Calculate remaining days, hours, minutes, and seconds
-        const remainingDays = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const remainingHours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const remainingMinutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const remainingSeconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        // Update the HTML elements with the calculated values
-        document.getElementById("days").textContent = remainingDays < 10 ? "0" + remainingDays : remainingDays;
-        document.getElementById("hours").textContent = remainingHours < 10 ? "0" + remainingHours : remainingHours;
-        document.getElementById("minutes").textContent = remainingMinutes < 10 ? "0" + remainingMinutes : remainingMinutes;
-        document.getElementById("seconds").textContent = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
-    }
-
-    // Update the countdown every second
-    setInterval(updateCountdown, 1000);
-</script>
-
-
 
 <!-- Include Owl Carousel CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-<div class="testimonial-section  relative mt-8">
+<div class="testimonial-section py-16 mt-8 bg-gradient-to-br from-white to-gray-100 relative">
     <!-- Headline -->
-    <h3 class="text-xl lg:text-4xl font-bold text-center text-gray-200 mb-3 leading-tight  ">
+    <h3 class="text-4xl font-bold text-center text-gray-800 mb-4 leading-tight">
         {{ $funnel_content['testimonial_headline'] ?? 'What Our Clients Say' }}
     </h3>
     
     <!-- Subheadline -->
-    <p class="text-sm lg:text-xl text-center text-gray-300  max-w-2xl mx-auto ">
+    <p class="text-xl text-center text-gray-600 mb-12 max-w-2xl mx-auto">
         {{ $funnel_content['testimonial_subheadline'] ?? 'Real results from real people' }}
     </p>
 
     <!-- Testimonial Carousel -->
 @if (!empty($funnel_content['testimonial_images']))
-    <div class="owl-carousel testimonial-carousel owl-theme py-8 lg:py-8  ">
-
+    <div class="owl-carousel testimonial-carousel px-4 lg:px-16 mb-12">
         @foreach ($funnel_content['testimonial_images'] as $img)
             <div class="item">
                 <div class="overflow-hidden rounded-xl shadow-lg transition duration-300 ease-in-out transform">
@@ -286,7 +189,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-
 <script>
 $(".testimonial-carousel").owlCarousel({
     center: true,
@@ -294,126 +196,220 @@ $(".testimonial-carousel").owlCarousel({
     margin: 20,
     autoplay: true,
     autoplayTimeout: 4000,
-    dots: true,   // Show dots
-
+    dots: true,
+    nav: false,
     responsive: {
         0: {
             items: 1,
-            stagePadding: 50,
+            stagePadding: 40 // Ensures both left and right images peek evenly on mobile
         },
         768: {
             items: 2,
-            stagePadding: 70,
+            stagePadding: 0
         },
         1024: {
             items: 3,
-            stagePadding: 100,
+            stagePadding: 0
         }
-    },
-    onInitialized: function () {
-        setTimeout(function () {
-            $(".testimonial-carousel").trigger("refresh.owl.carousel");
-        }, 100);
     }
 });
 
 </script>
 
-
 <style>
-   /* REMOVE or COMMENT OUT THIS BLOCK */
-.owl-dots {
-    display: flex !important;
-    justify-content: center;
-    margin-top: 20px;
+    .owl-nav {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    .owl-nav .owl-prev,
+    .owl-nav .owl-next {
+        pointer-events: all;
+        background-color: #555;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .owl-nav .owl-prev:hover,
+    .owl-nav .owl-next:hover {
+        background-color: #333;
+    }
+
+    .testimonial-carousel .owl-stage-outer {
+    overflow: visible;
+    perspective: 1500px; /* adds depth */
 }
 
-.owl-dot {
-    width: 12px;
-    height: 12px;
-    margin: 0 6px;
-    border-radius: 50%;
-    background: #666;
-    transition: background 0.3s;
-}
-
-
-.testimonial-carousel + .owl-dots {
-    display: block !important;
-    text-align: center;
-    margin-top: 20px;
+.testimonial-carousel .item {
+    padding: 10px;
+    transition: transform 0.5s ease, filter 0.5s ease;
     position: relative;
-    z-index: 50;
+    z-index: 1;
+    opacity: 0.6;
 }
 
-
-
-    /* Carousel container ensures no overflow */
-    .testimonial-section {
-        max-width: 100%; /* Ensure the container doesn't exceed the screen width */
-        overflow: hidden; /* Hide any overflow content */
-        padding: 0 10px; /* Add padding for responsiveness */
-    }
-
-    /* Style for carousel items */
-    .testimonial-carousel .item {
-        transition: transform 0.4s ease, opacity 0.4s ease;
-        opacity: 1; /* Full opacity for all images */
-        transform: scale(0.95); /* Side images are slightly smaller */
-        padding: 15px; /* Space around items */
-        width: 100%; /* Full container width */
-        max-width: 100%; /* Prevents overflow */
-    }
-
-    /* Style for center images */
+/* Center image – front and big */
 .testimonial-carousel .owl-item.center .item {
-    transform: scale(1.10); /* Increase from 1.2 or 1.0 to 1.15 for more emphasis */
+    transform: scale(1.2) translateZ(50px);
+    z-index: 3;
     opacity: 1;
-    z-index: 2;
 }
 
-/* Adjust side items to be a bit smaller for better contrast */
-.testimonial-carousel .owl-item.active:not(.center) .item {
-    transform: scale(0.9);
+/* Left and right images – smaller and curved backwards */
+.testimonial-carousel .owl-item.active:not(.center):nth-child(odd) .item {
+    transform: scale(0.9) rotateY(30deg) translateX(-20px);
 }
 
-
-    /* Prevent overflow and maintain image aspect ratio */
-    .testimonial-carousel .item img {
-        max-width: 100%; /* Ensure images fit within the container */
-        height: auto; /* Maintain aspect ratio */
-        display: block; /* Prevent inline spacing */
+.testimonial-carousel .owl-item.active:not(.center):nth-child(even) .item {
+    transform: scale(0.9) rotateY(-30deg) translateX(20px);
+}
+@media (max-width: 768px) {
+    .testimonial-carousel .item {
+        transform: none;
+        filter: none;
+        opacity: 0.6;
     }
-    /* Blur side images */
-.testimonial-carousel .owl-item:not(.center) .item img {
-    filter: blur(3px);
-    transition: filter 0.3s ease;
-}
 
-/* Keep center image clear */
-.testimonial-carousel .owl-item.center .item img {
-    filter: none;
-}
+    .testimonial-carousel .owl-item.center .item {
+        transform: scale(1.05);
+        filter: none;
+        z-index: 2;
+        opacity: 1;
+    }
 
+    .testimonial-carousel .owl-stage-outer {
+        padding-left: 0;
+        padding-right: 0;
+        overflow: visible;
+    }
+}
 </style>
 
-<!--For Group Chat Link Button -->
-        @if($funnel_content['Group_chat_link_toggle'] ?? false)
-    <div class="w-full flex justify-center sm:w-[700px] m-auto mb-8">
-        <a href="{{ $funnel_content['Group_chat_link'] }}" class="mt-4 inline-block bg-yellow-500 text-gray-800 font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-yellow-400 transition capitalize  
-        text-lg px-6 py-2 md:text-2xl md:px-8 md:py-3 lg:text-3xl lg:px-10 lg:py-3 w-[80%] sm:w-[60%] text-center">
-            Join Group Chat
-            <span class="block text-sm font-normal text-gray-700">Click Here Now To Join Group Chat</span>
-        </a>
+
+    
+<div class="testimonial-videos owl-carousel owl-theme px-6 py-8">
+    @foreach($funnel_content['testimonial_video_link'] ?? [] as $index => $video_link)
+        <div class="video-item group relative rounded-lg overflow-hidden shadow-lg transform transition duration-300 ease-in-out">
+            
+            <!-- For MP4 Videos -->
+            @if (strpos($video_link, '.mp4') !== false)
+                <video class="w-full h-full object-cover video-player" controls>
+                    <source src="{{ asset($video_link) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+            <!-- For YouTube Videos -->
+            @else
+                @php
+                    preg_match('/(?:https?:\/\/(?:www\.)?youtube\.com\/(?:v\/|watch\?v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/', $video_link, $matches);
+                    $video_id = $matches[1] ?? null;
+                @endphp
+
+                @if($video_id)
+                    <iframe class="w-full h-full video-player" 
+                            src="https://www.youtube.com/embed/{{ $video_id }}?autoplay=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                @else
+                    <p class="text-center text-gray-500">Invalid video link</p>
+                @endif
+            @endif
+        </div>
+    @endforeach
+</div>
+
+<!-- Controls for Play Next and Play Preview (Carousel Navigation) -->
+<div class="carousel-controls text-center mt-4">
+    <button class="prev-slide py-2 px-4 bg-blue-500 text-white rounded-lg">Play Preview</button>
+    <button class="next-slide py-2 px-4 bg-green-500 text-white rounded-lg">Play Next</button>
+</div>
+
+<!-- Include Owl Carousel JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<!-- Initialize Owl Carousel -->
+<script>
+    $(document).ready(function() {
+        // Initialize Owl Carousel
+        var owl = $('.testimonial-videos').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 20,
+            autoplay: false, // Disable autoplay, as we control it via buttons
+            dots: true,
+            nav: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    stagePadding: 60
+                },
+                768: {
+                    items: 2
+                },
+                1024: {
+                    items: 3
+                }
+            }
+        });
+
+        // Play Preview (Previous Slide)
+        $('.prev-slide').click(function() {
+            owl.trigger('prev.owl.carousel');
+        });
+
+        // Play Next (Next Slide)
+        $('.next-slide').click(function() {
+            owl.trigger('next.owl.carousel');
+        });
+    });
+</script>
+
+
+<!-- Initialize Owl Carousel -->
+<script>
+    $(document).ready(function(){
+        $(".testimonial-videos").owlCarousel({
+            items: 1, // One item per slide
+            loop: true, // Infinite loop
+            margin: 10, // Space between items
+            autoplay: true, // Autoplay the carousel
+            autoplayTimeout: 5000, // Delay between auto transition
+            autoplayHoverPause: true, // Pause autoplay on hover
+            nav: true, // Show next/prev buttons
+            navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'], // Custom nav icons
+            dots: true, // Show dots navigation
+            responsive: {
+                0: {
+                    items: 1, // 1 item on small screens
+                },
+                768: {
+                    items: 2, // 2 items on medium screens
+                },
+                1024: {
+                    items: 3, // 3 items on large screens
+                }
+            }
+        });
+    });
+</script>
+
+
+
     </div>
-@endif
 
 
-    </div>
-
-
-    <footer class="bg-gray-800/20 text-gray-300 py-10">
-
+    <!-- <footer class="bg-gray-800 text-gray-400 py-10">
         <div class="container mx-auto text-center">
             <p class="text-sm">
                 © 2025 <a href="https://www.businessforhome.com" class="hover:underline">BusinessForHome</a>. All Rights
@@ -426,7 +422,7 @@ $(".testimonial-carousel").owlCarousel({
                     Inc.</span>
             </p>
         </div>
-    </footer>
+    </footer> -->
 
     <script>
     const video = document.getElementById('custom-video');
@@ -576,14 +572,14 @@ $(".testimonial-carousel").owlCarousel({
         </button>
 
         <!-- Card -->
-        <div x-show="open" @click.outside="open = false" x-transition
+        <!-- <div x-show="open" @click.outside="open = false" x-transition
             class="mt-2 bg-white p-5 rounded-lg shadow-lg w-80 absolute bottom-16 right-0 border-4 border-gray-300" style="display: none;">
             <p class="text-gray-800 text-lg">Need help? Message us now on Messenger.</p>
-            <a href="{{ $funnel_content['Messenger_link'] }}" target="_blank"
+            <a href="#" target="_blank"
                 class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full">
                 Message us on Messenger
             </a>
-        </div>
+        </div> -->
 
     </div>
 

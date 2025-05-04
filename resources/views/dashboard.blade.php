@@ -26,7 +26,7 @@
         </p>
         <div class="flex items-center mt-4 space-x-2">
             <!-- Redirect Button to the next page -->
-            <a href="{{ route('funnel.main') }}"
+            <a href="{{ route('funnel.page') }}"
                 class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-center shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center">
 
                 <svg class="h-6 w-6 text-slate-50" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
