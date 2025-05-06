@@ -185,24 +185,32 @@
 
 
 
-    <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-      Mahalaga ba talaga sa'yo ang kalusugan mo?
-    </p>
-    <p class="text-md text-gray-600 mb-8 max-w-2xl mx-auto">
-      Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo.
-    </p>
+        <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+  {{ $landing_page_content['intro_headline'] }}
+</p>
+<p class="text-md text-gray-600 mb-8 max-w-2xl mx-auto">
+  {{ $landing_page_content['intro_paragraph'] }}
+</p>
 
-    <!-- Benefits List -->
-    <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-6">
-      Anong Makukuha Mo sa Isang Scoop ng Salveo Araw-Araw?
-    </h2>
-    <ul class="text-lg text-green-900 space-y-4 text-left max-w-xl mx-auto">
-      <li>✔ Boost sa natural energy levels</li>
-      <li>✔ Mas malakas na immune system</li>
-      <li>✔ Better digestion & detox</li>
-      <li>✔ Better focus and sleep</li>
-      <li>✔ Anti-fatigue & anti-inflammatory</li>
-    </ul>
+<!-- Benefits List -->
+<h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-6">
+  {{ $landing_page_content['benefits_title'] }}
+</h2>
+
+@php
+    $benefits = is_array($landing_page_content['benefits_list'] ?? null)
+        ? $landing_page_content['benefits_list']
+        : explode(',', $landing_page_content['benefits_list'] ?? '');
+@endphp
+
+<ul class="text-lg text-green-900 space-y-4 text-left max-w-xl mx-auto mb-16">
+  @foreach($benefits as $benefit)
+    <li class="flex">
+      <span class="w-6 flex-shrink-0 mr-2">✔</span>
+      <span class="block">{{ trim($benefit) }}</span>
+    </li>
+  @endforeach
+</ul>
    
     <!-- FOMO Countdown -->
 <div class="fomo-countdown text-center p-4  text-white mt-6">
@@ -284,13 +292,16 @@
 
 
 <!-- For Referral Link Button -->
+
+@if($landing_page_content['Referral_link_toggle'] ?? false)
 <div class="w-full flex justify-center m-auto">
-  <a href="https://www.facebook.com/princeonlinegeniu" target="_blank"
+  <a href="{{ $landing_page_content['Referral_link'] }}" target="_blank"
      class="mt-4 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition capitalize text-base md:text-lg lg:text-xl px-8 py-3 w-full sm:w-[60%] text-center">
-    Try It for 7 Days — Order Now!
-    <span class="block text-sm font-normal text-white opacity-90">✅ Claim Your Discount Now</span>
+    {{ $landing_page_content['Referral_button_text'] }}
+    <span class="block text-sm font-normal text-white opacity-90">{{ $landing_page_content['Referral_button_subtext'] }}</span>
   </a>
 </div>
+@endif
 
   </div>
 </section>
@@ -456,12 +467,12 @@ $(".testimonial-carousel").owlCarousel({
 </style>
 
 <!--For Group Chat Link Button -->
- @if($landing_page_content['Group_chat_link_toggle'] ?? false)
-<div class="w-full md:max-w-4xl flex justify-center m-auto px-4 ">
+@if($landing_page_content['Referral_link_toggle'] ?? false)
+<div class="w-full md:max-w-4xl flex justify-center m-auto px-4">
   <a href="{{ $landing_page_content['Group_chat_link'] }}" target="_blank"
      class="mt-4 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition capitalize text-base md:text-lg lg:text-xl px-8 py-3 w-full sm:w-[60%] text-center">
-    Get More Info — Join Group Chat
-    <span class="block text-sm font-normal text-white opacity-90">✅ Claim Your Discount Now</span>
+    {{ $landing_page_content['Group_chat_button_text'] }}
+    <span class="block text-sm font-normal text-white opacity-90">{{ $landing_page_content['Group_chat_button_subtext'] }}</span>
   </a>
 </div>
 @endif

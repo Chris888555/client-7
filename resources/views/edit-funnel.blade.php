@@ -78,6 +78,35 @@
                 accept="image/*">
         </div>
 
+        <div class="flex-1 mb-4">
+    <label for="intro_headline" class="block text-sm font-medium text-gray-700">Intro Headline</label>
+    <input type="text" id="intro_headline" name="intro_headline"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value="{{ old('intro_headline', is_array($funnelContent['intro_headline'] ?? '') ? implode(', ', $funnelContent['intro_headline']) : $funnelContent['intro_headline'] ?? '') }}">
+</div>
+
+<div class="flex-1 mb-4">
+    <label for="intro_paragraph" class="block text-sm font-medium text-gray-700">Intro Paragraph</label>
+    <input type="text" id="intro_paragraph" name="intro_paragraph"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value="{{ old('intro_paragraph', is_array($funnelContent['intro_paragraph'] ?? '') ? implode(', ', $funnelContent['intro_paragraph']) : $funnelContent['intro_paragraph'] ?? '') }}">
+</div>
+
+<div class="flex-1 mb-4">
+    <label for="benefits_title" class="block text-sm font-medium text-gray-700">Benefits Title</label>
+    <input type="text" id="benefits_title" name="benefits_title"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value="{{ old('benefits_title', is_array($funnelContent['benefits_title'] ?? '') ? implode(', ', $funnelContent['benefits_title']) : $funnelContent['benefits_title'] ?? '') }}">
+</div>
+
+<div class="flex-1 mb-4">
+    <label for="benefits_list" class="block text-sm font-medium text-gray-700">Benefits List</label>
+    <input type="text" id="benefits_list" name="benefits_list"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value="{{ old('benefits_list', is_array($funnelContent['benefits_list'] ?? '') ? implode(', ', $funnelContent['benefits_list']) : $funnelContent['benefits_list'] ?? '') }}">
+</div>
+
+
         <!-- Testimonial Headline & Subheadline -->
         <div class="flex flex-col md:flex-row gap-4 mb-4">
             <div class="flex-1">
@@ -129,16 +158,21 @@
             Show Referral Link
         </div>
 
-        <!-- Messenger Link -->
-        <div class="mb-4">
-            <label for="Messenger_link" class="block text-sm font-medium text-gray-700">Messenger Link</label>
-            <input type="text" id="Messenger_link" name="Messenger_link"
+        <div class="flex-1 mb-4">
+            <label for="Referral_button_text" class="block text-sm font-medium text-gray-700">Referral Button Text</label>
+            <input type="text" id="Referral_button_text" name="Referral_button_text"
                 class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value="{{ old('Messenger_link', $funnelContent['Messenger_link'] ?? '') }}">
-            <input type="checkbox" name="Messenger_link_toggle" class="ml-2"
-                {{ old('Messenger_link_toggle', $funnelContent['Messenger_link_toggle'] ?? false) ? 'checked' : '' }}>
-            Show Messenger Link
+                value="{{ old('Referral_button_text', is_array($funnelContent['Referral_button_text'] ?? '') ? implode(', ', $funnelContent['Referral_button_text']) : $funnelContent['Referral_button_text'] ?? '') }}">
         </div>
+
+        <div class="flex-1 mb-4">
+            <label for="Referral_button_subtext" class="block text-sm font-medium text-gray-700">Referral Button Subtext</label>
+            <input type="text" id="Referral_button_subtext" name="Referral_button_subtext"
+                class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="{{ old('Referral_button_subtext', is_array($funnelContent['Referral_button_subtext'] ?? '') ? implode(', ', $funnelContent['Referral_button_subtext']) : $funnelContent['Referral_button_subtext'] ?? '') }}">
+        </div>
+
+        
 
         <!-- Group Chat Link -->
         <div class="mb-4">
@@ -149,6 +183,32 @@
             <input type="checkbox" name="Group_chat_link_toggle" class="ml-2"
                 {{ old('Group_chat_link_toggle', $funnelContent['Group_chat_link_toggle'] ?? false) ? 'checked' : '' }}>
             Show Group Chat Link
+        </div>
+
+        <div class="flex-1 mb-4">
+    <label for="Group_chat_button_text" class="block text-sm font-medium text-gray-700">Group Chat Button Text</label>
+    <input type="text" id="Group_chat_button_text" name="Group_chat_button_text"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value="{{ old('Group_chat_button_text', is_array($funnelContent['Group_chat_button_text'] ?? '') ? implode(', ', $funnelContent['Group_chat_button_text']) : $funnelContent['Group_chat_button_text'] ?? '') }}">
+</div>
+
+<div class="flex-1 mb-4">
+    <label for="Group_chat_button_subtext" class="block text-sm font-medium text-gray-700">Group Chat Button Subtext</label>
+    <input type="text" id="Group_chat_button_subtext" name="Group_chat_button_subtext"
+        class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value="{{ old('Group_chat_button_subtext', is_array($funnelContent['Group_chat_button_subtext'] ?? '') ? implode(', ', $funnelContent['Group_chat_button_subtext']) : $funnelContent['Group_chat_button_subtext'] ?? '') }}">
+</div>
+
+
+        <!-- Messenger Link -->
+        <div class="mb-4">
+            <label for="Messenger_link" class="block text-sm font-medium text-gray-700">Messenger Link</label>
+            <input type="text" id="Messenger_link" name="Messenger_link"
+                class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="{{ old('Messenger_link', $funnelContent['Messenger_link'] ?? '') }}">
+            <input type="checkbox" name="Messenger_link_toggle" class="ml-2"
+                {{ old('Messenger_link_toggle', $funnelContent['Messenger_link_toggle'] ?? false) ? 'checked' : '' }}>
+            Show Messenger Link
         </div>
 
         <!-- Submit Button -->

@@ -138,46 +138,36 @@
 </div>
 
     <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-      Mahalaga ba sa’yo ang magkaroon ng dagdag na kita?
-    </p>
-    <p class="text-md text-gray-600 mb-8 max-w-2xl mx-auto">
-      Baka hindi mo pa nasusubukan, pero ang pagkakataon na ito ay pwedeng magbago ng buhay mo at ng pamilya mo. Hindi mo kailangang maghintay ng perfect na panahon, baka ito na yun!
-    </p>
+  {{ $funnel_content['intro_headline'] }}
+</p>
+<p class="text-md text-gray-600 mb-8 max-w-2xl mx-auto">
+  {{ $funnel_content['intro_paragraph'] }}
+</p>
 
-     <!-- Benefits List -->
-    <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-6">
-      Why you join us?
-    </h2>
+<!-- Benefits List -->
+<h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-6">
+  {{ $funnel_content['benefits_title'] }}
+</h2>
 
- <ul class="text-lg text-green-900 space-y-4 text-left max-w-xl mx-auto">
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Pagkakataon kumita ng malaki para sa pamilya at mga pangarap mo</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Mas maraming oras para sa mga mahal mo sa buhay—hindi lang para magtrabaho</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Kontrolin ang oras at diskarte mo para magkaroon ng mas magaan na buhay</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Suporta mula sa mga taong magtutulungan upang magtagumpay ka</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Simula ng isang bagong journey na magbubukas ng mas magagandang opportunities para sa’yo</span>
-  </li>
+@php
+    $benefits = is_array($funnel_content['benefits_list'] ?? null)
+        ? $funnel_content['benefits_list']
+        : explode(',', $funnel_content['benefits_list'] ?? '');
+@endphp
+
+<ul class="text-lg text-green-900 space-y-4 text-left max-w-xl mx-auto mb-16">
+  @foreach($benefits as $benefit)
+    <li class="flex">
+      <span class="w-6 flex-shrink-0 mr-2">✔</span>
+      <span class="block">{{ trim($benefit) }}</span>
+    </li>
+  @endforeach
 </ul>
 
 
 
    
-    <p class="text-md text-gray-600 mb-8 mt-8 max-w-2xl mx-auto">
-      Hindi mo kailangang maging eksperto para magsimula. Basta may tapang at desisyon ka lang—baka ito na yung pagkakataon na magbago ang lahat.
-    </p>
+   
 
     <!-- FOMO Countdown -->
 <div class="fomo-countdown text-center p-4 text-white mt-6">
@@ -254,12 +244,12 @@
 
 
 <!-- For Referral Link Button -->
- @if($funnel_content['Referral_link_toggle'] ?? false)
+@if($funnel_content['Referral_link_toggle'] ?? false)
 <div class="w-full flex justify-center m-auto">
   <a href="{{ $funnel_content['Referral_link'] }}" target="_blank"
      class="mt-4 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition capitalize text-base md:text-lg lg:text-xl px-8 py-3 w-full sm:w-[60%] text-center">
-    Sign Up To Start Earning
-    <span class="block text-sm font-normal text-white opacity-90">✅ Reserve Your Free Slot Now</span>
+    {{ $funnel_content['Referral_button_text'] }}
+    <span class="block text-sm font-normal text-white opacity-90">{{ $funnel_content['Referral_button_subtext'] }}</span>
   </a>
 </div>
 @endif
@@ -475,16 +465,16 @@ $(".testimonial-carousel").owlCarousel({
 
 
 <!--For Group Chat Link Button -->
-  @if($funnel_content['Group_chat_link_toggle'] ?? false)
-<div class="w-full md:max-w-4xl flex justify-center m-auto px-4 ">
+
+@if($funnel_content['Referral_link_toggle'] ?? false)
+<div class="w-full md:max-w-4xl flex justify-center m-auto px-4">
   <a href="{{ $funnel_content['Group_chat_link'] }}" target="_blank"
      class="mt-4 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition capitalize text-base md:text-lg lg:text-xl px-8 py-3 w-full sm:w-[60%] text-center">
-    Get More Info — Join Group Chat
-    <span class="block text-sm font-normal text-white opacity-90">✅ Claim Your Discount Now</span>
+    {{ $funnel_content['Group_chat_button_text'] }}
+    <span class="block text-sm font-normal text-white opacity-90">{{ $funnel_content['Group_chat_button_subtext'] }}</span>
   </a>
 </div>
 @endif
-
     </div>
 
 

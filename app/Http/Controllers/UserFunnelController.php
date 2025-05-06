@@ -420,61 +420,69 @@ if ($action === 'delete') {
     $funnels = UserFunnel::whereIn('id', $ids)->get();
 
     // Loop through each funnel and delete the associated files from storage
-    foreach ($funnels as $funnel) {
-         // Delete funnel page video thumbnail
-        if (!empty($funnel->funnel_content)) {
-            $funnelContent = $funnel->funnel_content;
+foreach ($funnels as $funnel) {
+    // Delete funnel page video thumbnail
+    if (!empty($funnel->funnel_content)) {
+        $funnelContent = $funnel->funnel_content;
+        
+        // Ensure $funnelContent['video_thumbnail'] is a string (URL)
+        if (!empty($funnelContent['video_thumbnail']) && is_string($funnelContent['video_thumbnail'])) {
             $videoThumbnailPath = str_replace(Storage::url(''), '', $funnelContent['video_thumbnail']);
             if (Storage::disk('public')->exists($videoThumbnailPath)) {
                 Storage::disk('public')->delete($videoThumbnailPath);
             }
+        }
 
-            // Delete the funnel testimonial images
-            if (!empty($funnelContent['testimonial_images'])) {
-                foreach ($funnelContent['testimonial_images'] as $image) {
+        // Delete the funnel testimonial images (ensure it's an array)
+        if (!empty($funnelContent['testimonial_images']) && is_array($funnelContent['testimonial_images'])) {
+            foreach ($funnelContent['testimonial_images'] as $image) {
+                if (is_string($image)) {
                     $imagePath = str_replace(Storage::url(''), '', $image);
                     if (Storage::disk('public')->exists($imagePath)) {
                         Storage::disk('public')->delete($imagePath);
                     }
                 }
-            }
-        }
-
-        // Delete the landing page content if it exists
-        if (!empty($funnel->landing_page_content)) {
-            $landingPageContent = $funnel->landing_page_content;
-
-            // Delete landing page video thumbnail
-            if (!empty($landingPageContent['video_thumbnail'])) {
-                $landingVideoThumbnailPath = str_replace(Storage::url(''), '', $landingPageContent['video_thumbnail']);
-                if (Storage::disk('public')->exists($landingVideoThumbnailPath)) {
-                    Storage::disk('public')->delete($landingVideoThumbnailPath);
-                }
-            }
-
-            // Delete landing page testimonial images
-            if (!empty($landingPageContent['testimonial_images'])) {
-                foreach ($landingPageContent['testimonial_images'] as $image) {
-                    $imagePath = str_replace(Storage::url(''), '', $image);
-                    if (Storage::disk('public')->exists($imagePath)) {
-                        Storage::disk('public')->delete($imagePath);
-                    }
-                }
-            }
-        }
-
-        // ✅ Delete the proof_image if it exists
-        if (!empty($funnel->proof_image)) {
-            $proofImagePath = str_replace(Storage::url(''), '', $funnel->proof_image);
-            if (Storage::disk('public')->exists($proofImagePath)) {
-                Storage::disk('public')->delete($proofImagePath);
             }
         }
     }
 
-    // Delete the funnels from the database
-    UserFunnel::whereIn('id', $ids)->delete();
-    return redirect()->back()->with('success', 'Selected funnels and their associated files, including landing page content, have been deleted.');
+    // Delete the landing page content if it exists
+    if (!empty($funnel->landing_page_content)) {
+        $landingPageContent = $funnel->landing_page_content;
+
+        // Delete landing page video thumbnail (ensure it's a string)
+        if (!empty($landingPageContent['video_thumbnail']) && is_string($landingPageContent['video_thumbnail'])) {
+            $landingVideoThumbnailPath = str_replace(Storage::url(''), '', $landingPageContent['video_thumbnail']);
+            if (Storage::disk('public')->exists($landingVideoThumbnailPath)) {
+                Storage::disk('public')->delete($landingVideoThumbnailPath);
+            }
+        }
+
+        // Delete landing page testimonial images (ensure it's an array)
+        if (!empty($landingPageContent['testimonial_images']) && is_array($landingPageContent['testimonial_images'])) {
+            foreach ($landingPageContent['testimonial_images'] as $image) {
+                if (is_string($image)) {
+                    $imagePath = str_replace(Storage::url(''), '', $image);
+                    if (Storage::disk('public')->exists($imagePath)) {
+                        Storage::disk('public')->delete($imagePath);
+                    }
+                }
+            }
+        }
+    }
+
+    // ✅ Delete the proof_image if it exists
+    if (!empty($funnel->proof_image) && is_string($funnel->proof_image)) {
+        $proofImagePath = str_replace(Storage::url(''), '', $funnel->proof_image);
+        if (Storage::disk('public')->exists($proofImagePath)) {
+            Storage::disk('public')->delete($proofImagePath);
+        }
+    }
+}
+
+// Delete the funnels from the database
+UserFunnel::whereIn('id', $ids)->delete();
+return redirect()->back()->with('success', 'Selected funnels and their associated files, including landing page content, have been deleted.');
 }
 
     // Update the status for selected funnels
@@ -522,9 +530,23 @@ if ($action === 'delete') {
 
                 $funnel->funnel_content = [
                     'headline' => 'Kung May Paraan Para Kumita Habang Kasama ang Pamilya… Di Mo Ba Susubukan?',
-                    'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sa’yo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
+                    'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sayo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
                     'video_thumbnail' => Storage::url('funnel_video_thumbnail/default_thumbnail.png'),
                     'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+
+                 
+                    'intro_headline' => 'Mahalaga ba sayo ang magkaroon ng dagdag na kita?',
+                    'intro_paragraph' => 'Baka hindi mo pa nasusubukan, pero ang pagkakataon na ito ay pwedeng magbago ng buhay mo at ng pamilya mo. Hindi mo kailangang maghintay ng perfect na panahon, baka ito na yun!',
+                    
+                    'benefits_title' => 'Why you join us?',
+                    'benefits_list' => [
+                        'Pagkakataon kumita ng malaki para sa pamilya at mga pangarap mo',
+                        'Mas maraming oras para sa mga mahal mo sa buhay—hindi lang para magtrabaho',
+                        'Kontrolin ang oras at diskarte mo para magkaroon ng mas magaan na buhay',
+                        'Suporta mula sa mga taong magtutulungan upang magtagumpay ka',
+                        'Simula ng isang bagong journey na magbubukas ng mas magagandang opportunities para sa’yo',
+                    ],
+                    
                     'testimonial_headline' => 'What Our Clients Say',
                     'testimonial_subheadline' => 'Real results from real people',
                     'testimonial_images' => [
@@ -541,6 +563,15 @@ if ($action === 'delete') {
                         'hours' => 6,
                         'minutes' => 45
                     ],
+    
+                    // Referral button content
+                    'Referral_button_text' => 'Sign Up To Start Earning',
+                    'Referral_button_subtext' => '✅ Reserve Your Free Slot Now',
+
+                     // Group chat button content
+                    'Group_chat_button_text' => 'Get More Info — Join Group Chat',
+                    'Group_chat_button_subtext' => '✅ Click Here To Join Now',
+                                                    
                     'Messenger_link' => 'https://m.me/yourpage',
                     'Referral_link' => 'https://yourdomain.com/referral-code',
                     'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
@@ -582,7 +613,20 @@ $funnel->landing_page_content = [
     'subheadline' => 'Discover how Salveo Barley Grass can naturally boost your energy and immunity — even on your busiest days!',
     'video_thumbnail' => Storage::url('landing_video_thumbnail/default_thumbnail.png'),
     'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
-    'testimonial_headline' => 'What Our Clients Say',
+
+    'intro_headline' => 'Mahalaga ba talaga sayo ang kalusugan mo?',
+                    'intro_paragraph' => ' Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo',
+                    
+                    'benefits_title' => 'Why Barley Grass?',
+                    'benefits_list' => [
+                        'Boost sa natural energy levels',
+                        'Mas malakas na immune system',
+                        'Better digestion & detox',
+                        'Better focus and sleep',
+                        'Anti-fatigue & anti-inflammatory',
+                    ],
+
+    'testimonial_headline' => 'Legit Testimonials',
     'testimonial_subheadline' => 'Real results from real people',
     'testimonial_images' => [
         Storage::url('landing_testimonial_images/default1.png'),
@@ -598,6 +642,15 @@ $funnel->landing_page_content = [
         'hours' => 6,
         'minutes' => 45
     ],
+
+    // Referral button content
+    'Referral_button_text' => 'Try It for 7 Days — Order Now!',
+    'Referral_button_subtext' => '✅ Claim Your Discount Now',
+
+    // Group chat button content
+     'Group_chat_button_text' => 'Get More Info — Join Group Chat',
+     'Group_chat_button_subtext' => '✅ Click Here To Join Now',
+
     'Messenger_link' => 'https://m.me/yourpage',
     'Referral_link' => 'https://yourdomain.com/referral-code',
     'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
@@ -711,10 +764,14 @@ public function updateFunnel(Request $request)
     }
 
     // TEXT FIELDS
-    $fields = [
-        'headline', 'subheadline', 'video_link',
-        'testimonial_headline', 'testimonial_subheadline'
-    ];
+   $fields = [
+    'headline', 'subheadline', 'video_link',
+    'testimonial_headline', 'testimonial_subheadline',
+    'intro_headline', 'intro_paragraph', 'benefits_title', 'benefits_list',
+    'Referral_button_text', 'Referral_button_subtext',
+    'Group_chat_button_text', 'Group_chat_button_subtext',
+];
+
     foreach ($fields as $field) {
         if ($request->filled($field)) {
             $funnelContent[$field] = $request->input($field);
@@ -747,6 +804,8 @@ public function updateFunnel(Request $request)
             'minutes' => $fomoInput['minutes'] !== '' ? (int)$fomoInput['minutes'] : 0,
         ];
     }
+
+   
 
     // SOCIAL LINKS & TOGGLES
     $socialFields = ['Messenger', 'Referral', 'Group_chat'];
@@ -857,11 +916,15 @@ public function updateLanding(Request $request)
         ];
     }
 
-    // TEXT FIELDS
-    $fields = [
-        'headline', 'subheadline', 'video_link',
-        'testimonial_headline', 'testimonial_subheadline'
-    ];
+      // TEXT FIELDS
+   $fields = [
+    'headline', 'subheadline', 'video_link',
+    'testimonial_headline', 'testimonial_subheadline',
+    'intro_headline', 'intro_paragraph', 'benefits_title', 'benefits_list',
+    'Referral_button_text', 'Referral_button_subtext',
+    'Group_chat_button_text', 'Group_chat_button_subtext',
+];
+
     foreach ($fields as $field) {
         if ($request->filled($field)) {
             $landingPageContent[$field] = $request->input($field);
