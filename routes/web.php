@@ -76,6 +76,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update-funnel', [UserFunnelController::class, 'updateFunnel'])->name('update.funnel');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/edit-landing-page', [UserFunnelController::class, 'editLanding'])->name('edit.landing');
+    Route::post('/update-landing-page', [UserFunnelController::class, 'updateLanding'])->name('update.landing');
+});
+
+
 ##########################################################
 
 
@@ -324,13 +330,12 @@ Route::middleware(['auth'])->post('/subdomain/update/{id}', [UserFunnelControlle
 Route::get('/page-view', [PageViewController::class, 'pageViewAnalytics'])->name('pageView.analytics');
 
 
-Route::get('{subdomain}/{page_link_1}', [PageViewController::class, 'track'])
+Route::get('{subdomain}', [PageViewController::class, 'track'])
     ->where('subdomain', '[a-zA-Z0-9_-]+')
     ->where('page_link_1', '[a-zA-Z0-9_-]+');
 
 
-Route::get('/funnel/{subdomain}/{page_link_1}', [UserFunnelController::class, 'showFunnel'])
+Route::get('/{subdomain}/{slug}', [UserFunnelController::class, 'handlePage'])
     ->where('subdomain', '[a-zA-Z0-9_-]+')
-    ->where('page_link_1', '[a-zA-Z0-9_-]+');
-
+    ->where('slug', '[a-zA-Z0-9_-]+');
 

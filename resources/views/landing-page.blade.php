@@ -7,7 +7,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,10 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    
 
     @vite(['resources/css/app.css'])
 
-    <title>Sales Funnel 24/7</title>
+    <title>Landing Page 24/7</title>
 
 
     <style>
@@ -45,24 +45,24 @@
     <div class=" w-full sm:max-w-[900px] p-6 text-center mx-auto mt-2 sm:mt-10">
 
 
+
+
       <h1 class="text-[35px] leading-[40px] sm:leading-[50px] sm:text-5xl font-bold text-yellow-400 first-letter:uppercase font-[Roboto]">
-    {{ $funnel_content['headline'] ?? 'Default Headline' }}
+    {{ $landing_page_content	['headline'] ?? 'Default Headline' }}
 </h1>
 
 <p class="text-2xl sm:text-3xl text-gray-200 mt-2 first-letter:uppercase">
-    {{ $funnel_content['subheadline'] ?? 'Default Subheadline' }}
+    {{ $landing_page_content	['subheadline'] ?? 'Default Subheadline' }}
 </p>
 
         
        
-        <!-- <p class="text-base sm:text-lg text-[#38e6d6] mt-2 italic font-[Lato]">
-            No Inviting, No Selling, Daily Passive Income, Daily Payout
-        </p> -->
+       
     </div>
 
     <div class="max-w-3xl w-full text-center mx-auto p-2">
         <div class="mt-6">
-             <div
+            <div
                 class="bg-blue-500 text-white text-center p-4 shadow-lg border-t border-x border-blue-400 rounded-t-2xl">
                 <!-- <h2 class="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
                     <svg class="h-6 w-6 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -80,15 +80,15 @@
 
         <div class="relative w-full">
            @php
-            $isMp4 = Str::endsWith($funnel_content['video_link'], '.mp4');
+            $isMp4 = Str::endsWith($landing_page_content	['video_link'], '.mp4');
             @endphp
 
            @if ($isMp4)
                 <!-- Show MP4 Video -->
                 <video id="custom-video" controls
-                    class="w-full border-x-8 border-b-8 border-blue-500 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl"
-                    poster="{{ $funnel_content['video_thumbnail'] }}">
-                    <source src="{{ $funnel_content['video_link'] }}" type="video/mp4">
+                    class="w-full border-x-8 border-b-8 border-blue-400 border-blue-500 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl"
+                    poster="{{ $landing_page_content	['video_thumbnail'] }}">
+                    <source src="{{ $landing_page_content	['video_link'] }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             @else
@@ -98,7 +98,7 @@
             <!-- Show YouTube Embed -->
             <div id="youtube-video"
                 class="w-full aspect-video border-x-8 border-b-8 border-gray-200 shadow-[0_15px_40px_rgba(8,_112,_184,_0.3)] rounded-b-2xl overflow-hidden">
-                <iframe id="youtube-iframe" width="100%" height="100%" src="{{ $funnel_content['video_link'] }}?enablejsapi=1"
+                <iframe id="youtube-iframe" width="100%" height="100%" src="{{ $landing_page_content	['video_link'] }}?enablejsapi=1"
                     title="Sales Funnel Video" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
@@ -115,13 +115,59 @@
                     onclick="playVideo()">
             </div>
         </div>
-</div>
-        
-<section class="bg-gray-100 py-4 px-0 md:px-12 mt-[-120px] sm:mt-[-150px]">
+    </div>
+
+
+ 
+
+<script>
+    // Get dynamic countdown data from the server
+    const days = {{ $landing_page_content['fomo_countdown']['days'] ?? 0 }};
+    const hours = {{ $landing_page_content['fomo_countdown']['hours'] ?? 0 }};
+    const minutes = {{ $landing_page_content['fomo_countdown']['minutes'] ?? 0 }};
+    const seconds = 0; // Start from zero seconds for countdown
+
+    // Convert the current countdown data into a future target timestamp
+    const now = new Date();
+    const targetDate = new Date(now.getTime() + (days * 24 * 60 * 60 * 1000) + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+
+    // Function to update the countdown
+    function updateCountdown() {
+        const currentTime = new Date();
+        const timeRemaining = targetDate - currentTime;
+
+        if (timeRemaining <= 0) {
+            document.getElementById("days").textContent = "00";
+            document.getElementById("hours").textContent = "00";
+            document.getElementById("minutes").textContent = "00";
+            document.getElementById("seconds").textContent = "00";
+            return;
+        }
+
+        // Calculate remaining days, hours, minutes, and seconds
+        const remainingDays = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const remainingHours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const remainingMinutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const remainingSeconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Update the HTML elements with the calculated values
+        document.getElementById("days").textContent = remainingDays < 10 ? "0" + remainingDays : remainingDays;
+        document.getElementById("hours").textContent = remainingHours < 10 ? "0" + remainingHours : remainingHours;
+        document.getElementById("minutes").textContent = remainingMinutes < 10 ? "0" + remainingMinutes : remainingMinutes;
+        document.getElementById("seconds").textContent = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
+    }
+
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+</script>
+
+
+
+<section class="bg-green-50 py-4 px-0 md:px-12 mt-[-120px] sm:mt-[-150px]">
   <div class="relative max-w-4xl mx-auto text-center rounded-xl pb-10 pt-[130px] sm:pt-[190px] px-6">
     
    <!-- Arrow Container Positioned at Bottom -->
-<div class="absolute bottom-0 left-0 right-0 mb-[130px] sm:mb-[150px] flex justify-between px-[20px] z-10">
+<div class="absolute bottom-0 left-0 right-0 mb-[150px] flex justify-between px-[20px] z-10">
   <!-- Left Arrow -->
   <div class="w-[100px] h-[100px] lg:!ml-[150px] overflow-hidden">
     <img src="/assets/images/left-arrow.png" 
@@ -137,64 +183,44 @@
   </div>
 </div>
 
+
+
     <p class="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-      Mahalaga ba sa’yo ang magkaroon ng dagdag na kita?
+      Mahalaga ba talaga sa'yo ang kalusugan mo?
     </p>
     <p class="text-md text-gray-600 mb-8 max-w-2xl mx-auto">
-      Baka hindi mo pa nasusubukan, pero ang pagkakataon na ito ay pwedeng magbago ng buhay mo at ng pamilya mo. Hindi mo kailangang maghintay ng perfect na panahon, baka ito na yun!
+      Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo.
     </p>
 
-     <!-- Benefits List -->
+    <!-- Benefits List -->
     <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-6">
-      Why you join us?
+      Anong Makukuha Mo sa Isang Scoop ng Salveo Araw-Araw?
     </h2>
-
- <ul class="text-lg text-green-900 space-y-4 text-left max-w-xl mx-auto">
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Pagkakataon kumita ng malaki para sa pamilya at mga pangarap mo</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Mas maraming oras para sa mga mahal mo sa buhay—hindi lang para magtrabaho</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Kontrolin ang oras at diskarte mo para magkaroon ng mas magaan na buhay</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Suporta mula sa mga taong magtutulungan upang magtagumpay ka</span>
-  </li>
-  <li class="flex">
-    <span class="w-6 flex-shrink-0 mr-2">✔</span>
-    <span class="block">Simula ng isang bagong journey na magbubukas ng mas magagandang opportunities para sa’yo</span>
-  </li>
-</ul>
-
-
-
+    <ul class="text-lg text-green-900 space-y-4 text-left max-w-xl mx-auto">
+      <li>✔ Boost sa natural energy levels</li>
+      <li>✔ Mas malakas na immune system</li>
+      <li>✔ Better digestion & detox</li>
+      <li>✔ Better focus and sleep</li>
+      <li>✔ Anti-fatigue & anti-inflammatory</li>
+    </ul>
    
-    <p class="text-md text-gray-600 mb-8 mt-8 max-w-2xl mx-auto">
-      Hindi mo kailangang maging eksperto para magsimula. Basta may tapang at desisyon ka lang—baka ito na yung pagkakataon na magbago ang lahat.
-    </p>
-
     <!-- FOMO Countdown -->
-<div class="fomo-countdown text-center p-4 text-white mt-6">
+<div class="fomo-countdown text-center p-4  text-white mt-6">
+    
     <div class="flex justify-center space-x-2 sm:space-x-3 md:space-x-4">
         <!-- Days -->
         <div class="count-box bg-yellow-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="days" class="text-xl font-bold">{{ $funnel_content['fomo_countdown']['days'] ?? 0 }}</p>
+            <p id="days" class="text-xl font-bold">{{ $landing_page_content	['fomo_countdown']['days'] ?? 0 }}</p>
             <p class="text-xs">Days</p>
         </div>
         <!-- Hours -->
         <div class="count-box bg-blue-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="hours" class="text-xl font-bold">{{ $funnel_content['fomo_countdown']['hours'] ?? 0 }}</p>
+            <p id="hours" class="text-xl font-bold">{{ $landing_page_content	['fomo_countdown']['hours'] ?? 0 }}</p>
             <p class="text-xs">Hours</p>
         </div>
         <!-- Minutes -->
         <div class="count-box bg-green-400 p-2 rounded-md shadow w-20 sm:w-20 md:w-16">
-            <p id="minutes" class="text-xl font-bold">{{ $funnel_content['fomo_countdown']['minutes'] ?? 0 }}</p>
+            <p id="minutes" class="text-xl font-bold">{{ $landing_page_content	['fomo_countdown']['minutes'] ?? 0 }}</p>
             <p class="text-xs">Minutes</p>
         </div>
         <!-- Seconds -->
@@ -251,18 +277,21 @@
     }
 </style>
 
+<p class="mt-2 text-lg font-semibold text-green-700 flex items-center justify-center gap-2">
+  <span class="material-icons text-green-600 text-2xl">check_circle</span>
+  Claim your discount today!
+</p>
 
 
 <!-- For Referral Link Button -->
- @if($funnel_content['Referral_link_toggle'] ?? false)
 <div class="w-full flex justify-center m-auto">
-  <a href="{{ $funnel_content['Referral_link'] }}" target="_blank"
+  <a href="https://www.facebook.com/princeonlinegeniu" target="_blank"
      class="mt-4 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition capitalize text-base md:text-lg lg:text-xl px-8 py-3 w-full sm:w-[60%] text-center">
-    Sign Up To Start Earning
-    <span class="block text-sm font-normal text-white opacity-90">✅ Reserve Your Free Slot Now</span>
+    Try It for 7 Days — Order Now!
+    <span class="block text-sm font-normal text-white opacity-90">✅ Claim Your Discount Now</span>
   </a>
 </div>
-@endif
+
   </div>
 </section>
 
@@ -276,56 +305,9 @@
 >
   <path
     d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,181.3C672,171,768,181,864,170.7C960,160,1056,128,1152,138.7C1248,149,1344,203,1392,229.3L1440,256V320H0Z"
-    class="fill-gray-100 dark:fill-green-50"
+    class="fill-green-50 dark:fill-green-50"
   ></path>
 </svg>
-
-</div>
-
-
- 
-
-<script>
-    // Get dynamic countdown data from the server
-    const days = {{ $funnel_content['fomo_countdown']['days'] ?? 0 }};
-    const hours = {{ $funnel_content['fomo_countdown']['hours'] ?? 0 }};
-    const minutes = {{ $funnel_content['fomo_countdown']['minutes'] ?? 0 }};
-    const seconds = 0; // Start from zero seconds for countdown
-
-    // Convert the current countdown data into a future target timestamp
-    const now = new Date();
-    const targetDate = new Date(now.getTime() + (days * 24 * 60 * 60 * 1000) + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
-
-    // Function to update the countdown
-    function updateCountdown() {
-        const currentTime = new Date();
-        const timeRemaining = targetDate - currentTime;
-
-        if (timeRemaining <= 0) {
-            document.getElementById("days").textContent = "00";
-            document.getElementById("hours").textContent = "00";
-            document.getElementById("minutes").textContent = "00";
-            document.getElementById("seconds").textContent = "00";
-            return;
-        }
-
-        // Calculate remaining days, hours, minutes, and seconds
-        const remainingDays = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const remainingHours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const remainingMinutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const remainingSeconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        // Update the HTML elements with the calculated values
-        document.getElementById("days").textContent = remainingDays < 10 ? "0" + remainingDays : remainingDays;
-        document.getElementById("hours").textContent = remainingHours < 10 ? "0" + remainingHours : remainingHours;
-        document.getElementById("minutes").textContent = remainingMinutes < 10 ? "0" + remainingMinutes : remainingMinutes;
-        document.getElementById("seconds").textContent = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
-    }
-
-    // Update the countdown every second
-    setInterval(updateCountdown, 1000);
-</script>
-
 
 
 <!-- Include Owl Carousel CSS -->
@@ -335,19 +317,19 @@
 <div class="testimonial-section  relative mt-8">
     <!-- Headline -->
     <h3 class="text-xl lg:text-4xl font-bold text-center text-gray-200 mb-3 leading-tight  ">
-        {{ $funnel_content['testimonial_headline'] ?? 'What Our Clients Say' }}
+        {{ $landing_page_content['testimonial_headline'] ?? 'What Our Clients Say' }}
     </h3>
     
     <!-- Subheadline -->
     <p class="text-sm lg:text-xl text-center text-gray-300  max-w-2xl mx-auto ">
-        {{ $funnel_content['testimonial_subheadline'] ?? 'Real results from real people' }}
+        {{ $landing_page_content['testimonial_subheadline'] ?? 'Real results from real people' }}
     </p>
 
     <!-- Testimonial Carousel -->
-@if (!empty($funnel_content['testimonial_images']))
+@if (!empty($landing_page_content['testimonial_images']))
     <div class="owl-carousel testimonial-carousel owl-theme py-8 lg:py-8  ">
 
-        @foreach ($funnel_content['testimonial_images'] as $img)
+        @foreach ($landing_page_content['testimonial_images'] as $img)
             <div class="item">
                 <div class="overflow-hidden rounded-xl shadow-lg transition duration-300 ease-in-out transform">
                     <img src="{{ asset($img) }}" alt="Testimonial Image" class="w-full h-auto object-cover">
@@ -473,17 +455,17 @@ $(".testimonial-carousel").owlCarousel({
 
 </style>
 
-
 <!--For Group Chat Link Button -->
-  @if($funnel_content['Group_chat_link_toggle'] ?? false)
+ @if($landing_page_content['Group_chat_link_toggle'] ?? false)
 <div class="w-full md:max-w-4xl flex justify-center m-auto px-4 ">
-  <a href="{{ $funnel_content['Group_chat_link'] }}" target="_blank"
+  <a href="{{ $landing_page_content['Group_chat_link'] }}" target="_blank"
      class="mt-4 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition capitalize text-base md:text-lg lg:text-xl px-8 py-3 w-full sm:w-[60%] text-center">
     Get More Info — Join Group Chat
     <span class="block text-sm font-normal text-white opacity-90">✅ Claim Your Discount Now</span>
   </a>
 </div>
 @endif
+
 
     </div>
 
@@ -555,7 +537,7 @@ $(".testimonial-carousel").owlCarousel({
         }
 
         function sendProgressToBackend(progress, maxProgress) {
-            const videoLink = "{{ $funnel_content['video_link'] }}";
+            const videoLink = "{{ $landing_page_content['video_link'] }}";
             const subdomain = "{{ $user->subdomain }}";
 
             fetch('/save-video-progress', {
@@ -617,7 +599,7 @@ $(".testimonial-carousel").owlCarousel({
     }
 
     function sendYTProgressToBackend(progress, maxProgress) {
-        const videoLink = "{{ $funnel_content['video_link'] }}";
+        const videoLink = "{{ $landing_page_content['video_link'] }}";
         const subdomain = "{{ $user->subdomain }}";
 
         fetch('/save-video-progress', {
@@ -655,7 +637,7 @@ $(".testimonial-carousel").owlCarousel({
         <div x-show="open" @click.outside="open = false" x-transition
             class="mt-2 bg-white p-5 rounded-lg shadow-lg w-80 absolute bottom-16 right-0 border-4 border-gray-300" style="display: none;">
             <p class="text-gray-800 text-lg">Need help? Message us now on Messenger.</p>
-            <a href="{{ $funnel_content['Messenger_link'] }}" target="_blank"
+            <a href="{{ $landing_page_content['Messenger_link'] }}" target="_blank"
                 class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full">
                 Message us on Messenger
             </a>

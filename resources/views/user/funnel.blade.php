@@ -306,6 +306,7 @@
             </div>
             @endif
 
+<!-- ####################  Funnel page start code #################### -->
             <div class="p-6 border border-gray-200 rounded-2xl  bg-white">
                 <div class="mb-2 flex items-center gap-2 text-gray-700">
                     <span class="material-icons text-gray-500">layers</span>
@@ -320,20 +321,8 @@
                 </a>
             </div>
 
-
-                <!-- <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
-                    <span class="material-icons text-blue-500">link</span>
-                    <a href="{{ url($user->subdomain) }}"
-                        class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
-                        {{ url($user->subdomain) }}
-                    </a>
-                </div> -->
-
-            </div>
             @endif
-        </div>
-
-
+     
         @if($funnel->status != 'pending' && $funnel->is_active != 0)
         <div class="flex row justify-start gap-2 mt-4">
 
@@ -361,21 +350,70 @@
             }
             </script>
 
-            <!-- View Funnel Button -->
-            <!-- <a href="{{ url($user->subdomain) }}" target="_blank"
-                class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
-                <i class="ph ph-eye mr-2"></i> View Funnel
-            </a> -->
-
             <!-- Edit Funnel Button -->
             <a href="{{ route('edit.funnel') }}"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto transition-all duration-300">
                 <i class="ph ph-pencil mr-2"></i> Edit Funnel
             </a>
         </div>
+     </div>
+ <!-- ####################  Funnel page end code #################### -->
+
+ <!-- ####################  Landing page start code #################### -->
+          <div class="p-6 border border-gray-200 rounded-2xl  bg-white mt-8">
+                <div class="mb-2 flex items-center gap-2 text-gray-700">
+                    <span class="material-icons text-gray-500">layers</span>
+                    <p class="text-sm text-gray-600">Your Funnel Link :</p>
+                </div>
+
+
+        <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+                <span class="material-icons text-blue-500">link</span>
+                <a href="{{ url($user->subdomain . '/' . $funnel->page_link_1) }}"
+                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
+                    {{ url($user->subdomain . '/' . $funnel->page_link_2) }}
+                </a>
+            </div>
+
+                <div class="flex row justify-start gap-2 mt-4">
+             <!-- Copy Link Button -->
+            <button id="copyBtn" onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_2) }}')"
+                class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
+                <i class="ph ph-copy mr-2"></i> <span id="copyBtnText">Copy Link</span>
+            </button>
+
+            <script>
+            function copyToClipboard(text) {
+                // Using the Clipboard API to copy the text to clipboard
+                navigator.clipboard.writeText(text).then(function() {
+                    // Changing the button text to "Copied!" after successful copy
+                    const btnText = document.getElementById('copyBtnText');
+                    btnText.textContent = 'Link Copied';
+                    setTimeout(() => {
+                        // Changing the button text back to "Copy Link" after 2 seconds
+                        btnText.textContent = 'Copy Link';
+                    }, 2000);
+                }).catch(function(err) {
+                    // If copying fails, log an error
+                    console.error('Failed to copy: ', err);
+                });
+            }
+            </script>
+
+            <!-- Edit Funnel Button -->
+            <a href="{{ route('edit.landing') }}"
+                class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto transition-all duration-300">
+                <i class="ph ph-pencil mr-2"></i> Edit Funnel
+            </a>
+        </div>
+   <!-- Landing page end code -->
+
+        </div>
+
         @endif
         @else
 
+        
 
         <!--########### Only show the form when setting is ON for funnel activation, Payment required ############ -->
         @if($setting_value === 'ON')
