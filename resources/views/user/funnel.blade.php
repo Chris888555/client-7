@@ -310,7 +310,7 @@
             <div class="p-6 border border-gray-200 rounded-2xl  bg-white">
                 <div class="mb-2 flex items-center gap-2 text-gray-700">
                     <span class="material-icons text-gray-500">layers</span>
-                    <p class="text-sm text-gray-600">Your Funnel Link :</p>
+                    <p class="text-sm text-gray-600">Your Sales Funnel Link :</p>
                 </div>
 
             <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
@@ -326,29 +326,11 @@
         @if($funnel->status != 'pending' && $funnel->is_active != 0)
         <div class="flex row justify-start gap-2 mt-4">
 
-            <!-- Copy Link Button -->
-            <button id="copyBtn" onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_1) }}')"
+          <!-- Funnel Link Copy Button -->
+            <button onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_1) }}', 'funnelbtnText')"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
-                <i class="ph ph-copy mr-2"></i> <span id="copyBtnText">Copy Link</span>
+                <i class="ph ph-copy mr-2"></i> <span id="funnelbtnText">Copy Link</span>
             </button>
-
-            <script>
-            function copyToClipboard(text) {
-                // Using the Clipboard API to copy the text to clipboard
-                navigator.clipboard.writeText(text).then(function() {
-                    // Changing the button text to "Copied!" after successful copy
-                    const btnText = document.getElementById('copyBtnText');
-                    btnText.textContent = 'Link Copied';
-                    setTimeout(() => {
-                        // Changing the button text back to "Copy Link" after 2 seconds
-                        btnText.textContent = 'Copy Link';
-                    }, 2000);
-                }).catch(function(err) {
-                    // If copying fails, log an error
-                    console.error('Failed to copy: ', err);
-                });
-            }
-            </script>
 
             <!-- Edit Funnel Button -->
             <a href="{{ route('edit.funnel') }}"
@@ -363,7 +345,7 @@
           <div class="p-6 border border-gray-200 rounded-2xl  bg-white mt-8">
                 <div class="mb-2 flex items-center gap-2 text-gray-700">
                     <span class="material-icons text-gray-500">layers</span>
-                    <p class="text-sm text-gray-600">Your Funnel Link :</p>
+                    <p class="text-sm text-gray-600">Your Landing Page Link :</p>
                 </div>
 
 
@@ -376,29 +358,24 @@
             </div>
 
                 <div class="flex row justify-start gap-2 mt-4">
-             <!-- Copy Link Button -->
-            <button id="copyBtn" onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_2) }}')"
-                class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
-                <i class="ph ph-copy mr-2"></i> <span id="copyBtnText">Copy Link</span>
-            </button>
-
-            <script>
-            function copyToClipboard(text) {
-                // Using the Clipboard API to copy the text to clipboard
-                navigator.clipboard.writeText(text).then(function() {
-                    // Changing the button text to "Copied!" after successful copy
-                    const btnText = document.getElementById('copyBtnText');
-                    btnText.textContent = 'Link Copied';
-                    setTimeout(() => {
-                        // Changing the button text back to "Copy Link" after 2 seconds
-                        btnText.textContent = 'Copy Link';
-                    }, 2000);
-                }).catch(function(err) {
-                    // If copying fails, log an error
-                    console.error('Failed to copy: ', err);
-                });
-            }
-            </script>
+      <!-- Landing Page Copy Button -->
+                <button onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_2) }}', 'landingBtnText')"
+                    class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
+                    <i class="ph ph-copy mr-2"></i> <span id="landingBtnText">Copy Link</span>
+                </button>
+                    <script>
+                function copyToClipboard(text, textElementId) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        const btnText = document.getElementById(textElementId);
+                        btnText.textContent = 'Link Copied';
+                        setTimeout(() => {
+                            btnText.textContent = 'Copy Link';
+                        }, 2000);
+                    }).catch(function(err) {
+                        console.error('Failed to copy: ', err);
+                    });
+                }
+                </script>
 
             <!-- Edit Funnel Button -->
             <a href="{{ route('edit.landing') }}"
