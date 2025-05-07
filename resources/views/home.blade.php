@@ -4,8 +4,6 @@
 
 @section('content')
 
-
-
     <style>
         /* Custom Styles */
         .welcome-text {
@@ -46,7 +44,6 @@
             }
         }
     </style>
-</head>
 
 @include('includes.main-header')
 
@@ -58,17 +55,17 @@
         
             <!-- Custom Selector for the Welcome Header -->
             <h2 class="welcome-text">
-                Welcome to Sybbex Team Philippines
+                Welcome to NutriInnovations
             </h2>
 
             <!-- Custom Selector for the Modern Trading Header -->
             <h2 class="modern-trading-text">
-                Modern Trading for Smart Investors
+                New Opportunity for Everyone
             </h2>
 
             <!-- Custom Selector for the Paragraph Text -->
             <p class="main-paragraph">
-                Sybbex is your guide to the latest technology and smart solutions in trading. Our innovative solutions are designed to meet the needs of the most sophisticated investors. Trust our team of professional traders with your finances and see that smart investing is the key to achieving your financial goals.
+                NutriInnovations is your partner in discovering groundbreaking opportunities in health and wellness. Our mission is to provide innovative solutions that empower individuals to achieve better health and live more fulfilling lives. Join us in creating a future full of opportunity and growth.
             </p>
            
         </div>

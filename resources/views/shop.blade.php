@@ -71,7 +71,7 @@
          @foreach($brands as $brand)
         <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">{{ $brand->brand_name }}</h1>
         @endforeach
-        <p class="text-gray-600 text-left mb-4">The ultimate superfood designed to nourish your body and fuel your life.
+        <p class="text-gray-600 text-left mb-4">BFF Household Essentials.
         </p>
 
        
@@ -519,7 +519,7 @@ function updateCartQuantity(productId, newQuantity) {
         <div class="w-full py-2">
             <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                 <!-- Copyright -->
-                <p class="text-sm">© 2025 Salveo Barley Grass. All Rights Reserved.</p>
+                <p class="text-sm">© 2025 NutiInnovations. All Rights Reserved.</p>
 
                 <!-- Social Media Icons -->
                 <div class="flex space-x-4">

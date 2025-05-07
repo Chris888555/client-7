@@ -17,14 +17,14 @@
 <style>
 /* Webkit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
     /* Decreased vertical scrollbar width */
     height: 4px;
     /* Decreased horizontal scrollbar height */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(97, 91, 150);
+    background-color: #008080;
     border-radius: 10px;
 }
 
@@ -45,12 +45,15 @@
         style="background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
 
 
-    <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4">
-        My Logo
-    </h2>
+        <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4">
+            <a href="/">
+                <img id="sidebar-logo-img" src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" alt="My Logo" class="h-10 w-auto object-contain" />
+                <span id="logo-text" class="text-xl ml-[3px] hidden">N</span> <!-- Display "N" when collapsed -->
+            </a>
+        </h2>
 
 
-            <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3>
+            <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3> -->
 
         <ul>
 
@@ -71,17 +74,17 @@
                 <a href="{{ route('video.analytics') }}" class="block p-2 sidebar-text">Video Analytics</a>
             </li>
 
-            <li
+            <!-- <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                <span class="material-icons">stacked_line_chart</span> <!-- Representing charts or analytics -->
+                <span class="material-icons">stacked_line_chart</span> 
                 <a href="{{ route('pageView.analytics') }}" class="block p-2 sidebar-text">Page View Analytics</a>
-            </li>
+            </li> -->
 
-            <li
+            <!-- <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">payment</span>
                 <a href="{{ route('my-payments') }}" class="block p-2 sidebar-text">Client Payments</a>
-            </li>
+            </li> -->
 
 
             <li
@@ -115,7 +118,7 @@
             
             <hr class="border-t- border-t-gray-500 mt-8 mb-8">
 
-            <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3>
+            <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3> -->
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">manage_accounts</span>
@@ -289,9 +292,14 @@
                     </svg>
                 </button>
             </div>
-            <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4  ">My Logo </h2>
+           <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4">
+    <a href="/">
+        <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" alt="My Logo" class="h-10 w-auto object-contain" />
+    </a>
+</h2>
 
-            <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3>
+
+            <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3> -->
 
             <ul>
                 <li
@@ -312,11 +320,11 @@
                     <a href="{{ route('video.analytics') }}" class="block p-2 sidebar-text">Video Analytics</a>
                 </li>
 
-                <li
+                <!-- <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                    <span class="material-icons">stacked_line_chart</span> <!-- Representing charts or analytics -->
+                    <span class="material-icons">stacked_line_chart</span> 
                     <a href="{{ route('pageView.analytics') }}" class="block p-2 sidebar-text">Page View Analytics</a>
-                </li>
+                </li> -->
 
                 <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
@@ -346,7 +354,7 @@
 
                 @if(Auth::user()->is_admin == 1)
                 <hr class="border-t border-t-gray-500 mt-8 mb-8">
-                 <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3>
+                 <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3> -->
 
                 <li
                     class=" mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
@@ -428,68 +436,73 @@
             </ul>
         </div>
 
-        <script>
-        // Mobile Sidebar Toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('mobile-sidebar').classList.remove('-translate-x-full');
-            document.getElementById('overlay').classList.remove('hidden');
-        });
+       <script>
+    // Mobile Sidebar Toggle
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-sidebar').classList.remove('-translate-x-full');
+        document.getElementById('overlay').classList.remove('hidden');
+    });
 
-        // Close Sidebar
-        document.getElementById('close-sidebar').addEventListener('click', function() {
-            document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
-            document.getElementById('overlay').classList.add('hidden');
-        });
+    // Close Sidebar
+    document.getElementById('close-sidebar').addEventListener('click', function() {
+        document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
+        document.getElementById('overlay').classList.add('hidden');
+    });
 
-        // Close sidebar when clicking on the overlay
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
-            document.getElementById('overlay').classList.add('hidden');
-        });
+    // Close sidebar when clicking on the overlay
+    document.getElementById('overlay').addEventListener('click', function() {
+        document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
+        document.getElementById('overlay').classList.add('hidden');
+    });
 
+    // PC Sidebar Toggle
+    document.getElementById('pc-menu-toggle').addEventListener('click', function() {
+        let sidebar = document.getElementById('sidebar');
+        let mainContent = document.getElementById('main-content');
+        let texts = document.querySelectorAll('.sidebar-text');
+        let items = document.querySelectorAll('.sidebar-item');
+        let logoImg = document.getElementById('sidebar-logo-img');
+        let logoText = document.getElementById('logo-text');
 
-        // PC Sidebar Toggle
-        document.getElementById('pc-menu-toggle').addEventListener('click', function() {
-            let sidebar = document.getElementById('sidebar');
-            let mainContent = document.getElementById('main-content');
-            let texts = document.querySelectorAll('.sidebar-text');
-            let items = document.querySelectorAll('.sidebar-item');
-            let logo = document.getElementById('sidebar-logo');
+        if (sidebar.classList.contains('w-[280px]')) {
+            sidebar.classList.remove('w-[280px]');
+            sidebar.classList.add('w-[96px]'); // Adjust width when collapsed
+            mainContent.classList.remove('sm:ml-[280px]');
+            mainContent.classList.add('sm:ml-[96px]'); // Adjust the margin for the collapsed sidebar
+            texts.forEach(text => text.classList.add('hidden'));
+            items.forEach(item => {
+                item.classList.add('mt-1');
+                item.classList.add('p-2');
+            });
 
-            if (sidebar.classList.contains('w-[280px]')) {
-                sidebar.classList.remove('w-[280px]');
-                sidebar.classList.add('w-[96px]'); // Adjust width when collapsed
-                mainContent.classList.remove('sm:ml-[280px]');
-                mainContent.classList.add('sm:ml-[96px]'); // Adjust the margin for the collapsed sidebar
-                texts.forEach(text => text.classList.add('hidden'));
-                items.forEach(item => {
-                    item.classList.add('mt-1');
-                    item.classList.add('p-2');
-                });
-                logo.textContent = 'M';
-                logo.classList.add('ml-1');
-                logo.classList.add('text-xl');
-            } else {
-                sidebar.classList.remove('w-[96px]');
-                sidebar.classList.add('w-[280px]'); // Reset to original width when expanded
-                mainContent.classList.remove('sm:ml-[96px]');
-                mainContent.classList.add('sm:ml-[280px]'); // Reset the margin when sidebar expands
-                texts.forEach(text => text.classList.remove('hidden'));
-                items.forEach(item => {
-                    item.classList.remove('mt-1');
-                    item.classList.remove('p-2');
-                });
-                logo.textContent = 'My Logo';
-                logo.classList.remove('ml-1');
-                logo.classList.add('text-xl');
-            }
-        });
+            // Hide the logo image and show the letter "N" when collapsed
+            logoImg.classList.add('hidden'); // Hide the logo image
+            logoText.classList.remove('hidden'); // Show the letter "N"
+            logoText.classList.add('text-2xl'); // Make the letter "N" larger
 
-        // Profile Dropdown Toggle
-        document.getElementById("profile-btn").addEventListener("click", function() {
-            document.getElementById("dropdown-menu").classList.toggle("hidden");
-        });
-        </script>
+        } else {
+            sidebar.classList.remove('w-[96px]');
+            sidebar.classList.add('w-[280px]'); // Reset to original width when expanded
+            mainContent.classList.remove('sm:ml-[96px]');
+            mainContent.classList.add('sm:ml-[280px]'); // Reset the margin when sidebar expands
+            texts.forEach(text => text.classList.remove('hidden'));
+            items.forEach(item => {
+                item.classList.remove('mt-1');
+                item.classList.remove('p-2');
+            });
+
+            // Reset to the original logo (image)
+            logoImg.classList.remove('hidden'); // Show the logo image
+            logoText.classList.add('hidden'); // Hide the letter "N"
+            logoText.classList.remove('text-2xl'); // Reset text size
+        }
+    });
+
+    // Profile Dropdown Toggle
+    document.getElementById("profile-btn").addEventListener("click", function() {
+        document.getElementById("dropdown-menu").classList.toggle("hidden");
+    });
+</script>
 
 
 </body>

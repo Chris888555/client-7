@@ -330,10 +330,7 @@ Route::middleware(['auth'])->post('/subdomain/update/{id}', [UserFunnelControlle
 Route::get('/page-view', [PageViewController::class, 'pageViewAnalytics'])->name('pageView.analytics');
 
 
-Route::get('{subdomain}', [PageViewController::class, 'track'])
-    ->where('subdomain', '[a-zA-Z0-9_-]+')
-    ->where('page_link_1', '[a-zA-Z0-9_-]+');
-
+// Route::get('{subdomain}', [PageViewController::class, 'track']);
 
 Route::get('/{subdomain}/{slug}', [UserFunnelController::class, 'handlePage'])
     ->where('subdomain', '[a-zA-Z0-9_-]+')

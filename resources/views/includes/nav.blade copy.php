@@ -17,14 +17,14 @@
 <style>
 /* Webkit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
     /* Decreased vertical scrollbar width */
     height: 4px;
     /* Decreased horizontal scrollbar height */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(97, 91, 150);
+    background-color: #008080;
     border-radius: 10px;
 }
 
@@ -33,8 +33,6 @@
     background-color: {{ $navSettings->nav_list_bg_hover_color ?? '#cccccc' }};
     color: {{ $navSettings->nav_text_list_hover_color ?? '#ffffff' }};
 }
-
-
 </style>
 
 
@@ -47,8 +45,12 @@
         style="background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
 
 
-        <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4 ">My
-            Logo </h2>
+    <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4">
+        My Logo
+    </h2>
+
+
+            <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3> -->
 
         <ul>
 
@@ -60,7 +62,7 @@
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">trending_up</span> <!-- Representing charts or analytics -->
-                <a href="{{ route('funnel.main') }}" class="block p-2 sidebar-text">Sales Funnel</a>
+                <a href="{{ route('funnel.page') }}" class="block p-2 sidebar-text">Sales Funnel</a>
             </li>
 
             <li
@@ -74,6 +76,12 @@
                 <span class="material-icons">stacked_line_chart</span> <!-- Representing charts or analytics -->
                 <a href="{{ route('pageView.analytics') }}" class="block p-2 sidebar-text">Page View Analytics</a>
             </li>
+
+            <!-- <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">payment</span>
+                <a href="{{ route('my-payments') }}" class="block p-2 sidebar-text">Client Payments</a>
+            </li> -->
 
 
             <li
@@ -89,10 +97,25 @@
                 <a href="{{ route('academy') }}" class="block p-2 sidebar-text">Academy</a>
             </li>
 
+             <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">shopping_bag</span>
+                <a href="{{ route('order.details') }}" class="block p-2 sidebar-text">My Orders</a>
+            </li>
+
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">account_circle</span>
+                <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+            </li>
+
+            
 
             @if(Auth::user()->is_admin == 1)
+            
             <hr class="border-t- border-t-gray-500 mt-8 mb-8">
 
+            <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3> -->
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">manage_accounts</span>
@@ -106,7 +129,7 @@
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                 <span class="material-icons">cloud_upload</span>
-                <a href="{{ route('marketing.index') }}" class="block p-2 sidebar-text">Upload Downloadable</a>
+                <a href="{{ route('marketing.index') }}" class="block p-2 sidebar-text">Upload Posting</a>
             </li>
             @endif
 
@@ -127,13 +150,35 @@
             </li>
             @endif
 
+             @if(Auth::user()->is_admin == 1)
+                <li
+                    class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                    <span class="material-icons">payment</span>
+                    <a href="{{ route('manual-approval') }}" class="block p-2 sidebar-text">Payment Approval</a>
+                </li>
+                @endif
 
-
+            
+           
+         @if(Auth::user()->is_admin == 1)
+          <!--For shop start code -->
+              <hr class="border-t- border-t-gray-500 mt-8 mb-8">
             <li
                 class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                <span class="material-icons">account_circle</span>
-                <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+                <span class="material-icons">cloud_upload</span>
+                <a href="{{ route('products.create') }}" class="block p-2 sidebar-text">Upload Products</a>
             </li>
+            @endif
+
+             @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">settings</span>
+                <a href="{{ route('product.edit') }}" class="block p-2 sidebar-text">Manage Products</a>
+            </li>
+            @endif
+
+            <!--For shop end code -->
 
             <li @if(Auth::user()->is_admin == 1)
                 <hr class="border-t border-t-gray-500 mt-8 mb-8">
@@ -145,6 +190,8 @@
             </li>
 
             @endif
+
+            
         </ul>
 
     </aside>
@@ -227,9 +274,11 @@
 
 
         <!-- ############ Mobile Sidebar #####################################################################-->
+        <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden md:hidden z-40"></div> <!-- Overlay -->
+
         <div id="mobile-sidebar"
-            class="fixed inset-0  z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto"
-             style="background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
+            class="fixed inset-0 z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto"
+            style="width: 300px; background-color: {{ $navSettings->nav_bg_color ?? '#ffffff' }}; color: {{ $navSettings->nav_text_color ?? '#000000' }};">
             <div class="flex justify-end">
                 <button id="close-sidebar" class="text-white text-lg">
                     <svg class="h-8 w-8 text-gray-200" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -240,8 +289,9 @@
                     </svg>
                 </button>
             </div>
-            <h2 id="sidebar-logo"
-                class="text-lg font-bold mb-6 flex items-center space-x-2 px-4  ">My Logo </h2>
+            <h2 id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4  ">My Logo </h2>
+
+            <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">User Panel </h3> -->
 
             <ul>
                 <li
@@ -253,7 +303,7 @@
                 <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
                     <span class="material-icons">trending_up</span> <!-- Representing charts or analytics -->
-                    <a href="{{ route('funnel.main') }}" class="block p-2 sidebar-text">Sales Funnel</a>
+                    <a href="{{ route('funnel.page') }}" class="block p-2 sidebar-text">Sales Funnel</a>
                 </li>
 
                 <li
@@ -281,9 +331,22 @@
                     <a href="{{ route('academy') }}" class="block p-2 sidebar-text">Academy</a>
                 </li>
 
+                 <li
+                    class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                    <span class="material-icons">shopping_bag</span>
+                    <a href="{{ route('order.details') }}" class="block p-2 sidebar-text">My Orders</a>
+                </li>
+
+                 <li
+                    class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                    <span class="material-icons">account_circle</span>
+                    <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+                </li>
+
 
                 @if(Auth::user()->is_admin == 1)
                 <hr class="border-t border-t-gray-500 mt-8 mb-8">
+                 <!-- <h3  class="text-sm  mb-2 flex items-center px-4 text-gray-400 ">Admin Panel </h3> -->
 
                 <li
                     class=" mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
@@ -319,12 +382,36 @@
                 </li>
                 @endif
 
-
+               
+                @if(Auth::user()->is_admin == 1)
                 <li
                     class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
-                    <span class="material-icons">account_circle</span>
-                    <a href="{{ route('profile.uploadForm') }}" class="block p-2 sidebar-text">Edit Profile</a>
+                    <span class="material-icons">payment</span>
+                    <a href="{{ route('manual-approval') }}" class="block p-2 sidebar-text">Payment Approval</a>
                 </li>
+                @endif
+
+               
+
+                 <!--For shop start code -->
+              <hr class="border-t- border-t-gray-500 mt-8 mb-8">
+         @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">cloud_upload</span>
+                <a href="{{ route('products.create') }}" class="block p-2 sidebar-text">Upload Products</a>
+            </li>
+            @endif
+
+             @if(Auth::user()->is_admin == 1)
+            <li
+                class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                <span class="material-icons">settings</span>
+                <a href="{{ route('product.edit') }}" class="block p-2 sidebar-text">Manage Products</a>
+            </li>
+            @endif
+
+            <!--For shop end code -->
 
                 <li @if(Auth::user()->is_admin == 1)
                     <hr class="border-t border-t-gray-500 mt-8 mb-8">
@@ -345,11 +432,21 @@
         // Mobile Sidebar Toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-sidebar').classList.remove('-translate-x-full');
+            document.getElementById('overlay').classList.remove('hidden');
         });
 
+        // Close Sidebar
         document.getElementById('close-sidebar').addEventListener('click', function() {
             document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
         });
+
+        // Close sidebar when clicking on the overlay
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
+        });
+
 
         // PC Sidebar Toggle
         document.getElementById('pc-menu-toggle').addEventListener('click', function() {

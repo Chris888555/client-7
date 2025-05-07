@@ -100,7 +100,7 @@
             <!-- Image and Download Button (separate hover container) -->
             <div class="relative group">
                 <img src="{{ asset('storage/' . $content->image) }}" alt="Marketing Image"
-                    class="w-full h-auto rounded-md mb-4">
+                    class="w-full h-[250px] lg:h-[270px] md:h-[300px] rounded-md ">
                 <div
                     class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-gray-900 bg-opacity-50">
                     <!-- Download Button -->

@@ -107,6 +107,7 @@ public function activateDirect(Request $request)
 
      
     // #################################### For Funnel Page ###########################################
+             
                 // 1. Copy default video thumbnail from public/assets/images to storage/app/public/funnel_video_thumbnail
                 $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
                 $targetVideoPath = 'funnel_video_thumbnail/default_thumbnail.png';
@@ -132,16 +133,31 @@ public function activateDirect(Request $request)
                         );
                     }
                 }
-
                  // Generate 6-character random strings for page_link_1 and page_link_2
-    $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
-    $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
+                $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
+                $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
+
+                 if (empty($funnel->funnel_content)) {
 
                 $funnel->funnel_content = [
                     'headline' => 'Kung May Paraan Para Kumita Habang Kasama ang Pamilya… Di Mo Ba Susubukan?',
-                    'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sa’yo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
+                    'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sayo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
                     'video_thumbnail' => Storage::url('funnel_video_thumbnail/default_thumbnail.png'),
                     'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+
+                 
+                    'intro_headline' => 'Mahalaga ba sayo ang magkaroon ng dagdag na kita?',
+                    'intro_paragraph' => 'Baka hindi mo pa nasusubukan, pero ang pagkakataon na ito ay pwedeng magbago ng buhay mo at ng pamilya mo. Hindi mo kailangang maghintay ng perfect na panahon, baka ito na yun!',
+                    
+                    'benefits_title' => 'Why you join us?',
+                    'benefits_list' => [
+                        'Pagkakataon kumita ng malaki para sa pamilya at mga pangarap mo',
+                        'Mas maraming oras para sa mga mahal mo sa buhay—hindi lang para magtrabaho',
+                        'Kontrolin ang oras at diskarte mo para magkaroon ng mas magaan na buhay',
+                        'Suporta mula sa mga taong magtutulungan upang magtagumpay ka',
+                        'Simula ng isang bagong journey na magbubukas ng mas magagandang opportunities para sa’yo',
+                    ],
+                    
                     'testimonial_headline' => 'What Our Clients Say',
                     'testimonial_subheadline' => 'Real results from real people',
                     'testimonial_images' => [
@@ -158,6 +174,15 @@ public function activateDirect(Request $request)
                         'hours' => 6,
                         'minutes' => 45
                     ],
+    
+                    // Referral button content
+                    'Referral_button_text' => 'Sign Up To Start Earning',
+                    'Referral_button_subtext' => '✅ Reserve Your Free Slot Now',
+
+                     // Group chat button content
+                    'Group_chat_button_text' => 'Get More Info — Join Group Chat',
+                    'Group_chat_button_subtext' => '✅ Click Here To Join Now',
+                                                    
                     'Messenger_link' => 'https://m.me/yourpage',
                     'Referral_link' => 'https://yourdomain.com/referral-code',
                     'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
@@ -165,8 +190,10 @@ public function activateDirect(Request $request)
                     'Referral_link_toggle' => true,
                     'Group_chat_link_toggle' => true
                 ];
+            }
 
-            // #################################### For Landing Page ###########################################
+// #################################### For Landing Page ###########################################
+
 // 1. Copy default video thumbnail from public/assets/images to storage/app/public/landing_video_thumbnail
 $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
 $targetVideoPath = 'landing_video_thumbnail/default_thumbnail.png';
@@ -193,17 +220,31 @@ foreach ($testimonialImages as $image) {
     }
 }
 
-   // Generate 6-character random strings for page_link_1 and page_link_2
+ // Generate 6-character random strings for page_link_1 and page_link_2
     $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
     $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
 
 // ➕ Set default landing_page_content here
+if (empty($funnel->landing_page_content)) {
 $funnel->landing_page_content = [
     'headline' => 'Laging Pagod? Parang Lagi Ka Na Lang Walang Gana?',
     'subheadline' => 'Discover how Salveo Barley Grass can naturally boost your energy and immunity — even on your busiest days!',
     'video_thumbnail' => Storage::url('landing_video_thumbnail/default_thumbnail.png'),
     'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
-    'testimonial_headline' => 'What Our Clients Say',
+
+    'intro_headline' => 'Mahalaga ba talaga sayo ang kalusugan mo?',
+                    'intro_paragraph' => ' Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo',
+                    
+                    'benefits_title' => 'Why Barley Grass?',
+                    'benefits_list' => [
+                        'Boost sa natural energy levels',
+                        'Mas malakas na immune system',
+                        'Better digestion & detox',
+                        'Better focus and sleep',
+                        'Anti-fatigue & anti-inflammatory',
+                    ],
+
+    'testimonial_headline' => 'Legit Testimonials',
     'testimonial_subheadline' => 'Real results from real people',
     'testimonial_images' => [
         Storage::url('landing_testimonial_images/default1.png'),
@@ -219,6 +260,15 @@ $funnel->landing_page_content = [
         'hours' => 6,
         'minutes' => 45
     ],
+
+    // Referral button content
+    'Referral_button_text' => 'Try It for 7 Days — Order Now!',
+    'Referral_button_subtext' => '✅ Claim Your Discount Now',
+
+    // Group chat button content
+     'Group_chat_button_text' => 'Get More Info — Join Group Chat',
+     'Group_chat_button_subtext' => '✅ Click Here To Join Now',
+
     'Messenger_link' => 'https://m.me/yourpage',
     'Referral_link' => 'https://yourdomain.com/referral-code',
     'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
@@ -226,6 +276,8 @@ $funnel->landing_page_content = [
     'Referral_link_toggle' => true,
     'Group_chat_link_toggle' => true
 ];
+
+}
 
 
         $funnel->save(); 
@@ -375,11 +427,17 @@ public function handlePage($subdomain, $slug)
                         ->first();
 
     if ($funnel) {
+        // Check if funnel is expired or inactive
+        if ($funnel->status === 'expired' || $funnel->is_active == 0) {
+            return abort(404, 'This funnel page has expired.');
+        }
+
         $funnel_content = is_string($funnel->funnel_content)
             ? json_decode($funnel->funnel_content, true)
             : $funnel->funnel_content;
 
-        return view('sales_funnel', compact('funnel_content', 'subdomain', 'user', 'slug'));
+        return view('sales_funnel', compact('funnel_content', 'subdomain', 'user', 'slug', 'funnel'));
+
     }
 
     // Try to find landing page by page_link_2
@@ -388,15 +446,22 @@ public function handlePage($subdomain, $slug)
                         ->first();
 
     if ($funnel) {
+        // Check if landing page is expired or inactive
+        if ($funnel->status === 'expired' || $funnel->is_active == 0) {
+            return abort(404, 'This landing page has expired.');
+        }
+
         $landing_page_content = is_string($funnel->landing_page_content)
             ? json_decode($funnel->landing_page_content, true)
             : $funnel->landing_page_content;
 
-        return view('landing-page', compact('landing_page_content', 'subdomain', 'user', 'slug'));
+        return view('landing-page', compact('landing_page_content', 'subdomain', 'user', 'slug', 'funnel'));
+
     }
 
     return abort(404, 'Page not found.');
 }
+
 
 
 
@@ -527,6 +592,7 @@ return redirect()->back()->with('success', 'Selected funnels and their associate
                         );
                     }
                 }
+                 if (empty($funnel->funnel_content)) {
 
                 $funnel->funnel_content = [
                     'headline' => 'Kung May Paraan Para Kumita Habang Kasama ang Pamilya… Di Mo Ba Susubukan?',
@@ -579,6 +645,7 @@ return redirect()->back()->with('success', 'Selected funnels and their associate
                     'Referral_link_toggle' => true,
                     'Group_chat_link_toggle' => true
                 ];
+            }
      
 // #################################### For Landing Page ###########################################
 // 1. Copy default video thumbnail from public/assets/images to storage/app/public/landing_video_thumbnail
@@ -608,6 +675,7 @@ foreach ($testimonialImages as $image) {
 }
 
 // ➕ Set default landing_page_content here
+if (empty($funnel->landing_page_content)) {
 $funnel->landing_page_content = [
     'headline' => 'Laging Pagod? Parang Lagi Ka Na Lang Walang Gana?',
     'subheadline' => 'Discover how Salveo Barley Grass can naturally boost your energy and immunity — even on your busiest days!',
@@ -659,7 +727,7 @@ $funnel->landing_page_content = [
     'Group_chat_link_toggle' => true
 ];
 
-
+}
 
                  $funnel->status = 'approved';
             $funnel->is_active = true;

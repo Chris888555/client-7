@@ -485,7 +485,7 @@ $(".testimonial-carousel").owlCarousel({
 
         <div class="container mx-auto text-center">
             <p class="text-sm">
-                © 2025 <a href="https://www.businessforhome.com" class="hover:underline">BusinessForHome</a>. All Rights
+                © 2025 <a href="#" class="hover:underline">NutriInnovations</a>. All Rights
                 Reserved.
             </p>
             <p class="text-xs mt-2 px-4">

@@ -313,13 +313,15 @@
                     <p class="text-sm text-gray-600">Your Sales Funnel Link :</p>
                 </div>
 
-            <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+           <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
                 <span class="material-icons text-blue-500">link</span>
                 <a href="{{ url($user->subdomain . '/' . $funnel->page_link_1) }}"
-                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
+                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline break-all"
+                    target="_blank">
                     {{ url($user->subdomain . '/' . $funnel->page_link_1) }}
                 </a>
             </div>
+
 
             @endif
      
@@ -350,12 +352,13 @@
 
 
         <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
-                <span class="material-icons text-blue-500">link</span>
-                <a href="{{ url($user->subdomain . '/' . $funnel->page_link_1) }}"
-                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
-                    {{ url($user->subdomain . '/' . $funnel->page_link_2) }}
-                </a>
-            </div>
+            <span class="material-icons text-blue-500">link</span>
+            <a href="{{ url($user->subdomain . '/' . $funnel->page_link_2) }}"
+                class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline break-all"
+                target="_blank">
+                {{ url($user->subdomain . '/' . $funnel->page_link_2) }}
+            </a>
+        </div>
 
                 <div class="flex row justify-start gap-2 mt-4">
       <!-- Landing Page Copy Button -->
@@ -363,7 +366,7 @@
                     class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
                     <i class="ph ph-copy mr-2"></i> <span id="landingBtnText">Copy Link</span>
                 </button>
-                    <script>
+                   <script>
                 function copyToClipboard(text, textElementId) {
                     navigator.clipboard.writeText(text).then(function() {
                         const btnText = document.getElementById(textElementId);
@@ -377,13 +380,45 @@
                 }
                 </script>
 
+
             <!-- Edit Funnel Button -->
             <a href="{{ route('edit.landing') }}"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto transition-all duration-300">
                 <i class="ph ph-pencil mr-2"></i> Edit Funnel
             </a>
         </div>
+         </div>
    <!-- Landing page end code -->
+
+
+   <!-- ####################  shop page start code #################### -->
+          <div class="p-6 border border-gray-200 rounded-2xl  bg-white mt-8">
+                <div class="mb-2 flex items-center gap-2 text-gray-700">
+                    <span class="material-icons text-gray-500">layers</span>
+                    <p class="text-sm text-gray-600">Your Shop Link :</p>
+                </div>
+
+
+        <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+                <span class="material-icons text-blue-500">link</span>
+                <a href="{{ url($user->subdomain . '/shop') }}"
+                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline break-all"
+                    target="_blank">
+                    {{ url($user->subdomain . '/shop') }}
+                </a>
+            </div>
+
+
+
+                <div class="flex row justify-start gap-2 mt-4">
+      <!-- Landing Page Copy Button -->
+               <button onclick="copyToClipboard('{{ url($user->subdomain . '/shop') }}', 'shopBtnText')"
+                    class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
+                    <i class="ph ph-copy mr-2"></i> <span id="shopBtnText">Copy Link</span>
+                </button>
+
+        </div>
+   <!-- shop page end code -->
 
         </div>
 

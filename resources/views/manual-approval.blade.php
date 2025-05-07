@@ -23,46 +23,49 @@
     @endif
 
 
-    {{-- Filter dropdown --}}
-    <div class="mb-4">
+   {{-- Filter dropdown --}}
+<div class="flex flex-col md:flex-row gap-4 mb-4">
+    <div class="flex-1">
         <label for="status" class="block mb-2 text-sm font-medium text-gray-700">Filter by Status:</label>
         <select id="status" name="status" onchange="window.location.href='/manual-approval/status/' + this.value;"
-            class="w-full sm:max-w-[330px] bg-white border border-gray-300 text-gray-700 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-60 p-2">
+            class="w-full sm:max-w-[400px] bg-white border border-gray-300 text-gray-700 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2">
             <option value="all" {{ request()->route('status') == 'all' ? 'selected' : '' }}>All</option>
             <option value="pending" {{ request()->route('status') == 'pending' ? 'selected' : '' }}>Pending</option>
             <option value="approved" {{ request()->route('status') == 'approved' ? 'selected' : '' }}>Approved</option>
             <option value="rejected" {{ request()->route('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
-            <option value="expired" {{ request()->route('status') == 'expired' ? 'selected' : '' }}>Expired Plan
-            </option>
+            <option value="expired" {{ request()->route('status') == 'expired' ? 'selected' : '' }}>Expired Plan</option>
         </select>
-
-
-
     </div>
 
-
-    <div class="flex items-center justify-between mb-4">
-
+    <div class="flex-1  w-full">
         <form action="{{ route('manual.bulkUpdateStatus') }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="mt-4 flex items-center space-x-2 ">
-                <select name="action" required class="border border-gray-300 p-2 rounded text-gray-700 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-60">
+            <label for="status" class="block mb-2 text-sm font-medium text-gray-700">Select Actions:</label>
+            <div class="flex flex-col sm:flex-row gap-2">
+                
+                <select name="action" required class="w-full sm:max-w-[400px] bg-white border border-gray-300 text-gray-700 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2">
                     <option value="">Select Action</option>
                     <option value="approved">Mark Approve</option>
                     <option value="rejected">Mark Reject</option>
                     <option value="pending">Mark Pending</option>
                     <option value="delete">Delete</option>
                 </select>
-
-                <button id="apply-button" type="submit" class="bg-blue-600 text-white text-sm px-4 py-2 rounded">
-                    Apply to Selected
-                </button>
-
             </div>
-
-
     </div>
+
+    <div class="flex-1 sm:mt-7">
+        <button id="apply-button" type="submit" class="bg-blue-600 text-white text-sm px-4 py-2 rounded w-full sm:w-auto mt-2 sm:mt-0">
+            Apply to Selected
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
 
     <div class="overflow-x-auto bg-white border rounded-md ">
         <table class="table-auto w-full border-collapse whitespace-nowrap">
