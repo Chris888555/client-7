@@ -564,6 +564,19 @@ return redirect()->back()->with('success', 'Selected funnels and their associate
             $funnel = UserFunnel::find($id);
 
             if ($funnel) {
+
+                // Assuming $request->video_link contains the user-provided video link
+            $providedLink = $request->video_link;
+            $defaultYouTube = 'https://youtu.be/m3rykLJ64Z4?si=v7ztrgM0rrH9JL8q'; // Default YouTube link
+            $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // Default MP4 link
+
+            // Choose which default video to use (uncomment one)
+            $defaultVideoLink = $defaultYouTube;
+            // $defaultVideoLink = $defaultMP4;
+
+            // Final video link assignment
+            $videoLink = $providedLink ? $this->processVideoLink($providedLink) : $this->processVideoLink($defaultVideoLink);
+
                 $plan_duration = $funnel->plan_duration; // Get the user's own plan duration
 
                 // #################################### For Funnel Page ###########################################
@@ -598,7 +611,7 @@ return redirect()->back()->with('success', 'Selected funnels and their associate
                     'headline' => 'Kung May Paraan Para Kumita Habang Kasama ang Pamilya… Di Mo Ba Susubukan?',
                     'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sayo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
                     'video_thumbnail' => Storage::url('funnel_video_thumbnail/default_thumbnail.png'),
-                    'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+                    'video_link' => $videoLink,
 
                  
                     'intro_headline' => 'Mahalaga ba sayo ang magkaroon ng dagdag na kita?',
@@ -646,8 +659,24 @@ return redirect()->back()->with('success', 'Selected funnels and their associate
                     'Group_chat_link_toggle' => true
                 ];
             }
+
+        
      
 // #################################### For Landing Page ###########################################
+
+  // Assuming $request->video_link contains the user-provided video link
+            $providedLink = $request->video_link;
+            $defaultYouTube = 'https://youtu.be/E4GMDFmIPfo?si=Z6Mkf2_JmV0t8mqf'; // Default YouTube link
+            $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // Default MP4 link
+
+            // Choose which default video to use (uncomment one)
+            $defaultVideoLink = $defaultYouTube;
+            // $defaultVideoLink = $defaultMP4;
+
+            // Final video link assignment
+            $videoLink = $providedLink ? $this->processVideoLink($providedLink) : $this->processVideoLink($defaultVideoLink);
+
+
 // 1. Copy default video thumbnail from public/assets/images to storage/app/public/landing_video_thumbnail
 $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
 $targetVideoPath = 'landing_video_thumbnail/default_thumbnail.png';
@@ -680,7 +709,7 @@ $funnel->landing_page_content = [
     'headline' => 'Laging Pagod? Parang Lagi Ka Na Lang Walang Gana?',
     'subheadline' => 'Discover how Salveo Barley Grass can naturally boost your energy and immunity — even on your busiest days!',
     'video_thumbnail' => Storage::url('landing_video_thumbnail/default_thumbnail.png'),
-    'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+     'video_link' => $videoLink,
 
     'intro_headline' => 'Mahalaga ba talaga sayo ang kalusugan mo?',
                     'intro_paragraph' => ' Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo',
@@ -748,6 +777,44 @@ $funnel->landing_page_content = [
     return redirect()->back()->with('success', 'Selected funnels have been approved and expiration dates updated.');
 }
 
+
+}
+
+ // ✅ Converts both MP4 and YouTube links
+private function processVideoLink($link)
+{
+    if (str_ends_with($link, '.mp4')) {
+        return $link; // Return direct MP4 link
+    }
+
+    return $this->embedYouTubeLink($link);
+}
+
+// ✅ Converts YouTube link to embed format
+private function embedYouTubeLink($youtubeLink)
+{
+    $videoId = $this->getYouTubeVideoId($youtubeLink);
+
+    return $videoId ? "https://www.youtube.com/embed/$videoId" : null;
+}
+
+// ✅ Extracts YouTube video ID from URL
+private function getYouTubeVideoId($url)
+{
+    $parts = parse_url($url);
+
+    if (isset($parts['query'])) {
+        parse_str($parts['query'], $query);
+        if (isset($query['v'])) {
+            return $query['v'];
+        }
+    }
+
+    if (isset($parts['path'])) {
+        return ltrim($parts['path'], '/');
+    }
+
+    return null;
 }
 
 // ################ Update show page of sales funnel Function ##################################
@@ -767,7 +834,6 @@ public function editFunnel()
 // ################ Update sales funnel Function ##################################
 public function updateFunnel(Request $request)
 {
-
     // Validate the input
     $request->validate([
         'page_link_1' => ['nullable', 'regex:/^[a-zA-Z0-9-]*$/'], // Allow only letters, numbers, and dashes
@@ -780,9 +846,8 @@ public function updateFunnel(Request $request)
         return redirect()->back()->with('error', 'Funnel not found.');
     }
 
-   // Decode funnel content if it is stored as a JSON string in the database
+    // Decode funnel content if it is stored as a JSON string in the database
     $funnelContent = $funnel ? (is_string($funnel->funnel_content) ? json_decode($funnel->funnel_content, true) : $funnel->funnel_content) : null;
-
 
     // VIDEO THUMBNAIL
     if ($request->hasFile('video_thumbnail')) {
@@ -798,6 +863,26 @@ public function updateFunnel(Request $request)
                 }
             }
             $funnelContent['video_thumbnail'] = $videoThumbnailUrl;
+        }
+    }
+
+    // VIDEO LINK CONVERSION
+    if ($request->filled('video_link')) {
+        $videoLink = $request->input('video_link');
+        
+        // Match YouTube URLs (standard youtube.com and shortened youtu.be)
+        if (preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube|youtu|youtube-nocookie)\.(?:com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/', $videoLink, $matches)) {
+            // YouTube video ID is in $matches[1]
+            $videoId = $matches[1];
+            
+            // Convert to embedded URL
+            $embeddedVideoUrl = "https://www.youtube.com/embed/{$videoId}";
+            
+            // Save the embedded link to funnel content
+            $funnelContent['video_link'] = $embeddedVideoUrl;
+        } else {
+            // If the URL is not a YouTube link, you can keep it as is or handle the error
+            $funnelContent['video_link'] = $videoLink;
         }
     }
 
@@ -846,6 +931,20 @@ public function updateFunnel(Request $request)
         }
     }
 
+   
+// Handle video link conversion to embedded format
+if ($request->filled('video_link')) {
+    $videoLink = $request->input('video_link');
+    
+    // Check if the link is a YouTube URL
+    if (strpos($videoLink, 'youtube.com') !== false || strpos($videoLink, 'youtu.be') !== false) {
+        $funnelContent['video_link'] = $this->embedYouTubeLink($videoLink);
+    } else {
+        // If it's not a YouTube link (e.g., an MP4 link), don't convert
+        $funnelContent['video_link'] = $videoLink;
+    }
+}
+
     // TESTIMONIAL VIDEO LINKS
     $testimonialVideos = [];
     if ($request->filled('testimonial_video_1')) {
@@ -873,8 +972,6 @@ public function updateFunnel(Request $request)
         ];
     }
 
-   
-
     // SOCIAL LINKS & TOGGLES
     $socialFields = ['Messenger', 'Referral', 'Group_chat'];
     foreach ($socialFields as $field) {
@@ -888,19 +985,19 @@ public function updateFunnel(Request $request)
         $funnelContent[$toggleKey] = $request->boolean($toggleKey); // uses `true` or `false`
     }
 
-  // Update page_link_1 (direct column)
-if ($request->filled('page_link_1')) {
-    $funnel->page_link_1 = $request->input('page_link_1');
-}
+    // Update page_link_1 (direct column)
+    if ($request->filled('page_link_1')) {
+        $funnel->page_link_1 = $request->input('page_link_1');
+    }
 
-// FINAL SAVE
-$funnel->funnel_content = json_encode($funnelContent);
-$wasChanged = $funnel->isDirty('funnel_content') || $funnel->isDirty('page_link_1');
-$funnel->save();
-
+    // FINAL SAVE
+    $funnel->funnel_content = json_encode($funnelContent);
+    $wasChanged = $funnel->isDirty('funnel_content') || $funnel->isDirty('page_link_1');
+    $funnel->save();
 
     return redirect()->back()->with($wasChanged ? 'success' : 'error', $wasChanged ? 'Funnel updated successfully!' : 'No changes were made.');
 }
+
 
 
 
@@ -998,6 +1095,19 @@ public function updateLanding(Request $request)
             $landingPageContent[$field] = $request->input($field);
         }
     }
+
+   // Handle video link conversion to embedded format
+if ($request->filled('video_link')) {
+    $videoLink = $request->input('video_link');
+    
+    // Check if the link is a YouTube URL
+    if (strpos($videoLink, 'youtube.com') !== false || strpos($videoLink, 'youtu.be') !== false) {
+        $funnelContent['video_link'] = $this->embedYouTubeLink($videoLink);
+    } else {
+        // If it's not a YouTube link (e.g., an MP4 link), don't convert
+        $funnelContent['video_link'] = $videoLink;
+    }
+}
 
     // TESTIMONIAL VIDEO LINKS
     $testimonialVideos = [];

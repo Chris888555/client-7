@@ -21,8 +21,13 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\UserFunnelController;
 use App\Http\Controllers\FunnelPlanController;
-
 use App\Http\Controllers\PsgcController;
+
+
+use App\Http\Controllers\AddressFormController;
+
+Route::get('/form', [AddressFormController::class, 'showForm'])->name('address.form');
+Route::post('/form', [AddressFormController::class, 'submitForm'])->name('address.submit');
 
 
 

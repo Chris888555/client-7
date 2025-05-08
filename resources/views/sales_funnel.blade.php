@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+ 
     <script src="https://www.youtube.com/iframe_api"></script>
     
 
@@ -103,7 +103,7 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
                 </iframe>
-
+                
             </div>
             @endif
 
@@ -114,7 +114,140 @@
                     class=" mt-4 w-12 h-12 md:w-16 md:h-16 opacity-90 transition transform hover:scale-110 mb-9"
                     onclick="playVideo()">
             </div>
-        </div>
+
+    <script>
+    const video = document.getElementById('custom-video');
+    const playButton = document.getElementById('play-button');
+    const youtubeVideo = document.getElementById('youtube-video');
+
+    let userCookie = localStorage.getItem('user_cookie');
+    if (!userCookie) {
+        userCookie = 'user_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('user_cookie', userCookie);
+    }
+
+    let progressInterval;
+    let maxProgress = 0;
+
+    if (video) {
+        // Start with play button visible
+        playButton.style.display = 'flex';
+
+        // ✅ PLAY via button
+        playButton.addEventListener('click', () => {
+            video.play();
+        });
+
+        // ✅ When video plays, hide play button
+        video.addEventListener('play', () => {
+            playButton.style.display = 'none';
+            trackProgress();
+        });
+
+        // ✅ When video pauses, show play button
+        video.addEventListener('pause', () => {
+            playButton.style.display = 'flex';
+            clearInterval(progressInterval);
+        });
+
+        // ✅ Clicking the video will pause only (not play)
+        video.addEventListener('click', () => {
+            if (!video.paused) {
+                video.pause();
+            }
+        });
+
+        function trackProgress() {
+            progressInterval = setInterval(() => {
+                const progress = (video.currentTime / video.duration) * 100;
+                maxProgress = Math.max(maxProgress, progress);
+                sendProgressToBackend(progress, maxProgress);
+            }, 1000);
+        }
+
+        function sendProgressToBackend(progress, maxProgress) {
+            const videoLink = "{{ $funnel_content['video_link'] }}";
+            const subdomain = "{{ $user->subdomain }}";
+
+            fetch('/save-video-progress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify({
+                    user_cookie: userCookie,
+                    video_link: videoLink,
+                    subdomain: subdomain,
+                    progress: progress,
+                    max_watch_percentage: maxProgress
+                })
+            });
+        }
+    }
+
+    if (youtubeVideo) {
+        playButton.style.display = 'none';
+    }
+    </script>
+
+
+
+    <script>
+    // Youtube Analytics Script
+    let ytPlayer = null;
+    let ytProgressInterval;
+    let ytMaxProgress = 0;
+
+
+    function onYouTubeIframeAPIReady() {
+        ytPlayer = new YT.Player('youtube-iframe', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            trackYTProgress();
+        } else {
+            clearInterval(ytProgressInterval);
+        }
+    }
+
+    function trackYTProgress() {
+        ytProgressInterval = setInterval(() => {
+            const currentTime = ytPlayer.getCurrentTime();
+            const duration = ytPlayer.getDuration();
+            const progress = (currentTime / duration) * 100;
+            ytMaxProgress = Math.max(ytMaxProgress, progress);
+
+            sendYTProgressToBackend(progress, ytMaxProgress);
+        }, 1000);
+    }
+
+    function sendYTProgressToBackend(progress, maxProgress) {
+        const videoLink = "{{ $funnel_content['video_link'] }}";
+        const subdomain = "{{ $user->subdomain }}";
+
+        fetch('/save-video-progress', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                user_cookie: userCookie,
+                video_link: videoLink,
+                subdomain: subdomain,
+                progress: progress,
+                max_watch_percentage: maxProgress
+            })
+        });
+    }
+    </script>
+  </div>
 </div>
         
 <section class="bg-gray-100 py-4 px-0 md:px-12 mt-[-120px] sm:mt-[-150px]">
@@ -317,7 +450,6 @@
 </script>
 
 
-
 <!-- Include Owl Carousel CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -361,6 +493,7 @@ $(".testimonial-carousel").owlCarousel({
     autoplay: true,
     autoplayTimeout: 4000,
     dots: true,   // Show dots
+    lazyLoad: false, 
 
     responsive: {
         0: {
@@ -494,138 +627,7 @@ $(".testimonial-carousel").owlCarousel({
         </div>
     </footer>
 
-    <script>
-    const video = document.getElementById('custom-video');
-    const playButton = document.getElementById('play-button');
-    const youtubeVideo = document.getElementById('youtube-video');
-
-    let userCookie = localStorage.getItem('user_cookie');
-    if (!userCookie) {
-        userCookie = 'user_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('user_cookie', userCookie);
-    }
-
-    let progressInterval;
-    let maxProgress = 0;
-
-    if (video) {
-        // Start with play button visible
-        playButton.style.display = 'flex';
-
-        // ✅ PLAY via button
-        playButton.addEventListener('click', () => {
-            video.play();
-        });
-
-        // ✅ When video plays, hide play button
-        video.addEventListener('play', () => {
-            playButton.style.display = 'none';
-            trackProgress();
-        });
-
-        // ✅ When video pauses, show play button
-        video.addEventListener('pause', () => {
-            playButton.style.display = 'flex';
-            clearInterval(progressInterval);
-        });
-
-        // ✅ Clicking the video will pause only (not play)
-        video.addEventListener('click', () => {
-            if (!video.paused) {
-                video.pause();
-            }
-        });
-
-        function trackProgress() {
-            progressInterval = setInterval(() => {
-                const progress = (video.currentTime / video.duration) * 100;
-                maxProgress = Math.max(maxProgress, progress);
-                sendProgressToBackend(progress, maxProgress);
-            }, 1000);
-        }
-
-        function sendProgressToBackend(progress, maxProgress) {
-            const videoLink = "{{ $funnel_content['video_link'] }}";
-            const subdomain = "{{ $user->subdomain }}";
-
-            fetch('/save-video-progress', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: JSON.stringify({
-                    user_cookie: userCookie,
-                    video_link: videoLink,
-                    subdomain: subdomain,
-                    progress: progress,
-                    max_watch_percentage: maxProgress
-                })
-            });
-        }
-    }
-
-    if (youtubeVideo) {
-        playButton.style.display = 'none';
-    }
-    </script>
-
-
-
-    <script>
-    // Youtube Analytics Script
-    let ytPlayer = null;
-    let ytProgressInterval;
-    let ytMaxProgress = 0;
-
-
-    function onYouTubeIframeAPIReady() {
-        ytPlayer = new YT.Player('youtube-iframe', {
-            events: {
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.PLAYING) {
-            trackYTProgress();
-        } else {
-            clearInterval(ytProgressInterval);
-        }
-    }
-
-    function trackYTProgress() {
-        ytProgressInterval = setInterval(() => {
-            const currentTime = ytPlayer.getCurrentTime();
-            const duration = ytPlayer.getDuration();
-            const progress = (currentTime / duration) * 100;
-            ytMaxProgress = Math.max(ytMaxProgress, progress);
-
-            sendYTProgressToBackend(progress, ytMaxProgress);
-        }, 1000);
-    }
-
-    function sendYTProgressToBackend(progress, maxProgress) {
-        const videoLink = "{{ $funnel_content['video_link'] }}";
-        const subdomain = "{{ $user->subdomain }}";
-
-        fetch('/save-video-progress', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify({
-                user_cookie: userCookie,
-                video_link: videoLink,
-                subdomain: subdomain,
-                progress: progress,
-                max_watch_percentage: maxProgress
-            })
-        });
-    }
-    </script>
+ 
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
