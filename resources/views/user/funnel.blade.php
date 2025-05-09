@@ -18,6 +18,7 @@
     <div class="mb-6">
         @if($funnel)
         <div class="mt-6">
+            
             @if($funnel->status == 'pending' && $funnel->is_active == 0)
             <div
                 class="bg-yellow-100 border border-gray-200 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg flex items-center gap-3 mt-4 w-full   md:mx-0 ">
@@ -426,7 +427,7 @@
         @else
 
         
-
+@if ($package !== 'free')
         <!--########### Only show the form when setting is ON for funnel activation, Payment required ############ -->
         @if($setting_value === 'ON')
         <div class="relative mt-2 p-8  bg-white rounded-3xl border border-gray-200 transition-all">
@@ -642,6 +643,69 @@
 
         @endif
         @endif
+        @endif
+
+<!--########### Show this only when funnel free ############ -->
+@if ($package === 'free' && (!$funnel || ($funnel->status !== 'approved' && $funnel->is_active == 1)))
+    <div class="relative mt-2 p-8 bg-white rounded-3xl border border-gray-200 transition-all">
+
+        {{-- Badge --}}
+        <div
+            class="absolute top-4 right-4 bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+            PRO Add-on
+        </div>
+
+        {{-- Users Trust --}}
+        <div class="flex items-center justify-center gap-2 mt-6 text-sm text-gray-600 font-medium">
+            <span class="material-symbols-outlined text-green-500">group</span>
+            <span>700+ Users Trust This</span>
+        </div>
+
+        {{-- Headline --}}
+        <h2 class="text-2xl font-bold text-center text-gray-800 mt-4 mb-2">Activate Your Funnel For – FREE</h2>
+
+        {{-- Subtitle --}}
+        <p class="text-gray-600 text-sm text-center mb-6">
+            Unlock powerful business tools to grow and scale—no cost to start.
+        </p>
+
+        {{-- Feature Checklist --}}
+        <ul class="text-gray-700 text-sm space-y-3 mb-6">
+            <li class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">analytics</span>
+                Free Video Analytics
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">track_changes</span>
+                Free Page View Tracking
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">slideshow</span>
+                Free Powerful Sales Presentation
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-600">domain</span>
+                Free subdomain
+            </li>
+        </ul>
+
+        {{-- Activate Button --}}
+        <form action="{{ route('activate.free.funnel') }}" method="POST">
+            @csrf
+            <button type="submit"
+                class="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition-all duration-300 flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-white">rocket_launch</span>
+                Activate Your Free Funnel
+            </button>
+        </form>
+
+        {{-- Note --}}
+        <p class="text-xs text-gray-500 text-center mt-4">No credit card needed · Instant activation</p>
     </div>
+@endif
+
+
+    </div>
+    
 </div>
 @endsection

@@ -107,51 +107,51 @@
                 <form action="{{ route('funnel.resubmit') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="mb-4">
-                        <label for="plan_duration" class="block text-lg font-semibold text-gray-700">Select Plan
-                            Duration</label>
-                        <select name="plan_duration"
-                            class="w-full p-3 border border-gray-300 rounded-lg mt-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 hover:border-indigo-400 transition duration-300 ease-in-out">
-                            <option value="1_month">1 Month</option>
-                            <option value="6_months">6 Months</option>
-                            <option value="1_year">1 Year</option>
-                        </select>
+                   <div class="mb-4">
+                    <label for="plan_duration" class="block text-lg font-semibold text-gray-700">Select Plan
+                        Duration</label>
+                    <select name="plan_duration"
+                        class="w-full p-3 border border-gray-300 rounded-lg mt-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 hover:border-indigo-400 transition duration-300 ease-in-out">
+                        @foreach ($plans as $plan)
+                            <option value="{{ $plan->months }}"
+                                {{ (old('plan_duration', $funnel->plan_duration ?? '') == $plan->months) ? 'selected' : '' }}>
+                                {{ $plan->months }} {{ $plan->months == 1 ? 'Month' : 'Months' }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                </div>
+
+                <!-- Price Display Card -->
+                <div id="plan-price-card"
+                    class="flex items-center gap-3 mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg shadow-sm transition duration-300 ease-in-out">
+                    <div>
+                        <p class="text-sm text-gray-700">Current Plan Price:</p>
+                        <p id="plan-price" class="text-xl font-bold text-gray-500">₱{{ $plans[0]->price ?? '0' }}</p>
                     </div>
+                </div>
 
-                    <!-- Price Display Card -->
-                    <div id="plan-price-card "
-                        class="flex items-center gap-3 mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg shadow-sm transition duration-300 ease-in-out">
+                <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const planSelect = document.querySelector('select[name="plan_duration"]');
+                    const priceDisplay = document.getElementById('plan-price');
 
-                        <div>
-                            <p class="text-sm text-gray-700">Current Plan Price:</p>
-                            <p id="plan-price" class="text-xl font-bold text-gray-500">₱99</p>
-                        </div>
-                    </div>
+                    // Create a price map from the database data (corrected)
+                    const prices = @json($plans->pluck('price', 'months')->toArray());
 
-                    <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const planSelect = document.querySelector('select[name="plan_duration"]');
-                        const priceDisplay = document.getElementById('plan-price');
+                    function updatePrice() {
+                        const selectedPlan = planSelect.value;
+                        priceDisplay.textContent = prices[selectedPlan] ? `₱${prices[selectedPlan]}` : '';
+                    }
 
-                        const prices = {
-                            '1_month': '₱99',
-                            '6_months': '₱499',
-                            '1_year': '₱899'
-                        };
+                    // Initial display (optional)
+                    updatePrice();
 
-                        function updatePrice() {
-                            const selectedPlan = planSelect.value;
-                            priceDisplay.textContent = prices[selectedPlan] ? `Price: ${prices[selectedPlan]}` :
-                                '';
-                        }
+                    // Update price on plan change
+                    planSelect.addEventListener('change', updatePrice);
+                });
+            </script>
 
-                        // Initial display (optional)
-                        updatePrice();
-
-                        // Update on change
-                        planSelect.addEventListener('change', updatePrice);
-                    });
-                    </script>
 
                     <div class="mb-4">
                         <h3 class="block text-lg font-semibold text-gray-700 mt-8">Attach Proof of Payment</h3>
@@ -306,66 +306,126 @@
             </div>
             @endif
 
+<!-- ####################  Funnel page start code #################### -->
             <div class="p-6 border border-gray-200 rounded-2xl  bg-white">
                 <div class="mb-2 flex items-center gap-2 text-gray-700">
                     <span class="material-icons text-gray-500">layers</span>
-                    <p class="text-sm text-gray-600">Your Funnel Link :</p>
-                </div>
-                <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
-                    <span class="material-icons text-blue-500">link</span>
-                    <a href="{{ url($user->subdomain) }}"
-                        class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline">
-                        {{ url($user->subdomain) }}
-                    </a>
+                    <p class="text-sm text-gray-600">Your Sales Funnel Link :</p>
                 </div>
 
+           <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+                <span class="material-icons text-blue-500">link</span>
+                <a href="{{ url($user->subdomain . '/' . $funnel->page_link_1) }}"
+                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline break-all"
+                    target="_blank">
+                    {{ url($user->subdomain . '/' . $funnel->page_link_1) }}
+                </a>
             </div>
+
+
             @endif
-        </div>
-
-
+     
         @if($funnel->status != 'pending' && $funnel->is_active != 0)
         <div class="flex row justify-start gap-2 mt-4">
 
-            <!-- Copy Link Button -->
-            <button id="copyBtn" onclick="copyToClipboard('{{ url($user->subdomain) }}')"
+          <!-- Funnel Link Copy Button -->
+            <button onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_1) }}', 'funnelbtnText')"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
-                <i class="ph ph-copy mr-2"></i> <span id="copyBtnText">Copy Link</span>
+                <i class="ph ph-copy mr-2"></i> <span id="funnelbtnText">Copy Link</span>
             </button>
 
-            <script>
-            function copyToClipboard(text) {
-                // Using the Clipboard API to copy the text to clipboard
-                navigator.clipboard.writeText(text).then(function() {
-                    // Changing the button text to "Copied!" after successful copy
-                    const btnText = document.getElementById('copyBtnText');
-                    btnText.textContent = 'Link Copied';
-                    setTimeout(() => {
-                        // Changing the button text back to "Copy Link" after 2 seconds
-                        btnText.textContent = 'Copy Link';
-                    }, 2000);
-                }).catch(function(err) {
-                    // If copying fails, log an error
-                    console.error('Failed to copy: ', err);
-                });
-            }
-            </script>
-
-            <!-- View Funnel Button -->
-            <!-- <a href="{{ url($user->subdomain) }}" target="_blank"
-                class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
-                <i class="ph ph-eye mr-2"></i> View Funnel
-            </a> -->
-
             <!-- Edit Funnel Button -->
-            <a href="{{ route('edit-funnel') }}"
+            <a href="{{ route('edit.funnel') }}"
                 class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto transition-all duration-300">
                 <i class="ph ph-pencil mr-2"></i> Edit Funnel
             </a>
         </div>
+     </div>
+ <!-- ####################  Funnel page end code #################### -->
+
+ <!-- ####################  Landing page start code #################### -->
+          <div class="p-6 border border-gray-200 rounded-2xl  bg-white mt-8">
+                <div class="mb-2 flex items-center gap-2 text-gray-700">
+                    <span class="material-icons text-gray-500">layers</span>
+                    <p class="text-sm text-gray-600">Your Landing Page Link :</p>
+                </div>
+
+
+        <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+            <span class="material-icons text-blue-500">link</span>
+            <a href="{{ url($user->subdomain . '/' . $funnel->page_link_2) }}"
+                class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline break-all"
+                target="_blank">
+                {{ url($user->subdomain . '/' . $funnel->page_link_2) }}
+            </a>
+        </div>
+
+                <div class="flex row justify-start gap-2 mt-4">
+      <!-- Landing Page Copy Button -->
+                <button onclick="copyToClipboard('{{ url($user->subdomain . '/' . $funnel->page_link_2) }}', 'landingBtnText')"
+                    class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
+                    <i class="ph ph-copy mr-2"></i> <span id="landingBtnText">Copy Link</span>
+                </button>
+                   <script>
+                function copyToClipboard(text, textElementId) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        const btnText = document.getElementById(textElementId);
+                        btnText.textContent = 'Link Copied';
+                        setTimeout(() => {
+                            btnText.textContent = 'Copy Link';
+                        }, 2000);
+                    }).catch(function(err) {
+                        console.error('Failed to copy: ', err);
+                    });
+                }
+                </script>
+
+
+            <!-- Edit Funnel Button -->
+            <a href="{{ route('edit.landing') }}"
+                class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto transition-all duration-300">
+                <i class="ph ph-pencil mr-2"></i> Edit Funnel
+            </a>
+        </div>
+         </div>
+   <!-- Landing page end code -->
+
+
+   <!-- ####################  shop page start code #################### -->
+          <div class="p-6 border border-gray-200 rounded-2xl  bg-white mt-8">
+                <div class="mb-2 flex items-center gap-2 text-gray-700">
+                    <span class="material-icons text-gray-500">layers</span>
+                    <p class="text-sm text-gray-600">Your Shop Link :</p>
+                </div>
+
+
+        <div class="text-blue-600 font-semibold break-words text-sm flex items-center gap-1">
+                <span class="material-icons text-blue-500">link</span>
+                <a href="{{ url($user->subdomain . '/shop') }}"
+                    class="text-blue-600 font-semibold no-underline hover:no-underline focus:no-underline break-all"
+                    target="_blank">
+                    {{ url($user->subdomain . '/shop') }}
+                </a>
+            </div>
+
+
+
+                <div class="flex row justify-start gap-2 mt-4">
+      <!-- Landing Page Copy Button -->
+               <button onclick="copyToClipboard('{{ url($user->subdomain . '/shop') }}', 'shopBtnText')"
+                    class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-600 flex items-center w-full md:w-auto">
+                    <i class="ph ph-copy mr-2"></i> <span id="shopBtnText">Copy Link</span>
+                </button>
+
+        </div>
+   <!-- shop page end code -->
+
+        </div>
+
         @endif
         @else
 
+        
 
         <!--########### Only show the form when setting is ON for funnel activation, Payment required ############ -->
         @if($setting_value === 'ON')
@@ -413,50 +473,52 @@
 
             <form action="{{ route('funnel.submit') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
                 <div class="mb-4">
                     <label for="plan_duration" class="block text-lg font-semibold text-gray-700">Select Plan
                         Duration</label>
                     <select name="plan_duration"
                         class="w-full p-3 border border-gray-300 rounded-lg mt-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 hover:border-indigo-400 transition duration-300 ease-in-out">
-                        <option value="1_month">1 Month</option>
-                        <option value="6_months">6 Months</option>
-                        <option value="1_year">1 Year</option>
+                        @foreach ($plans as $plan)
+                            <option value="{{ $plan->months }}"
+                                {{ (old('plan_duration', $funnel->plan_duration ?? '') == $plan->months) ? 'selected' : '' }}>
+                                {{ $plan->months }} {{ $plan->months == 1 ? 'Month' : 'Months' }}
+                            </option>
+                        @endforeach
                     </select>
+
                 </div>
 
                 <!-- Price Display Card -->
-                <div id="plan-price-card "
+                <div id="plan-price-card"
                     class="flex items-center gap-3 mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg shadow-sm transition duration-300 ease-in-out">
-
                     <div>
                         <p class="text-sm text-gray-700">Current Plan Price:</p>
-                        <p id="plan-price" class="text-xl font-bold text-gray-500">₱99</p>
+                        <p id="plan-price" class="text-xl font-bold text-gray-500">₱{{ $plans[0]->price ?? '0' }}</p>
                     </div>
                 </div>
 
                 <script>
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
                     const planSelect = document.querySelector('select[name="plan_duration"]');
                     const priceDisplay = document.getElementById('plan-price');
 
-                    const prices = {
-                        '1_month': '₱99',
-                        '6_months': '₱499',
-                        '1_year': '₱899'
-                    };
+                    // Create a price map from the database data (corrected)
+                    const prices = @json($plans->pluck('price', 'months')->toArray());
 
                     function updatePrice() {
                         const selectedPlan = planSelect.value;
-                        priceDisplay.textContent = prices[selectedPlan] ? `Price: ${prices[selectedPlan]}` : '';
+                        priceDisplay.textContent = prices[selectedPlan] ? `₱${prices[selectedPlan]}` : '';
                     }
 
                     // Initial display (optional)
                     updatePrice();
 
-                    // Update on change
+                    // Update price on plan change
                     planSelect.addEventListener('change', updatePrice);
                 });
-                </script>
+            </script>
+
 
                 <h3 class="block text-lg font-semibold text-gray-700 mt-8">Attach Proof of Payment</h3>
                 <div class="flex flex-col items-center space-y-4 mt-2">

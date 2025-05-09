@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/funnel/submit', [UserFunnelController::class, 'submitFunnel'])->name('funnel.submit');
     Route::post('/funnel/activate-direct', [UserFunnelController::class, 'activateDirect'])->name('funnel.activate.direct');
 
+    Route::post('/funnel/activate-free', [UserFunnelController::class, 'activateFreeFunnel'])->name('activate.free.funnel');
 });
 
  Route::middleware(['auth'])->group(function () {

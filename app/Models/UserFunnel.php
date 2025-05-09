@@ -19,19 +19,20 @@ class UserFunnel extends Model
         'approval_date',
         'expiration_date',
         'funnel_content',
-        'landing_page_content', 
+        'landing_page_content',
+        'page_link_1',  
+        'page_link_2', 
     ];
 
     public $timestamps = false;
 
     protected $casts = [
         'funnel_content' => 'array',
-        'landing_page_content' => 'array', 
+        'landing_page_content' => 'array',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id'); 
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
-

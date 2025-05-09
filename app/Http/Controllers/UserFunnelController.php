@@ -10,12 +10,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use Carbon\Carbon;
 
 class UserFunnelController extends Controller
 {
-    // Show the funnel page for logged-in users
- public function showFunnelPage()
+public function showFunnelPage()
 {
     // Get the logged-in user ID
     $user_id = Auth::id();
@@ -23,22 +22,27 @@ class UserFunnelController extends Controller
     // Fetch the user's funnel data
     $funnel = UserFunnel::where('user_id', $user_id)->first();
 
-    // Fetch the latest setting_value from the funnel_plans table (you can replace 'setting_value' with your actual column name)
-    $setting_value = DB::table('funnel_plans')->orderByDesc('id')->value('setting_value'); // Assuming 'setting_value' column exists
+    // Fetch the latest setting_value from the funnel_plans table
+    $setting_value = DB::table('funnel_plans')->orderByDesc('id')->value('setting_value');
 
-    // Fetch all the funnel plans from the funnel_plans table
+    // Fetch all the funnel plans
     $plans = DB::table('funnel_plans')->get();
 
-    // Fetch the price associated with the selected plan duration (plan_price)
+    // Fetch the package_type from the packages table
+    $package = DB::table('packages')
+        ->where('user_id', $user_id)
+        ->value('free_funnel'); // returns a string (e.g., 'diamond-pack')
+
+    // Attach plan_price if plan_duration is set
     if ($funnel && $funnel->plan_duration) {
-        // Assuming plan_duration corresponds to 'months' in the funnel_plans table
         $selectedPlan = $plans->where('months', $funnel->plan_duration)->first();
         $funnel->plan_price = $selectedPlan ? $selectedPlan->price : 0;
     }
 
-    // Pass the funnel data, setting value, and plans to the view
-    return view('user.funnel', compact('funnel', 'setting_value', 'plans'));
+    // Pass the funnel, setting value, plans, and package type to the view
+    return view('user.funnel', compact('funnel', 'setting_value', 'plans', 'package'));
 }
+
 
      // ################ Save Payment Function ##################################
    public function submitFunnel(Request $request)
@@ -102,12 +106,30 @@ public function activateDirect(Request $request)
         $funnel->status = 'approved';
         $funnel->is_active = true;
         $funnel->approval_date = now();
-        $funnel->plan_duration = '99999'; 
+        $funnel->plan_duration = 'lifetime'; 
         $funnel->expiration_date = null;
 
-     
+     // Generate 6-character random strings for page_link_1 and page_link_2
+        $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
+        $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
+
     // #################################### For Funnel Page ###########################################
-             
+            
+     // Assuming $request->video_link contains the user-provided video link
+            $providedLink = $request->video_link;
+            $defaultYouTube = 'https://youtu.be/m3rykLJ64Z4?si=v7ztrgM0rrH9JL8q'; // Default YouTube link
+            $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // Default MP4 link
+
+            // Choose which default video to use (uncomment one)
+            $defaultVideoLink = $defaultYouTube;
+            // $defaultVideoLink = $defaultMP4;
+
+            // Final video link assignment
+            $videoLink = $providedLink ? $this->processVideoLink($providedLink) : $this->processVideoLink($defaultVideoLink);
+
+                $plan_duration = $funnel->plan_duration; // Get the user's own plan duration
+
+                // #################################### For Funnel Page ###########################################
                 // 1. Copy default video thumbnail from public/assets/images to storage/app/public/funnel_video_thumbnail
                 $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
                 $targetVideoPath = 'funnel_video_thumbnail/default_thumbnail.png';
@@ -133,17 +155,13 @@ public function activateDirect(Request $request)
                         );
                     }
                 }
-                 // Generate 6-character random strings for page_link_1 and page_link_2
-                $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
-                $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
-
                  if (empty($funnel->funnel_content)) {
 
                 $funnel->funnel_content = [
                     'headline' => 'Kung May Paraan Para Kumita Habang Kasama ang Pamilya… Di Mo Ba Susubukan?',
                     'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sayo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
                     'video_thumbnail' => Storage::url('funnel_video_thumbnail/default_thumbnail.png'),
-                    'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+                    'video_link' => $videoLink,
 
                  
                     'intro_headline' => 'Mahalaga ba sayo ang magkaroon ng dagdag na kita?',
@@ -192,7 +210,22 @@ public function activateDirect(Request $request)
                 ];
             }
 
+        
+     
 // #################################### For Landing Page ###########################################
+
+  // Assuming $request->video_link contains the user-provided video link
+            $providedLink = $request->video_link;
+            $defaultYouTube = 'https://youtu.be/E4GMDFmIPfo?si=Z6Mkf2_JmV0t8mqf'; // Default YouTube link
+            $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // Default MP4 link
+
+            // Choose which default video to use (uncomment one)
+            $defaultVideoLink = $defaultYouTube;
+            // $defaultVideoLink = $defaultMP4;
+
+            // Final video link assignment
+            $videoLink = $providedLink ? $this->processVideoLink($providedLink) : $this->processVideoLink($defaultVideoLink);
+
 
 // 1. Copy default video thumbnail from public/assets/images to storage/app/public/landing_video_thumbnail
 $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
@@ -220,17 +253,13 @@ foreach ($testimonialImages as $image) {
     }
 }
 
- // Generate 6-character random strings for page_link_1 and page_link_2
-    $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
-    $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
-
 // ➕ Set default landing_page_content here
 if (empty($funnel->landing_page_content)) {
 $funnel->landing_page_content = [
     'headline' => 'Laging Pagod? Parang Lagi Ka Na Lang Walang Gana?',
     'subheadline' => 'Discover how Salveo Barley Grass can naturally boost your energy and immunity — even on your busiest days!',
     'video_thumbnail' => Storage::url('landing_video_thumbnail/default_thumbnail.png'),
-    'video_link' => 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+     'video_link' => $videoLink,
 
     'intro_headline' => 'Mahalaga ba talaga sayo ang kalusugan mo?',
                     'intro_paragraph' => ' Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo',
@@ -296,6 +325,261 @@ $funnel->landing_page_content = [
 
     return redirect()->route('funnel.page')->with('success', 'Your funnel has been activated successfully.');
 }
+
+
+
+######################################################################################################
+######################################################################################################
+
+
+ // ################ Activate Free Funnel Based on the package type No Payment Required Function ##################################
+public function activateFreeFunnel(Request $request)
+{
+    $user_id = Auth::id();
+    
+    // Fetch the user's package type from the packages table
+    $package = DB::table('packages')->where('user_id', $user_id)->first();
+
+    if (!$package) {
+        return redirect()->back()->with('error', 'Package not found for this user.');
+    }
+
+    $packageType = $package->packages_type;
+
+    // Determine the number of months to add based on package type
+    $monthsToAdd = 0;
+
+    if ($packageType === 'diamond_pack') {
+        $monthsToAdd = 3; // 3 months free for diamond pack
+    } elseif ($packageType === 'elite_pack') {
+        $monthsToAdd = 6; // 6 months free for elite pack
+    } elseif ($packageType === 'vip_pack') {
+        $monthsToAdd = 12; // 12 months free for vip pack
+    }
+
+    // Fetch the funnel associated with the user
+    $funnel = UserFunnel::where('user_id', $user_id)->first();
+
+    // If the funnel doesn't exist, create a new one
+    if (!$funnel) {
+        $funnel = new UserFunnel();
+        $funnel->user_id = $user_id;
+        $funnel->status = 'approved';
+        $funnel->is_active = true;
+        $funnel->approval_date = now();
+        $funnel->submitted_at = now();
+        $funnel->plan_duration = $monthsToAdd;  // Set plan_duration to monthsToAdd
+        $funnel->expiration_date = now()->addMonths($monthsToAdd);
+        
+        // Generate 6-character random strings for page_link_1 and page_link_2
+        $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
+        $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
+
+         // Assuming $request->video_link contains the user-provided video link
+            $providedLink = $request->video_link;
+            $defaultYouTube = 'https://youtu.be/m3rykLJ64Z4?si=v7ztrgM0rrH9JL8q'; // Default YouTube link
+            $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // Default MP4 link
+
+            // Choose which default video to use (uncomment one)
+            $defaultVideoLink = $defaultYouTube;
+            // $defaultVideoLink = $defaultMP4;
+
+            // Final video link assignment
+            $videoLink = $providedLink ? $this->processVideoLink($providedLink) : $this->processVideoLink($defaultVideoLink);
+
+                $plan_duration = $funnel->plan_duration; // Get the user's own plan duration
+
+                // #################################### For Funnel Page ###########################################
+                // 1. Copy default video thumbnail from public/assets/images to storage/app/public/funnel_video_thumbnail
+                $defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
+                $targetVideoPath = 'funnel_video_thumbnail/default_thumbnail.png';
+
+                if (File::exists($defaultVideoThumbnail) && !Storage::disk('public')->exists($targetVideoPath)) {
+                    Storage::disk('public')->put(
+                        $targetVideoPath,
+                        File::get($defaultVideoThumbnail)
+                    );
+                }
+
+                // 2. Copy default testimonial images from public/assets/images to storage/app/public/funnel_testimonial_images
+                $testimonialImages = ['default1.png', 'default2.png', 'default3.png'];
+
+                foreach ($testimonialImages as $image) {
+                    $sourcePath = public_path("assets/images/{$image}");
+                    $targetPath = "funnel_testimonial_images/{$image}";
+
+                    if (File::exists($sourcePath) && !Storage::disk('public')->exists($targetPath)) {
+                        Storage::disk('public')->put(
+                            $targetPath,
+                            File::get($sourcePath)
+                        );
+                    }
+                }
+                 if (empty($funnel->funnel_content)) {
+
+                $funnel->funnel_content = [
+                    'headline' => 'Kung May Paraan Para Kumita Habang Kasama ang Pamilya… Di Mo Ba Susubukan?',
+                    'subheadline' => 'Alam naming hindi madali ang buhay. Pero kung may chance na makatulong sayo at sa pamilya mo—bakit hindi subukan? Wala namang mawawala, lalo na kung may pangarap ka.',
+                    'video_thumbnail' => Storage::url('funnel_video_thumbnail/default_thumbnail.png'),
+                    'video_link' => $videoLink,
+
+                 
+                    'intro_headline' => 'Mahalaga ba sayo ang magkaroon ng dagdag na kita?',
+                    'intro_paragraph' => 'Baka hindi mo pa nasusubukan, pero ang pagkakataon na ito ay pwedeng magbago ng buhay mo at ng pamilya mo. Hindi mo kailangang maghintay ng perfect na panahon, baka ito na yun!',
+                    
+                    'benefits_title' => 'Why you join us?',
+                    'benefits_list' => [
+                        'Pagkakataon kumita ng malaki para sa pamilya at mga pangarap mo',
+                        'Mas maraming oras para sa mga mahal mo sa buhay—hindi lang para magtrabaho',
+                        'Kontrolin ang oras at diskarte mo para magkaroon ng mas magaan na buhay',
+                        'Suporta mula sa mga taong magtutulungan upang magtagumpay ka',
+                        'Simula ng isang bagong journey na magbubukas ng mas magagandang opportunities para sa’yo',
+                    ],
+                    
+                    'testimonial_headline' => 'What Our Clients Say',
+                    'testimonial_subheadline' => 'Real results from real people',
+                    'testimonial_images' => [
+                        Storage::url('funnel_testimonial_images/default1.png'),
+                        Storage::url('funnel_testimonial_images/default2.png'),
+                        Storage::url('funnel_testimonial_images/default3.png'),
+                    ],
+                    'testimonial_video_link' => [
+                        'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+                        'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+                    ],
+                    'fomo_countdown' => [
+                        'days' => 2,
+                        'hours' => 6,
+                        'minutes' => 45
+                    ],
+    
+                    // Referral button content
+                    'Referral_button_text' => 'Sign Up To Start Earning',
+                    'Referral_button_subtext' => '✅ Reserve Your Free Slot Now',
+
+                     // Group chat button content
+                    'Group_chat_button_text' => 'Get More Info — Join Group Chat',
+                    'Group_chat_button_subtext' => '✅ Click Here To Join Now',
+                                                    
+                    'Messenger_link' => 'https://m.me/yourpage',
+                    'Referral_link' => 'https://yourdomain.com/referral-code',
+                    'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
+                    'Messenger_link_toggle' => true,
+                    'Referral_link_toggle' => true,
+                    'Group_chat_link_toggle' => true
+                ];
+            }
+
+        
+     
+// #################################### For Landing Page ###########################################
+
+  // Assuming $request->video_link contains the user-provided video link
+            $providedLink = $request->video_link;
+            $defaultYouTube = 'https://youtu.be/E4GMDFmIPfo?si=Z6Mkf2_JmV0t8mqf'; // Default YouTube link
+            $defaultMP4 = 'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4'; // Default MP4 link
+
+            // Choose which default video to use (uncomment one)
+            $defaultVideoLink = $defaultYouTube;
+            // $defaultVideoLink = $defaultMP4;
+
+            // Final video link assignment
+            $videoLink = $providedLink ? $this->processVideoLink($providedLink) : $this->processVideoLink($defaultVideoLink);
+
+
+// 1. Copy default video thumbnail from public/assets/images to storage/app/public/landing_video_thumbnail
+$defaultVideoThumbnail = public_path('assets/images/default_thumbnail.png');
+$targetVideoPath = 'landing_video_thumbnail/default_thumbnail.png';
+
+if (File::exists($defaultVideoThumbnail) && !Storage::disk('public')->exists($targetVideoPath)) {
+    Storage::disk('public')->put(
+        $targetVideoPath,
+        File::get($defaultVideoThumbnail)
+    );
+}
+
+// 2. Copy default testimonial images from public/assets/images to storage/app/public/landing_testimonial_images
+$testimonialImages = ['default1.png', 'default2.png', 'default3.png'];
+
+foreach ($testimonialImages as $image) {
+    $sourcePath = public_path("assets/images/{$image}");
+    $targetPath = "landing_testimonial_images/{$image}";
+
+    if (File::exists($sourcePath) && !Storage::disk('public')->exists($targetPath)) {
+        Storage::disk('public')->put(
+            $targetPath,
+            File::get($sourcePath)
+        );
+    }
+}
+
+// ➕ Set default landing_page_content here
+if (empty($funnel->landing_page_content)) {
+$funnel->landing_page_content = [
+    'headline' => 'Laging Pagod? Parang Lagi Ka Na Lang Walang Gana?',
+    'subheadline' => 'Discover how Salveo Barley Grass can naturally boost your energy and immunity — even on your busiest days!',
+    'video_thumbnail' => Storage::url('landing_video_thumbnail/default_thumbnail.png'),
+     'video_link' => $videoLink,
+
+    'intro_headline' => 'Mahalaga ba talaga sayo ang kalusugan mo?',
+                    'intro_paragraph' => ' Baka oras na para alagaan ang sarili — hindi lang tuwing may sakit, kundi araw-araw. Sa isang simpleng habit, pwede mong simulan ang pagbabago ng pakiramdam mo',
+                    
+                    'benefits_title' => 'Why Barley Grass?',
+                    'benefits_list' => [
+                        'Boost sa natural energy levels',
+                        'Mas malakas na immune system',
+                        'Better digestion & detox',
+                        'Better focus and sleep',
+                        'Anti-fatigue & anti-inflammatory',
+                    ],
+
+    'testimonial_headline' => 'Legit Testimonials',
+    'testimonial_subheadline' => 'Real results from real people',
+    'testimonial_images' => [
+        Storage::url('landing_testimonial_images/default1.png'),
+        Storage::url('landing_testimonial_images/default2.png'),
+        Storage::url('landing_testimonial_images/default3.png'),
+    ],
+    'testimonial_video_link' => [
+        'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+        'https://d1yei2z3i6k35z.cloudfront.net/4624298/674856edaa387_Untitled6.mp4',
+    ],
+    'fomo_countdown' => [
+        'days' => 2,
+        'hours' => 6,
+        'minutes' => 45
+    ],
+
+    // Referral button content
+    'Referral_button_text' => 'Try It for 7 Days — Order Now!',
+    'Referral_button_subtext' => '✅ Claim Your Discount Now',
+
+    // Group chat button content
+     'Group_chat_button_text' => 'Get More Info — Join Group Chat',
+     'Group_chat_button_subtext' => '✅ Click Here To Join Now',
+
+    'Messenger_link' => 'https://m.me/yourpage',
+    'Referral_link' => 'https://yourdomain.com/referral-code',
+    'Group_chat_link' => 'https://chat.whatsapp.com/yourgroup',
+    'Messenger_link_toggle' => true,
+    'Referral_link_toggle' => true,
+    'Group_chat_link_toggle' => true
+];
+
+}
+        
+        $funnel->save();
+
+        return redirect()->route('funnel.page')->with('success', 'Your funnel has been activated successfully.');
+    }
+
+    // If funnel already exists, you can add additional logic or return a message
+    return redirect()->back()->with('error', 'Funnel already activated.');
+}
+
+
+   
+
 
 
 
@@ -380,6 +664,10 @@ public function resubmit(Request $request)
             $funnel->plan_price = $plan->price; // Save the corresponding price
         }
     }
+
+      // Generate 6-character random strings for page_link_1 and page_link_2
+                $funnel->page_link_1 = Str::random(6);  // Random 6 characters for page_link_1
+                $funnel->page_link_2 = Str::random(6);  // Random 6 characters for page_link_2
 
     // Reset status to pending and set it to inactive (awaiting approval)
     $funnel->status = 'pending';
@@ -764,11 +1052,14 @@ $funnel->landing_page_content = [
             $funnel->submitted_at = now();
 
             // Set expiration based on their own plan duration
-            if ($plan_duration > 0) {
-                $funnel->expiration_date = now()->addMonths($plan_duration);
-            } else {
-                $funnel->expiration_date = null;
-            }
+           if ($plan_duration === 'lifetime') {
+    $funnel->expiration_date = null; // Walang expiration
+} elseif (is_numeric($plan_duration) && (int)$plan_duration > 0) {
+    $funnel->expiration_date = now()->addMonths((int)$plan_duration);
+} else {
+    $funnel->expiration_date = null; // fallback for invalid strings
+}
+
 
             $funnel->save();
         }
