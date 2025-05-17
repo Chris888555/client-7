@@ -1,59 +1,358 @@
 @extends('layouts.app')
-@section('title', 'Dashboard') <!-- Custom title for this page -->
+
+@section('title', 'Dashboard')
+
 @section('content')
-@include('includes.nav')
 <main class="container m-auto p-4 sm:p-8 max-w-full">
 
-<h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Dashboard</h1>
-    <p class="text-gray-600 text-left mb-4 ">Income dashboard: NutriInnovations earnings at a glance </p>
+    <x-page-header-text title="Dashboard" subtitle="Income dashboard: NutriInnovations earnings at a glance" />
 
-    <!-- Top Section: Image and Video Side by Side -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Left: Image (professional card layout) -->
-        <div class="flex items-center justify-center mb-6 bg-gray-50">
-            <div class="text-center w-full">
-                <img src="https://d1yei2z3i6k35z.cloudfront.net/12320059/681b7bbbd3ca1_Screenshot2025-05-07at11.26.24PM.png"
-                    alt="Antonio R. Ocampo Jr."
-                    class="w-full h-full object-cover rounded-xl shadow-md mx-auto" />
+    {{-- Profile & Summary --}}
+    <div class=" mb-2">
+
+        {{-- Profile Card with Gradient Dark Theme --}}
+        <div
+            class="mb-1 bg-[#0B2347] rounded-xl border border-gray-700 p-6 flex flex-col md:flex-row md:items-center md:justify-between col-span-1 md:col-span-2 lg:col-span-3  text-gray-300 shadow-lg">
+
+            <!-- Profile Info -->
+            <div class="flex items-center space-x-4">
+                <img src="https://ceoroundtable.heart.org/wp-content/uploads/2018/05/Bradway-Robert_-tie_external_2017small.jpg"
+                    alt="Profile Picture"
+                    class="w-20 h-20 rounded-full object-cover border-4 border-teal-500 shadow-md">
+                <div>
+                    <h2 class="text-lg md:text-2xl font-bold flex items-center space-x-2 text-white">
+                        <span>Juan Dela Cruz</span>
+                        <!-- Blue Circle Verified Check Icon -->
+                        <svg class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                    </h2>
+                    <p class="text-gray-400 flex items-center space-x-4 mt-1">
+                        <span class="flex items-center space-x-1">
+                            <span class="font-semibold text-teal-400 flex items-center space-x-1">
+                                <i class="fa-solid fa-ranking-star text-teal-400 mr-2"></i>
+                                <span>Rank:</span>
+                            </span>
+                            <span class="text-white">Affiliate</span>
+                        </span>
+                    </p>
+                </div>
             </div>
+
+            <!-- Upgrade Account Button with Icon -->
+            <div class="mt-4 md:mt-0 text-center w-full md:w-auto">
+                <a href="/upgrade"
+                    class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition w-full md:w-auto">
+                    <i class="fa-solid fa-arrow-up-right-dots mr-2"></i> Upgrade Account
+                </a>
+            </div>
+
         </div>
-        <!-- Right: Video (keeps video aspect ratio) -->
-        <div class="flex items-center justify-center mb-6 bg-gray-50">
-            <div class="w-full h-full">
-                <video class="rounded-xl w-full h-full object-cover" controls>
-                    <source
-                        src="https://d1yei2z3i6k35z.cloudfront.net/12320059/681b79b659dc8_FDownloader.Net_AQO3jKZcKMNQkaz0azSiqTLD5ZKm7YnybY129TY-HCwKL7NyYwSK9kgAV-NqCc1vQopJP1QJj5DhekIwZ5WM0V7C_720p_HD.mp4"
-                        type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+
+
+        <div class="mb-6">
+            <details class="bg-[#0B2347] rounded-xl border border-gray-700 shadow-lg p-4 text-white">
+
+                <summary class="cursor-pointer text-lg font-semibold flex items-center justify-between">
+                    <span><i class="fa-solid fa-sitemap mr-2 text-teal-400"></i> View Network Stats</span>
+                    <i class="fa-solid fa-chevron-down text-gray-400"></i>
+                </summary>
+
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Total Network -->
+                    <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
+                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                            <i class="fa-solid fa-users text-teal-400"></i>
+                            <span>Total Network</span>
+                        </h3>
+                        <p class="text-3xl font-bold text-teal-300">1,250</p>
+                        <p class="text-gray-400 text-sm">Total Downlines</p>
+                    </div>
+
+                    <!-- Left Leg -->
+                    <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
+                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                            <i class="fa-solid fa-arrow-left text-blue-400"></i>
+                            <span>Left Team</span>
+                        </h3>
+                        <p class="text-3xl font-bold text-blue-300">500</p>
+                        <p class="text-gray-400 text-sm">Total Points: <span class="text-white font-semibold">1,000
+                                CV</span></p>
+                    </div>
+
+                    <!-- Right Leg -->
+                    <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
+                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                            <i class="fa-solid fa-arrow-right text-purple-400"></i>
+                            <span>Right Team</span>
+                        </h3>
+                        <p class="text-3xl font-bold text-purple-300">600</p>
+                        <p class="text-gray-400 text-sm">Total Points: <span class="text-white font-semibold">1,200
+                                CV</span></p>
+                    </div>
+
+                    <!-- Remaining Points -->
+                    <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
+                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                            <i class="fa-solid fa-chart-simple text-yellow-400"></i>
+                            <span>Waiting Points</span>
+                        </h3>
+                        <p class="text-3xl font-bold text-yellow-300">200 CV</p>
+                        <p class="text-gray-400 text-sm">Remaining points </p>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+
+
+        {{-- Earnings Summary Cards --}}
+        <div class=" mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+            <div class="bg-teal-600 rounded-xl  p-6 flex items-center space-x-3 ">
+                <span class="bg-white text-teal-600 rounded-full p-3 inline-flex items-center justify-center">
+                    <i class="fas fa-wallet"></i>
+                </span>
+                <div>
+                    <p class="text-gray-200 text-sm mb-1">Total Earnings</p>
+                    <h3 class="text-xl font-bold text-gray-100">₱ 25,000.00</h3>
+                </div>
+            </div>
+
+
+            <div class="bg-teal-600 rounded-xl  p-6 flex items-center space-x-3 ">
+                <span class="bg-white text-teal-600 rounded-full p-3 inline-flex items-center justify-center">
+                    <i class="fas fa-money-bill-wave"></i>
+                </span>
+                <div>
+                    <p class="text-gray-200 text-sm mb-1">Withdrawable Balance</p>
+                    <h3 class="text-xl font-bold text-gray-100">₱ 10,000.00</h3>
+                </div>
+            </div>
+
+            <div class="bg-teal-600 rounded-xl  p-6 flex items-center space-x-3 ">
+                <span class="bg-white text-teal-600 rounded-full p-3 inline-flex items-center justify-center">
+                    <i class="fas fa-credit-card"></i>
+                </span>
+                <div>
+                    <p class="text-gray-200 text-sm mb-1">Total Payout</p>
+                    <h3 class="text-xl font-bold text-gray-100">₱ 15,000.00</h3>
+                </div>
+            </div>
+
+            {{-- 5 commission cards: full width inside 3-column grid --}}
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 col-span-1 md:col-span-2 lg:col-span-3 w-full">
+                <div class="bg-white rounded-xl border p-6 w-full flex items-center space-x-3">
+                    <span class="bg-teal-600 text-white rounded-full p-3 inline-flex items-center justify-center">
+                        <i class="fas fa-box"></i>
+                    </span>
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">Whole Sale Commissions</p>
+                        <h3 class="text-xl font-bold text-teal-600">₱ 5,000.00</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border p-6 w-full flex items-center space-x-3">
+                    <span class="bg-teal-600 text-white rounded-full p-3 inline-flex items-center justify-center">
+                        <i class="fas fa-sync-alt"></i>
+                    </span>
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">
+                            <span class="inline sm:block">Cycle</span>
+                            <span class="inline sm:block">Commissions</span>
+                        </p>
+
+                        <h3 class="text-xl font-bold text-teal-600">₱ 3,000.00</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border p-6 w-full flex items-center space-x-3">
+                    <span class="bg-teal-600 text-white rounded-full p-3 inline-flex items-center justify-center">
+                        <i class="fas fa-infinity"></i>
+                    </span>
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">Infinity Commissions</p>
+                        <h3 class="text-xl font-bold text-teal-600">₱ 2,000.00</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border p-6 w-full flex items-center space-x-3">
+                    <span class="bg-teal-600 text-white rounded-full p-3 inline-flex items-center justify-center">
+                        <i class="fas fa-sitemap"></i>
+                    </span>
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">Group Sales Commissions</p>
+                        <h3 class="text-xl font-bold text-teal-600">₱ 4,000.00</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border p-6 w-full flex items-center space-x-3">
+                    <span class="bg-teal-600 text-white rounded-full p-3 inline-flex items-center justify-center">
+                        <i class="fas fa-truck"></i>
+                    </span>
+                    <div>
+                        <p class="text-gray-600 text-sm mb-1">Dropshipping Commissions</p>
+                        <h3 class="text-xl font-bold text-teal-600">₱ 1,000.00</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-   <!-- Income Dashboard Section -->
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-        <!-- Direct Income -->
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-            <h3 class="text-xl font-semibold text-gray-700">Wholesale Commission</h3>
-            <p class="text-2xl font-bold text-[#008080] mt-2">₱1,250</p>
+
+    <!-- Referral, Shop, and Landing Page Links -->
+    <div class="space-y-6 mb-6">
+
+        <!-- Link Card Component -->
+        <div class="rounded-lg border border-stroke bg-white p-4">
+            <h2 class="text-base font-semibold text-gray-700 md:text-title-sm">Referral Link</h2>
+            <p class="text-sm text-gray-600 md:text-base">
+                Share this referral link with your friends and earn agent commissions when they make a cash-in
+                transaction.
+            </p>
+            <div class="relative mt-4">
+                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                        class="size-5 text-gray-400">
+                        <path
+                            d="M10 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM1.615 16.428a1.224 1.224 0 0 1-.569-1.175 6.002 6.002 0 0 1 11.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 0 1 7 18a9.953 9.953 0 0 1-5.385-1.572ZM16.25 5.75a.75.75 0 0 0-1.5 0v2h-2a.75.75 0 0 0 0 1.5h2v2a.75.75 0 0 0 1.5 0v-2h2a.75.75 0 0 0 0-1.5h-2v-2Z">
+                        </path>
+                    </svg>
+                </div>
+                <div id="referral-link"
+                    class="w-full rounded-lg border border-gray-300 bg-gray-50 py-4 ps-11 pe-28 text-gray-900 text-sm overflow-hidden whitespace-nowrap text-ellipsis">
+                    https://nextgen.com/chan888
+                </div>
+
+                <button onclick="copyToClipboard('referral-link')"
+                    class="absolute bottom-2.5 end-2.5 rounded-lg bg-teal-600 px-3 py-2 text-white hover:bg-teal-700 flex items-center gap-1">
+                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                    <span class="text-sm">Copy</span>
+                </button>
+            </div>
         </div>
-        <!-- Team Income -->
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-            <h3 class="text-xl font-semibold text-gray-700">Cycle Commission</h3>
-            <p class="text-2xl font-bold text-[#008080] mt-2">₱3,480</p>
+
+        <!-- Shop Link -->
+        <div class="rounded-lg border border-stroke bg-white p-4">
+            <h2 class="text-base font-semibold text-gray-700 md:text-title-sm">Shop Link</h2>
+            <p class="text-sm text-gray-600 md:text-base">
+                Share your shop link with customers who want to buy products directly.
+            </p>
+            <div class="relative mt-4">
+                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
+                    <!-- New shop bag icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-gray-400" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M6 7V6a6 6 0 1112 0v1h2a1 1 0 011 1v13a2 2 0 01-2 2H5a2 2 0 01-2-2V8a1 1 0 011-1h2zm2 0h8V6a4 4 0 00-8 0v1z" />
+                    </svg>
+                </div>
+
+                <div id="shop-link"
+                    class="w-full rounded-lg border border-gray-300 bg-gray-50 py-4 ps-11 pe-28 text-gray-900 text-sm overflow-hidden whitespace-nowrap text-ellipsis">
+                    https://nextgen.com/shop/chan888
+                </div>
+                <button onclick="copyToClipboard('shop-link')"
+                    class="absolute bottom-2.5 end-2.5 rounded-lg bg-teal-600 px-3 py-2 text-white hover:bg-teal-700 flex items-center gap-1">
+                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                    <span class="text-sm">Copy</span>
+                </button>
+            </div>
         </div>
-        <!-- Bonus -->
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-            <h3 class="text-xl font-semibold text-gray-700">Infinity Bonus</h3>
-            <p class="text-2xl font-bold text-[#008080] mt-2">₱620</p>
-        </div>
-        <!-- Total Earnings -->
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-            <h3 class="text-xl font-semibold text-gray-700">Total Earnings</h3>
-            <p class="text-2xl font-bold text-[#008080] mt-2">₱5,350</p>
+
+        <!-- Sale Funnel Page Link -->
+        <div class="rounded-lg border border-stroke bg-white p-4">
+            <h2 class="text-base font-semibold text-gray-700 md:text-title-sm">Sale Funnel Link</h2>
+            <p class="text-sm text-gray-600 md:text-base">
+                Use this sale funnel link for promotional campaigns and facebook ads marketing.
+            </p>
+            <div class="relative mt-4">
+                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-gray-400" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v4H3V5zm0 6h18v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z" />
+                    </svg>
+                </div>
+                <div id="salesfunnel-link"
+                    class="w-full rounded-lg border border-gray-300 bg-gray-50 py-4 ps-11 pe-28 text-gray-900 text-sm overflow-hidden whitespace-nowrap text-ellipsis">
+                    https://nextgen.com/landing/chan888
+                </div>
+                <button onclick="copyToClipboard('salesfunnel-link')"
+                    class="absolute bottom-2.5 end-2.5 rounded-lg bg-teal-600 px-3 py-2 text-white hover:bg-teal-700 flex items-center gap-1">
+                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                    <span class="text-sm">Copy</span>
+                </button>
+            </div>
         </div>
     </div>
+
+
+
+
+
+    {{-- Table of Users --}}
+    <div class="bg-white rounded-xl border p-6">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800 flex items-center gap-2">
+            <i class="fas fa-users text-teal-600"></i> Free Signup Clients
+        </h2>
+
+        <div class="overflow-x-auto max-w-full">
+            <table class="table-auto w-full border-collapse border border-gray-300 min-w-[700px]">
+                <thead class="bg-teal-50">
+                    <tr>
+                        <th
+                            class="border-b border-teal-200 px-5 py-3 text-left text-sm font-medium text-teal-700 uppercase tracking-wide">
+                            <i class="fas fa-user mr-2"></i> Full Name
+                        </th>
+                        <th
+                            class="border-b border-teal-200 px-5 py-3 text-left text-sm font-medium text-teal-700 uppercase tracking-wide">
+                            <i class="fas fa-envelope mr-2"></i> Email
+                        </th>
+                        <th
+                            class="border-b border-teal-200 px-5 py-3 text-left text-sm font-medium text-teal-700 uppercase tracking-wide">
+                            <i class="fas fa-phone mr-2"></i> Number
+                        </th>
+                        <th
+                            class="border-b border-teal-200 px-5 py-3 text-left text-sm font-medium text-teal-700 uppercase tracking-wide">
+                            <i class="fas fa-calendar-alt mr-2"></i> Date Signed Up
+                        </th>
+                        <th
+                            class="border-b border-teal-200 px-5 py-3 text-left text-sm font-medium text-teal-700 uppercase tracking-wide">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-teal-50 transition-colors duration-150">
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-900 font-medium">Juan Dela Cruz</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-700">juan@example.com</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-700">09171234567</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-700">May 17, 2025</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
+                    </tr>
+                    <tr class="hover:bg-teal-50 transition-colors duration-150">
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-900 font-medium">Maria Santos</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-700">maria@example.com</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-700">09181234567</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-gray-700">May 16, 2025</td>
+                        <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
 </main>
 @endsection

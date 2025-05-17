@@ -1,12 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('title', 'Login')
-<!-- Custom title for this page -->
 
 @section('content')
 
 
-<main class="h-screen flex items-center justify-center px-4 overflow-y-auto">
+
     <div
         class="bg-white w-[95%] sm:w-[600px] md:w-[700px] lg:w-[500px] p-8 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
         <section>
@@ -160,7 +159,7 @@
                     class="font-bold hover:underline">Sign up</a>.</p>
         </div>
     </div>
-</main>
+
 <script>
 function togglePassword(fieldId, iconId) {
     const passwordField = document.getElementById(fieldId);

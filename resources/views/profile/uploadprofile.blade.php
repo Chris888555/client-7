@@ -4,16 +4,16 @@
 
 @section('content')
 
-@include('includes.nav')
 
 
 
 <body class="bg-gray-100 flex items-center justify-center px-2  ">
     <div class="container m-auto p-4 sm:p-8 max-w-full">
 
-        <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Manage Your Account</h1>
-        <p class="text-gray-600 text-left mb-4">Update your profile photo and personal details.</p>
-
+      <x-page-header-text 
+    title="Manage Your Account"
+    subtitle="Update your profile photo and personal details."
+/>
 
 
         @if ($errors->any())

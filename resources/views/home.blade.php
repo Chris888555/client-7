@@ -1,8 +1,15 @@
-@extends('layouts.app')
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-@section('title', 'Home')
-
-@section('content')
+  {{-- Vite for Tailwind and local assets --}}
+    @vite('resources/css/app.css')
+    
+<body>
+    
 
     <style>
         /* Custom Styles */

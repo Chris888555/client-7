@@ -5,15 +5,17 @@
 
 @section('content')
 
-@include('includes.nav')
+
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
-      <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Manage Playlist Videos</h1>
-        <p class="text-gray-600 text-left mb-4">Manage your playlist by editing or removing videos as needed.</p>
+<x-page-header-text 
 
+    title="Manage Playlist Videos"
+    subtitle="Manage your playlist by editing or removing videos as needed"
+/>
 
 
     

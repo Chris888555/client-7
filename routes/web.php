@@ -21,7 +21,10 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\UserFunnelController;
 use App\Http\Controllers\FunnelPlanController;
-use App\Http\Controllers\PsgcController;
+
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 
 
 use App\Http\Controllers\AddressFormController;
@@ -30,6 +33,9 @@ Route::get('/form', [AddressFormController::class, 'showForm'])->name('address.f
 Route::post('/form', [AddressFormController::class, 'submitForm'])->name('address.submit');
 
 
+Route::get('/income-stats', function () {
+    return view('income-stats');
+})->name('income.stats');
 
 ##########################################################
 
@@ -96,18 +102,7 @@ Route::get('/funnel-settings/', [FunnelPlanController::class, 'index'])->name('f
 Route::post('/funnel-settings/save', [FunnelPlanController::class, 'save'])->name('funnel.settings.save');
 
 
-
-
-Route::get('/address-form', [PsgcController::class, 'index']);
-Route::get('/provinces/{regionCode}', [PsgcController::class, 'getProvinces']);
-Route::get('/cities/{provinceCode}', [PsgcController::class, 'getCities']);
-Route::get('/barangays/{cityCode}', [PsgcController::class, 'getBarangays']);
-
-
 ##########################################################
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\OrderController;
 
 // Shop
 Route::get('/{subdomain}/shop', [ProductController::class, 'showShop'])->name('shop');

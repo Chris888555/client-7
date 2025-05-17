@@ -4,16 +4,18 @@
 
 @section('content')
 
-@include('includes.nav')
+
 
 
 <body class=" min-h-screen flex items-center justify-center">
 
     <!-- Playlist Upload Form -->
     <div class="container m-auto p-4 sm:p-8 max-w-full ">
-        <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Upload Playlist Videos</h1>
-        <p class="text-gray-600 text-left mb-4">Easily upload your videos and organize them into a playlist for better viewing experience.</p>
 
+ <x-page-header-text 
+    title="Upload Playlist Videos"
+    subtitle="Easily upload your videos and organize them into a playlist for better viewing experience"
+/>
 
        
         <!-- Update Playlist Link -->

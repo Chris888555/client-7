@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('includes.nav')
+
 
 
 <script>
@@ -16,9 +16,11 @@ function updateView(view) {
 
 <main class="container m-auto p-4 sm:p-8 max-w-full">
 
-    <h1 class="text-2xl md:text-3xl font-bold text-left text-blue-400">Manage Users</h1>
-    <p class="text-gray-600 text-left mb-4">Approve users, delete accounts, assign roles, and revert pending users with
-        ease.</p>
+     <x-page-header-text 
+    title="Manage Users"
+    subtitle="Approve users, delete accounts, assign roles, and revert pending users with
+        ease"
+/>
 
 
     <div class="flex flex-wrap items-center gap-4 mb-6">
