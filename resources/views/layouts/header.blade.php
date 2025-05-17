@@ -18,11 +18,12 @@
 
 <body class="bg-gradient-to-br from-teal-700 via-teal-400 to-teal-900">
 
+<x-header />
 
-
-    <main class="h-screen flex items-center justify-center px-4 overflow-y-auto">
+    <main class="flex items-center justify-center px-4 py-16 overflow-y-auto">
         @yield('content')
     </main>
+<x-footer />
 
 </body>
 
