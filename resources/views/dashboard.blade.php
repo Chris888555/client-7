@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.users')
 
 @section('title', 'Dashboard')
 
@@ -54,8 +54,7 @@
 
         <div class="mb-6">
             <details class="bg-[#0B2347] rounded-xl border border-gray-700 shadow-lg p-4 text-white">
-
-                <summary class="cursor-pointer text-lg font-semibold flex items-center justify-between">
+                <summary class="cursor-pointer text-base md:text-lg font-semibold flex items-center justify-between">
                     <span><i class="fa-solid fa-sitemap mr-2 text-teal-400"></i> View Network Stats</span>
                     <i class="fa-solid fa-chevron-down text-gray-400"></i>
                 </summary>
@@ -63,44 +62,44 @@
                 <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
                     <!-- Total Network -->
                     <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
-                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                        <h3 class="text-base md:text-lg font-semibold mb-1 flex items-center space-x-2">
                             <i class="fa-solid fa-users text-teal-400"></i>
                             <span>Total Network</span>
                         </h3>
-                        <p class="text-3xl font-bold text-teal-300">1,250</p>
-                        <p class="text-gray-400 text-sm">Total Downlines</p>
+                        <p class="text-2xl md:text-3xl font-bold text-teal-300">1,250</p>
+                        <p class="text-gray-400 text-xs md:text-sm">Total Downlines</p>
                     </div>
 
                     <!-- Left Leg -->
                     <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
-                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                        <h3 class="text-base md:text-lg font-semibold mb-1 flex items-center space-x-2">
                             <i class="fa-solid fa-arrow-left text-blue-400"></i>
                             <span>Left Team</span>
                         </h3>
-                        <p class="text-3xl font-bold text-blue-300">500</p>
-                        <p class="text-gray-400 text-sm">Total Points: <span class="text-white font-semibold">1,000
-                                CV</span></p>
+                        <p class="text-2xl md:text-3xl font-bold text-blue-300">500</p>
+                        <p class="text-gray-400 text-xs md:text-sm">Total Points: <span
+                                class="text-white font-semibold">1,000 CV</span></p>
                     </div>
 
                     <!-- Right Leg -->
                     <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
-                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                        <h3 class="text-base md:text-lg font-semibold mb-1 flex items-center space-x-2">
                             <i class="fa-solid fa-arrow-right text-purple-400"></i>
                             <span>Right Team</span>
                         </h3>
-                        <p class="text-3xl font-bold text-purple-300">600</p>
-                        <p class="text-gray-400 text-sm">Total Points: <span class="text-white font-semibold">1,200
-                                CV</span></p>
+                        <p class="text-2xl md:text-3xl font-bold text-purple-300">600</p>
+                        <p class="text-gray-400 text-xs md:text-sm">Total Points: <span
+                                class="text-white font-semibold">1,200 CV</span></p>
                     </div>
 
                     <!-- Remaining Points -->
                     <div class="bg-[#0B2347] rounded-xl p-4 border border-gray-700 shadow">
-                        <h3 class="text-lg font-semibold mb-1 flex items-center space-x-2">
+                        <h3 class="text-base md:text-lg font-semibold mb-1 flex items-center space-x-2">
                             <i class="fa-solid fa-chart-simple text-yellow-400"></i>
                             <span>Waiting Points</span>
                         </h3>
-                        <p class="text-3xl font-bold text-yellow-300">200 CV</p>
-                        <p class="text-gray-400 text-sm">Remaining points </p>
+                        <p class="text-2xl md:text-3xl font-bold text-yellow-300">200 CV</p>
+                        <p class="text-gray-400 text-xs md:text-sm">Remaining points</p>
                     </div>
                 </div>
             </details>
@@ -158,11 +157,8 @@
                         <i class="fas fa-sync-alt"></i>
                     </span>
                     <div>
-                        <p class="text-gray-600 text-sm mb-1">
-                            <span class="inline sm:block">Cycle</span>
-                            <span class="inline sm:block">Commissions</span>
-                        </p>
-
+                        
+                        <p class="text-gray-600 text-sm mb-1">Cycle Commissions</p>
                         <h3 class="text-xl font-bold text-teal-600">₱ 3,000.00</h3>
                     </div>
                 </div>
