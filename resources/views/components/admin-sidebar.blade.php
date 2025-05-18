@@ -18,15 +18,15 @@
 
     <!-- ############ PC Sidebar #####################################################################-->
    <aside id="sidebar" 
-       class="fixed w-[280px] h-screen p-5 hidden md:block transition-all duration-300 overflow-y-scroll bg-teal-600 text-gray-200">
+       class="fixed w-[280px] h-screen p-5 hidden md:block transition-all duration-300 overflow-y-scroll bg-teal-700 text-gray-200">
 
 
     
-        <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 px-4">
+        <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 pl-3 pr-4">
             <a href="/">
                 <img id="sidebar-logo-img"
-                    src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png"
-                    alt="My Logo" class="h-10 w-auto object-contain" />
+                    src="https://d1yei2z3i6k35z.cloudfront.net/4624298/6829d6086d371_RealEstate1920x700px4.png"
+                    alt="My Logo" class="h-16 w-auto object-contain" />
                 <span id="logo-text" class="text-xl ml-[3px] hidden">N</span> 
             </a>
         </div>
@@ -36,10 +36,12 @@
         <ul>
 
             <li
-                class="mb-2 flex items-center space-x-2 sidebar-item rounded px-4 hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+                class="mb-2 flex items-center space-x-2 sidebar-item rounded px-4 hover:bg-gray-200 rounded px-4 hover:text-teal-800">
                 <span class="material-icons">dashboard</span>
-                <a href="{{ route('admin.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
             </li>
+
+    
 
         </ul>
     </aside>
@@ -53,13 +55,14 @@
     class="fixed inset-0 z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto w-[300px]  bg-teal-600 text-gray-200">
     
 
-    <div class="flex justify-between items-center mb-6 px-4">
+    <div class="flex justify-between items-center mb-6 pl-3 pr-4">
         <a href="/">
-            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png"
+            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/6829d6086d371_RealEstate1920x700px4.png"
                 alt="My Logo" class="h-10 w-auto object-contain" />
         </a>
+
         <button id="close-sidebar" class="text-white text-lg">
-            <svg class="h-8 w-8 text-gray-500 hover:text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            <svg class="h-8 w-8 text-gray-200 hover:text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                 <line x1="9" y1="9" x2="15" y2="15" />
@@ -70,9 +73,9 @@
 
     <!-- Mobile Sidebar Links -->
     <ul>
-        <li class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-blue-900">
+        <li class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-teal-800">
             <span class="material-icons">dashboard</span>
-            <a href="{{ route('admin.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+            <a href="/dashboard" class="block p-2 sidebar-text">Dashboard</a>
         </li>
     </ul>
 </div>

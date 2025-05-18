@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="bg-gradient-to-br from-teal-700 via-teal-400 to-teal-900">
+<body class="bg-gradient-to-br from-teal-700 via-teal-500 to-teal-900">
 
 
 

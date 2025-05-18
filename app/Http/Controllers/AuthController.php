@@ -11,8 +11,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+      
     }
 
     public function showLoginForm()
@@ -64,13 +63,14 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request)
-    {
-        Auth::logout();
+{
+    Auth::logout();
 
-        $request->session()->invalidate();
+    $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+    $request->session()->regenerateToken();
 
-        return redirect('/login');
-    }
+    return redirect('/login');  // dito nagre-redirect sa login page
+}
+
 }

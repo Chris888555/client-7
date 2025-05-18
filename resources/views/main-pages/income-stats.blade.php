@@ -1,48 +1,73 @@
-@extends('layouts.app')
+@extends('layouts.users')
+
+@section('title', 'Income Stats')
 
 @section('content')
-    <div class="space-y-6 p-6">
 
-        {{-- Profile Card (Static User Data) --}}
-      {{-- Container na may 3-column grid, tapos 5 cards na full width inside it --}}
-<div class=" w-full">
+<div class="space-y-6 p-6">
 
-    {{-- Profile Card: occupying 1 column --}}
-    <div class="bg-[#0B2347] rounded-xl border border-gray-700 p-6 flex items-center space-x-4 text-gray-300 shadow-lg">
-        <img src="https://ceoroundtable.heart.org/wp-content/uploads/2018/05/Bradway-Robert_-tie_external_2017small.jpg"
-            alt="Profile Picture"
-            class="w-20 h-20 rounded-full object-cover border-4 border-teal-500 shadow-md">
-        <div>
-            <h2 class="text-lg md:text-2xl font-bold flex items-center space-x-2 text-white">
-                <span>Juan Dela Cruz</span>
-                <svg class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 
+ <x-page-header-text title="Income Statistics"/>
+
+    {{-- Profile Card (Static User Data) --}}
+    <div class=" w-full">
+
+        {{-- Profile Card: occupying 1 column --}}
+        <div class="bg-[#0B2347] rounded-xl border border-gray-700 p-6 flex items-center space-x-4 text-gray-300 ">
+            <img src="https://ceoroundtable.heart.org/wp-content/uploads/2018/05/Bradway-Robert_-tie_external_2017small.jpg"
+                alt="Profile Picture" class="w-20 h-20 rounded-full object-cover border-4 border-teal-500 shadow-md">
+            <div>
+                <h2 class="text-lg md:text-2xl font-bold flex items-center space-x-2 text-white">
+                    <span>Juan Dela Cruz</span>
+                    <svg class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 
                           3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 
                           3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 
                           3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 
                           3.42 3.42 0 013.138-3.138z" />
-                </svg>
-            </h2>
-            <p class="text-gray-400 flex items-center space-x-4 mt-1">
-                <span class="font-semibold text-teal-400 flex items-center space-x-1">
-                    <i class="fa-solid fa-ranking-star text-teal-400 mr-2"></i>
-                    <span>Rank:</span>
-                </span>
-                <span class="text-white">Affiliate</span>
-            </p>
+                    </svg>
+                </h2>
+                <p class="text-gray-400 flex items-center space-x-4 mt-1">
+                    <span class="font-semibold text-teal-400 flex items-center space-x-1">
+                        <i class="fa-solid fa-ranking-star text-teal-400 mr-2"></i>
+                        <span>Rank:</span>
+                    </span>
+                    <span class="text-white">Affiliate</span>
+                </p>
+            </div>
         </div>
     </div>
- </div>
- 
+
     {{-- Commission Cards Container: spanning 2 columns --}}
-     <div class="flex flex-row space-x-4">
-  <p class="text-sm font-semibold text-gray-700">Today's Earning</p>
-  <p class="text-sm font-semibold text-gray-700">Date Jan-3-2025</p>
-</div>
+    <div class="flex flex-row space-x-4">
+        <p class="text-sm font-semibold text-gray-700">Today's Earning</p>
+        <p id="current-date" class="text-sm font-semibold text-gray-700">Date</p>
+    </div>
+
+    <script>
+    // Function to format date like "Jan-3-2025"
+    function formatDate(date) {
+        const options = {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        };
+        return date.toLocaleDateString('en-US', options).replace(',', '');
+    }
+
+    // Set the current date text
+    const dateElement = document.getElementById('current-date');
+    const today = new Date();
+    dateElement.textContent = 'Date ' + formatDate(today);
+    </script>
+
+
+    <div class="mb-4 p-4 text-center text-2xl font-extrabold text-teal-700 bg-gray-100 rounded-lg shadow-sm">
+        Total Earnings Today: ₱1,234.00
+    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 col-span-1 md:col-span-2 w-full">
-        
+
         <div class="bg-white rounded-xl border p-6 w-full flex items-center space-x-3 shadow">
             <span class="bg-teal-600 text-white rounded-full p-3 inline-flex items-center justify-center">
                 <i class="fas fa-box"></i>
@@ -99,26 +124,19 @@
 
 
 
-  {{-- Earnings View Toggle --}}
     <div x-data="earningsChart()" class="mt-8 p-6 bg-white rounded-xl border shadow-lg">
+        <!-- Static Total Earnings Display -->
+
+
         <div class="flex space-x-4 mb-6 justify-center">
-            <button
-                :class="view === 'day' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700'"
-                @click="changeView('day')"
-                class="px-4 py-2 rounded-md font-semibold"
-            >Day</button>
+            <button :class="view === 'day' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700'"
+                @click="changeView('day')" class="px-4 py-2 rounded-md font-semibold">Day</button>
 
-            <button
-                :class="view === 'week' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700'"
-                @click="changeView('week')"
-                class="px-4 py-2 rounded-md font-semibold"
-            >Week</button>
+            <button :class="view === 'week' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700'"
+                @click="changeView('week')" class="px-4 py-2 rounded-md font-semibold">Week</button>
 
-            <button
-                :class="view === 'month' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700'"
-                @click="changeView('month')"
-                class="px-4 py-2 rounded-md font-semibold"
-            >Month</button>
+            <button :class="view === 'month' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-700'"
+                @click="changeView('month')" class="px-4 py-2 rounded-md font-semibold">Month</button>
         </div>
 
         {{-- Chart Container --}}

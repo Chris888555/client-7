@@ -5,14 +5,14 @@
 @section('content')
 <main class="container m-auto p-4 sm:p-8 max-w-full">
 
-    <x-page-header-text title="Dashboard" subtitle="Income dashboard: NutriInnovations earnings at a glance" />
+    <x-page-header-text title="Dashboard" />
 
     {{-- Profile & Summary --}}
     <div class=" mb-2">
 
         {{-- Profile Card with Gradient Dark Theme --}}
         <div
-            class="mb-1 bg-[#0B2347] rounded-xl border border-gray-700 p-6 flex flex-col md:flex-row md:items-center md:justify-between col-span-1 md:col-span-2 lg:col-span-3  text-gray-300 shadow-lg">
+            class="mb-1 bg-[#0B2347] rounded-xl border border-gray-700 p-6 flex flex-col md:flex-row md:items-center md:justify-between col-span-1 md:col-span-2 lg:col-span-3  text-gray-300 ">
 
             <!-- Profile Info -->
             <div class="flex items-center space-x-4">
@@ -41,19 +41,23 @@
                 </div>
             </div>
 
-            <!-- Upgrade Account Button with Icon -->
-            <div class="mt-4 md:mt-0 text-center w-full md:w-auto">
-                <a href="/upgrade"
-                    class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition w-full md:w-auto">
-                    <i class="fa-solid fa-arrow-up-right-dots mr-2"></i> Upgrade Account
-                </a>
-            </div>
+
+
+            <!-- Upgrade Account Button -->
+            <!-- Upgrade Account Button with Icon ONLY -->
+            <button class="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold rounded-lg shadow-lg transition duration-300
+                    px-3 py-2 text-sm w-auto sm:px-6 sm:py-3 sm:text-base
+                    mt-4 sm:mt-0
+                    mx-auto sm:mx-0
+                ">
+                                <i class="fa-solid fa-arrow-up-right-dots mr-2"></i> Upgrade Account
+            </button>
 
         </div>
 
 
         <div class="mb-6">
-            <details class="bg-[#0B2347] rounded-xl border border-gray-700 shadow-lg p-4 text-white">
+            <details class="bg-[#0B2347] rounded-xl border border-gray-700  p-4 text-white">
                 <summary class="cursor-pointer text-base md:text-lg font-semibold flex items-center justify-between">
                     <span><i class="fa-solid fa-sitemap mr-2 text-teal-400"></i> View Network Stats</span>
                     <i class="fa-solid fa-chevron-down text-gray-400"></i>
@@ -157,7 +161,7 @@
                         <i class="fas fa-sync-alt"></i>
                     </span>
                     <div>
-                        
+
                         <p class="text-gray-600 text-sm mb-1">Cycle Commissions</p>
                         <h3 class="text-xl font-bold text-teal-600">₱ 3,000.00</h3>
                     </div>
@@ -201,12 +205,39 @@
     <!-- Referral, Shop, and Landing Page Links -->
     <div class="space-y-6 mb-6">
 
-        <!-- Link Card Component -->
+        <!-- Sale Funnel Page Link -->
+        <div class="rounded-lg border border-stroke bg-white p-4">
+            <h2 class="text-base font-semibold text-gray-700 md:text-title-sm">Sale Funnel Link</h2>
+            <p class="text-sm text-gray-600 md:text-base">
+                Use this sales funnel link to promote your campaigns through Facebook ads and other marketing channels.
+            </p>
+            <div class="relative mt-4">
+                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-gray-400" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v4H3V5zm0 6h18v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z" />
+                    </svg>
+                </div>
+                <div id="salesfunnel-link"
+                    class="w-full rounded-lg border border-gray-300 bg-gray-50 py-4 ps-11 pe-28 text-gray-900 text-sm overflow-hidden whitespace-nowrap text-ellipsis">
+                    https://nextgen.com/landing/chan888
+                </div>
+                <button onclick="copyToClipboard('salesfunnel-link')"
+                    class="absolute bottom-2.5 end-2.5 rounded-lg bg-teal-600 px-3 py-2 text-white hover:bg-teal-700 flex items-center gap-1">
+                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                    <span class="text-sm">Copy</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Refferal Link -->
         <div class="rounded-lg border border-stroke bg-white p-4">
             <h2 class="text-base font-semibold text-gray-700 md:text-title-sm">Referral Link</h2>
             <p class="text-sm text-gray-600 md:text-base">
-                Share this referral link with your friends and earn agent commissions when they make a cash-in
-                transaction.
+                Share this referral link with your friends who are ready to sign up.
             </p>
             <div class="relative mt-4">
                 <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
@@ -264,33 +295,6 @@
             </div>
         </div>
 
-        <!-- Sale Funnel Page Link -->
-        <div class="rounded-lg border border-stroke bg-white p-4">
-            <h2 class="text-base font-semibold text-gray-700 md:text-title-sm">Sale Funnel Link</h2>
-            <p class="text-sm text-gray-600 md:text-base">
-                Use this sale funnel link for promotional campaigns and facebook ads marketing.
-            </p>
-            <div class="relative mt-4">
-                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-gray-400" viewBox="0 0 24 24"
-                        fill="currentColor">
-                        <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v4H3V5zm0 6h18v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z" />
-                    </svg>
-                </div>
-                <div id="salesfunnel-link"
-                    class="w-full rounded-lg border border-gray-300 bg-gray-50 py-4 ps-11 pe-28 text-gray-900 text-sm overflow-hidden whitespace-nowrap text-ellipsis">
-                    https://nextgen.com/landing/chan888
-                </div>
-                <button onclick="copyToClipboard('salesfunnel-link')"
-                    class="absolute bottom-2.5 end-2.5 rounded-lg bg-teal-600 px-3 py-2 text-white hover:bg-teal-700 flex items-center gap-1">
-                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-                    </svg>
-                    <span class="text-sm">Copy</span>
-                </button>
-            </div>
-        </div>
     </div>
 
 

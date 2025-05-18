@@ -9,7 +9,4 @@
     <h1 class="text-2xl md:text-3xl font-bold text-left {{ $titleColor }}">
         {{ $title }}
     </h1>
-    <p class="text-left mb-4 {{ $subtitleColor }}">
-        {{ $subtitle }}
-    </p>
 </div>

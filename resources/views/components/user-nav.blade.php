@@ -2,77 +2,95 @@
 <nav class="flex items-center justify-between ">
 
     <!-- Desktop Burger Icon (hidden on mobile, shown on lg and up) -->
-<button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
-    <svg class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-    </svg>
-</button>
+    <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
+        <svg class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+        </svg>
+    </button>
 
-<!-- Mobile Burger Icon (shown only on mobile, hidden on lg and up) -->
-<button id="mobile-burger-icon" class="inline-block lg:hidden text-gray-500">
-    <svg class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
-    </svg>
-</button>
+    <!-- Mobile Burger Icon (shown only on mobile, hidden on lg and up) -->
+    <button id="mobile-burger-icon" class="inline-block lg:hidden text-gray-500">
+        <svg class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+        </svg>
+    </button>
+
+    <ul class="flex ml-auto items-center space-x-4">
+
+        <!-- Notification Icon labas sa button -->
+        <li>
+            <button class="relative focus:outline-none mt-2" aria-label="Notifications">
+                <svg class="fi-icon-btn-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0">
+                    </path>
+                </svg>
+                <span class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
+            </button>
+        </li>
 
 
-
-    <ul class="flex ml-auto space-x-4">
         {{-- Dropdown Menu --}}
         <li class="relative">
-           @php
+            @php
             $user = Auth::user();
             $profilePicturePath = $user->profile_picture;
             $profilePictureExists = $profilePicturePath && Storage::disk('public')->exists($profilePicturePath);
-        @endphp
+            @endphp
 
-        <button class="flex items-center space-x-2 focus:outline-none" id="dropdownButton">
-            <span>{{ $user->name }}</span>
-            <img
-                src="{{ $profilePictureExists ? asset('storage/' . $profilePicturePath) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) }}"
-                alt="Profile"
-                class="w-8 h-8 rounded-full"
-            >
-        </button>
+            <button class="flex items-center space-x-2 focus:outline-none" id="dropdownButton" type="button">
+                <img src="{{ $profilePictureExists ? asset('storage/' . $profilePicturePath) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) }}"
+                    alt="Profile" class="w-8 h-8 rounded-full">
+            </button>
 
-
-            <!-- Dropdown menu that toggles visibility -->
-            <ul id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden z-50">
+            <!-- Dropdown menu -->
+            <ul id="dropdownMenu" class="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg hidden z-50">
+                <li
+                    class="px-4 py-2 border-b text-gray-500  select-none cursor-default flex items-center space-x-2">
+                    <i class="fas fa-user-circle text-gray-400"></i>
+                    <span>{{ $user->name }}</span>
+                </li>
                 <li>
                     <a href="/"
-                       class="block px-4 py-2 hover:bg-gray-100">Edit Profile</a>
+                        class="block w-full px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
+                        <i class="fas fa-edit text-gray-400"></i>
+                        <span>Edit Profile</span>
+                    </a>
                 </li>
                 <li>
-                    <form method="POST" action="/">
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit"
-                                class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
-                    </form>
+                            class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
+                            <i class="fas fa-sign-out-alt text-gray-400"></i>
+                            <span>Logout</span>
+                        </button>
                 </li>
             </ul>
-        </li>
-    </ul>
-</nav>
+        </nav>
 
-    <script>
-        // JavaScript for toggling dropdown visibility
-        document.getElementById('dropdownButton').addEventListener('click', function (event) {
-            var dropdownMenu = document.getElementById('dropdownMenu');
-            dropdownMenu.classList.toggle('hidden'); // Toggle the visibility of the dropdown menu
-            event.stopPropagation(); // Prevent click event from propagating to the document
-        });
 
-        // Close the dropdown if the user clicks outside of it
-        document.addEventListener('click', function (event) {
-            var dropdownMenu = document.getElementById('dropdownMenu');
-            var dropdownButton = document.getElementById('dropdownButton');
-            
-            // Check if the click was outside of the dropdown button or the dropdown menu
-            if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
-                dropdownMenu.classList.add('hidden'); // Hide the dropdown menu
-            }
-        });
-    </script>
+
+<script>
+// JavaScript for toggling dropdown visibility
+document.getElementById('dropdownButton').addEventListener('click', function(event) {
+    var dropdownMenu = document.getElementById('dropdownMenu');
+    dropdownMenu.classList.toggle('hidden'); // Toggle the visibility of the dropdown menu
+    event.stopPropagation(); // Prevent click event from propagating to the document
+});
+
+// Close the dropdown if the user clicks outside of it
+document.addEventListener('click', function(event) {
+    var dropdownMenu = document.getElementById('dropdownMenu');
+    var dropdownButton = document.getElementById('dropdownButton');
+
+    // Check if the click was outside of the dropdown button or the dropdown menu
+    if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
+        dropdownMenu.classList.add('hidden'); // Hide the dropdown menu
+    }
+});
+</script>
 @endauth
 
 
@@ -114,6 +132,7 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
     let items = document.querySelectorAll('.sidebar-item');
     let logoImg = document.getElementById('sidebar-logo-img');
     let logoText = document.getElementById('logo-text');
+    let logoContainer = document.getElementById('sidebar-logo');
 
     if (sidebar.classList.contains('w-[280px]')) {
         sidebar.classList.remove('w-[280px]');
@@ -126,6 +145,8 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         items.forEach(item => {
             item.classList.add('mt-1');
             item.classList.add('p-2');
+            logoContainer.classList.remove('pl-3', 'pr-4');
+            logoContainer.classList.add('p-4'); // Apply uniform padding
         });
 
         // Hide the logo image and show the letter "N" when collapsed
@@ -144,6 +165,8 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         items.forEach(item => {
             item.classList.remove('mt-1');
             item.classList.remove('p-2');
+            logoContainer.classList.remove('p-4');
+            logoContainer.classList.add('pl-3', 'pr-4');
         });
 
         // Reset to the original logo (image)
@@ -152,6 +175,4 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         logoText.classList.remove('text-2xl'); // Reset text size
     }
 });
-
-
 </script>
