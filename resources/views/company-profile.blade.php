@@ -13,7 +13,7 @@
 
     <!-- Company Intro -->
     <section class="space-y-6 text-center lg:text-left">
-        <h1 class="text-2xl md:text-5xl font-bold uppercase ">
+        <h1 class="text-2xl md:text-3xl font-bold uppercase ">
             NUTRIINNOVATIONS
         </h1>
         <p class="text-xl md:text-2xl font-semibold leading-snug max-w-4xl ">
@@ -27,7 +27,7 @@
 
     <!-- Leadership Team -->
      <section class="mt-8 text-center lg:text-left">
-        <h2 class="text-2xl md:text-5xl font-bold uppercase leading-tight tracking-tight">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight">
             THE NUTRIINNOVATIONS LEADERSHIP TEAM
         </h2>
 
@@ -116,6 +116,24 @@
 
         </div>
     </section>
+
+    <!-- Legalities Section -->
+<section class="mt-16 text-center lg:text-left">
+    <h2 class="text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight text-gray-200">
+        LEGALITIES
+    </h2>
+    <p class="text-lg md:text-xl font-semibold mb-6 text-gray-300 max-w-4xl">
+        Nutriinnovations operates with full compliance under Philippine business laws and regulations.
+        Below is a copy of our official documentation ensuring our legitimacy and commitment to ethical practices.
+    </p>
+
+    <div class="flex justify-center">
+        <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/682ae7cdb1a74_BlueandWhiteGradientSign-upandLoginWebsitePageUIDesktopPrototype1.png" 
+             alt="Company Legalities" 
+             class="w-full max-w-4xl rounded-lg ">
+    </div>
+</section>
+
  </div>
 </div>
 @endsection

@@ -15,9 +15,9 @@
         <div class="space-y-5 text-left">
 
             <!-- Login Member Button -->
-            <a href="{{ route('login') }}" 
-               class="inline-block px-6 py-3 mb-6 text-white bg-yellow-500 hover:bg-yellow-600 rounded font-semibold uppercase tracking-wide">
-                Member Login 
+            <a href="{{ route('login') }}"
+                class="inline-block px-6 py-3 mb-6 text-white bg-yellow-500 hover:bg-yellow-600 rounded font-semibold uppercase tracking-wide">
+                Member Login
             </a>
 
             <h2 class="text-3xl md:text-5xl font-bold uppercase leading-tight tracking-tight">
@@ -29,7 +29,8 @@
                 COMBINED WITH
             </p>
             <p class="text-lg md:text-xl text-gray-300">
-                The <span class="text-white font-semibold">STABILITY</span> of an Established, Twenty-Year Business
+                The <span class="text-white font-semibold">STABILITY</span> of an Established Business Backed by 20+
+                Years of Experience
             </p>
 
             <!-- Checklist -->
@@ -54,42 +55,83 @@
                     <i class="fas fa-circle-check text-white"></i>
                     Proven success over 20 years
                 </li>
+                <li class="flex items-center justify-start gap-2">
+                    <i class="fas fa-circle-check text-white"></i>
+                    With Online Suport System-Tools and Trainings
+                </li>
             </ul>
         </div>
 
         <!-- Right: Image -->
         <div class="flex justify-center md:justify-end">
-            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/6829ba1ba6a5c_Copyofgetyoursnow4.png"
-                alt="Nutriinnovations Plus Nextgen"
-                class="w-64 h-64 md:w-[300px] md:h-[300px] object-cover rounded-xl shadow-xl">
+            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/682afadc83470_SBGPowderJar240grams120servings350029007.png"
+                alt="Nutriinnovations Plus Nextgen" class="w-64 h-64 md:w-full md:h-auto object-cover rounded-xl ">
         </div>
     </div>
+    <section class="py-8 sm:py-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-bold uppercase text-gray-200 mb-4">Real Testemonials</h2>
+            <p class="text-lg text-gray-200 mb-12">Narito ang kwento ng mga taong kumita at nagbago ang buhay.</p>
 
-    <!-- Testimonials -->
-    <div class="bg-gray-800 p-6 md:p-10 rounded-xl shadow-lg space-y-6">
-        <h3 class="text-2xl md:text-3xl font-bold text-center">What Our Members Say</h3>
-        <div class="space-y-6">
-            <blockquote class="italic border-l-4 border-blue-500 pl-4">
-                "Napaka-solid ng system! Dati nag-struggle ako magbenta, pero ngayon may sarili na akong team."
-                <br>– <strong>Maria L.</strong>
-            </blockquote>
-            <blockquote class="italic border-l-4 border-green-500 pl-4">
-                "Legit ang kitaan. Ang bilis rin ng support team nila!"
-                <br>– <strong>Joel D.</strong>
-            </blockquote>
-            <blockquote class="italic border-l-4 border-purple-500 pl-4">
-                "Walang hype—totoong may resulta! Salamat sa mentoring at products."
-                <br>– <strong>Carlo R.</strong>
-            </blockquote>
-            <blockquote class="italic border-l-4 border-yellow-500 pl-4">
-                "Sulit ang effort! Dito ko nahanap ang tamang system para sa online business ko."
-                <br>– <strong>Liza M.</strong>
-            </blockquote>
-            <blockquote class="italic border-l-4 border-pink-500 pl-4">
-                "Reliable at hindi pabago-bago ang plano. May long-term vision talaga."
-                <br>– <strong>Kevin S.</strong>
-            </blockquote>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Testimonial 1 -->
+                <div
+                    class="bg-gray-200 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-gray-700">"Napaka-solid ng system! Dati nag-struggle ako magbenta, pero ngayon may
+                        sarili na akong team."</p>
+                    <div class="mt-4 font-medium text-indigo-600">– Maria L.</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    class="bg-gray-200 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-gray-700">"Legit ang kitaan. Ang bilis rin ng support team nila!"</p>
+                    <div class="mt-4 font-medium text-indigo-600">– Joel D.</div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                    class="bg-gray-200 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-gray-700">"Walang hype—totoong may resulta! Salamat sa mentoring at products."</p>
+                    <div class="mt-4 font-medium text-indigo-600">– Carlo R.</div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div
+                    class="bg-gray-200 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-gray-700">"Sulit ang effort! Dito ko nahanap ang tamang system para sa online
+                        business ko."</p>
+                    <div class="mt-4 font-medium text-indigo-600">– Liza M.</div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div
+                    class="bg-gray-200 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-gray-700">"Reliable at hindi pabago-bago ang plano. May long-term vision talaga."</p>
+                    <div class="mt-4 font-medium text-indigo-600">– Kevin S.</div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div
+                    class="bg-gray-200 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-gray-700">"Dati puro try and error lang ako, pero ngayon tuloy-tuloy na ang income ko
+                        dahil sa guidance dito."</p>
+                    <div class="mt-4 font-medium text-indigo-600">– Angela V.</div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class=" px-4">
+        <div class="max-w-6xl mx-auto text-center">
+
+            <div class="rounded-xl overflow-hidden shadow-lg">
+                <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/682b006f2b974_BlueandWhiteGradientSign-upandLoginWebsitePageUIDesktopPrototype.jpg"
+                    alt="Sign-up and Login UI" class="w-full h-auto object-cover" />
+            </div>
+        </div>
+    </section>
+
+</div>
 </div>
 @endsection
