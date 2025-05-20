@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\Page\Userpagecontroller;
+
 Route::get('/', function () {
    return view('home');
 });
@@ -22,7 +24,7 @@ Route::get('/products', function () {
 // Guest routes
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -49,6 +51,12 @@ Route::middleware('auth')->group(function () {
     })->name('income-stats');
 });
 
+
+Route::group(['middleware' => 'usersession'], function () {
+
+    Route::get('/',[Userpagecontroller::class, 'index']);
+
+});
 
 
 

@@ -22,12 +22,10 @@
     </div>
     @endif
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
+    <form method="POST" class="frmLogin">
         <div class="mb-6">
-            <label for="email" class="block text-sm font-semibold text-gray-500 mb-1">Email</label>
-            <input type="email" name="email" id="email" required
+            <label for="email" class="block text-sm font-semibold text-gray-500 mb-1">Username</label>
+            <input type="text" name="username" id="username" required
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
                 value="{{ old('email') }}">
         </div>
@@ -58,17 +56,35 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const togglePassword = document.querySelector('#togglePassword');
-    const password = document.querySelector('#password');
-    const icon = togglePassword.querySelector('i');
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        const icon = togglePassword.querySelector('i');
 
-    togglePassword.addEventListener('click', function() {
-        const isPassword = password.type === 'password';
-        password.type = isPassword ? 'text' : 'password';
-        icon.classList.toggle('fa-eye', !isPassword);
-        icon.classList.toggle('fa-eye-slash', isPassword);
+        togglePassword.addEventListener('click', function() {
+            const isPassword = password.type === 'password';
+            password.type = isPassword ? 'text' : 'password';
+            icon.classList.toggle('fa-eye', !isPassword);
+            icon.classList.toggle('fa-eye-slash', isPassword);
+        });
     });
-});
+    $(document).ready(function(){
+
+        $(".frmLogin").submit(function(e){
+            e.preventDefault();
+            var form = $(this);
+            $.post('/auth/login',{
+                username: form.find('input[name="username"]').val(),
+                password: form.find('input[name="password"]').val()
+            }, function(data){
+                if(data.status){
+
+                }else{
+
+                }
+            }, 'json');
+        });
+
+    });
 </script>
 @endsection
