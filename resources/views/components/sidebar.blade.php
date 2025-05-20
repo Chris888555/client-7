@@ -8,7 +8,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #008080;
+    background-color: #1F2937;
+    /* Tailwind Gray 800 */
     border-radius: 10px;
 }
 </style>
@@ -16,16 +17,16 @@
 
 <!-- ############ PC Sidebar #####################################################################-->
 <aside id="sidebar"
-    class="fixed w-[280px] h-screen p-5 hidden md:block transition-all duration-300 overflow-y-scroll bg-teal-700 text-gray-200">
+    class="fixed w-[280px] h-screen p-5 hidden md:block transition-all duration-300 overflow-y-scroll bg-gray-800 text-gray-200">
 
 
 
     <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 pl-3 pr-4">
-        <a href="/">
+             <a href="/dashboard">
             <img id="sidebar-logo-img"
-                src="https://d1yei2z3i6k35z.cloudfront.net/4624298/6829d6086d371_RealEstate1920x700px4.png"
-                alt="My Logo" class="h-16 w-auto object-contain" />
-            <span id="logo-text" class="text-xl ml-[3px] hidden">N</span>
+                src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" alt="My Logo"
+                class="h-10 w-auto object-contain " />
+            <span id="logo-text" class="text-teal-700 text-3xl ml-[3px] rounded hidden"> N </span>
         </a>
     </div>
 
@@ -33,16 +34,20 @@
     <!-- Pc Sidebar Links -->
     <ul>
 
-        <li
-            class="mb-2 flex items-center space-x-2 sidebar-item rounded px-4 hover:bg-gray-200 rounded px-4 hover:text-teal-800">
-            <span class="material-icons ">dashboard</span>
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                dashboard
+            </span>
             <a href="{{ route('dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
         </li>
 
-        <li class="mb-2 flex items-center space-x-2 sidebar-item rounded px-4 hover:bg-gray-200 rounded px-4 hover:text-teal-800">
-            <span class="material-icons">insights</span>
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                insights
+            </span>
             <a href="{{ route('income-stats') }}" class="block p-2 sidebar-text">Income Stats</a>
         </li>
+
 
 
 
@@ -55,12 +60,12 @@
 <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden md:hidden z-40"></div> <!-- Overlay -->
 
 <div id="mobile-sidebar"
-    class="fixed inset-0 z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto w-[300px]  bg-teal-600 text-gray-200">
+    class="fixed inset-0 z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto w-[300px]  bg-gray-800 text-gray-200">
 
 
     <div class="flex justify-between items-center mb-6 pl-3 pr-4">
-        <a href="/">
-            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/6829d6086d371_RealEstate1920x700px4.png"
+        <a href="/dashboard">
+            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png"
                 alt="My Logo" class="h-10 w-auto object-contain" />
         </a>
 
@@ -76,9 +81,18 @@
 
     <!-- Mobile Sidebar Links -->
     <ul>
-        <li class="mb-2 flex items-center space-x-2 sidebar-item hover:bg-gray-200 rounded px-4 hover:text-teal-800">
-            <span class="material-icons">dashboard</span>
-            <a href="/dashboard" class="block p-2 sidebar-text">Dashboard</a>
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                dashboard
+            </span>
+            <a href="{{ route('dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                insights
+            </span>
+            <a href="{{ route('income-stats') }}" class="block p-2 sidebar-text">Income Stats</a>
         </li>
     </ul>
 </div>

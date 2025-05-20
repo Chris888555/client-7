@@ -3,14 +3,13 @@
 
     <!-- Desktop Burger Icon (hidden on mobile, shown on lg and up) -->
     <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
-        <svg class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-        </svg>
+        <svg class="h-8 w-8 text-gray-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="3" y="3" width="7" height="7" />  <rect x="14" y="3" width="7" height="7" />  <rect x="14" y="14" width="7" height="7" />  <rect x="3" y="14" width="7" height="7" /></svg>
+        
     </button>
 
     <!-- Mobile Burger Icon (shown only on mobile, hidden on lg and up) -->
     <button id="mobile-burger-icon" class="inline-block lg:hidden text-gray-500">
-        <svg class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="h-6 w-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
         </svg>
     </button>
@@ -145,14 +144,16 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         items.forEach(item => {
             item.classList.add('mt-1');
             item.classList.add('p-2');
-            logoContainer.classList.remove('pl-3', 'pr-4');
-            logoContainer.classList.add('p-4'); // Apply uniform padding
+            logoContainer.classList.remove('pl-2', 'pr-4');
+            logoContainer.classList.add('px-4'); 
+           logoContainer.classList.add('bg-gray-300', 'rounded', 'mt-2');
+
         });
 
         // Hide the logo image and show the letter "N" when collapsed
         logoImg.classList.add('hidden'); // Hide the logo image
         logoText.classList.remove('hidden'); // Show the letter "N"
-        logoText.classList.add('text-2xl'); // Make the letter "N" larger
+        logoText.classList.add('text-3xl'); // Make the letter "N" larger
 
     } else {
         sidebar.classList.remove('w-[96px]');
@@ -165,14 +166,16 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         items.forEach(item => {
             item.classList.remove('mt-1');
             item.classList.remove('p-2');
-            logoContainer.classList.remove('p-4');
-            logoContainer.classList.add('pl-3', 'pr-4');
+            logoContainer.classList.remove('px-4');
+            logoContainer.classList.add('pl-2', 'pr-4');
+            logoContainer.classList.remove('bg-gray-300', 'rounded', 'mt-2');
+
         });
 
         // Reset to the original logo (image)
         logoImg.classList.remove('hidden'); // Show the logo image
         logoText.classList.add('hidden'); // Hide the letter "N"
-        logoText.classList.remove('text-2xl'); // Reset text size
+        logoText.classList.remove('text-3xl'); // Reset text size
     }
 });
 </script>

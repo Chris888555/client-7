@@ -14,8 +14,8 @@
 
             <!-- Logo image centered on mobile, left-aligned on md+ -->
             <div class="mx-auto md:mx-0 text-center md:text-left">
-                <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/6829d250a2b41_RealEstate1920x700px3.png"
-                    alt="Company Logo" class="h-10 md:h-16 inline-block" />
+                <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png"
+                    alt="Company Logo" class="h-8 md:h-12 inline-block" />
             </div>
 
 

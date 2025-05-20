@@ -11,55 +11,66 @@
     {{-- Profile Card (Static User Data) --}}
     <div class=" w-full">
 
-        {{-- Profile Card: occupying 1 column --}}
-        <div class="bg-[#0B2347] rounded-xl border border-gray-700 p-6 flex items-center space-x-4 text-gray-300 ">
-            <img src="https://ceoroundtable.heart.org/wp-content/uploads/2018/05/Bradway-Robert_-tie_external_2017small.jpg"
-                alt="Profile Picture" class="w-20 h-20 rounded-full object-cover border-4 border-teal-500 shadow-md">
-            <div>
-                <h2 class="text-lg md:text-2xl font-bold flex items-center space-x-2 text-white">
-                    <span>Juan Dela Cruz</span>
-                    <svg class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 
-                          3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 
-                          3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 
-                          3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 
-                          3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                </h2>
-                <p class="text-gray-400 flex items-center space-x-4 mt-1">
-                    <span class="font-semibold text-teal-400 flex items-center space-x-1">
-                        <i class="fa-solid fa-ranking-star text-teal-400 mr-2"></i>
-                        <span>Rank:</span>
-                    </span>
-                    <span class="text-white">Affiliate</span>
-                </p>
-            </div>
-        </div>
+       <!-- Profile Card: occupying 1 column -->
+<div class="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl border border-gray-700 p-6 flex items-center space-x-4 text-gray-300 ">
+    <img src="https://ceoroundtable.heart.org/wp-content/uploads/2018/05/Bradway-Robert_-tie_external_2017small.jpg"
+        alt="Profile Picture" class="w-20 h-20 rounded-full object-cover border-4 border-teal-500 shadow-md">
+    <div>
+        <h2 class="text-lg md:text-2xl font-bold flex items-center space-x-2 text-white">
+            <span>Juan Dela Cruz</span>
+            <svg class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 
+                  3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 
+                  3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 
+                  3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 
+                  3.42 3.42 0 013.138-3.138z" />
+            </svg>
+        </h2>
+        <p class="text-gray-400 flex items-center space-x-4 mt-1">
+            <span class="font-semibold text-teal-400 flex items-center space-x-1">
+                <i class="fa-solid fa-ranking-star text-teal-400 mr-2"></i>
+                <span>Rank:</span>
+            </span>
+            <span class="text-white">Affiliate</span>
+        </p>
+        <!-- Live Date -->
+        <p id="live-date" class="text-xs text-gray-400 mt-2"></p>
     </div>
+</div>
+
+<script>
+    // Function to format date like: Monday, May 20, 2025
+    function formatDate(date) {
+        const options = {
+            weekday: 'long',   // full name of the day (e.g., Monday)
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        return date.toLocaleDateString('en-US', options); // Use 'en-US' for consistency
+    }
+
+    // Set the live date text on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        const liveDateElem = document.getElementById("live-date");
+        const now = new Date();
+        liveDateElem.textContent = formatDate(now);
+    });
+</script>
+
+
+    </div>
+
+
 
     {{-- Commission Cards Container: spanning 2 columns --}}
     <div class="flex flex-row space-x-4">
         <p class="text-sm font-semibold text-gray-700">Today's Earning</p>
-        <p id="current-date" class="text-sm font-semibold text-gray-700">Date</p>
+
     </div>
 
-    <script>
-    // Function to format date like "Jan-3-2025"
-    function formatDate(date) {
-        const options = {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        };
-        return date.toLocaleDateString('en-US', options).replace(',', '');
-    }
 
-    // Set the current date text
-    const dateElement = document.getElementById('current-date');
-    const today = new Date();
-    dateElement.textContent = 'Date ' + formatDate(today);
-    </script>
 
 
     <div class="mb-4 p-4 text-center text-2xl font-extrabold text-teal-700 bg-gray-100 rounded-lg shadow-sm">
@@ -124,7 +135,7 @@
 
 
 
-    <div x-data="earningsChart()" class="mt-8 p-6 bg-white rounded-xl border shadow-lg">
+   <div x-data="earningsChart()" class="mt-8 p-6 bg-white rounded-xl border shadow-lg">
         <!-- Static Total Earnings Display -->
 
 
