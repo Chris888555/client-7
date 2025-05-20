@@ -7,14 +7,23 @@
         
     </button>
 
-    <!-- Mobile Burger Icon (shown only on mobile, hidden on lg and up) -->
-    <button id="mobile-burger-icon" class="inline-block lg:hidden text-gray-500">
-        <svg class="h-6 w-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-        </svg>
-    </button>
+   <!-- Mobile Burger Icon and Logo (inline on mobile only) -->
+    <div class="flex items-center lg:hidden space-x-2">
+        <button id="mobile-burger-icon" class="inline-block text-gray-500">
+            <svg class="h-6 w-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+        </button>
+
+        <a href="/dashboard" id="nav-logo" class="flex items-center space-x-2">
+            <img id="nav-logo-img" src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" 
+            alt="My Logo" class="h-8 w-auto ml-4 object-contain" />
+        
+        </a>
+    </div>
 
     <ul class="flex ml-auto items-center space-x-4">
+
 
         <!-- Notification Icon labas sa button -->
         <li>
@@ -65,6 +74,7 @@
                             <i class="fas fa-sign-out-alt text-gray-400"></i>
                             <span>Logout</span>
                         </button>
+                        </form>
                 </li>
             </ul>
         </nav>

@@ -20,7 +20,7 @@
                     alt="Profile Picture"
                     class="w-24 h-24 rounded-full object-cover border-4 border-teal-500 shadow-md">
                 <div>
-                    <h2 class="text-lg md:text-2xl font-bold text-white flex items-center space-x-2">
+                    <h2 class="text-sm md:text-2xl font-bold text-white flex items-center space-x-2">
                         <span>Juan Dela Cruz</span>
                         <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -155,12 +155,29 @@
 
 
 
-        <div class="mb-6">
-            <details class="bg-gray-100 rounded-xl border border p-4 text-gray-600">
-                <summary class="cursor-pointer text-base md:text-lg font-semibold flex items-center justify-between">
-                    <span><i class="fa-solid fa-sitemap mr-2 text-teal-400"></i> View Network Stats</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400"></i>
-                </summary>
+       <div class="mb-6" x-data="{ open: false }">
+  <details 
+    class="bg-gray-100 rounded-xl border p-4 text-gray-600" 
+    x-bind:open="open" 
+    @toggle="open = $event.target.open"
+    x-ref="details"
+  >
+    <summary 
+      class="cursor-pointer text-base md:text-lg font-semibold flex items-center justify-between"
+    >
+      <span><i class="fa-solid fa-sitemap mr-2 text-teal-400"></i> View Network Stats</span>
+
+      <!-- Icon that toggles open/close on click -->
+      <i 
+        class="fa-solid text-gray-400 cursor-pointer"
+        :class="open ? 'fa-chevron-up' : 'fa-chevron-down'"
+        @click.prevent="
+          open = !open; 
+          if(open) $refs.details.setAttribute('open', '');
+          else $refs.details.removeAttribute('open');
+        "
+      ></i>
+    </summary>
 
                 <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
                     <!-- Total Network -->
@@ -307,12 +324,9 @@
         </div>
 
 
-
-
-
         {{-- Table of Users --}}
         <div class="bg-white rounded-xl border p-6">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800 flex items-center gap-2">
+            <h2 class="text-base md:text-lg font-semibold mb-6 text-gray-600 flex items-center gap-2">
                 <i class="fas fa-users text-teal-600"></i> Free Signup Clients
             </h2>
 
@@ -344,14 +358,14 @@
                     </thead>
                     <tbody>
                         <tr class="hover:bg-teal-50 transition-colors duration-150">
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-900 font-medium">Juan Dela Cruz</td>
+                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">Juan Dela Cruz</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-gray-700">juan@example.com</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-gray-700">09171234567</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-gray-700">May 17, 2025</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
                         </tr>
                         <tr class="hover:bg-teal-50 transition-colors duration-150">
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-900 font-medium">Maria Santos</td>
+                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">Maria Santos</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-gray-700">maria@example.com</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-gray-700">09181234567</td>
                             <td class="border-b border-gray-200 px-5 py-4 text-gray-700">May 16, 2025</td>
@@ -362,6 +376,29 @@
             </div>
         </div>
 
-
 </main>
+
+     <!-- Example copy function -->
+            <script>
+            function copyToClipboard(elementId) {
+                const textToCopy = document.getElementById(elementId).innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Copied!',
+                    text: `Link copied from ${elementId.replace('-', ' ')}`,
+                    timer: 1500,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                    toast: true,
+                });
+                }).catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Failed to copy link.',
+                });
+                });
+            }
+            </script>
 @endsection

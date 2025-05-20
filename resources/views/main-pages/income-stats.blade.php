@@ -16,8 +16,8 @@
     <img src="https://ceoroundtable.heart.org/wp-content/uploads/2018/05/Bradway-Robert_-tie_external_2017small.jpg"
         alt="Profile Picture" class="w-20 h-20 rounded-full object-cover border-4 border-teal-500 shadow-md">
     <div>
-        <h2 class="text-lg md:text-2xl font-bold flex items-center space-x-2 text-white">
-            <span>Juan Dela Cruz</span>
+        <h2 class="text-sm md:text-2xl font-bold flex items-center space-x-2 text-white">
+            <span>Christian De Lumen</span>
             <svg class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 
@@ -27,7 +27,7 @@
                   3.42 3.42 0 013.138-3.138z" />
             </svg>
         </h2>
-        <p class="text-gray-400 flex items-center space-x-4 mt-1">
+        <p class="text-sm text-gray-400 flex items-center space-x-4 mt-1">
             <span class="font-semibold text-teal-400 flex items-center space-x-1">
                 <i class="fa-solid fa-ranking-star text-teal-400 mr-2"></i>
                 <span>Rank:</span>
