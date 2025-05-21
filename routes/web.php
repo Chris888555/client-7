@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
 Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/',[Userpagecontroller::class, 'index']);
+    Route::get('/teams',[Userpagecontroller::class, 'teams']);
 
 });
 
