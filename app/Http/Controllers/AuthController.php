@@ -6,15 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-use App\Models\User;
+use App\Models\User\Users;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-      
-    }
-
     public function showLoginForm()
     {
         return view('auth.login');
@@ -22,7 +17,42 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $checkUser = Users::where()->first();
+        if($request->input('username') == ""){
+            return response()->json(["status" => false, "msg" => "Username is empty!"]);
+        } else if($request->input('password') == ""){
+            return response()->json(["status" => false, "msg" => "Password is empty"]);
+        } else{
+            $check = Users::where('username', $request->input('username'))->first();
+            if(empty($check)){
+                return response()->json(["status" => false, "msg" => "Account not found!"]);
+            }else{
+                if(Hash::check($request->input('password'), $check->password)){
+                    if($check->role == "user"){
+                        session()->put('usersession',$check->username);
+                        session()->put('usersession_name',$check->full_name);
+                        if(session()->get('usersession')){
+                            return response()->json([
+                                "role" => $check->role,
+                                "status" => true,
+                                "link" => "/"
+                            ]);
+                        }
+                    }else if($check->role == "admin"){
+                        session()->put('adminsession',$check->username);
+                        session()->put('adminsession_name',$check->full_name);
+                        if(session()->get('adminsession')){
+                            return response()->json([
+                                "role" => $check->role,
+                                "status" => true,
+                                "link" => "/admin"
+                            ]);
+                        }
+                    }
+                }else{
+                    return response()->json(["status" => false, "msg" => "Incorrect password!"]);     
+                }
+            }
+        }
     }
 
     public function showRegistrationForm()

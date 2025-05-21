@@ -27,6 +27,7 @@ return new class extends Migration
             $table->float('shareup',18,2);
             $table->float('wholesale',18,2);
             $table->float('groupsale',18,2);
+            $table->float('ranking',18,2);
             $table->timestamps();
         });
 
@@ -47,6 +48,7 @@ return new class extends Migration
                     "shareup" => 0,
                     "wholesale" => 0,
                     "groupsale" => 0,
+                    "ranking" => 0,
                     "created_at" => date('Y-m-d H:i:s', strtotime("Now")),
                     "updated_at" => date('Y-m-d H:i:s', strtotime("Now")),
                 ]

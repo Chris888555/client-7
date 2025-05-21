@@ -6,5 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Commissions extends Model
 {
-    //
+    public $id = false;
+    protected $fillable = [
+        "username",
+        "dr",
+        "passup",
+        "unilvl",
+        "sales",
+        "rebate",
+        "indirect",
+        "shareup",
+        "wholesale",
+        "groupsale",
+        "pairing",
+        "leadership",
+        "leadersupport",
+        "incentive",
+        "ranking",
+    ];
+
+    public function users(){
+        return $this->hasOne(Users::class,  'username', 'username');
+    }
 }

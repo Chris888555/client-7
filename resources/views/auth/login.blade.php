@@ -22,7 +22,6 @@
     </div>
     @endif
 
-    <form method="POST" class="frmLogin">
         <div class="mb-6">
             <label for="email" class="block text-sm font-semibold text-gray-500 mb-1">Username</label>
             <input type="text" name="username" id="username" required
@@ -47,14 +46,13 @@
             <a href="/mlm/forgot-password" class="text-sm text-gray-500 hover:underline">Forgot Password?</a>
         </div>
 
-        <button type="submit"
-            class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 rounded-lg transition duration-200">
-            Login
-        </button>
-    </form>
+        <button type="click" id="btnLogin" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 rounded-lg transition duration-200"> Login </button>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{ asset('userjs/alert.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const togglePassword = document.querySelector('#togglePassword');
@@ -70,17 +68,23 @@
     });
     $(document).ready(function(){
 
-        $(".frmLogin").submit(function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("#btnLogin").click(function(e){
             e.preventDefault();
             var form = $(this);
             $.post('/auth/login',{
-                username: form.find('input[name="username"]').val(),
-                password: form.find('input[name="password"]').val()
+                username: $("#username").val(),
+                password: $("#password").val()
             }, function(data){
                 if(data.status){
-
+                    success_auto_to("Redirecting...", data.link);
                 }else{
-
+                    error(data.msg)
                 }
             }, 'json');
         });
