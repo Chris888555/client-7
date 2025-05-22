@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\Page\Userpagecontroller;
 
+use App\Http\Controllers\User\Accountcontroller;
+
 Route::get('/', function () {
    return view('home');
 });
@@ -34,9 +36,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 
 
 ##############################################################################################
-// Main Routes
+// User Routes
 ##############################################################################################
-
 // Users Dashboard
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -51,22 +52,21 @@ Route::middleware('auth')->group(function () {
     })->name('income-stats');
 });
 
-
 Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/',[Userpagecontroller::class, 'index']);
     Route::get('/teams',[Userpagecontroller::class, 'teams']);
+    Route::get('/add-new-account',[Userpagecontroller::class, 'addNewAccount']);
 
 });
+##############################################################################################
+// Account controller
+##############################################################################################
+Route::post('/user/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
 
 
 
 ##############################################################################################
 // Admin Routes
 ##############################################################################################
-
-// Admin Dashboard
-Route::middleware('auth')->get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
 
