@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $this->down();
         Schema::create('codelogs', function (Blueprint $table) {
             $table->id();
             $table->string('batchid');
             $table->string('creator');
             $table->integer('quantity')->unsigned();
             $table->string('type');
+            $table->string('name');
+            $table->timestamps();
         });
 
         DB::table('codelogs')->insert(
@@ -26,6 +29,7 @@ return new class extends Migration
                     "creator" => "admin",
                     "quantity" => 1,
                     "type" => "P1",
+                    "name" => "Default codes",
                     "created_at" => date('Y-m-d H:i:s', strtotime("Now")),
                     "updated_at" => date('Y-m-d H:i:s', strtotime("Now"))
                 ]

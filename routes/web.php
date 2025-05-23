@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\Page\Userpagecontroller;
+use App\Http\Controllers\Page\Adminpagecontroller;
 
 use App\Http\Controllers\User\Accountcontroller;
+
+use App\Http\Controllers\Admin\Codecontroller;
 
 Route::get('/', function () {
    return view('home');
@@ -38,7 +41,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 ##############################################################################################
 // User Routes
 ##############################################################################################
-// Users Dashboard
+
+// Users dashboard
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -70,3 +74,16 @@ Route::post('/user/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
 // Admin Routes
 ##############################################################################################
 
+// Admin dashboard
+Route::group(['middleware' => 'adminsession'], function () {
+
+    Route::get('/admin',[Adminpagecontroller::class, 'index']);
+
+    // Code
+    Route::get('/admin/codes',[Adminpagecontroller::class, 'codes'])->name('admin-codes');
+
+});
+##############################################################################################
+// Code controller
+##############################################################################################
+Route::post('/admin/code/generate',[Codecontroller::class, 'generate']);

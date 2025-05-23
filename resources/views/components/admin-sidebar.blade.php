@@ -47,6 +47,13 @@
             </span>
             <a href="{{ route('income-stats') }}" class="block p-2 sidebar-text">Income Stats</a>
         </li>
+        
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                code
+            </span>
+            <a href="{{ route('admin-codes') }}" class="block p-2 sidebar-text">Codes</a>
+        </li>
 
 
 

@@ -12,6 +12,6 @@ class Codes extends Model
     ];
 
     public function codesettings(){
-        return $this->belongsTo(Codesettings::class,  'type', 'codetype');
+        return $this->belongsTo(Codesettings::class,  'type', 'recordid');
     }
 }

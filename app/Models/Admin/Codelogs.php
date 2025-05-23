@@ -11,6 +11,7 @@ class Codelogs extends Model
         "batchid",
         "creator",
         "quantity",
-        "type"
+        "type",
+        "name"
     ];
 }

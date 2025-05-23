@@ -96,45 +96,9 @@ class Accountcontroller extends Controller
                 if($checkCode->status == "U"){
                     return json_encode(["status"=> false, "msg" => "Code already used!"]);
                 }
-
-                $datasponsor = Accounts::where('username', $sponsor)->first();
-
-                $getAllNodesL = Accounts::with('codes.codesettings')->where('binnode', 'like', $datasponsor->binnode.".L%")->get();
-                $getAllNodesR = Accounts::with('codes.codesettings')->where('binnode', 'like', $datasponsor->binnode.".R%")->get();
-
-                $leftpoints = 0;
-                foreach ($getAllNodesL as $key => $value) {
-                    $leftpoints += $value->codes->codesettings->pointvalue;
-                }
-
-                $rightpoints = 0;
-                foreach ($getAllNodesR as $key => $value) {
-                    $rightpoints += $value->codes->codesettings->pointvalue;
-                }
-
-                $newupline = "";
-                $pos = "";
-                if($leftpoints <= 0){
-                    $newupline = $datasponsor->username;
-                    $pos = "L";
-                }else if($rightpoints <= 0){
-                    $newupline = $datasponsor->username;
-                    $pos = "R";
-                }else if($leftpoints > $rightpoints){
-                    $temp = Accounts::where('binnode','like',$datasponsor->binnode.".R%")->orderBy('id', 'DESC')->first();
-                    $newupline = $temp->username;
-                    $pos = $temp->pos;
-                }else if($rightpoints > $leftpoints){
-                    $temp = Accounts::where('binnode','like',$datasponsor->binnode.".L%")->orderBy('id', 'DESC')->first();
-                    $newupline = $temp->username;
-                    $pos = $temp->pos;
-                }else{
-                    $arr_post = ["R", "L"];
-                    $pos = $arr_post[array_rand($arr_post)];
-                    $temp = Accounts::where('binnode','like',$datasponsor->binnode.".".$pos."%")->orderBy('id', 'DESC')->first();
-                    $newupline = $temp->username;
-                    $pos = $temp->pos;
-                }
+                
+                $newupline = $upline;
+                $pos = $position;
 
 
                 $binlvl = $this->accountInfo($newupline)->binlvl;
@@ -180,6 +144,7 @@ class Accountcontroller extends Controller
                     "leadership" => 0,
                     "leadersupport" => 0,
                     "incentive" => 0,
+                    "ranking" => 0,
                 ]);
 
                 Users::create([
@@ -208,16 +173,16 @@ class Accountcontroller extends Controller
                     $curr_node = $this->accountInfo($newupline);
                     do{
                         $curr_node = $this->accountInfo($curr_node->username);
-                        $pointvalue = $checkCode->codesettings->pointvalue;
+                        $pointvalue = $checkCode->codesettings->pv;
                         if($pos == "R"){
                                 if($curr_node->left > 0){
-                                    if($curr_node->left >= 1){
-                                        if(($curr_node->right + 1) >= $pointvalue){
+                                    if($curr_node->left >= 30){
+                                        if(($curr_node->right + 30) >= $pointvalue){
                                             Accounts::where("username", $curr_node->username)->update([
                                                 "left" => (($curr_node->left - $pointvalue) <= 0) ? 0 : $curr_node->left - $pointvalue,
                                                 "right" => (($curr_node->right - $pointvalue) <= 0) ? 0 : $curr_node->right - $pointvalue,
-                                                "pairs" => $curr_node->pairs + 1,
-                                                "totalpairs" => $curr_node->totalpairs + 1,
+                                                "pairs" => $curr_node->pairs + 30,
+                                                "totalpairs" => $curr_node->totalpairs + 30,
                                                 "totalright" => $curr_node->totalright + $pointvalue
                                             ]);
                                             Pairinglogs::create([
@@ -237,13 +202,13 @@ class Accountcontroller extends Controller
                                 }
                         }else{
                                 if($curr_node->right > 0){
-                                    if($curr_node->right >= 1){
-                                        if(($curr_node->left + 1) >= $pointvalue){
+                                    if($curr_node->right >= 30){
+                                        if(($curr_node->left + 30) >= $pointvalue){
                                             Accounts::where("username", $curr_node->username)->update([
                                                 "right" => (($curr_node->right - $pointvalue) <= 0) ? 0 : $curr_node->right - $pointvalue,
                                                 "left" => (($curr_node->left - $pointvalue) <= 0) ? 0 : $curr_node->left - $pointvalue,
-                                                "pairs" => $curr_node->pairs + 1,
-                                                "totalpairs" => $curr_node->totalpairs + 1,
+                                                "pairs" => $curr_node->pairs + 30,
+                                                "totalpairs" => $curr_node->totalpairs + 30,
                                                 "totalleft" => $curr_node->totalleft + $pointvalue
                                             ]);
                                             Pairinglogs::create([

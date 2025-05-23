@@ -6,26 +6,29 @@
 <div class="p-6 bg-gray-100 min-h-screen">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Team</h1>
 
-    <a href="/add-new-account">Add new account</a>
+    <a href="/teams" class="btn btn-info btn-md mb-4 active">Team</a>
+    <a href="/add-new-account" class="btn btn-info btn-md mb-4">Add new account</a>
 
     <!-- Recent Members Table (Static content) -->
     <div class="bg-white shadow rounded-lg p-6">
-        <table class="min-w-full table-auto text-left">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>Sponsor</th>
-                    <th>Type</th>
-                    <th>Level</th>
-                    <th>Position</th>
-                </tr>
-            </thead>
-            <tbody>
-                {!! $accounts !!}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="min-w-full table-auto table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Sponsor</th>
+                        <th>Type</th>
+                        <th>Level</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {!! $accounts !!}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection

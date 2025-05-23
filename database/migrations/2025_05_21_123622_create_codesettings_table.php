@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('lvlunilvl')->unsigned();
             $table->string('funnel');
             $table->string('store');
+            $table->string('status');
             $table->timestamps();
         });
 
@@ -46,6 +47,8 @@ return new class extends Migration
                 "lvlunilvl" => 10,
                 "funnel" => "basic",
                 "store" => "basic",
+                "store" => "basic",
+                "status" => "active",
                 'created_at' => date('Y-m-d H:i:s', strtotime("Now")),
                 'updated_at' => date('Y-m-d H:i:s', strtotime("Now"))
             ]
