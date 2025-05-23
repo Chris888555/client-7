@@ -4,6 +4,8 @@ namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Admin\Codes;
+
 class Accounts extends Model
 {
     public $id = false;

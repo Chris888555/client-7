@@ -5,6 +5,33 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
+use App\Models\Admin\Codes;
+use App\Models\Admin\Codesettings;
+use App\Models\Admin\Globalsettings;
+use App\Models\Admin\Indirectdrsettings;
+use App\Models\Admin\Systemsettings;
+
+use App\Models\User\Users;
+use App\Models\User\Accounts;
+use App\Models\User\Commissions;
+use App\Models\User\Inventories;
+use App\Models\User\Encashments;
+use App\Models\User\Commissionlogs;
+use App\Models\User\Subscriptions;
+use App\Models\User\Addresses;
+use App\Models\User\Activations;
+use App\Models\User\Storesettings;
+use App\Models\User\Checkouts;
+use App\Models\User\Coderequests;
+use App\Models\User\Pairinglogs;
+
+use DB;
+use Str;
+use Hash;
+use DateTime;
+
 class Accountcontroller extends Controller
 {
     public function __construct(){
@@ -40,6 +67,8 @@ class Accountcontroller extends Controller
             $sponsor = $request->input('sponsor');
             $upline = $request->input('upline');
             $position = $request->input('position');
+            $email = $request->input('emailaddress');
+            $mobileno = $request->input('mobilephone');
 
             if(!$this->isValidUsername($username)){
                 return response()->json([ "msg" => "Invalid username!", "status" => false ]);
@@ -153,8 +182,8 @@ class Accountcontroller extends Controller
                     "dpassword" => $request->input('password'),
                     "firstname" => $request->input('firstname'),
                     "lastname" => $request->input('lastname'),
-                    "email" => $request->input('email'),
-                    "mobileno" => $request->input('mobile'),
+                    "email" => $request->input('emailaddress'),
+                    "mobileno" => $request->input('mobilephone'),
                     "picture" => "images/defaulticon.jpeg",
                     "status" => "active",
                     "sponsor" => $request->input('sponsor'),
@@ -181,8 +210,8 @@ class Accountcontroller extends Controller
                                             Accounts::where("username", $curr_node->username)->update([
                                                 "left" => (($curr_node->left - $pointvalue) <= 0) ? 0 : $curr_node->left - $pointvalue,
                                                 "right" => (($curr_node->right - $pointvalue) <= 0) ? 0 : $curr_node->right - $pointvalue,
-                                                "pairs" => $curr_node->pairs + 30,
-                                                "totalpairs" => $curr_node->totalpairs + 30,
+                                                "pairs" => $curr_node->pairs + 1,
+                                                "totalpairs" => $curr_node->totalpairs + 1,
                                                 "totalright" => $curr_node->totalright + $pointvalue
                                             ]);
                                             Pairinglogs::create([
@@ -207,8 +236,8 @@ class Accountcontroller extends Controller
                                             Accounts::where("username", $curr_node->username)->update([
                                                 "right" => (($curr_node->right - $pointvalue) <= 0) ? 0 : $curr_node->right - $pointvalue,
                                                 "left" => (($curr_node->left - $pointvalue) <= 0) ? 0 : $curr_node->left - $pointvalue,
-                                                "pairs" => $curr_node->pairs + 30,
-                                                "totalpairs" => $curr_node->totalpairs + 30,
+                                                "pairs" => $curr_node->pairs + 1,
+                                                "totalpairs" => $curr_node->totalpairs + 1,
                                                 "totalleft" => $curr_node->totalleft + $pointvalue
                                             ]);
                                             Pairinglogs::create([
@@ -244,7 +273,8 @@ class Accountcontroller extends Controller
             DB::rollback();
             return response()->json([
                 "status" => false,
-                "msg" => "Something went wrong.".$ex
+                "msg" => "Something went wrong.",
+                "error" => $ex->getMessage()
             ]);
         }
     }

@@ -53,7 +53,7 @@
             </div>
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>Upline ID</strong></label>
-                <input type="text" readonly name="upline" id="upline" class="form-control" required>
+                <input type="text" name="upline" id="upline" class="form-control" required>
             </div>
             <div class="col-6 mb-4">
                 <button type="submit" class="form-control btn btn-success">
