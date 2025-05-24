@@ -28,6 +28,9 @@
     {{-- SweetAlert2 (for beautiful alert modals) --}}
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
+    <!-- Custom css -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
     {{-- Alpine.js (for reactive behavior in Blade) --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 

@@ -9,36 +9,54 @@
     <a href="/teams" class="btn btn-info btn-md mb-4">Team</a>
     <a href="/add-new-account" class="btn btn-info btn-md active mb-4">Add new account</a>
 
-    <!-- Recent Members Table (Static content) -->
+    @php
+        $env = env('APP_ENV');
+
+        $firstname = $env == 'local' ? 'Test' : '';
+        $lastname = $env == 'local' ? 'Test' : '';
+        $emailaddress = $env == 'local' ? 'Test@test.test' : '';
+        $mobilephone = $env == 'local' ? '0995955555' : '';
+        $username = $env == 'local' ? "main".$totalaccounts : '';
+        $password = $env == 'local' ? '0000' : '';
+        $code = "";
+        if($env == 'local'){
+            if(!empty($activationcode)){
+                $code = $activationcode->codeid;
+            }
+        }
+
+    
+    @endphp
+
     <div class="bg-white shadow rounded-lg p-6">
         <form class="frmAddNewAccount row">
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>First name</strong></label>
-                <input type="text" placeholder="Enter First Name" class="form-control" required id="firstname" name="firstname" />
+                <input type="text" placeholder="Enter First Name" class="form-control" value="{{ $firstname }}" required id="firstname" name="firstname" />
             </div>
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>Last name</strong></label>
-                <input type="text" placeholder="Enter last name" class="form-control" required id="lastname" name="lastname" />
+                <input type="text" placeholder="Enter last name" class="form-control" value="{{ $lastname }}" required id="lastname" name="lastname" />
             </div>
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>Email Address</strong></label><span><strong><a href="javascript:void(0)" style="font-size:10px" id="email-error"></a></strong></span>
-                <input type="email" placeholder="Enter Email Address" class="form-control" required id="emailaddress" name="emailaddress"/>
+                <input type="email" placeholder="Enter Email Address" class="form-control" value="{{ $emailaddress }}" required id="emailaddress" name="emailaddress"/>
             </div>
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>Mobile Number</strong></label><span><strong><a href="javascript:void(0)" style="font-size:10px" id="mobile-error"></a></strong></span>
-                <input type="number" placeholder="Enter number" class="form-control" required id="mobilephone" name="mobilephone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" />
+                <input type="number" placeholder="Enter number" class="form-control" value="{{ $mobilephone }}" required id="mobilephone" name="mobilephone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" />
             </div>
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>Username</strong></label>
-                <input type="text" placeholder="Username" required="" class="form-control  requiredfrm-inp" id="username" name="username" />
-            </div>
-            <div class="col-6 mb-4">
-                <label class="control-label"><strong>Password</strong></label>
-                <input type="password" placeholder="Password" id="password" class="form-control" required name="password" />
+                <input type="text" placeholder="Username" value="{{ $username }}" required class="form-control" id="username" name="username" />
             </div>
             <div class="form-group col-6 mb-4">
-                <label  class="control-label"><strong>Activation code</strong></label>
-                <input type="text" placeholder="Enter activation code" name="codeid" id="codeid" class="form-control" required>
+                <label class="control-label"><strong>Password</strong></label>
+                <input type="password" placeholder="Password" id="password" class="form-control" value="{{ $password }}" required name="password" />
+            </div>
+            <div class="form-group col-6 mb-4">
+                <label class="control-label"><strong>Activation code</strong></label>
+                <input type="text" placeholder="Enter activation code" name="codeid" id="codeid" class="form-control" value="{{ $code }}" required>
             </div>
             <div class="form-group col-6 mb-4">
                 <label class="control-label"><strong>Position</strong></label>

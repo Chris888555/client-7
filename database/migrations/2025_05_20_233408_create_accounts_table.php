@@ -43,7 +43,7 @@ return new class extends Migration
             'binlvl' => 0,
             'count' => 1,
             'uninode' => 1,
-            'unilvl' => 1,
+            'unilvl' => 0,
             'left' => 0,
             'right' => 0,
             'pairs' => 0,

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('leadersupport',18,2);
             $table->float('incentive',18,2);
             $table->float('unilvl',18,2);
+            $table->float('infinity',18,2);
             $table->float('sales',18,2);
             $table->float('rebate',18,2);
             $table->float('indirect',18,2);
@@ -38,6 +39,7 @@ return new class extends Migration
                     "dr" => 0,
                     "passup" => 0,
                     "unilvl" => 0,
+                    "infinity" => 0,
                     "sales" => 0,
                     "pairing" => 0,
                     "leadership" => 0,

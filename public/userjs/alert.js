@@ -124,7 +124,7 @@ function success_auto_noreload(message){
 }
 function loaderSwal(){
     Swal.fire({
-        html: '<img src="https://limitless-allaccess.s3.ap-southeast-1.amazonaws.com/rbrnd/bottle/fn0QIaSHpCiYmajAE6qkrqrNVj3ZKaR4bV3P3EDd.gif" alt="Custom GIF" style="width: 50% !important"><br><center><p>Loading, please wait...</p></center>',
+        html: '<center><img src="https://limitless-allaccess.s3.ap-southeast-1.amazonaws.com/rbrnd/bottle/fn0QIaSHpCiYmajAE6qkrqrNVj3ZKaR4bV3P3EDd.gif" alt="Custom GIF" style="width: 50% !important"><br><p>Loading, please wait...</p></center>',
         showConfirmButton: false,
         allowOutsideClick: false,
     });

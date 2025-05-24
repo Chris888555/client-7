@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('price', 18, 2);
             $table->float('dr', 18, 2);
             $table->float('pairing', 18, 2);
+            $table->float('infinity', 18, 2);
             $table->float('pv', 18, 2);
             $table->float('dropshippercent', 18, 2);
             $table->float('rebatepercent', 18, 2);
@@ -40,6 +41,7 @@ return new class extends Migration
                 "price" => 1999,
                 "dr" => 200,
                 "pairing" => 300,
+                "infinity" => 50,
                 "pv" => 30,
                 "dropshippercent" => 0.25,
                 "rebatepercent" => 0.25,

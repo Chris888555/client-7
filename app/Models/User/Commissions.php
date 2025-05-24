@@ -12,6 +12,7 @@ class Commissions extends Model
         "dr",
         "passup",
         "unilvl",
+        "infinity",
         "sales",
         "rebate",
         "indirect",

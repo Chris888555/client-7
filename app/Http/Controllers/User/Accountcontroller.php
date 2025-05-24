@@ -129,14 +129,16 @@ class Accountcontroller extends Controller
                 $newupline = $upline;
                 $pos = $position;
 
+                $accountInfo_sponsor = $this->accountInfo($sponsor);
+                $accountInfo_upline = $this->accountInfo($newupline);
 
-                $binlvl = $this->accountInfo($newupline)->binlvl;
+                $binlvl = $accountInfo_upline->binlvl;
                 $upline = Accounts::where('username',$sponsor)->first();
                 $count = $this->CountDirectSponsor($sponsor);
                 $temp = $count + 1;
-                $uninode = $this->accountInfo($sponsor)->uninode.".".$temp;
-                $unilvl = $this->accountInfo($sponsor)->unilvl + 1;
-                $binnode = $this->accountInfo($newupline)->binnode.".".$pos;
+                $uninode = $accountInfo_sponsor->uninode.".".$temp;
+                $unilvl = $accountInfo_sponsor->unilvl + 1;
+                $binnode = $accountInfo_upline->binnode.".".$pos;
 
                 Accounts::create([
                     "username" => $username,
@@ -163,6 +165,7 @@ class Accountcontroller extends Controller
                     "dr" => 0,
                     "passup" => 0,
                     "unilvl" => 0,
+                    "infinity" => 0,
                     "sales" => 0,
                     "rebate" => 0,
                     "indirect" => 0,
@@ -196,6 +199,11 @@ class Accountcontroller extends Controller
 
                 if($checkCode->codesettings->price > 0){
                     $this->processDirectReferral($username, $sponsor, $checkCode->codesettings->dr);
+                    $temp = $this->accountInfo($this->usersession());
+                    $check_account_added = Accounts::where('username', $username)->first();
+                    if($check_account_added->directctr < 3){
+                        $this->InfinityBonus($check_account_added->sponsor, $checkCode->codesettings->infinity);
+                    }
 
                     $directrefferal = $checkCode->codesettings->pairing;
                     $isheadnode = false;
@@ -279,6 +287,24 @@ class Accountcontroller extends Controller
         }
     }
 
+    public function InfinityBonus($sponsor, $amount){
+        $id = "";
+        $currid = $sponsor;
+        do{
+            $info = Accounts::where('username',$currid)->first();
+            $currid = $info->sponsor;
+        }while($info->directctr < 3 && $currid != "-");
+        $id = $info->sponsor;
+        if($id != "-"){
+            $info1 = Accounts::where('username', $id)->first();
+            $commission = Commissions::where('username', $id)->first();
+            $commission->update([
+                "infinity" => $commission->infinity + $amount
+            ]);
+            $this->insertInCommissionlogs($sponsor, $id, $amount, "Infinity Bonus");
+        }
+    }
+
     public function Nopairing($username, $amount, $pos){
         $value = Accounts::where('username',$username)->first();
         if($pos == "L"){
@@ -321,12 +347,10 @@ class Accountcontroller extends Controller
 
 
         $isfifthpair = false;
-        $isfifthpair1 = "F";
 
         $account = Accounts::where('username', $username)->first();
         if($account->totalpairs % 5 == 0){
             $isfifthpair = true;
-            $isfifthpair1 = "Y";
         }
 
         $process = false;
@@ -358,12 +382,16 @@ class Accountcontroller extends Controller
         if($process){
             if(!$isfifthpair){
                 $commission = Commissions::where('username', $username)->first();
-                Commissions::where('username', $username)->update([
+                $commission->update([
                     "pairing" => $commission->pairing + $amount,
                 ]);
-                $this->insertInCommissionlogs($user, $username, $amount, "Bida Bonus");
+                $this->insertInCommissionlogs($user, $username, $amount, "Cycle Commission");
             }else{
-                $this->insertInCommissionlogs($user, $username, 0, "Fifth Bida Bonus");
+                $commission = Commissions::where('username', $username)->first();
+                $commission->update([
+                    "incentive" => $commission->incentive + 1,
+                ]);
+                $this->insertInCommissionlogs($user, $username, 1, "Incentive Points");
             }
         }
     }

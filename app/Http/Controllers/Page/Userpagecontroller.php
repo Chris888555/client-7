@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Admin\Codes;
+
 use App\Models\User\Users;
 use App\Models\User\Accounts;
 
@@ -72,6 +74,9 @@ class Userpagecontroller extends Controller
     }
 
     public function addNewAccount(){
-        return view('user.team.add_new_account');
+        return view('user.team.add_new_account',[
+            "totalaccounts" => Accounts::count(),
+            "activationcode" => Codes::where('status','A')->first(),
+        ]);
     }
 }
