@@ -33,7 +33,21 @@ class Userpagecontroller extends Controller
     }
 
     public function index(){
-        return view('user.home.index');
+        $account = Accounts::with('users')->where('username', $this->usersession())->first();
+        $account_created = $account->created_at;
+        $is_new_account = false;
+        if ($account_created) {
+            $created_date = new DateTime($account_created);
+            $now = new DateTime();
+            $interval = $created_date->diff($now);
+            if ($interval->days < 30) {
+                $is_new_account = true;
+            }
+        }
+
+        return view('user.home.index',[
+            "user" => $account
+        ]);
     }
 
     public function teams(){

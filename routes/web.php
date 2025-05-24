@@ -41,22 +41,14 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 ##############################################################################################
 // User Routes
 ##############################################################################################
-
-// Users dashboard
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => 'usersession'], function () {
+    
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
-
-// Income Stats
-Route::middleware('auth')->group(function () {
     Route::get('/income-stats', function () {
         return view('main-pages.income-stats');
     })->name('income-stats');
-});
-
-Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/',[Userpagecontroller::class, 'index']);
     Route::get('/teams',[Userpagecontroller::class, 'teams']);
