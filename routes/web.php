@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\User\UsersDashboardController;
 
+use App\Http\Controllers\ProfileSettings\MyProfileController;
+
 use App\Http\Controllers\Page\Userpagecontroller;
 use App\Http\Controllers\Page\Adminpagecontroller;
 
@@ -44,7 +46,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 // User Routes
 ##############################################################################################
 Route::group(['middleware' => 'usersession'], function () {
-    
+
+    Route::get('/myprofile', [MyProfileController::class, 'index'])->name('myprofile.view');
+    Route::post('/myprofile/upload', [MyProfileController::class, 'upload'])->name('myprofile.upload');
+
     Route::get('/dashboard', [UsersDashboardController::class, 'index'])->name('user.dashboard');
     Route::get('/income-stats', function () {return view('user.home.income-stats');})->name('income-stats');
 

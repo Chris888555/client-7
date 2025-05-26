@@ -45,7 +45,7 @@
     <x-admin-sidebar />{{-- Sidebar Component --}}
 
     <div class="flex-1 overflow-y-auto ">
-        <header id="main-header" class="bg-gray-800 p-[23px] sm:p-[14px] flex-1 flex flex-col transition-all duration-300 ml-0 lg:ml-[280px]">
+        <header id="main-header" class="bg-gray-800 flex-1 flex flex-col transition-all duration-300 ml-0 lg:ml-[280px]">
             <x-admin-nav /> {{-- Navbar Component --}}
         </header>
 

@@ -1,15 +1,17 @@
 <style>
 /* Webkit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 1px;  /* thinner vertical scrollbar */
-    height: 2px; /* thinner horizontal scrollbar */
+    width: 1px;
+    /* thinner vertical scrollbar */
+    height: 2px;
+    /* thinner horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #1F2937; /* Tailwind Gray 800 */
+    background-color: #1F2937;
+    /* Tailwind Gray 800 */
     border-radius: 10px;
 }
-
 </style>
 
 
@@ -36,7 +38,7 @@
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 dashboard
             </span>
-           <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+            <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
 
         </li>
 
@@ -49,13 +51,104 @@
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
             <span class="material-icons bg-teal-700 text-white rounded p-1">
-                insights
+                device_hub
             </span>
-            <a href="teams" class="block p-2 sidebar-text">Team</a>
+            <a href="#" class="block p-2 sidebar-text">Network Geology</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                groups
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">My Referrals</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                account_balance_wallet
+            </span>
+            <a href="#" class="block p-2 sidebar-text">Encashment</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                star
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">Rank Status</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                inventory
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">Packages</a>
+        </li>
+
+        
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                store
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">Reorder Store</a>
         </li>
 
 
+         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                receipt_long
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">My Oders History</a>
+        </li>
+        
 
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                shopping_basket
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">Dropshipping Orders</a>
+        </li>
+
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                list_alt
+            </span>
+            <a href="teams" class="block p-2 sidebar-text">All Income Logs</a>
+        </li>
+
+        
+        <hr class="border-t border-gray-700 my-6" />
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                download
+            </span>
+            <a href="#" class="block p-2 sidebar-text">Marketing Images</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                palette
+            </span>
+            <a href="#" class="block p-2 sidebar-text">Canva Template</a>
+        </li>
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                school
+            </span>
+            <a href="#" class="block p-2 sidebar-text">Nextgen Academy</a>
+        </li>
+
+        
+        <hr class="border-t border-gray-700 my-6" />
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+               filter_alt
+            </span>
+            <a href="#" class="block p-2 sidebar-text">Sale Funnel Pro</a>
+        </li>
 
     </ul>
 </aside>
@@ -91,7 +184,7 @@
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 dashboard
             </span>
-           <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+            <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
         </li>
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">

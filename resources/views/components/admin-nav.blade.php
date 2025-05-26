@@ -13,7 +13,7 @@
 
 
 
-<nav class="flex items-center justify-between ">
+<nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px] ">
 
     <!-- Desktop Burger Icon (hidden on mobile, shown on lg and up) -->
     <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
@@ -69,7 +69,7 @@
 
                 </li>
                 <li>
-                    <a href="/profile/edit"
+                     <a href="{{ route('myprofile.view') }}"
                         class="block w-full px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
                         <i class="fas fa-edit text-gray-400"></i>
                         <span>Edit Profile</span>

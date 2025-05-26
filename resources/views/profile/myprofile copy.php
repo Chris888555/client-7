@@ -1,51 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.users')
 
 @section('title', 'Manage Your Account')
 
 @section('content')
 
 
-
-
-<body class="bg-gray-100 flex items-center justify-center px-2  ">
-    <div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container m-auto p-4 sm:p-8 max-w-full">
 
       <x-page-header-text 
     title="Manage Your Account"
     subtitle="Update your profile photo and personal details."
 />
-
-
-        @if ($errors->any())
-        <div id="error-message"
-            class="flex w-full overflow-hidden bg-red-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
-            <div class="flex items-center justify-center w-12 bg-red-500">
-                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM22.5 26.6666H17.5V21.6666H22.5V26.6666ZM22.5 18.3333H17.5V13.3333H22.5V18.3333Z" />
-                </svg>
-            </div>
-
-            <div class="px-4 py-2 -mx-3">
-                <div class="mx-3">
-                    <span class="font-semibold text-red-500 dark:text-red-400">Error</span>
-                    <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-200">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <script>
-        // Hide the error message after 5 seconds
-        setTimeout(function() {
-            document.getElementById('error-message').style.display = 'none';
-        }, 5000);
-        </script>
-        @endif
-
 
 
         <!-- Profile Section -->
