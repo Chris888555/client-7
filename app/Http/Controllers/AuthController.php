@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User\Users;
+use App\Models\User\Accounts;
 
 class AuthController extends Controller
 {
@@ -20,6 +21,10 @@ class AuthController extends Controller
         if(empty($check)){
             abort(404, 'Sponsor not found');
         }
+
+        return view('auth.register_sponsor',[
+            "sponsor" => $username
+        ]);
     }
 
     public function login(Request $request)
