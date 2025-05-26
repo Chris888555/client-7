@@ -11,6 +11,8 @@ use App\Http\Controllers\User\UsersDashboardController;
 
 use App\Http\Controllers\ProfileSettings\MyProfileController;
 
+use App\Http\Controllers\Materials\MaterialController;
+
 use App\Http\Controllers\Page\Userpagecontroller;
 use App\Http\Controllers\Page\Adminpagecontroller;
 
@@ -54,6 +56,13 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/income-stats', function () {return view('user.home.income-stats');})->name('income-stats');
 
 
+   Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
+   Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+   Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
+
+   Route::get('/materials/type/{type}', [MaterialController::class, 'showByCategory'])->name('materials.showByType');
+
+   
     Route::get('/teams',[Userpagecontroller::class, 'teams']);
     Route::get('/add-new-account',[Userpagecontroller::class, 'addNewAccount']);
 

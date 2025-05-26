@@ -123,7 +123,7 @@
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 download
             </span>
-            <a href="#" class="block p-2 sidebar-text">Marketing Images</a>
+            <a href="{{ route('materials.index') }}" class="block p-2 sidebar-text">Marketing Images</a>
         </li>
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
