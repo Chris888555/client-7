@@ -8,23 +8,7 @@
 
 @section('content')
 <div class="p-6 bg-gray-100 min-h-screen">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Codes</h1>
-
-    <!-- Stats Section (Static data muna) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div class="bg-white shadow rounded-lg p-4">
-            <h2 class="text-sm font-semibold text-gray-500">Total Users</h2>
-            <p class="text-2xl font-bold text-blue-600">1,204</p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-4">
-            <h2 class="text-sm font-semibold text-gray-500">Total Sales</h2>
-            <p class="text-2xl font-bold text-green-600">₱350,000</p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-4">
-            <h2 class="text-sm font-semibold text-gray-500">New Signups</h2>
-            <p class="text-2xl font-bold text-purple-600">58</p>
-        </div>
-    </div>
+      <x-page-header-text title="Codes" />
 
     <div class="row p-6">
         <div class="col-4">

@@ -46,7 +46,7 @@ class AuthController extends Controller
                             return response()->json([
                                 "role" => $check->role,
                                 "status" => true,
-                                "link" => "/"
+                                "link" => "/dashboard"
                             ]);
                         }
                     }else if($check->role == "admin"){
@@ -56,7 +56,7 @@ class AuthController extends Controller
                             return response()->json([
                                 "role" => $check->role,
                                 "status" => true,
-                                "link" => "/admin"
+                                "link" => route('admin.dashboard')
                             ]);
                         }
                     }
@@ -69,7 +69,7 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth.register');
+       return view('auth.register_sponsor');
     }
 
     public function register(Request $request)
@@ -99,7 +99,7 @@ class AuthController extends Controller
 
     $request->session()->regenerateToken();
 
-    return redirect('/login');  // dito nagre-redirect sa login page
+    return redirect('/login'); 
 }
 
 }

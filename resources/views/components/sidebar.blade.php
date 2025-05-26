@@ -22,7 +22,7 @@
 
 
     <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 pl-3 pr-4">
-             <a href="/dashboard">
+        <a href="/dashboard">
             <img id="sidebar-logo-img"
                 src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" alt="My Logo"
                 class="h-10 w-auto object-contain " />
@@ -38,8 +38,10 @@
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 dashboard
             </span>
-            <a href="/" class="block p-2 sidebar-text">Dashboard</a>
+           <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+
         </li>
+
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
             <span class="material-icons bg-teal-700 text-white rounded p-1">
@@ -91,7 +93,7 @@
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 dashboard
             </span>
-            <a href="{{ route('dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
+           <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
         </li>
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">

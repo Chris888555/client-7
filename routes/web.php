@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\User\UsersDashboardController;
 
 use App\Http\Controllers\Page\Userpagecontroller;
 use App\Http\Controllers\Page\Adminpagecontroller;
 
 use App\Http\Controllers\User\Accountcontroller;
-
 use App\Http\Controllers\Admin\Codecontroller;
 
 Route::get('/', function () {
@@ -26,8 +27,8 @@ Route::get('/products', function () {
    return view('products');
 });
 
-// Guest routes
 
+// Guest routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/auth/login', [AuthController::class, 'login']);
 
@@ -44,14 +45,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 ##############################################################################################
 Route::group(['middleware' => 'usersession'], function () {
     
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/income-stats', function () {
-        return view('main-pages.income-stats');
-    })->name('income-stats');
+    Route::get('/dashboard', [UsersDashboardController::class, 'index'])->name('user.dashboard');
+    Route::get('/income-stats', function () {return view('user.home.income-stats');})->name('income-stats');
 
-    Route::get('/',[Userpagecontroller::class, 'index']);
+
     Route::get('/teams',[Userpagecontroller::class, 'teams']);
     Route::get('/add-new-account',[Userpagecontroller::class, 'addNewAccount']);
 
@@ -70,9 +67,8 @@ Route::post('/user/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
 // Admin dashboard
 Route::group(['middleware' => 'adminsession'], function () {
 
-    Route::get('/admin',[Adminpagecontroller::class, 'index']);
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    // Code
     Route::get('/admin/codes',[Adminpagecontroller::class, 'codes'])->name('admin-codes');
 
 });

@@ -1,10 +1,28 @@
-@auth
+@php
+    use Illuminate\Support\Facades\Storage;
+    use App\Models\User\Users;
+
+    $adminUsername = session('adminsession');
+    $admin = $adminUsername ? Users::select('firstname', 'lastname', 'picture')->where('username', $adminUsername)->first() : null;
+
+    $profilePicturePath = $admin?->picture;
+    $profilePictureExists = $profilePicturePath && Storage::disk('public')->exists($profilePicturePath);
+
+    $fullName = $admin ? trim("{$admin->firstname} {$admin->lastname}") : null;
+@endphp
+
+
+
 <nav class="flex items-center justify-between ">
 
     <!-- Desktop Burger Icon (hidden on mobile, shown on lg and up) -->
     <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
-        <svg class="h-8 w-8 text-gray-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="3" y="3" width="7" height="7" />  <rect x="14" y="3" width="7" height="7" />  <rect x="14" y="14" width="7" height="7" />  <rect x="3" y="14" width="7" height="7" /></svg>
-        
+        <svg class="h-8 w-8 text-gray-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  
+            <rect x="3" y="3" width="7" height="7" />  
+            <rect x="14" y="3" width="7" height="7" />  
+            <rect x="14" y="14" width="7" height="7" />  
+            <rect x="3" y="14" width="7" height="7" />
+        </svg>
     </button>
 
    <!-- Mobile Burger Icon and Logo (inline on mobile only) -->
@@ -14,18 +32,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
         </button>
-
-        <a href="/dashboard" id="nav-logo" class="flex items-center space-x-2">
-            <img id="nav-logo-img" src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" 
-            alt="My Logo" class="h-8 w-auto ml-4 object-contain" />
-        
-        </a>
     </div>
+
+   <p class="text-xl font-bold text-gray-500 ml-6">Admin Panel</p>
+
 
     <ul class="flex ml-auto items-center space-x-4">
 
-
-        <!-- Notification Icon labas sa button -->
+            <!-- Notification Icon -->
         <li>
             <button class="relative focus:outline-none mt-2" aria-label="Notifications">
                 <svg class="fi-icon-btn-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -38,29 +52,24 @@
             </button>
         </li>
 
-
-        {{-- Dropdown Menu --}}
+        <!-- Dropdown Menu -->
         <li class="relative">
-            @php
-            $user = Auth::user();
-            $profilePicturePath = $user->profile_picture;
-            $profilePictureExists = $profilePicturePath && Storage::disk('public')->exists($profilePicturePath);
-            @endphp
-
             <button class="flex items-center space-x-2 focus:outline-none" id="dropdownButton" type="button">
-                <img src="{{ $profilePictureExists ? asset('storage/' . $profilePicturePath) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) }}"
-                    alt="Profile" class="w-8 h-8 rounded-full">
+                <img 
+                    src="{{ $profilePictureExists ? asset('storage/' . $profilePicturePath) : 'https://ui-avatars.com/api/?name=' . urlencode($fullName ?: 'User') }}" 
+                    alt="Profile" 
+                    class="w-8 h-8 rounded-full"
+                >
             </button>
 
-            <!-- Dropdown menu -->
             <ul id="dropdownMenu" class="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg hidden z-50">
-                <li
-                    class="px-4 py-2 border-b text-gray-500  select-none cursor-default flex items-center space-x-2">
+                <li class="px-4 py-2 border-b text-gray-500 select-none cursor-default flex items-center space-x-2">
                     <i class="fas fa-user-circle text-gray-400"></i>
-                    <span>{{ $user->name }}</span>
+                  <span>{{ $fullName && trim($fullName) !== '' ? $fullName : 'User' }}</span>
+
                 </li>
                 <li>
-                    <a href="/"
+                    <a href="/profile/edit"
                         class="block w-full px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
                         <i class="fas fa-edit text-gray-400"></i>
                         <span>Edit Profile</span>
@@ -74,19 +83,20 @@
                             <i class="fas fa-sign-out-alt text-gray-400"></i>
                             <span>Logout</span>
                         </button>
-                        </form>
+                    </form>
                 </li>
             </ul>
-        </nav>
-
+        </li>
+    </ul>
+</nav>
 
 
 <script>
 // JavaScript for toggling dropdown visibility
 document.getElementById('dropdownButton').addEventListener('click', function(event) {
     var dropdownMenu = document.getElementById('dropdownMenu');
-    dropdownMenu.classList.toggle('hidden'); // Toggle the visibility of the dropdown menu
-    event.stopPropagation(); // Prevent click event from propagating to the document
+    dropdownMenu.classList.toggle('hidden');
+    event.stopPropagation();
 });
 
 // Close the dropdown if the user clicks outside of it
@@ -94,13 +104,11 @@ document.addEventListener('click', function(event) {
     var dropdownMenu = document.getElementById('dropdownMenu');
     var dropdownButton = document.getElementById('dropdownButton');
 
-    // Check if the click was outside of the dropdown button or the dropdown menu
     if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
-        dropdownMenu.classList.add('hidden'); // Hide the dropdown menu
+        dropdownMenu.classList.add('hidden');
     }
 });
 </script>
-@endauth
 
 
 <script>
