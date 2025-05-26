@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="p-6 bg-gray-100 min-h-screen">
-    <x-page-header-text title="Dashboard" />
+    <x-page-header-text title="Admin Dashboard" />
 
     
 </div>

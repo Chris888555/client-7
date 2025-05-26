@@ -29,7 +29,7 @@
     <!-- Mobile Burger Icon and Logo -->
     <div class="flex items-center lg:hidden space-x-2">
         <button id="mobile-burger-icon" class="inline-block text-gray-500">
-            <svg class="h-6 w-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-7 w-7 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
         </button>
@@ -160,10 +160,10 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         texts.forEach(text => text.classList.add('hidden'));
         items.forEach(item => {
             item.classList.add('mt-1');
-            item.classList.add('p-2');
+            item.classList.add('p-3');
             logoContainer.classList.remove('pl-2', 'pr-4');
             logoContainer.classList.add('px-4'); 
-           logoContainer.classList.add('bg-gray-300', 'rounded', 'mt-2');
+           logoContainer.classList.add('bg-gray-700', 'rounded', 'mt-2');
 
         });
 
@@ -182,10 +182,10 @@ document.getElementById('pc-burger-icon').addEventListener('click', function() {
         texts.forEach(text => text.classList.remove('hidden'));
         items.forEach(item => {
             item.classList.remove('mt-1');
-            item.classList.remove('p-2');
+            item.classList.remove('p-3');
             logoContainer.classList.remove('px-4');
             logoContainer.classList.add('pl-2', 'pr-4');
-            logoContainer.classList.remove('bg-gray-300', 'rounded', 'mt-2');
+            logoContainer.classList.remove('bg-gray-700', 'rounded', 'mt-2');
 
         });
 

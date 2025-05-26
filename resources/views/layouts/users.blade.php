@@ -45,11 +45,11 @@
     <x-sidebar /> {{-- Sidebar Component --}}
 
     <div class="flex-1 overflow-y-auto ">
-        <header id="main-header" class="bg-gray-800 p-4 sm:p-5 flex-1 flex flex-col transition-all duration-300 ml-0 lg:ml-[280px]">
+        <header id="main-header" class="bg-gray-800 p-[23px] sm:p-[14px] flex-1 flex flex-col transition-all duration-300 ml-0 lg:ml-[280px]">
             <x-user-nav /> {{-- Navbar Component --}}
         </header>
 
-        <main id="main-content" class="bg-gray-50 rounded-3xl transition-all duration-300 mr-0 md:mr-4 ml-0 lg:ml-[280px] overflow-y-auto" style="height: calc(100vh - 80px);">
+        <main id="main-content" class="bg-gray-50 rounded-t-3xl sm:rounded-3xl transition-all duration-300 mr-0 md:mr-4 ml-0 lg:ml-[280px] overflow-y-auto" style="height: calc(100vh - 80px);">
             @yield('content') {{-- Dynamic content --}}
         </main>
 

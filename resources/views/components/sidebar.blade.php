@@ -1,17 +1,15 @@
 <style>
 /* Webkit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 2px;
-    /* Decreased vertical scrollbar width */
-    height: 4px;
-    /* Decreased horizontal scrollbar height */
+    width: 1px;  /* thinner vertical scrollbar */
+    height: 2px; /* thinner horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #1F2937;
-    /* Tailwind Gray 800 */
+    background-color: #1F2937; /* Tailwind Gray 800 */
     border-radius: 10px;
 }
+
 </style>
 
 
@@ -42,13 +40,13 @@
 
         </li>
 
-
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 insights
             </span>
             <a href="{{ route('income-stats') }}" class="block p-2 sidebar-text">Income Stats</a>
         </li>
+
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 insights
