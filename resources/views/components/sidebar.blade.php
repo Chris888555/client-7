@@ -99,7 +99,7 @@
             </span>
             <a href="teams" class="block p-2 sidebar-text">My Oders History</a>
         </li>
-        
+
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
             <span class="material-icons bg-teal-700 text-white rounded p-1">
@@ -148,6 +148,15 @@
                filter_alt
             </span>
             <a href="#" class="block p-2 sidebar-text">Sale Funnel Pro</a>
+        </li>
+
+        <hr class="border-t border-gray-700 my-6" />
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                   settings
+            </span>
+            <a href="#" class="block p-2 sidebar-text">Package Settings</a>
         </li>
 
     </ul>
