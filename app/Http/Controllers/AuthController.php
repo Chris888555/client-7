@@ -15,6 +15,13 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function registerWithSponsor($username){
+        $check = Accounts::where('username', $username)->first();
+        if(empty($check)){
+            abort(404, 'Sponsor not found');
+        }
+    }
+
     public function login(Request $request)
     {
         if($request->input('username') == ""){

@@ -172,6 +172,7 @@ class Accountcontroller extends Controller
                     "shareup" => 0,
                     "wholesale" => 0,
                     "groupsale" => 0,
+                    "dropship" => 0,
                     "pairing" => 0,
                     "leadership" => 0,
                     "leadersupport" => 0,

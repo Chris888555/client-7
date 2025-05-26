@@ -9,6 +9,8 @@ use App\Models\Admin\Codes;
 
 use App\Models\User\Users;
 use App\Models\User\Accounts;
+use App\Models\User\Commissions;
+use App\Models\User\Encashments;
 
 use Str;
 use DB;
@@ -32,6 +34,15 @@ class Userpagecontroller extends Controller
         return env('APP_ENV');
     }
 
+    function getTotalWithdrawal(){
+        $encashments = Encashments::where('status', 'approved')->sum('gross');
+    }
+
+    function getTotalCommission(){
+        $commission = Commissions::where('username', $this->usersession())->first();
+        return $commission->dr + $commission->passup + $commission->unilvl + $commission->infinity + $commission->sales + $commission->rebate + $commission->indirect + $commission->shareup + $commission->wholesale + $commission->groupsale + $commission->dropship + $commission->pairing + $commission->leadership + $commission->leadersupport + $commission->ranking;
+    }
+
     public function index(){
         $account = Accounts::with('users')->where('username', $this->usersession())->first();
         $account_created = $account->created_at;
@@ -45,8 +56,13 @@ class Userpagecontroller extends Controller
             }
         }
 
+        $commission = Commissions::where('username', $this->usersession())->first();
+
         return view('user.home.index',[
-            "user" => $account
+            "user" => $account,
+            "commission" => $commission,
+            "totalcommission" => $this->getTotalCommission(),
+            "totalpayout" => $this->getTotalWithdrawal()
         ]);
     }
 

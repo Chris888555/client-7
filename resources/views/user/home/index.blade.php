@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <p class="text-sm text-gray-400">Total Accumulated Income</p>
-                    <p class="text-2xl font-bold text-teal-400">₱ 50,000</p> <!-- Replace with dynamic data -->
+                    <p class="text-2xl font-bold text-teal-400">₱ {{ number_format($totalcommission, 2) }}</p> <!-- Replace with dynamic data -->
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                 </span>
                 <div>
                     <p class="text-gray-200 text-sm mb-1">Withdrawable Balance</p>
-                    <h3 class="text-xl font-bold text-gray-100">₱ 10,000.00</h3>
+                    <h3 class="text-xl font-bold text-gray-100">₱ {{ number_format(($totalcommission - $totalpayout), 2) }}</h3>
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
                 </span>
                 <div>
                     <p class="text-gray-200 text-sm mb-1">Total Payout</p>
-                    <h3 class="text-xl font-bold text-gray-100">₱ 15,000.00</h3>
+                    <h3 class="text-xl font-bold text-gray-100">₱ {{ number_format($totalpayout, 2) }}</h3>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Whole Sale Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 5,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->wholesale, 2) }}</h3>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Cycle Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 3,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->pairing, 2) }}</h3>
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Infinity Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 2,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->infinity, 2) }}</h3>
                 </div>
             </div>
 
@@ -137,7 +137,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Group Sales Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 4,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->groupsale, 2) }}</h3>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Dropshipping Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 1,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->dropship, 2) }}</h3>
                 </div>
             </div>
 
@@ -276,7 +276,7 @@
                     </div>
                     <div id="referral-link"
                         class="w-full rounded-lg border border-gray-300 bg-gray-50 py-4 ps-11 pe-28 text-gray-900 text-sm overflow-hidden whitespace-nowrap text-ellipsis">
-                        https://nextgen.com/chan888
+                        https://nextgen.com/{{ session()->get('usersession') }}
                     </div>
 
                     <button onclick="copyToClipboard('referral-link')"

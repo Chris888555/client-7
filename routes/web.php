@@ -34,6 +34,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register/sponsor/{username}', [AuthController::class, 'registerWithSponsor']);
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
 

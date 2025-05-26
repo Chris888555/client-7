@@ -19,6 +19,7 @@ class Commissions extends Model
         "shareup",
         "wholesale",
         "groupsale",
+        "dropship",
         "pairing",
         "leadership",
         "leadersupport",
