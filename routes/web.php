@@ -56,10 +56,8 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/income-stats', function () {return view('user.home.income-stats');})->name('income-stats');
 
 
-   Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
+   
    Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-   Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
-
    Route::get('/materials/type/{type}', [MaterialController::class, 'showByCategory'])->name('materials.showByType');
 
    
@@ -82,6 +80,9 @@ Route::post('/user/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
 Route::group(['middleware' => 'adminsession'], function () {
 
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
+    Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
 
     Route::get('/admin/codes',[Adminpagecontroller::class, 'codes'])->name('admin-codes');
 

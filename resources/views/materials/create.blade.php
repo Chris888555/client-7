@@ -13,11 +13,14 @@
 
        <!-- Caption -->
 <x-textarea 
+    id="caption"
     label="Caption" 
     name="caption" 
     placeholder="Enter caption for image..." 
-    required 
+    :required="old('category') === 'image'"
 />
+
+
 
 
 <!-- Title -->
@@ -79,7 +82,8 @@
         <!-- Submit -->
         <div>
 
-          <x-button icon="cloud_upload">Upload Materials</x-button>
+          <x-button type="submit" icon="cloud_upload">Upload Materials</x-button>
+
 
         </div>
     </form>
