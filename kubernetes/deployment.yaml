@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextgen
+  namespace: nextgen
+spec:
+  selector:
+    matchLabels:
+      app: nextgen
+  strategy:
+    type: RollingUpdate
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nextgen
+    spec:
+      imagePullSecrets:
+        - name: gitlab-credentials
+      containers:
+      - name: rebrand-app
+        image: registry.gitlab.com/arvin.s.corpuz/limitless/nextgen:latest
+        imagePullPolicy: Always
+        ports:
+          - name: fpm
+            containerPort: 9000
+            protocol: TCP
+        lifecycle:
+          postStart:
+            exec:
+              command:
+                [
+                  "/bin/sh",
+                  "-c",
+                  "echo 'Starting PostStart hook' >> /proc/1/fd/1 && \
+                  cp -r /var/www/. /usr/share/nginx/ >> /proc/1/fd/1 2>> /proc/1/fd/2 && \
+                  echo 'Copy completed' >> /proc/1/fd/1 && \
+                  php artisan migrate --force >> /proc/1/fd/1 2>> /proc/1/fd/2 && \
+                  echo 'Migration completed' >> /proc/1/fd/1"
+                ]
+        volumeMounts:
+          - name: shared-files
+            mountPath: /usr/share/nginx/
+          - name: nextgen-php-config
+            mountPath: /usr/local/etc/php/conf.d/uploads.ini
+            subPath: uploads.ini
+        resources:
+          limits:
+            cpu: 600m
+            memory: 800Mi
+          requests:
+            cpu: 400m
+            memory: 500Mi
+      - name: nginx
+        image: nginx:alpine
+        volumeMounts:
+          - name: shared-files
+            mountPath: /var/www
+          - name: nextgen-nginx-config
+            mountPath: /etc/nginx/conf.d
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 600m
+            memory: 600Mi
+          requests:
+            cpu: 400m
+            memory: 400Mi
+      volumes:
+      - name: nextgen-nginx-config
+        configMap:
+          name: nextgen-nginx-config
+      - name: nextgen-php-config
+        configMap:
+          name: nextgen-php-config
+      - name: shared-files
+        emptyDir: {}
