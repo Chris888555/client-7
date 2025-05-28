@@ -53,7 +53,7 @@
             <span class="material-icons bg-teal-700 text-white rounded p-1">
                 device_hub
             </span>
-            <a href="#" class="block p-2 sidebar-text">Network Geology</a>
+            <a href="{{ route('genealogy') }}" class="block p-2 sidebar-text">Network Geology</a>
         </li>
 
         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">

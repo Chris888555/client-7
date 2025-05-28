@@ -17,6 +17,7 @@ use App\Http\Controllers\Page\Userpagecontroller;
 use App\Http\Controllers\Page\Adminpagecontroller;
 
 use App\Http\Controllers\User\Accountcontroller;
+use App\Http\Controllers\User\Teamcontroller;
 use App\Http\Controllers\Admin\Codecontroller;
 
 Route::get('/', function () {
@@ -59,15 +60,29 @@ Route::group(['middleware' => 'usersession'], function () {
     
     Route::get('/', [Userpagecontroller::class, 'index'])->name('user.dashboard');
     Route::get('/dashboard', [Userpagecontroller::class, 'index'])->name('user.dashboard');
-    Route::get('/teams',[Userpagecontroller::class, 'teams']);
-    Route::get('/add-new-account',[Userpagecontroller::class, 'addNewAccount']);
     Route::get('/income-stats', [Userpagecontroller::class, 'incomeStats'])->name('income-stats');
-
+    
+    Route::get('/teams',[Userpagecontroller::class, 'teams']);
+    Route::get('/add-new-account/{position}/{upline}',[Userpagecontroller::class, 'addNewAccount']);
+    Route::get('/genealogy',[Userpagecontroller::class, 'genealogy'])->name('genealogy');
 });
 ##############################################################################################
 // Account controller
 ##############################################################################################
-Route::post('/user/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
+Route::post('/user/account/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
+##############################################################################################
+// Account controller
+##############################################################################################
+Route::post('/user/account/headnode',[Teamcontroller::class, 'headnode']);
+Route::post('/user/account/resetnode',[Teamcontroller::class, 'resetnode']);
+Route::post('/user/account/genealogyacc',[Teamcontroller::class, 'genealogyacc']);
+Route::post('/user/account/CheckAddCustomer',[Teamcontroller::class, 'CheckAddCustomer']);
+Route::post('/user/account/nextnode',[Teamcontroller::class, 'nextnode']);
+
+
+
+
+
 
 
 

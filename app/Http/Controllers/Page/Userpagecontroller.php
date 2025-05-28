@@ -25,6 +25,10 @@ class Userpagecontroller extends Controller
     function usersession(){
         return session()->get('usersession');
     }
+    
+    function nodesession(){
+        return session()->get('node');
+    }
 
     function dateCreated(){
         return date('Y-m-d', strtotime('now'));
@@ -142,10 +146,39 @@ class Userpagecontroller extends Controller
         ]);
     }
 
-    public function addNewAccount(){
+    public function addNewAccount($position, $upline){
+        $checkPosition = ["L","R"];
+        if(!in_array($position, $checkPosition)){
+            return abort("404");
+        }
+        $check_upline = Accounts::where('username', $upline)->first();
+        if(empty($check_upline)){
+            return abort("404");
+        }
         return view('user.team.add_new_account',[
+            "position" => $position,
+            "upline" => $upline,
             "totalaccounts" => Accounts::count(),
             "activationcode" => Codes::where('status','A')->first(),
+        ]);
+    }
+
+    public function genealogy(){
+        $head_node = Accounts::with('users')->where('username', $this->usersession())->first();
+
+        if(!empty($this->nodesession())){
+            $head_node = Accounts::with('users')->where('username', $this->nodesession())->first();
+        }
+
+        return view('user.team.genealogy',[
+            "head_node" => $head_node,
+            "node_1" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode)->first(),
+            "node_2" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode.".L")->first(),
+            "node_3" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode.".R")->first(),
+            "node_4" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode.".L.R")->first(),
+            "node_5" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode.".L.L")->first(),
+            "node_6" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode.".R.L")->first(),
+            "node_7" => Accounts::with('users', 'codes.codesettings')->where('binnode',$head_node->binnode.".R.R")->first(),
         ]);
     }
 }

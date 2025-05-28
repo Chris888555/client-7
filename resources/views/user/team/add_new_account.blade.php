@@ -7,7 +7,8 @@
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Team</h1>
 
     <a href="/teams" class="btn btn-info btn-md mb-4">Team</a>
-    <a href="/add-new-account" class="btn btn-info btn-md active mb-4">Add new account</a>
+    <a href="/genealogy" class="btn btn-info btn-md mb-4">Genealogy</a>
+    <a href="javascript:void(0)" class="btn btn-info btn-md active mb-4">Add new account</a>
 
     @php
         $env = env('APP_ENV');
@@ -60,9 +61,9 @@
             </div>
             <div class="form-group col-6 mb-4">
                 <label class="control-label"><strong>Position</strong></label>
-                <select name="position" id="position" class="form-control" required>
-                    <option value="L">Left</option>
-                    <option value="R">Right</option>
+                <select name="position" id="position" class="form-control" required readonly>
+                    <option {{ $position == "L" ? "selected" : "" }} value="L">Left</option>
+                    <option {{ $position == "R" ? "selected" : "" }} value="R">Right</option>
                 </select>
             </div>
             <div class="form-group col-6 mb-4">
@@ -71,7 +72,7 @@
             </div>
             <div class="form-group col-6 mb-4">
                 <label  class="control-label"><strong>Upline ID</strong></label>
-                <input type="text" name="upline" id="upline" class="form-control" required>
+                <input type="text" name="upline" id="upline" class="form-control" required value="{{ $upline }}" readonly>
             </div>
             <div class="col-6 mb-4">
                 <button type="submit" class="form-control btn btn-success">
@@ -93,7 +94,7 @@
             var frmData = new FormData(this);
             $.ajax({
                 type: "POST",
-                url: "/user/addNewAccount",
+                url: "/user/account/addNewAccount",
                 data: frmData,
                 cache: false,
                 processData: false,
@@ -103,7 +104,7 @@
                     loaderSwal()
                 },success: function (data){
                     if(data.status){
-                        success(data.msg);
+                        success_to(data.msg,"/genealogy");
                     }
                     else{
                         error(data.msg);

@@ -7,7 +7,7 @@
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Team</h1>
 
     <a href="/teams" class="btn btn-info btn-md mb-4 active">Team</a>
-    <a href="/add-new-account" class="btn btn-info btn-md mb-4">Add new account</a>
+    <a href="/genealogy" class="btn btn-info btn-md mb-4">Genealogy</a>
 
     <!-- Recent Members Table (Static content) -->
     <div class="bg-white shadow rounded-lg p-6">
