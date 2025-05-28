@@ -63,10 +63,6 @@ jobs:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
         context: limitlessv2
 
-    - name: Run PHP Artisan Migrate Refresh
-      run: |
-        php artisan migrate:refresh --path=/database/migrations/2025_05_21_123622_create_codesettings_table.php
-
     - name: Deploy
       run: |
         kubectl version
