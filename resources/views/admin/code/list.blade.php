@@ -9,6 +9,9 @@
 <div class="p-6 bg-gray-100 min-h-screen">
     <x-page-header-text title="Codes" />
 
+    <!-- <a href="/admin/codes" class="btn btn-info btn-md mb-4">Team</a>
+    <a href="/admin/codes/create-package" class="btn btn-info btn-md active mb-4">Create Package</a> -->
+
   <div class="flex flex-col lg:flex-row gap-6  bg-gray-100 min-h-screen">
   <!-- Left column - fixed smaller width -->
   <div class="flex-shrink-0 basis-1/4 max-w-sm">

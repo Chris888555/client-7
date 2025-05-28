@@ -14,6 +14,7 @@ class Codesettings extends Model
         "prefix",
         "price",
         "dr",
+        "infinity",
         "pairing",
         "pv",
         "dropshippercent",
@@ -24,7 +25,5 @@ class Codesettings extends Model
         "funnel",
         "store",
         "status",
-        "created_at",
-        "updated_at",
     ];
 }

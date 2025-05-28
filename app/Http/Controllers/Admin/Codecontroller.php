@@ -66,7 +66,40 @@ class Codecontroller extends Controller
                 DB::rollback();
                 return response()->json(["status" => false, "msg" => "Something went wrong!".$ex->getMessage()]); 
             }
+        }
+    }
+
+    public function createPackage(Request $request){
+        DB::beginTransaction();
+        try{
+            Codesettings::create([
+                "recordid" => strtotime("Now"),
+                "codetype" => $request->input('codetype'),
+                "codename" => $request->input('codename'),
+                "prefix" => $request->input('prefix'),
+                "price" => $request->input('price'),
+                "dr" => $request->input('dr'),
+                "pairing" => $request->input('pairing'),
+                "infinity" => $request->input('infinity'),
+                "pv" => $request->input('pv'),
+                "dropshippercent" => $request->input('dropshippercent'),
+                "rebatepercent" => $request->input('rebatepercent'),
+                "month" => $request->input('month'),
+                "maxcycles" => $request->input('maxcycles'),
+                "lvlunilvl" => $request->input('lvlunilvl'),
+                "funnel" => $request->input('funnel'),
+                "store" => $request->input('store'),
+                "status" => "active",
+            ]);
             
+            DB::commit();
+            return response()->json(["status" => true, "msg" => "New package added!"]);            
+        }catch(\Exception $ex){
+            DB::rollback();
+            return response()->json(["status" => false, "msg" => "Something went wrong!".$ex->getMessage()]); 
+        }catch(\Error $ex){
+            DB::rollback();
+            return response()->json(["status" => false, "msg" => "Something went wrong!".$ex->getMessage()]); 
         }
     }
 }

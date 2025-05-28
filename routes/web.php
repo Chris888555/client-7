@@ -83,15 +83,19 @@ Route::post('/user/addNewAccount',[Accountcontroller::class, 'addNewAccount']);
 // Admin dashboard
 Route::group(['middleware' => 'adminsession'], function () {
 
+   // User Adminpagecontroller for dashboard and other user-related pages
+
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
     Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
 
     Route::get('/admin/codes',[Adminpagecontroller::class, 'codes'])->name('admin-codes');
+    Route::get('/admin/codes/create-package',[Adminpagecontroller::class, 'codeCreatePackage']);
 
 });
 ##############################################################################################
 // Code controller
 ##############################################################################################
 Route::post('/admin/code/generate',[Codecontroller::class, 'generate']);
+Route::post('/admin/code/createPackage',[Codecontroller::class, 'createPackage']);
