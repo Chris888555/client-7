@@ -58,8 +58,13 @@ class Userpagecontroller extends Controller
 
         $commission = Commissions::where('username', $this->usersession())->first();
 
-        return view('user.home.index',[
+        $tr = "";
+
+        $directs = Accounts::with('codes.codesettings')->where('sponsor', $this->usersession())->get();
+
+        return view('user.home.dashboard',[
             "user" => $account,
+            "directs" => $directs,
             "commission" => $commission,
             "totalcommission" => $this->getTotalCommission(),
             "totalpayout" => $this->getTotalWithdrawal()

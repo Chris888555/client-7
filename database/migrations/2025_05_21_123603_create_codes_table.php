@@ -27,7 +27,7 @@ return new class extends Migration
             'codeid' => 'P1-Z6DKF3q',
             'status' => 'U',
             'batchid' => "1234567890",
-            'type' => '5e8ff9bf55',
+            'type' => '5e8ff9bf56',
             'dateused' => date('Y-m-d', strtotime('now')),
             'usedby' => 'main',
             'owner' => 'admin',

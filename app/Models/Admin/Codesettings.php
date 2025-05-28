@@ -19,6 +19,7 @@ class Codesettings extends Model
         "dropshippercent",
         "rebatepercent",
         "month",
+        "maxcycles",
         "lvlunilvl",
         "funnel",
         "store",

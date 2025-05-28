@@ -21,7 +21,7 @@
                     class="w-24 h-24 rounded-full object-cover border-4 border-teal-500 shadow-md">
                 <div>
                     <h2 class="text-sm md:text-2xl font-bold text-white flex items-center space-x-2">
-                        <span>Juan Dela Cruz</span>
+                        <span>{{ $user->users->full_name }}</span>
                         <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <p class="text-sm text-gray-400">Total Accumulated Income</p>
-                    <p class="text-2xl font-bold text-teal-400">₱ 50,000</p> <!-- Replace with dynamic data -->
+                    <p class="text-2xl font-bold text-teal-400">₱ {{ number_format($totalcommission, 2) }}</p> <!-- Replace with dynamic data -->
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                 </span>
                 <div>
                     <p class="text-gray-200 text-sm mb-1">Withdrawable Balance</p>
-                    <h3 class="text-xl font-bold text-gray-100">₱ 10,000.00</h3>
+                    <h3 class="text-xl font-bold text-gray-100">₱ {{ number_format($totalcommission - $totalpayout, 2) }}</h3>
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
                 </span>
                 <div>
                     <p class="text-gray-200 text-sm mb-1">Total Payout</p>
-                    <h3 class="text-xl font-bold text-gray-100">₱ 15,000.00</h3>
+                    <h3 class="text-xl font-bold text-gray-100">₱ {{ number_format($totalpayout, 2) }}</h3>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Whole Sale Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 5,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->dr, 2) }}</h3>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Cycle Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 3,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->pairing, 2) }}</h3>
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Infinity Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 2,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->infinity, 2) }}</h3>
                 </div>
             </div>
 
@@ -137,7 +137,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Group Sales Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 4,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->groupsale, 2) }}</h3>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@
                 </span>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Dropshipping Commissions</p>
-                    <h3 class="text-xl font-bold text-teal-600">₱ 1,000.00</h3>
+                    <h3 class="text-xl font-bold text-teal-600">₱ {{ number_format($commission->dropship, 2) }}</h3>
                 </div>
             </div>
 
@@ -357,20 +357,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-teal-50 transition-colors duration-150">
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">Juan Dela Cruz</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700">juan@example.com</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700">09171234567</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700">May 17, 2025</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
-                        </tr>
-                        <tr class="hover:bg-teal-50 transition-colors duration-150">
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">Maria Santos</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700">maria@example.com</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700">09181234567</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-gray-700">May 16, 2025</td>
-                            <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
-                        </tr>
+                        @foreach ($directs as $value)
+                            <tr class="hover:bg-teal-50 transition-colors duration-150">
+                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">{{ $value->users->full_name }}</td>
+                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ $value->users->email }}</td>
+                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ $value->users->mobileno }}</td>
+                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ date("F d, Y h:i A", strtotime($value->created_at)) }}</td>
+                                <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
