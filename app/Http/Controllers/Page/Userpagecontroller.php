@@ -43,6 +43,37 @@ class Userpagecontroller extends Controller
         return $commission->dr + $commission->passup + $commission->unilvl + $commission->infinity + $commission->sales + $commission->rebate + $commission->indirect + $commission->shareup + $commission->wholesale + $commission->groupsale + $commission->dropship + $commission->pairing + $commission->leadership + $commission->leadersupport + $commission->ranking;
     }
 
+    public function incomeStats(){
+        $account = Accounts::with('users')->where('username', $this->usersession())->first();
+        $account_created = $account->created_at;
+        $is_new_account = false;
+        if ($account_created) {
+            $created_date = new DateTime($account_created);
+            $now = new DateTime();
+            $interval = $created_date->diff($now);
+            if ($interval->days < 30) {
+                $is_new_account = true;
+            }
+        }
+
+        $commission = Commissions::where('username', $this->usersession())->first();
+
+        $tr = "";
+
+        $directs = Accounts::with('codes.codesettings')->where('sponsor', $this->usersession())->get();
+
+        $downlines = Accounts::with('users', 'codes.codesettings')->where('uninode', 'like', $account->uninode.'.%')->where('username', '!=', $this->usersession())->orderBy('unilvl','asc')->get();
+
+        return view('user.home.income-stats',[
+            "user" => $account,
+            "directs" => $directs,
+            "commission" => $commission,
+            "totalcommission" => $this->getTotalCommission(),
+            "totalpayout" => $this->getTotalWithdrawal(),
+            "downlines" => count($downlines)
+        ]);
+    }
+
     public function index(){
         $account = Accounts::with('users')->where('username', $this->usersession())->first();
         $account_created = $account->created_at;

@@ -54,19 +54,14 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/myprofile', [MyProfileController::class, 'index'])->name('myprofile.view');
     Route::post('/myprofile/upload', [MyProfileController::class, 'upload'])->name('myprofile.upload');
 
-
-    Route::get('/income-stats', function () {return view('user.home.income-stats');})->name('income-stats');
-
-
-   
-   Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-   Route::get('/materials/type/{type}', [MaterialController::class, 'showByCategory'])->name('materials.showByType');
-
-   
-   Route::get('/', [Userpagecontroller::class, 'index'])->name('user.dashboard');
-   Route::get('/dashboard', [Userpagecontroller::class, 'index'])->name('user.dashboard');
-   Route::get('/teams',[Userpagecontroller::class, 'teams']);
-   Route::get('/add-new-account',[Userpagecontroller::class, 'addNewAccount']);
+    Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+    Route::get('/materials/type/{type}', [MaterialController::class, 'showByCategory'])->name('materials.showByType');
+    
+    Route::get('/', [Userpagecontroller::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard', [Userpagecontroller::class, 'index'])->name('user.dashboard');
+    Route::get('/teams',[Userpagecontroller::class, 'teams']);
+    Route::get('/add-new-account',[Userpagecontroller::class, 'addNewAccount']);
+    Route::get('/income-stats', [Userpagecontroller::class, 'incomeStats'])->name('income-stats');
 
 });
 ##############################################################################################

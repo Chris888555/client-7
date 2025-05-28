@@ -365,13 +365,15 @@
                     </thead>
                     <tbody>
                         @foreach ($directs as $value)
-                            <tr class="hover:bg-teal-50 transition-colors duration-150">
-                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">{{ $value->users->full_name }}</td>
-                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ $value->users->email }}</td>
-                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ $value->users->mobileno }}</td>
-                                <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ date("F d, Y h:i A", strtotime($value->created_at)) }}</td>
-                                <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
-                            </tr>
+                            @if ($value->codes->codesettings->price <= 0)
+                                <tr class="hover:bg-teal-50 transition-colors duration-150">
+                                    <td class="border-b border-gray-200 px-5 py-4 text-gray-700 font-medium">{{ $value->users->full_name }}</td>
+                                    <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ $value->users->email }}</td>
+                                    <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ $value->users->mobileno }}</td>
+                                    <td class="border-b border-gray-200 px-5 py-4 text-gray-700">{{ date("F d, Y h:i A", strtotime($value->created_at)) }}</td>
+                                    <td class="border-b border-gray-200 px-5 py-4 text-red-600 font-semibold">Not Active</td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
