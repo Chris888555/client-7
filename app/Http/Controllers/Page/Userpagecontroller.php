@@ -62,12 +62,15 @@ class Userpagecontroller extends Controller
 
         $directs = Accounts::with('codes.codesettings')->where('sponsor', $this->usersession())->get();
 
+        $downlines = Accounts::with('users', 'codes.codesettings')->where('uninode', 'like', $account->uninode.'.%')->where('username', '!=', $this->usersession())->orderBy('unilvl','asc')->get();
+
         return view('user.home.dashboard',[
             "user" => $account,
             "directs" => $directs,
             "commission" => $commission,
             "totalcommission" => $this->getTotalCommission(),
-            "totalpayout" => $this->getTotalWithdrawal()
+            "totalpayout" => $this->getTotalWithdrawal(),
+            "downlines" => count($downlines)
         ]);
     }
 

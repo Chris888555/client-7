@@ -186,7 +186,7 @@
                             <i class="fa-solid fa-users text-teal-400"></i>
                             <span>Total Network</span>
                         </h3>
-                        <p class="text-2xl md:text-3xl font-bold text-teal-300">1,250</p>
+                        <p class="text-2xl md:text-3xl font-bold text-teal-300">{{ $downlines }}</p>
                         <p class="text-gray-400 text-xs md:text-sm">Total Downlines</p>
                     </div>
 
@@ -196,9 +196,9 @@
                             <i class="fa-solid fa-arrow-left text-blue-400"></i>
                             <span>Left Team</span>
                         </h3>
-                        <p class="text-2xl md:text-3xl font-bold text-blue-300">500</p>
+                        <p class="text-2xl md:text-3xl font-bold text-blue-300">{{ $user->left }}</p>
                         <p class="text-gray-400 text-xs md:text-sm">Total Points: <span
-                                class="text-white font-semibold">1,000 CV</span></p>
+                                class="text-white font-semibold">{{ $user->totalleft }} CV</span></p>
                     </div>
 
                     <!-- Right Leg -->
@@ -207,9 +207,9 @@
                             <i class="fa-solid fa-arrow-right text-purple-400"></i>
                             <span>Right Team</span>
                         </h3>
-                        <p class="text-2xl md:text-3xl font-bold text-purple-300">600</p>
+                        <p class="text-2xl md:text-3xl font-bold text-purple-300">{{ $user->right }}</p>
                         <p class="text-gray-400 text-xs md:text-sm">Total Points: <span
-                                class="text-white font-semibold">1,200 CV</span></p>
+                                class="text-white font-semibold">{{ $user->totalright }} CV</span></p>
                     </div>
 
                     <!-- Remaining Points -->
@@ -218,7 +218,14 @@
                             <i class="fa-solid fa-chart-simple text-yellow-400"></i>
                             <span>Waiting Points</span>
                         </h3>
-                        <p class="text-2xl md:text-3xl font-bold text-yellow-300">200 CV</p>
+                        <p class="text-2xl md:text-3xl font-bold text-yellow-300">
+                            @if ($user->left > $user->right)
+                                {{ $user->left }}
+                            @else
+                                {{ $user->right }}
+                            @endif
+                            CV
+                        </p>
                         <p class="text-gray-400 text-xs md:text-sm">Remaining points</p>
                     </div>
                 </div>
