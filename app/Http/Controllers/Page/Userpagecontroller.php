@@ -129,7 +129,6 @@ class Userpagecontroller extends Controller
                         <td>'.$value['sponsor'].'</td>
                         <td>'.$value->codes->codesettings->codename.'</td>
                         <td>'.$unilvl.'</td>
-                        <td>'.$value->pos.'</td>
                     </tr>
                 ';
             }

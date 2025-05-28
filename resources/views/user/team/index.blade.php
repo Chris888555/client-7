@@ -16,12 +16,11 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Username</th>
                         <th>Name</th>
+                        <th>Username</th>
                         <th>Sponsor</th>
                         <th>Type</th>
                         <th>Level</th>
-                        <th>Position</th>
                     </tr>
                 </thead>
                 <tbody>

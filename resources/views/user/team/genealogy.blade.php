@@ -28,7 +28,7 @@
                                 @endif
                                 <a href="javascript:void(0)" id="view" data-pos="T" data-node="{{ (!empty($node_1->username)) ? $node_1->binnode : '' }}" data-username="{{ (!empty($node_1->username)) ? $node_1->username : '' }}">
                                     @if(!empty($node_1->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_1->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif
@@ -45,7 +45,7 @@
                             <td colspan="2" class="text-center">
                                 <a href="javascript:void(0)" id="view" data-pos="L" data-node="{{ (!empty($node_2->username)) ? $node_2->binnode : '' }}" data-username="{{ (!empty($node_2->username)) ? $node_2->username : '' }}">
                                     @if(!empty($node_2->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_2->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif
@@ -55,7 +55,7 @@
                             <td colspan="2" class="text-center">
                                 <a href="javascript:void(0)" id="view" data-pos="R" data-node="{{ (!empty($node_3->username)) ? $node_3->binnode : '' }}" data-username="{{ (!empty($node_3->username)) ? $node_3->username : '' }}">
                                     @if(!empty($node_3->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_3->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif
@@ -72,7 +72,7 @@
                             <td style="width:25%;" class="text-center">
                                 <a href="javascript:void(0)" id="nextnode" data-pos="L.L" data-node="{{ (!empty($node_5->username)) ? $node_5->binnode : '' }}" data-username="{{ (!empty($node_5->username)) ? $node_5->username : '' }}">
                                     @if(!empty($node_5->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_4->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif
@@ -82,7 +82,7 @@
                             <td style="width:25%;" class="text-center">
                                 <a href="javascript:void(0)" id="nextnode" data-pos="L.R" data-node="{{ (!empty($node_4->username)) ? $node_4->binnode : '' }}" data-username="{{ (!empty($node_4->username)) ? $node_4->username : '' }}">
                                     @if(!empty($node_4->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_4->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif
@@ -92,7 +92,7 @@
                             <td style="width:25%;" class="text-center">
                                 <a href="javascript:void(0)" id="nextnode" data-pos="R.L" data-node="{{ (!empty($node_6->username)) ? $node_6->binnode : '' }}" data-username="{{ (!empty($node_6->username)) ? $node_6->username : '' }}">
                                     @if(!empty($node_6->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_6->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif
@@ -102,7 +102,7 @@
                             <td style="width:25%;" class="text-center">
                                 <a href="javascript:void(0)" id="nextnode" data-pos="R.R" data-node="{{ (!empty($node_7->username)) ? $node_7->binnode : '' }}" data-username="{{ (!empty($node_7->username)) ? $node_7->username : '' }}">
                                     @if(!empty($node_7->username))
-                                        <center><img src="{{ asset('images/hasnetwork.png') }}" style="width:50px"></center>
+                                        <center><img src="{{ asset('images/'.$node_7->codes->codesettings->codename.'.png') }}" style="width:50px"></center>
                                     @else
                                         <center><img src="{{ asset('images/networkuser.png') }}" style="width:50px"></center>
                                     @endif

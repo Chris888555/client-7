@@ -48,6 +48,12 @@
             </span>
             <a href="{{ route('admin-codes') }}" class="block p-2 sidebar-text">Codes</a>
         </li>
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
+            <span class="material-icons bg-teal-700 text-white rounded p-1">
+                groups
+            </span>
+            <a href="{{ route('admin-users') }}" class="block p-2 sidebar-text">Users</a>
+        </li>
 
            <hr class="border-t border-gray-700 my-6" />
            

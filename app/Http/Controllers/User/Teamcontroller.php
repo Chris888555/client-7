@@ -74,7 +74,7 @@ class Teamcontroller extends Controller
         }
     }
     public function genealogyacc(Request $request){
-        $data = Accounts::with('users')->where('username', $request->input('username'))->first();
+        $data = Accounts::with('users','codes.codesettings')->where('username', $request->input('username'))->first();
         $output = '';
         $position = $request->input('position');
         if(!empty($data)){
@@ -82,7 +82,7 @@ class Teamcontroller extends Controller
                 <div class="row">
                     <div class="col-12">
                         <center>';
-            $output .= '<img src="'.asset('images/hasnetwork.png').'"style="width: 300px; height: auto;">';
+            $output .= '<img src="'.asset('images/'.$data->codes->codesettings->codename.'.png').'"style="width: 300px; height: auto;">';
             $output .= '</center>
                         <table class="table table-responsive table-striped">
                             <thead>

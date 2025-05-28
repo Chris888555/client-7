@@ -48,6 +48,22 @@ class Adminpagecontroller extends Controller
         }
     }
 
+    public function users(){
+        try {
+            
+            return view('admin.user_management.users',[
+                "users" => Accounts::with('users', 'codes.codesettings')->get()
+            ]);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    
     public function codes(){
         try {
             

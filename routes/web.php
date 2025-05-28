@@ -100,6 +100,7 @@ Route::group(['middleware' => 'adminsession'], function () {
     Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
     Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
 
+    Route::get('/admin/users',[Adminpagecontroller::class, 'users'])->name('admin-users');
     Route::get('/admin/codes',[Adminpagecontroller::class, 'codes'])->name('admin-codes');
     Route::get('/admin/codes/create-package',[Adminpagecontroller::class, 'codeCreatePackage']);
 
