@@ -10,9 +10,9 @@
     <a href="/genealogy" class="btn btn-info btn-md mb-4 active">Genealogy</a>
     <input type="hidden" value="{{ $head_node->binnode}}" id="head_node">
     <!-- Recent Members Table (Static content) -->
-    <div class="bg-white shadow rounded-lg p-6" style="background-color: #09adb6 !important;">
+    <div class="bg-white shadow rounded-lg p-6" style="background-color: #8d9fb7 !important;">
         <div class="row">
-            <div class="col-12 mb-4">
+            <div class="col-8">
                 <table class="w-100">
                     <tbody>
                         <tr>
@@ -151,19 +151,11 @@
 
 		$(document).on('click','#view',function(event){
 			event.preventDefault();
-			$.post('/user/account/addAccountHere',{
-			// $.post('/user/account/genealogyacc',{
+			$.post('/user/account/genealogyacc',{
 				username: $(this).data('username'),
-                head_node: $('#head_node').val(),
 				position: $(this).data('pos')
 			},function(data){
-				// $('#notedetails').html(data.data)
-                if(data.status){
-                    // window.location.href = `/add-new-account/${data.pos}/${data.upline}`;
-				}
-				else{
-					error(data.msg)
-				}
+				$('#notedetails').html(data.data)
 			},'json');
 		});
 

@@ -78,6 +78,7 @@ Route::post('/user/account/resetnode',[Teamcontroller::class, 'resetnode']);
 Route::post('/user/account/genealogyacc',[Teamcontroller::class, 'genealogyacc']);
 Route::post('/user/account/CheckAddCustomer',[Teamcontroller::class, 'CheckAddCustomer']);
 Route::post('/user/account/nextnode',[Teamcontroller::class, 'nextnode']);
+Route::post('/user/account/addAccountHere',[Teamcontroller::class, 'addAccountHere']);
 
 
 

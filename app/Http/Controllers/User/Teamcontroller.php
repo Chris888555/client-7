@@ -64,6 +64,7 @@ class Teamcontroller extends Controller
             return "failed";
         }
     }
+
     public function resetnode(){
         session()->forget('node');
         if(empty(session()->get('node'))){
@@ -73,6 +74,22 @@ class Teamcontroller extends Controller
             return "failed";
         }
     }
+
+    public function addAccountHere(Request $request){
+        $username = $request->input('username');
+        $position = $request->input('position');
+        $head_node = $request->input('head_node');
+
+        if(empty($username)){
+            $get_upline = Accounts::where('binnode', $head_node)->first();
+            if(!empty($get_upline)){
+                echo "1";
+            }
+        }else{
+            echo "3";
+        }
+    }
+
     public function genealogyacc(Request $request){
         $data = Accounts::with('users','codes.codesettings')->where('username', $request->input('username'))->first();
         $output = '';
@@ -182,9 +199,10 @@ class Teamcontroller extends Controller
             ]);
         }
     }
+
     public function CheckAddCustomer(Request $request){
         if($request->input('position') == "L" || $request->input('position') == "R"){
-            $head = Accounts::where('binnode',$request->head_node)->first();
+            $head = Accounts::where('binnode',$request->input('head_node'))->first();
             $new_pos = $request->input('position');
             return response()->json([
                 "status" => true,
@@ -215,6 +233,7 @@ class Teamcontroller extends Controller
             }
         }
     }
+
     public function nextnode(Request $request){
         session()->put('node',$request->input('username'));
         if(!empty(session()->get('node'))){

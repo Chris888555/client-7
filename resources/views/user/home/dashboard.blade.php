@@ -196,7 +196,7 @@
                             <i class="fa-solid fa-arrow-left text-blue-400"></i>
                             <span>Left Team</span>
                         </h3>
-                        <p class="text-2xl md:text-3xl font-bold text-blue-300">{{ $user->left }}</p>
+                        <p class="text-2xl md:text-3xl font-bold text-blue-300">{{ $totaldownlinesleft }}</p>
                         <p class="text-gray-400 text-xs md:text-sm">Total Points: <span
                                 class="text-white font-semibold">{{ $user->totalleft }} CV</span></p>
                     </div>
@@ -207,7 +207,7 @@
                             <i class="fa-solid fa-arrow-right text-purple-400"></i>
                             <span>Right Team</span>
                         </h3>
-                        <p class="text-2xl md:text-3xl font-bold text-purple-300">{{ $user->right }}</p>
+                        <p class="text-2xl md:text-3xl font-bold text-purple-300">{{ $totaldownlinesright }}</p>
                         <p class="text-gray-400 text-xs md:text-sm">Total Points: <span
                                 class="text-white font-semibold">{{ $user->totalright }} CV</span></p>
                     </div>

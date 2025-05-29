@@ -99,10 +99,15 @@ class Userpagecontroller extends Controller
 
         $downlines = Accounts::with('users', 'codes.codesettings')->where('uninode', 'like', $account->uninode.'.%')->where('username', '!=', $this->usersession())->orderBy('unilvl','asc')->get();
 
+        $totaldownlinesleft  = Accounts::where("binnode", "LIKE", $account->binnode.".L%")->count('id');
+        $totaldownlinesright  = Accounts::where("binnode", "LIKE", $account->binnode.".R%")->count('id');
+
         return view('user.home.dashboard',[
             "user" => $account,
             "directs" => $directs,
             "commission" => $commission,
+            "totaldownlinesleft" => $totaldownlinesleft,
+            "totaldownlinesright" => $totaldownlinesright,
             "totalcommission" => $this->getTotalCommission(),
             "totalpayout" => $this->getTotalWithdrawal(),
             "downlines" => count($downlines)
