@@ -160,6 +160,7 @@
 				// $('#notedetails').html(data.data)
                 if(data.status){
                     // window.location.href = `/add-new-account/${data.pos}/${data.upline}`;
+                    //Double request
 				}
 				else{
 					error(data.msg)
