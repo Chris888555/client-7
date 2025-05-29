@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\User\UsersDashboardController;
+
 
 use App\Http\Controllers\ProfileSettings\MyProfileController;
 
