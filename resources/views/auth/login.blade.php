@@ -3,92 +3,86 @@
 @section('title', 'Login')
 
 @section('content')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<div class="">
+    <h1 class="text-3xl font-extrabold mb-8 text-center text-gray-800">Login</h1>
 
-<div class="w-full max-w-xl bg-white rounded-2xl shadow-2xl p-6 sm:p-10">
-    <div class="text-center mb-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-500">Welcome Back!</h1>
-        <p class="text-sm text-gray-500 mt-2">Log in to your NutriInnovations Account</p>
-    </div>
+    <form id="loginForm" method="POST" action="{{ route('login.post') }}">
+        @csrf
 
-    {{-- Show general error message --}}
-    @if ($errors->any())
-    <div class="mb-4 text-sm text-red-600 text-center">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+        <label class="block mb-2 text-gray-700 font-semibold">Email</label>
+        <input type="email" name="email" value="{{ old('email') }}" required
+            class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            id="email">
 
-        <div class="mb-6">
-            <label for="email" class="block text-sm font-semibold text-gray-500 mb-1">Username</label>
-            <input type="text" name="username" id="username" required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
-                value="{{ old('email') }}">
+        <label class="block mb-2 text-gray-700 font-semibold">Password</label>
+        <div class="relative mb-6">
+            <input type="password" name="password" required
+                class="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                id="password">
+            <span toggle="#password"
+                class="material-icons absolute right-3 top-3 cursor-pointer text-gray-500 toggle-password">visibility</span>
         </div>
 
-        <div class="mb-6 relative">
-            <label for="password" class="block text-sm font-semibold text-gray-500 mb-1">Password</label>
-            <input type="password" name="password" id="password" required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 pr-10">
-            <span id="togglePassword" class="absolute right-3 top-9 cursor-pointer text-gray-400">
-                <i class="fa-solid fa-eye"></i>
-            </span>
-        </div>
+        <button type="submit"
+            class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+            Login
+        </button>
+    </form>
 
-        <div class="flex items-center justify-between mb-6">
-            <label class="flex items-center">
-                <input type="checkbox" name="remember" class="rounded" {{ old('remember') ? 'checked' : '' }}>
-                <span class="ml-2 text-sm text-gray-500">Remember Me</span>
-            </label>
-            <a href="/mlm/forgot-password" class="text-sm text-gray-500 hover:underline">Forgot Password?</a>
-        </div>
-
-        <button type="click" id="btnLogin" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 rounded-lg transition duration-200"> Login </button>
-
+    <p class="mt-6 text-center text-gray-600">
+        Don’t have an account yet? <a href="{{ route('register') }}"
+            class="text-green-600 font-semibold underline hover:text-green-700">Register</a>
+    </p>
 </div>
+@endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="{{ asset('userjs/alert.js') }}"></script>
+
+@section('js')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
-        const icon = togglePassword.querySelector('i');
+$(document).ready(function () {
+    $('#loginForm').on('submit', function (e) {
+        e.preventDefault();
 
-        togglePassword.addEventListener('click', function() {
-            const isPassword = password.type === 'password';
-            password.type = isPassword ? 'text' : 'password';
-            icon.classList.toggle('fa-eye', !isPassword);
-            icon.classList.toggle('fa-eye-slash', isPassword);
-        });
-    });
-    $(document).ready(function(){
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Successful!',
+                        text: 'Redirecting...',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        didClose: () => {
+                            window.location.href = response.redirect;
+                        }
+                    });
+                }
+            },
+            error: function (xhr) {
+                let message = "Something went wrong. Try again.";
+                if (xhr.status === 401 || xhr.status === 403) {
+                    message = xhr.responseJSON.message;
+                }
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: message
+                });
             }
         });
-
-        $("#btnLogin").click(function(e){
-            e.preventDefault();
-            var form = $(this);
-            $.post('/auth/login',{
-                username: $("#username").val(),
-                password: $("#password").val()
-            }, function(data){
-                if(data.status){
-                    success_auto_to("Redirecting...", data.link);
-                }else{
-                    error(data.msg)
-                }
-            }, 'json');
-        });
-
     });
+
+    $(document).on('click', '.toggle-password', function () {
+        let input = $($(this).attr("toggle"));
+        let type = input.attr("type") === "password" ? "text" : "password";
+        input.attr("type", type);
+        $(this).text(type === "password" ? "visibility" : "visibility_off");
+    });
+});
 </script>
 @endsection

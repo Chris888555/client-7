@@ -23,10 +23,8 @@
 
     <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 pl-3 pr-4">
              <a href="/dashboard">
-            <img id="sidebar-logo-img"
-                src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" alt="My Logo"
-                class="h-10 w-auto object-contain " />
-            <span id="logo-text" class="text-teal-700 text-3xl ml-[3px] rounded hidden"> N </span>
+            <img id="sidebar-logo-img" src="/assets/images/mylogo.png" alt="My Logo" class="h-12 w-auto object-contain m-l-4" />
+            <span id="logo-text" class="text-gray-300 text-3xl ml-[3px] rounded hidden"> R </span>
         </a>
     </div>
 
@@ -34,36 +32,42 @@
     <!-- Pc Sidebar Links -->
     <ul>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
                 dashboard
             </span>
             <a href="{{ route('admin.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
         </li>
 
         
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                code
+       <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
+               manage_accounts
             </span>
-            <a href="{{ route('admin-codes') }}" class="block p-2 sidebar-text">Codes</a>
+            <a href="{{ route('admin.manage-users') }}" class="block p-2 sidebar-text">Manage Users</a>
         </li>
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                groups
+       
+
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
+               library_add
             </span>
-            <a href="{{ route('admin-users') }}" class="block p-2 sidebar-text">Users</a>
+            <a href="{{ route('materials.create') }}" class="block p-2 sidebar-text">Create Materials</a>
         </li>
 
-           <hr class="border-t border-gray-700 my-6" />
-           
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-               cloud_upload
+         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
+                video_call
             </span>
-            <a href="{{ route('materials.create') }}" class="block p-2 sidebar-text">Upload Materials</a>
+            <a href="{{ route('academy.create') }}" class="block p-2 sidebar-text">Create Academy</a>
         </li>
 
+         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
+                tune
+            </span>
+            <a href="{{ route('manage.showtable') }}" class="block p-2 sidebar-text">Manage Funnel</a>
+        </li>
 
 
 
@@ -81,7 +85,7 @@
 
     <div class="flex justify-between items-center mb-6 pl-3 pr-4">
         <a href="/dashboard">
-            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png"
+            <img src="/assets/images/mylogo.png"
                 alt="My Logo" class="h-10 w-auto object-contain" />
         </a>
 

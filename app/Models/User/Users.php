@@ -2,26 +2,28 @@
 
 namespace App\Models\User;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Users extends Model
+class Users extends Authenticatable
 {
-    public $id = false; 
+    protected $table = 'users';
+
     protected $fillable = [
-        "username",
-        "password",
-        "dpassword",
-        "firstname",
-        "lastname",
-        "email",
-        "mobileno",
-        "picture",
-        "status",
-        "sponsor",
-        "role",
+        'name',
+        'email',
+        'username',
+        'password',
+        'dpassword',
     ];
 
-    public function getFullNameAttribute() {
-        return $this->firstname . ' ' . $this->lastname;
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    public function funnels()
+    {
+        return $this->hasMany(\App\Models\Funnels\Funnel::class, 'user_id');
     }
 }
+

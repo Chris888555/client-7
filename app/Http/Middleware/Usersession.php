@@ -4,20 +4,21 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class Usersession
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if(!session()->exists('usersession')) {
+        if (!Auth::check()) {
             return redirect('/login');
         }
+
+        // Allow both 'user' and 'admin' to access user routes
+        if (!in_array(Auth::user()->role, ['user', 'admin'])) {
+            return redirect('/login');
+        }
+
         return $next($request);
     }
 }

@@ -1,29 +1,22 @@
+
 @php
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Storage;
-    use App\Models\User\Users;
 
-    $username = session('usersession');
-    $user = Users::select('firstname', 'lastname', 'picture')
-                 ->where('username', $username)
-                 ->first();
-
-    $profilePicturePath = $user?->picture;
-    $profilePictureExists = $profilePicturePath && Storage::disk('public')->exists($profilePicturePath);
-
-    $fullName = $user ? trim("{$user->firstname} {$user->lastname}") : 'Unknown User';
+    $user = Auth::user();
+    $fullName = $user?->name ?? 'User';
+    $profilePicturePath = 'profile_pictures/' . ($user?->id ?? '0') . '.jpg'; 
+    $profilePictureExists = $user ? Storage::disk('public')->exists($profilePicturePath) : false;
 @endphp
 
 
-<nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px] ">
-
+<nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px]">
     <!-- Desktop Burger Icon -->
     <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
-        <svg class="h-8 w-8 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">  
-            <rect x="3" y="3" width="7" height="7" />  
-            <rect x="14" y="3" width="7" height="7" />  
-            <rect x="14" y="14" width="7" height="7" />  
-            <rect x="3" y="14" width="7" height="7" />
-        </svg>
+        <svg class="h-8 w-8 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+</svg>
+
     </button>
 
     <!-- Mobile Burger Icon and Logo -->
@@ -35,18 +28,17 @@
         </button>
 
         <a href="/dashboard" id="nav-logo" class="flex items-center space-x-2">
-            <img id="nav-logo-img" src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" 
+            <img id="nav-logo-img" src="/assets/images/mylogo.png" 
             alt="My Logo" class="h-8 w-auto ml-4 object-contain" />
         </a>
     </div>
 
     <ul class="flex ml-auto items-center space-x-4">
-
         <!-- Notification Icon -->
         <li>
             <button class="relative focus:outline-none mt-2" aria-label="Notifications">
                 <svg class="fi-icon-btn-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0">
                     </path>
@@ -59,27 +51,27 @@
         <li class="relative">
             <button class="flex items-center space-x-2 focus:outline-none" id="dropdownButton" type="button">
                 <img 
-                    src="{{ $profilePictureExists ? asset('storage/' . $profilePicturePath) : 'https://ui-avatars.com/api/?name=' . urlencode($fullName ?: 'User') }}" 
+                    src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : 'https://ui-avatars.com/api/?name=' . urlencode($fullName) }}" 
                     alt="Profile" 
                     class="w-8 h-8 rounded-full"
                 >
             </button>
 
+
             <ul id="dropdownMenu" class="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg hidden z-50">
                 <li class="px-4 py-2 border-b text-gray-500 select-none cursor-default flex items-center space-x-2">
                     <i class="fas fa-user-circle text-gray-400"></i>
-                  <span>{{ $fullName && trim($fullName) !== '' ? $fullName : 'User' }}</span>
-
+                    <span>{{ $fullName }}</span>
                 </li>
                 <li>
-                    <a href="{{ route('myprofile.view') }}"
+                    <a href="/myprofile"
                         class="block w-full px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
                         <i class="fas fa-edit text-gray-400"></i>
                         <span>Edit Profile</span>
                     </a>
                 </li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="/logout">
                         @csrf
                         <button type="submit"
                             class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
@@ -92,6 +84,7 @@
         </li>
     </ul>
 </nav>
+
 
 <script>
 document.getElementById('dropdownButton').addEventListener('click', function(event) {

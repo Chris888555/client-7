@@ -3,103 +3,102 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User\Users;
+
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
-use App\Models\User\Users;
-use App\Models\User\Accounts;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
+    // Show login form
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    public function registerWithSponsor($username){
-        $check = Accounts::where('username', $username)->first();
-        if(empty($check)){
-            abort(404, 'Sponsor not found');
-        }
-
-        return view('auth.register_sponsor',[
-            "sponsor" => $username
-        ]);
-    }
-
-    public function login(Request $request)
-    {
-        if($request->input('username') == ""){
-            return response()->json(["status" => false, "msg" => "Username is empty!"]);
-        } else if($request->input('password') == ""){
-            return response()->json(["status" => false, "msg" => "Password is empty"]);
-        } else{
-            $check = Users::where('username', $request->input('username'))->first();
-            if(empty($check)){
-                return response()->json(["status" => false, "msg" => "Account not found!"]);
-            }else{
-                if(Hash::check($request->input('password'), $check->password)){
-                    if($check->role == "user"){
-                        session()->put('usersession',$check->username);
-                        session()->put('usersession_name',$check->full_name);
-                        if(session()->get('usersession')){
-                            return response()->json([
-                                "role" => $check->role,
-                                "status" => true,
-                                "link" => "/dashboard"
-                            ]);
-                        }
-                    }else if($check->role == "admin"){
-                        session()->put('adminsession',$check->username);
-                        session()->put('adminsession_name',$check->full_name);
-                        if(session()->get('adminsession')){
-                            return response()->json([
-                                "role" => $check->role,
-                                "status" => true,
-                                "link" => route('admin.dashboard')
-                            ]);
-                        }
-                    }
-                }else{
-                    return response()->json(["status" => false, "msg" => "Incorrect password!"]);     
-                }
-            }
-        }
-    }
-
-    public function showRegistrationForm()
-    {
-       return view('auth.register_sponsor');
-    }
-
-    public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:3', 'confirmed'],
-        ]);
-
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
-
-        Auth::login($user);
-
-        return redirect('/dashboard');
-    }
-
-    public function logout(Request $request)
+    // Handle login
+public function login(Request $request)
 {
-    Auth::logout();
+    $credentials = $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required',
+    ]);
 
-    $request->session()->invalidate();
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        $user = Auth::user();
 
-    $request->session()->regenerateToken();
+        if ($user->is_approved != 1) {
+            Auth::logout();
+            return response()->json([
+                'success' => false,
+                'message' => 'Your account is pending approval.',
+            ], 403); // 403 = Forbidden
+        }
 
+        if ($user->role === 'admin') {
+            return response()->json([
+                'success' => true,
+                'redirect' => route('admin.dashboard'),
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'redirect' => route('user.dashboard'),
+        ]);
+    }
+
+    return response()->json([
+        'success' => false,
+        'message' => 'Invalid credentials.',
+    ], 401);
+}
+
+
+// Log out function
+public function logout()
+{
+    Auth::logout(); 
     return redirect('/login'); 
 }
 
+    // Show registration form
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    // Handle registration
+public function register(Request $request)
+{
+    $request->validate([
+        'name'     => 'required|string|max:255',
+        'email'    => 'required|email|unique:users,email',
+        'password' => 'required|string|min:3|confirmed',
+    ]);
+
+    $username = explode('@', $request->email)[0];
+    while (Users::where('username', $username)->exists()) {
+        $username .= Str::random(3);
+    }
+
+    Users::create([
+        'name'      => $request->name,
+        'email'     => $request->email,
+        'username'  => $username,
+        'password'  => Hash::make($request->password),
+        'dpassword' => $request->password,
+    ]);
+
+    // Return JSON success response for AJAX
+    return response()->json([
+        'success' => true,
+        'redirect' => route('thankyou')
+    ]);
 }
+
+}
+

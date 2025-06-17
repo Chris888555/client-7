@@ -1,5 +1,5 @@
 <!-- Enhanced Footer with Top Shadow -->
-<section class="bg-teal-700 border-t border-gray-400 py-12 relative before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+<section class="bg-gray-700 border-t border-gray-400 py-12 relative before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
     <div class="max-w-screen-xl mx-auto px-6 ">
         <!-- Navigation Links -->
         <nav class="flex flex-wrap justify-center gap-6 text-gray-200 text-sm font-medium">

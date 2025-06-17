@@ -9,6 +9,15 @@
 
    <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}">
 
+   <style>
+    .swal2-confirm,
+    .swal2-cancel {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    }
+    </style>
+
 
     {{-- Vite for Tailwind and local assets --}}
     @vite('resources/css/app.css')
@@ -31,13 +40,13 @@
     {{-- SweetAlert2 (for beautiful alert modals) --}}
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
-    <!-- Custom css -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
     {{-- Alpine.js (for reactive behavior in Blade) --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     {{-- Additional Scripts --}}
     @yield('head')
@@ -56,8 +65,7 @@
             @yield('content') {{-- Dynamic content --}}
         </main>
 
-        {{-- Success Alert Message --}}
-      <x-alert-success />
+       
     </div>
 
     {{-- JavaScript --}}
@@ -69,7 +77,6 @@
     {{-- Additional Scripts --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="{{ asset('userjs/alert.js') }}"></script>
     <script>
         $(document).ready(function(){
             $.ajaxSetup({

@@ -1,49 +1,44 @@
+
 @php
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Storage;
-    use App\Models\User\Users;
 
-    $adminUsername = session('adminsession');
-    $admin = $adminUsername ? Users::select('firstname', 'lastname', 'picture')->where('username', $adminUsername)->first() : null;
-
-    $profilePicturePath = $admin?->picture;
-    $profilePictureExists = $profilePicturePath && Storage::disk('public')->exists($profilePicturePath);
-
-    $fullName = $admin ? trim("{$admin->firstname} {$admin->lastname}") : null;
+    $user = Auth::user();
+    $fullName = $user?->name ?? 'User';
+    $profilePicturePath = 'profile_pictures/' . ($user?->id ?? '0') . '.jpg'; 
+    $profilePictureExists = $user ? Storage::disk('public')->exists($profilePicturePath) : false;
 @endphp
 
 
-
-<nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px] ">
-
-    <!-- Desktop Burger Icon (hidden on mobile, shown on lg and up) -->
+<nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px]">
+    <!-- Desktop Burger Icon -->
     <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
-        <svg class="h-8 w-8 text-gray-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  
-            <rect x="3" y="3" width="7" height="7" />  
-            <rect x="14" y="3" width="7" height="7" />  
-            <rect x="14" y="14" width="7" height="7" />  
-            <rect x="3" y="14" width="7" height="7" />
-        </svg>
+       <svg class="h-8 w-8 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+</svg>
+
     </button>
 
-   <!-- Mobile Burger Icon and Logo (inline on mobile only) -->
+    <!-- Mobile Burger Icon and Logo -->
     <div class="flex items-center lg:hidden space-x-2">
         <button id="mobile-burger-icon" class="inline-block text-gray-500">
             <svg class="h-7 w-7 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
         </button>
+
+        <a href="/dashboard" id="nav-logo" class="flex items-center space-x-2">
+            <img id="nav-logo-img" src="/assets/images/mylogo.png" 
+            alt="My Logo" class="h-8 w-auto ml-4 object-contain" />
+        </a>
     </div>
 
-   <p class="text-xl font-bold text-gray-500 ml-6">Admin Panel</p>
-
-
     <ul class="flex ml-auto items-center space-x-4">
-
-            <!-- Notification Icon -->
+        <!-- Notification Icon -->
         <li>
             <button class="relative focus:outline-none mt-2" aria-label="Notifications">
                 <svg class="fi-icon-btn-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0">
                     </path>
@@ -56,27 +51,27 @@
         <li class="relative">
             <button class="flex items-center space-x-2 focus:outline-none" id="dropdownButton" type="button">
                 <img 
-                    src="{{ $profilePictureExists ? asset('storage/' . $profilePicturePath) : 'https://ui-avatars.com/api/?name=' . urlencode($fullName ?: 'User') }}" 
+                    src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : 'https://ui-avatars.com/api/?name=' . urlencode($fullName) }}" 
                     alt="Profile" 
                     class="w-8 h-8 rounded-full"
                 >
             </button>
 
+
             <ul id="dropdownMenu" class="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg hidden z-50">
                 <li class="px-4 py-2 border-b text-gray-500 select-none cursor-default flex items-center space-x-2">
                     <i class="fas fa-user-circle text-gray-400"></i>
-                  <span>{{ $fullName && trim($fullName) !== '' ? $fullName : 'User' }}</span>
-
+                    <span>{{ $fullName }} Admin</span>
                 </li>
                 <li>
-                     <a href="{{ route('myprofile.view') }}"
+                    <a href="/dashboard"
                         class="block w-full px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
-                        <i class="fas fa-edit text-gray-400"></i>
-                        <span>Edit Profile</span>
+                        <i class="fas fa-dashboard text-gray-400"></i>
+                        <span>User Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="/logout">
                         @csrf
                         <button type="submit"
                             class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
@@ -92,14 +87,12 @@
 
 
 <script>
-// JavaScript for toggling dropdown visibility
 document.getElementById('dropdownButton').addEventListener('click', function(event) {
     var dropdownMenu = document.getElementById('dropdownMenu');
     dropdownMenu.classList.toggle('hidden');
     event.stopPropagation();
 });
 
-// Close the dropdown if the user clicks outside of it
 document.addEventListener('click', function(event) {
     var dropdownMenu = document.getElementById('dropdownMenu');
     var dropdownButton = document.getElementById('dropdownButton');
@@ -109,7 +102,6 @@ document.addEventListener('click', function(event) {
     }
 });
 </script>
-
 
 <script>
 // Mobile Sidebar

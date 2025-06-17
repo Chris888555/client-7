@@ -1,4 +1,4 @@
-<header class="bg-teal-700 fixed w-full top-0 left-0 z-50 px-1 sm:px-6 lg:p-4 border border-gray-400">
+<header class="bg-gray-700 fixed w-full top-0 left-0 z-50 px-1 sm:px-6 lg:p-4 border border-gray-400">
 
     <div class="container max-w-6xl mx-auto flex items-center justify-between p-4">
 

@@ -24,9 +24,9 @@
     <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 pl-3 pr-4">
         <a href="/dashboard">
             <img id="sidebar-logo-img"
-                src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png" alt="My Logo"
-                class="h-10 w-auto object-contain " />
-            <span id="logo-text" class="text-teal-700 text-3xl ml-[3px] rounded hidden"> N </span>
+                src="/assets/images/mylogo.png" alt="My Logo"
+                class="h-12 w-auto object-contain " />
+            <span id="logo-text" class="text-gray-300 text-3xl ml-[3px] rounded hidden"> R </span>
         </a>
     </div>
 
@@ -34,122 +34,34 @@
     <!-- Pc Sidebar Links -->
     <ul>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
                 dashboard
             </span>
             <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
 
         </li>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                insights
-            </span>
-            <a href="{{ route('income-stats') }}" class="block p-2 sidebar-text">Income Stats</a>
-        </li>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                device_hub
-            </span>
-            <a href="{{ route('genealogy') }}" class="block p-2 sidebar-text">Network Genealogy</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                account_balance_wallet
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Encashment</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                star
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Rank Status</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                inventory
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Packages</a>
-        </li>
-
-        
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                store
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Shop</a>
-        </li>
-
-
-         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                receipt_long
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">My Orders History</a>
-        </li>
-
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                shopping_basket
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Dropshipping Orders</a>
-        </li>
-
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                list_alt
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">All Income Logs</a>
-        </li>
-
-        
-        <hr class="border-t border-gray-700 my-6" />
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                download
+         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
+                handyman
             </span>
             <a href="{{ route('materials.index') }}" class="block p-2 sidebar-text">Marketing Tools</a>
         </li>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                palette
-            </span>
-            <a href="#" class="block p-2 sidebar-text">Canva Template</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
+        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
                 school
             </span>
-            <a href="#" class="block p-2 sidebar-text">Nextgen Academy</a>
+            <a href="{{ route('academy.show') }}" class="block p-2 sidebar-text">Academy</a>
         </li>
 
-        
-        <hr class="border-t border-gray-700 my-6" />
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-               filter_alt
+         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
+              filter_alt
             </span>
-            <a href="#" class="block p-2 sidebar-text">Sale Funnel Pro</a>
-        </li>
-
-        <hr class="border-t border-gray-700 my-6" />
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                   settings
-            </span>
-            <a href="#" class="block p-2 sidebar-text">Package Settings</a>
+            <a href="{{ route('funnels.activate.form') }}" class="block p-2 sidebar-text">Sales Funnel</a>
         </li>
 
     </ul>
@@ -166,7 +78,7 @@
 
     <div class="flex justify-between items-center mb-6 pl-3 pr-4">
         <a href="/dashboard">
-            <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/681b9a807efb8_RealEstate1920x700px.png"
+            <img src="/assets/images/mylogo.png"
                 alt="My Logo" class="h-10 w-auto object-contain" />
         </a>
 
@@ -183,123 +95,14 @@
     <!-- Mobile Sidebar Links -->
     <ul>
         
-       <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
+       <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
+            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
                 dashboard
             </span>
             <a href="{{ route('user.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
 
         </li>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                insights
-            </span>
-            <a href="{{ route('income-stats') }}" class="block p-2 sidebar-text">Income Stats</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                device_hub
-            </span>
-            <a href="{{ route('genealogy') }}" class="block p-2 sidebar-text">Network Genealogy</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                account_balance_wallet
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Encashment</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                star
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Rank Status</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                inventory
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Packages</a>
-        </li>
-
-        
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                store
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Shop</a>
-        </li>
-
-
-         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                receipt_long
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">My Orders History</a>
-        </li>
-
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                shopping_basket
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">Dropshipping Orders</a>
-        </li>
-
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                list_alt
-            </span>
-            <a href="teams" class="block p-2 sidebar-text">All Income Logs</a>
-        </li>
-
-        
-        <hr class="border-t border-gray-700 my-6" />
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                download
-            </span>
-            <a href="{{ route('materials.index') }}" class="block p-2 sidebar-text">Marketing Tools</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                palette
-            </span>
-            <a href="#" class="block p-2 sidebar-text">Canva Template</a>
-        </li>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                school
-            </span>
-            <a href="#" class="block p-2 sidebar-text">Nextgen Academy</a>
-        </li>
-
-        
-        <hr class="border-t border-gray-700 my-6" />
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-               filter_alt
-            </span>
-            <a href="#" class="block p-2 sidebar-text">Sale Funnel Pro</a>
-        </li>
-
-        <hr class="border-t border-gray-700 my-6" />
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                   settings
-            </span>
-            <a href="#" class="block p-2 sidebar-text">Package Settings</a>
-        </li>
         
     </ul>
 </div>
