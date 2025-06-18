@@ -1,13 +1,12 @@
 @extends('layouts.users')
 
-@section('title', 'Materials')
+@section('title', 'Marketing Tools')
 
 @section('content')
 
 <div class="container mx-auto p-4 sm:p-8 w-full">
 
-    <x-page-header-text title="Downloadable Materials" />
-
+ 
    @php
     $defaultThumbnail = asset('assets/images/materials_thumbnail.png');
     $videos = $materials->where('category', 'Marketing Videos');

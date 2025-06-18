@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Update Materials')
+@section('title', 'Manage Materials')
 
 @section('content')
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
-    <x-page-header-text title="Manage Materials" />
+
 
     <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
         <a href="{{ route('materials.create') }}"
@@ -28,7 +28,7 @@
                     <label for="filterCategory" class="text-sm font-medium text-gray-700 mb-1">Filter by
                         Category</label>
                     <select id="filterCategory" name="category" onchange="this.form.submit()"
-                        class="py-2 border border-gray-300 rounded-lg p-3 focus:outline-none w-40 sm:w-64 cursor-pointer">
+                        class="w-full md:w-48 px-4 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md  transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow cursor-pointer">
                         <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>All Categories</option>
                         @foreach($categories as $cat)
                         <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>{{ $cat }}
@@ -172,17 +172,18 @@
             </div>
             <div>
 
+            <div class="flex flex-row mt-4 gap-4">
                 <!-- Update Button with Save Icon -->
-                <button type="submit" class="bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200">
-                    <i class="fas fa-save mr-2"></i> Update Material
+                <button type="submit" class="w-full max-w-[200px] flex items-center justify-center gap-2 px-4 py-2 border border-dashed border-blue-300 text-blue-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800 transition rounded shadow-sm">
+                    <i class="fas fa-save "></i> Update
                 </button>
 
                 <!-- Cancel Button with X Icon -->
-                <button type="button" class="bg-red-100 text-gray-700 px-4 py-2 rounded hover:bg-red-200 ml-2"
+                <button type="button" class="w-full max-w-[200px] flex items-center justify-center gap-2 px-4 py-2 border border-dashed border-red-300 text-red-700 hover:border-red-400 hover:bg-red-50 hover:text-red-800 transition rounded shadow-sm"
                     onclick="cancelUpdate()">
-                    <i class="fa-solid fa-xmark mr-1"></i>Cancel
+                    <i class="fas fa-circle-xmark"></i> Cancel
                 </button>
-
+            </div>
 
 
         </form>

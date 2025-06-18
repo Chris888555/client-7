@@ -1,13 +1,11 @@
 @extends('layouts.users')
 
-@section('title', 'Marketing Tools')
+@section('title', 'Materials')
 
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
 
-    <x-page-header-text title="Marketing Tools" />
-
-
+  
     <div
         class="w-full p-4 bg-gray-100 border-x border-t border-gray-300 rounded-t-lg flex justify-between items-center">
         <div class="font-semibold">

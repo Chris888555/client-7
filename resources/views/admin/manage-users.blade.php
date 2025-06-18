@@ -5,14 +5,29 @@
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
    
-       <x-page-header-text title="Manage Users" />
 
 <!-- Filter -->
 <div class="flex flex-col md:flex-row md:items-center gap-4 mb-6">
     <!-- Search and Status Filter -->
     <form id="filter-form" method="GET" class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-        <input type="text" name="search" id="search-input" class="w-full md:w-[400px] px-4 py-2 border rounded focus:outline-none" placeholder="Search by name..." value="{{ request('search') }}">
-        <select name="status" id="status-select" class="w-full md:w-48 px-4 py-2 border rounded focus:outline-none cursor-pointer">
+       <div class="w-full max-w-sm min-w-[200px]">
+            <div class="relative flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600">
+                <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+                </svg>
+
+                <input 
+                type="text" 
+                name="search" 
+                id="search-input" 
+                value="{{ request('search') }}"
+                placeholder="Search by name..." 
+                class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                />
+            </div>
+        </div>
+
+        <select name="status" id="status-select" class="w-full md:w-48 px-4 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md  transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow cursor-pointer">
             <option value="">All Status</option>
             <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Approved</option>
             <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Pending</option>
@@ -21,7 +36,7 @@
 
     <!-- Bulk Actions -->
     <div class="flex items-center gap-1 w-full md:w-auto">
-        <select id="bulk-action" class="w-full md:w-48 px-4 py-2 border rounded focus:outline-none cursor-pointer">
+        <select id="bulk-action" class="w-full md:w-48 px-4 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md  transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow cursor-pointe">
             <option value="">Select Action</option>
             <option value="approve">Set Approved</option>
             <option value="disapprove">Set Pending</option>
@@ -29,7 +44,7 @@
             <option value="make-user">Make User</option>
             <option value="delete">Delete</option>
         </select>
-        <button id="apply-action" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700">Apply</button>
+        <button id="apply-action" class="rounded-md bg-slate-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">Apply</button>
     </div>
 </div>
 

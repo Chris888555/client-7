@@ -3,10 +3,10 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<main class="container m-auto p-4 sm:p-8 max-w-full">
-    <x-page-header-text title="Admin Dashboard" />
+<div class="container m-auto p-4 sm:p-8 max-w-full">
+   
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white p-6 rounded-lg shadow">
             <h2 class="text-xl font-semibold mb-2">Name</h2>
             <p>{{ Auth::user()->name }}</p>
@@ -31,5 +31,5 @@
             </button>
         </form>
     </div>
-</main>
+</div>
 @endsection

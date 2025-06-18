@@ -1,15 +1,12 @@
 @extends('layouts.users')
 
-@section('title', 'Academy | Video Playlist')
+@section('title', 'Academy')
 
 @section('content')
 
 
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
-
-    <x-page-header-text title="Start To Learn" />
-
 
     @if($playlists->isEmpty())
     <x-no-materials />

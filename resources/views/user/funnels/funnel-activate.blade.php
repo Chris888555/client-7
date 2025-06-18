@@ -1,12 +1,10 @@
 @extends('layouts.users')
 
-@section('title', 'Activate Funnel')
+@section('title', 'Sales Funnel')
 
 
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
-
-   
 
     @if(!$funnel || strtolower($funnel->status) !== 'active')
     {{-- Activate Funnel Card --}}
@@ -52,37 +50,45 @@
 
 
     {{-- Funnel Activated View --}}
-    <div class="bg-white border border-gray-200 rounded-3xl p-8 text-center">
+<div class="bg-white border border-gray-200 rounded-3xl p-8  mx-auto">
 
-        <p class="text-based sm:text-xl text-gray-600 mb-4">Here’s your sharable funnel link:</p>
+    <h2 class="text-xl sm:text-2xl font-semibold text-gray-600 mb-4">
+        Your Funnel is Live!
+    </h2>
 
-        <!-- Funnel Link Input -->
-        <div class="mb-6">
-            <input id="funnelLink" type="text" readonly value="{{ url($funnel->page_link) }}"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-0">
-        </div>
+    <p class="text-sm sm:text-base text-gray-500 mb-6">
+        Share your funnel link to start generating leads.
+    </p>
 
-
-        <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 w-full border p-2 rounded-2xl items-center max-w-[400px] mx-auto  bg-gray-50 gap-2">
-            <button onclick="copyFunnelLink()"
-                class="w-full sm:w-full px-4 py-2 bg-gray-100 text-green-600 text-sm font-medium rounded-lg">
-                Copy Link
-            </button>
-
-            <a id="viewFunnelLink" href="{{ url($funnel->page_link) }}" target="_blank"
-                class="w-full sm:w-full px-4 py-2  bg-gray-100 text-blue-600 text-sm font-medium rounded-lg">
-                View Funnel
-            </a>
-
-            <button onclick="openEditModal()"
-                class="w-full sm:w-full px-4 py-2  bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
-                Edit Link
-            </button>
-        </div>
-
-
+    <!-- Funnel Link Input -->
+    <div class="mb-6">
+        <input id="funnelLink" type="text" readonly value="{{ url($funnel->page_link) }}"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
     </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-3 w-full p-4 rounded-2xl bg-gradient-to-tr from-gray-50 to-white border max-w-[460px] mx-auto">
+
+        <!-- Copy -->
+        <button onclick="copyFunnelLink()"
+            class="w-full sm:w-auto px-5 py-2.5 bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 rounded-xl text-sm font-semibold transition">
+            <i class="fas fa-copy mr-2"></i> Copy Link
+        </button>
+
+        <!-- View -->
+        <a id="viewFunnelLink" href="{{ url($funnel->page_link) }}" target="_blank"
+        class="w-full sm:w-auto px-5 py-2.5 bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 rounded-xl text-sm font-semibold transition flex justify-center items-center text-center">
+        <i class="fas fa-eye mr-2"></i> View Funnel
+        </a>
+
+        <!-- Edit -->
+        <button onclick="openEditModal()"
+            class="w-full sm:w-auto px-5 py-2.5 bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300 rounded-xl text-sm font-semibold transition">
+            <i class="fas fa-edit mr-2"></i> Edit Link
+        </button>
+    </div>
+</div>
+
 
     <!-- Modal -->
 <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex justify-center items-center z-50">
@@ -111,7 +117,7 @@
 
    <script>
 function generatePageLink() {
-    const random = Math.random().toString(36).substring(2, 10);
+    const random = Math.random().toString(36).substring(2, 8);
     document.getElementById('page_link').value = 'funnel-' + random;
 }
 </script>

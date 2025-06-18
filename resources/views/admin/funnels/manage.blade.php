@@ -5,7 +5,6 @@
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
    
-      <x-page-header-text title="Manage funnel to all users" />
 
        <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
         <a href="{{ route('list.showtable') }}"
@@ -198,13 +197,13 @@
             </div>
 
 
-            <div class="flex gap-2 mt-4">
-                <button type="submit" class="bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200">
-                    <i class="fas fa-save mr-2"></i> Update
+            <div class="flex flex-row mt-4 gap-4">
+                <button type="submit" class="w-full max-w-[200px] flex items-center justify-center gap-2 px-4 py-2 border border-dashed border-blue-300 text-blue-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800 transition rounded shadow-sm">
+                    <i class="fas fa-save"></i>Update
                 </button>
                 <button type="button" id="cancelEdit"
-                    class="bg-red-100 text-gray-700 px-4 py-2 rounded hover:bg-red-200 ml-2">
-                    <i class="fa-solid fa-xmark mr-1"></i> Cancel
+                    class="w-full max-w-[200px] flex items-center justify-center gap-2 px-4 py-2 border border-dashed border-red-300 text-red-700 hover:border-red-400 hover:bg-red-50 hover:text-red-800 transition rounded shadow-sm">
+                  <i class="fas fa-circle-xmark"></i> Cancel
                 </button>
             </div>
         </form>

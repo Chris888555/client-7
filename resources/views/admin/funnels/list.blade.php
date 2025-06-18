@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Manage Funnel ')
+@section('title', 'User List ')
 
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
    
-      <x-page-header-text title="Manage funnel to all users" />
 
         <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
         <a href="{{ route('list.showtable') }}"
@@ -22,21 +21,32 @@
   <div class="flex flex-col sm:flex-row items-center  gap-4 mb-4 mt-6">
 
     {{-- Search Form --}}
-    <form method="GET" action="{{ route('list.showtable') }}" class="flex items-center gap-2 py-2 text-sm w-full sm:w-auto ">
-    <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search by name"
-           class="focus:outline-none border rounded p-2 w-full sm:w-64"
-           oninput="this.form.submit()">
+    <form method="GET" action="{{ route('list.showtable') }}" class="w-full max-w-sm min-w-[200px]">
+        <div class="relative flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600">
+            <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+            </svg>
+
+            <input
+            type="text"
+            name="search"
+            value="{{ $search ?? '' }}"
+            placeholder="Search by name"
+            oninput="this.form.submit()"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            />
+        </div>
     </form>
 
 
     {{-- Editable Action --}}
     <div class="flex items-center gap-2 w-full sm:w-auto">
-        <select id="is_editable_action" class="border rounded px-4 py-2 text-sm focus:outline-none w-full sm:w-auto">
+        <select id="is_editable_action" class="w-full md:w-48 px-4 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md  transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow cursor-pointer">
             <option value="">Select Action</option>
             <option value="1">Editable (Yes)</option>
             <option value="0">Non-Editable (No)</option>
         </select>
-        <button id="applyEditable" class="bg-gray-600 text-white px-4 py-2 rounded text-sm">Apply</button>
+        <button id="applyEditable" class="rounded-md bg-slate-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">Apply</button>
     </div>
 
 </div>

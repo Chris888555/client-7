@@ -12,14 +12,8 @@
 $content = is_array($block->content) ? $block->content : json_decode($block->content, true);
 @endphp
 
-
-
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
-<script src="https://www.youtube.com/iframe_api"></script>
-
 @if ($block->block_name === 'hero')
-<section class="w-full pt-14 pb-1 px-4 sm:px-8" id="video-wrapper-{{ $block->id }}" data-video="{{ $content['video_url'] ?? '' }}">
+<section class="w-full pt-14 pb-1 px-4 sm:px-8">
     <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-gray-600 text-3xl sm:text-4xl font-bold mb-4">{{ $content['headline'] ?? '' }}</h1>
         <p class="text-lg sm:text-xl mb-6">{{ $content['subheadline'] ?? '' }}</p>
@@ -65,7 +59,43 @@ $content = is_array($block->content) ? $block->content : json_decode($block->con
             Your browser does not support the video tag.
         </video>
     </div>
- @endif
+@endif
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const video = document.getElementById('video-player');
+    const overlay = document.getElementById('video-overlay');
+    const playIcon = document.getElementById('play-button');
+    const clickLayer = document.getElementById('video-click-layer');
+    const thumbnail = document.getElementById('video-thumbnail');
+
+    if (video && overlay && playIcon && clickLayer && thumbnail) {
+        function toggleVideo() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        overlay.addEventListener('click', toggleVideo);
+        clickLayer.addEventListener('click', toggleVideo);
+
+        video.addEventListener('pause', () => {
+            overlay.style.display = 'flex';
+            playIcon.style.display = 'block';
+            thumbnail.style.display = 'block'; // Show thumbnail again if needed
+        });
+
+        video.addEventListener('play', () => {
+            overlay.style.display = 'none';
+            playIcon.style.display = 'none';
+            thumbnail.style.display = 'none'; // Hide thumbnail
+        });
+    }
+});
+</script>
+
 
 
         <div class="mt-10">
@@ -77,6 +107,7 @@ $content = is_array($block->content) ? $block->content : json_decode($block->con
 
     </div>
 </section>
+
 
 @elseif ($block->block_name === 'countdown')
 <section class="py-10 text-center">
@@ -242,145 +273,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 @endif
 @endforeach
-
-@endsection
-
-@section('js')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const video = document.getElementById('video-player');
-    const overlay = document.getElementById('video-overlay');
-    const playIcon = document.getElementById('play-button');
-    const clickLayer = document.getElementById('video-click-layer');
-    const thumbnail = document.getElementById('video-thumbnail');
-    const youtubeIframe = document.getElementById('youtube-iframe');
-
-    let userCookie = localStorage.getItem('user_cookie');
-    if (!userCookie) {
-        userCookie = 'user_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('user_cookie', userCookie);
-        console.log('[Init] Generated user_cookie:', userCookie);
-    } else {
-        console.log('[Init] Found user_cookie:', userCookie);
-    }
-
-    const wrapper = document.querySelector('[id^="video-wrapper-"]');
-    const videoUrl = wrapper?.dataset.video ?? '';
-    const pageLink = "{{ $funnel->page_link ?? '' }}";
-    const username = "{{ $funnel->user->username ?? '' }}";
-
-
-    let progressInterval;
-    let maxProgress = 0;
-
-    // ✅ MP4 VIDEO LOGIC
-    if (video && overlay && playIcon && clickLayer && thumbnail) {
-        function toggleVideo() {
-            if (video.paused) video.play();
-            else video.pause();
-        }
-
-        overlay.addEventListener('click', toggleVideo);
-        clickLayer.addEventListener('click', toggleVideo);
-
-        video.addEventListener('play', () => {
-            overlay.style.display = 'none';
-            playIcon.style.display = 'none';
-            thumbnail.style.display = 'none';
-            sendProgressToBackend(0, 0);
-            startMP4Tracking();
-        });
-
-        video.addEventListener('pause', () => {
-            overlay.style.display = 'flex';
-            playIcon.style.display = 'block';
-            thumbnail.style.display = 'block';
-            clearInterval(progressInterval);
-        });
-
-        function startMP4Tracking() {
-            progressInterval = setInterval(() => {
-                const duration = video.duration || 1;
-                const progress = video.currentTime / duration;
-                maxProgress = Math.max(maxProgress, progress);
-                sendProgressToBackend(progress, maxProgress);
-            }, 1000);
-        }
-    }
-
-    // ✅ FUNCTION TO SAVE PROGRESS
-    function sendProgressToBackend(progress, maxProgress) {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-        if (!csrfToken) return;
-
-        console.log('[Backend] Sending video_url:', videoUrl);
-
-        fetch('{{ route('video.progress.store') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken,
-            },
-            body: JSON.stringify({
-                user_cookie: userCookie,
-                video_url: videoUrl,
-                page_link: pageLink,
-                username: username,
-                progress: progress,
-                max_watch_percentage: maxProgress
-            })
-        })
-        .then(res => {
-            if (!res.ok) throw new Error('Fetch failed');
-            return res.json();
-        })
-        .then(data => console.log('[Success]', data))
-        .catch(err => console.error('[Error]', err));
-    }
-
-    // ✅ DEFINE BEFORE YT API LOADS
-    window.onYouTubeIframeAPIReady = function () {
-        console.log('[YT] Iframe API Ready');
-
-        let ytMaxProgress = 0;
-        let ytStarted = false;
-        let ytInterval;
-
-        const ytPlayer = new YT.Player('youtube-iframe', {
-            events: {
-                onStateChange: function (event) {
-                    if (event.data === YT.PlayerState.PLAYING) {
-                        if (!ytStarted) {
-                            ytStarted = true;
-                            sendProgressToBackend(0, 0);
-                        }
-
-                        ytInterval = setInterval(() => {
-                            const currentTime = ytPlayer.getCurrentTime();
-                            const duration = ytPlayer.getDuration() || 1;
-                            const progress = currentTime / duration;
-                            ytMaxProgress = Math.max(ytMaxProgress, progress);
-                            sendProgressToBackend(progress, ytMaxProgress);
-                        }, 1000);
-                    }
-
-                    if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                        clearInterval(ytInterval);
-                    }
-                }
-            }
-        });
-    };
-
-    // ✅ LOAD YOUTUBE IFRAME API
-    if (!window.YT) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-    } else {
-        window.onYouTubeIframeAPIReady();
-    }
-});
-</script>
 
 @endsection

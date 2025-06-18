@@ -1,112 +1,112 @@
-<style>
-/* Webkit Browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-    width: 2px;
-    /* Decreased vertical scrollbar width */
-    height: 4px;
-    /* Decreased horizontal scrollbar height */
-}
+<!-- Mobile Overlay -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden xl:hidden"></div>
 
-::-webkit-scrollbar-thumb {
-    background-color: #1F2937;
-    /* Tailwind Gray 800 */
-    border-radius: 10px;
-}
-</style>
+<!-- Desktop Sidebar -->
+<aside id="sidebar" class="fixed w-[280px] border rounded-2xl inset-y-0 left-0 z-50 my-4 xl:ml-4 p-4 transition-all duration-200 xl:translate-x-0 transform -translate-x-full xl:relative bg-white">
+  <!-- Close Icon (mobile only) -->
+  <div class="relative h-16 flex items-center justify-between px-4 xl:hidden">
+    <span id="close-sidebar" class="material-icons text-slate-500 cursor-pointer text-lg opacity-70">close</span>
+  </div>
 
+  <!-- Logo (Text Only) -->
+<a href="javascript:;" id="sidebar-logo" class="flex items-center px-4 py-4 transition-all duration-300 pl-2 pr-4 justify-start">
+  <span id="logo-text" class="text-lg font-bold transition-all duration-300">Rtech Solutions</span>
+  <span id="logo-initial" class="hidden text-2xl font-bold mx-auto transition-all duration-300">R</span>
+</a>
 
-<!-- ############ PC Sidebar #####################################################################-->
-<aside id="sidebar"
-    class="fixed w-[280px] h-screen p-5 hidden md:block transition-all duration-300 overflow-y-scroll bg-gray-800 text-gray-200">
+  <hr class="border-t border-slate-100 my-2">
 
-
-
-    <div id="sidebar-logo" class="text-lg font-bold mb-6 flex items-center space-x-2 pl-3 pr-4">
-             <a href="/dashboard">
-            <img id="sidebar-logo-img" src="/assets/images/mylogo.png" alt="My Logo" class="h-12 w-auto object-contain m-l-4" />
-            <span id="logo-text" class="text-gray-300 text-3xl ml-[3px] rounded hidden"> R </span>
-        </a>
-    </div>
-
-
-    <!-- Pc Sidebar Links -->
-    <ul>
-
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
-            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
-                dashboard
-            </span>
-            <a href="{{ route('admin.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
-        </li>
-
+  <!-- Menu Items -->
+  <nav class="overflow-y-auto max-h-[calc(100vh-150px)]">
+    <ul class="flex flex-col space-y-1 px-2 text-sm font-medium text-slate-700">
         
-       <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
-            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
-               manage_accounts
-            </span>
-            <a href="{{ route('admin.manage-users') }}" class="block p-2 sidebar-text">Manage Users</a>
-        </li>
-       
+      <li>
+        <a href="{{ route('admin.dashboard') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-slate-700 rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs">dashboard</span>
+          </div>
+          <span class="sidebar-text">Dashboard</span>
+        </a>
+      </li>
 
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
-            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
-               library_add
-            </span>
-            <a href="{{ route('materials.create') }}" class="block p-2 sidebar-text">Create Materials</a>
-        </li>
+      <li>
+        <a href="{{ route('admin.manage-users') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs text-slate-700">manage_accounts</span>
+          </div>
+          <span class="sidebar-text">Manage Users</span>
+        </a>
+      </li>
 
-         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
-            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
-                video_call
-            </span>
-            <a href="{{ route('academy.create') }}" class="block p-2 sidebar-text">Create Academy</a>
-        </li>
+       <li>
+        <a href="{{ route('materials.create') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs text-slate-700">library_add</span>
+          </div>
+          <span class="sidebar-text">Create Materials</span>
+        </a>
+      </li>
 
-         <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-gray-500 hover:text-gray-200">
-            <span class="material-icons bg-gray-500 text-gray-200 rounded p-1">
-                tune
-            </span>
-            <a href="{{ route('manage.showtable') }}" class="block p-2 sidebar-text">Manage Funnel</a>
-        </li>
+        <li>
+        <a href="{{ route('academy.create') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs text-slate-700">video_call</span>
+          </div>
+          <span class="sidebar-text">Create Academy</span>
+        </a>
+      </li>
 
+       <li>
+        <a href="{{ route('list.showtable') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs text-slate-700">tune</span>
+          </div>
+          <span class="sidebar-text">Manage Funnel</span>
+        </a>
+      </li>
 
 
     </ul>
+  </nav>
 </aside>
 
+<!-- Mobile Sidebar -->
+<aside id="mobile-sidebar" class="xl:hidden fixed w-[280px] border rounded-2xl inset-y-0 left-0 z-50 ml-2 my-4 p-4 transition-all duration-200 transform -translate-x-full bg-white">
+  
+<div class="relative h-16 flex items-center justify-between px-4">
 
+    <span id="close-sidebar" class="material-icons text-slate-500 cursor-pointer text-lg opacity-70">close</span>
+  </div>
 
-<!-- ############ Mobile Sidebar #####################################################################-->
-<div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden md:hidden z-40"></div> <!-- Overlay -->
+  <!-- Logo -->
+  <a href="javascript:;" id="sidebar-logo" class="flex items-center px-4 py-4 transition-all duration-300 pl-2 pr-4">
+    <span class="text-lg font-bold">Rtech Solutions</span>
+  </a>
 
-<div id="mobile-sidebar"
-    class="fixed inset-0 z-50 p-5 transform -translate-x-full transition-transform md:hidden overflow-y-auto w-[300px]  bg-gray-800 text-gray-200">
+  <hr class="border-t border-slate-200 my-2">
 
-
-    <div class="flex justify-between items-center mb-6 pl-3 pr-4">
-        <a href="/dashboard">
-            <img src="/assets/images/mylogo.png"
-                alt="My Logo" class="h-10 w-auto object-contain" />
+  <!-- Menu Items -->
+  <nav class="overflow-y-auto max-h-[calc(100vh-150px)]">
+    <ul class="flex flex-col space-y-1 px-2 text-sm font-medium text-slate-700">
+        
+      <li>
+        <a href="../pages/dashboard.html" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-slate-700 rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs">dashboard</span>
+          </div>
+          <span class="sidebar-text">Dashboard</span>
         </a>
+      </li>
 
-        <button id="close-sidebar" class="text-white text-lg">
-            <svg class="h-8 w-8 text-gray-200 hover:text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <line x1="9" y1="9" x2="15" y2="15" />
-                <line x1="15" y1="9" x2="9" y2="15" />
-            </svg>
-        </button>
-    </div>
-
-    <!-- Mobile Sidebar Links -->
-    <ul>
-        <li class="mb-2 flex items-center gap-2 sidebar-item rounded px-3 hover:bg-teal-700 hover:text-gray-200">
-            <span class="material-icons bg-teal-700 text-white rounded p-1">
-                dashboard
-            </span>
-            <a href="{{ route('admin.dashboard') }}" class="block p-2 sidebar-text">Dashboard</a>
-        </li>
+      <li>
+        <a href="../pages/tables.html" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
+          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
+            <span class="material-icons text-xs text-slate-700">table_chart</span>
+          </div>
+          <span class="sidebar-text">Tables</span>
+        </a>
+      </li>
 
     </ul>
-</div>
+  </nav>
+</aside>

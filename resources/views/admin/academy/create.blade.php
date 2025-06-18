@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Playlist')
+@section('title', 'Create Academy')
 
 @section('content')
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
-    <x-page-header-text title="Upload Videos" />
+
 
     <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
         <a href="{{ route('academy.create') }}"

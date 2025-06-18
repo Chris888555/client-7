@@ -52,18 +52,18 @@
     @yield('head')
 </head>
 
-<body class="flex flex-col lg:flex-row overflow-hidden bg-gray-50 ">
+<body class="flex flex-col lg:flex-row overflow-hidden">
 
 
 
     <x-sidebar /> {{-- Sidebar Component --}}
 
     <div class="flex-1 overflow-y-auto ">
-        <header id="main-header" class="bg-gray-50  flex-1 flex flex-col transition-all duration-300 ml-0 ">
+        <header id="main-header" class="bg-gray-50 border-b flex-1 flex flex-col transition-all duration-300 ml-0 lg:ml-[280px]">
             <x-user-nav /> {{-- Navbar Component --}}
         </header>
 
-        <main id="main-content" class="bg-gray-50  transition-all duration-300 mr-0  ml-0 overflow-y-auto" style="height: calc(100vh - 80px);">
+        <main id="main-content" class="bg-gray-50  transition-all duration-300 mr-0  ml-0 lg:ml-[280px] overflow-y-auto" style="height: calc(100vh - 80px);">
             @yield('content') {{-- Dynamic content --}}
         </main>
 

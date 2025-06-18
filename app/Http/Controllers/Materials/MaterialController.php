@@ -58,7 +58,7 @@ public function showByCategory($category)
 {
     $materials = Material::where('category', urldecode($category))->get();
 
-    return view('materials.showByCategory', compact('materials', 'category'));
+    return view('user.materials.showByCategory', compact('materials', 'category'));
 }
 
 

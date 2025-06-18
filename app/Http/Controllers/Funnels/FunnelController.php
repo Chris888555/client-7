@@ -4,45 +4,63 @@ namespace App\Http\Controllers\Funnels;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Funnels\Funnel;
 use App\Models\Funnels\FunnelBlock;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\Funnels\Funnel;
+use App\Models\User\FunnelView;
 
 class FunnelController extends Controller
 {
 
-  public function viewFunnel($page_link)
+public function viewFunnel($page_link, Request $request)
 {
-    $funnel = Funnel::where('page_link', $page_link)->firstOrFail();
+    $cookieName = 'funnel_user_cookie';
+    $userCookie = $request->cookie($cookieName) ?? Str::uuid()->toString();
 
+    // Get funnel by page_link
+    $funnel = Funnel::where('page_link', $page_link)->firstOrFail();
+    $username = $funnel->username;
+
+    // ✅ Check if already viewed by this cookie
+    $alreadyViewed = FunnelView::where('user_cookie', $userCookie)
+        ->where('page_link', $page_link)
+        ->exists();
+
+    if (!$alreadyViewed) {
+        FunnelView::create([
+            'user_cookie' => $userCookie,
+            'page_link' => $page_link,
+            'username' => $username,
+            'ip_address' => $request->ip(),
+        ]);
+    }
+
+    // Load funnel blocks and hero thumbnail
     $blocks = $funnel->blocks()
         ->where('is_active', true)
         ->orderBy('sort_order')
         ->get()
         ->keyBy('block_name');
 
-    // Get hero block content
     $heroBlock = $blocks->get('hero');
-
-    $thumbnailUrl = asset('assets/images/funnel_video_thumbnail.png'); // default
+    $thumbnailUrl = asset('assets/images/funnel_video_thumbnail.png');
+    $content = [];
 
     if ($heroBlock) {
         $content = json_decode($heroBlock->content, true);
+        $userThumbnail = $content['video_thumbnail'] ?? null;
 
-       $userThumbnail = $content['video_thumbnail'] ?? null;
-
-if ($userThumbnail && file_exists(storage_path('app/public/' . $userThumbnail))) {
-    $thumbnailUrl = asset('storage/' . $userThumbnail);
-} else {
-    $thumbnailUrl = asset('assets/images/funnel_video_thumbnail.png');
-}
-
+        if ($userThumbnail && file_exists(storage_path('app/public/' . $userThumbnail))) {
+            $thumbnailUrl = asset('storage/' . $userThumbnail);
+        }
     }
 
-    return view('user.funnels.funnel', compact('funnel', 'blocks', 'thumbnailUrl'));
+    return response()
+        ->view('user.funnels.funnel', compact('funnel', 'blocks', 'thumbnailUrl', 'content'))
+        ->cookie($cookieName, $userCookie, 60 * 24 * 30);
 }
 
 

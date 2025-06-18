@@ -18,6 +18,12 @@ use App\Http\Controllers\Funnels\FunnelController;
 
 use App\Http\Controllers\Funnels\AdminManageFunnel;
 
+use App\Http\Controllers\User\VideoProgressController;
+
+use App\Http\Controllers\User\FunnelViewController;
+
+use App\Http\Controllers\Page\UserPageController;
+
 Route::get('/', function () {
    return view('home');
 });
@@ -44,9 +50,7 @@ Route::get('/thankyou', function () {return view('auth.thankyou');})->name('than
 
 Route::middleware(['auth', 'usersession'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('user.dashboard'); 
-    })->name('user.dashboard'); 
+    Route::get('/dashboard', [UserPageController::class, 'dashboard'])->name('user.dashboard');
 
     Route::get('/myprofile', [ProfileController::class, 'showProfileForm'])->name('user.myprofile');
     Route::post('/upload-profile-photo', [ProfileController::class, 'uploadProfilePhoto'])->name('profile.upload');
@@ -75,6 +79,10 @@ Route::middleware(['auth', 'usersession'])->group(function () {
  Route::post('/funnels/blocks/update', [FunnelController::class, 'update'])->name('blocks.update');
  Route::post('/funnels/{block}/toggle-active', [FunnelController::class, 'toggleActive'])->name('blocks.toggleActive');
  Route::post('/blocks/{id}/sort-order', [FunnelController::class, 'updateSortOrder'])->name('blocks.updateSortOrder');
+
+
+
+Route::post('/funnels/save-video-progress', [VideoProgressController::class, 'store'])->name('video.progress.store');
 
 
  

@@ -6,7 +6,6 @@
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
 
-    <x-page-header-text title="Upload Materials" />
 
     <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
         <a href="{{ route('materials.create') }}"
