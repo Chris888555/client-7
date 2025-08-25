@@ -1,190 +1,146 @@
 @extends('layouts.admin')
 
-@section('title', 'Upload Materials')
+@section('title', 'Upload Image')
 
 @section('content')
 
 <div class="container m-auto p-4 sm:p-8 max-w-full">
 
+ 
+{{-- ✅ Buttons --}}
+<div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
+    {{-- Create Materials --}}
+    <a href="{{ route('materials.create') }}"
+        class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
+        {{ request()->routeIs('materials.create') 
+            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
+        Create Materials
+    </a>
 
-    <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
-        <a href="{{ route('materials.create') }}"
-            class="w-full text-center  hover:bg-gray-100 bg-gray-100 text-teal-600 px-5 py-2 rounded-xl  transition cursor-pointer">
-            Create Materials
-        </a>
-
-        <a href="{{ route('materials.show') }}"
-            class="w-full text-center  hover:bg-gray-100 text-gray-800 px-5 py-2 rounded-xl transition cursor-pointer">
-            Update Materials
-        </a>
-    </div>
-
-
-    <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data" id="uploadForm"
-        class="space-y-4">
-        @csrf
-
-        <div>
-            <label for="category" class="block text-sm font-medium text-gray-500 mb-2">Category</label>
-            <select name="category" id="category" required class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg
-           focus:outline-none cursor-pointer">
-
-                <option value="">Select Category</option>
-                <option value="Marketing Images">Marketing Images</option>
-                <option value="Marketing Videos">Marketing Videos</option>
-                <option value="PDF Slides Copy">PDF Slides Copy</option>
-                <option value="Company Documents">Company Documents</option>
-
-
-            </select>
-        </div>
-
-        <!-- Title -->
-        <div id="title-wrapper">
-            <x-input-text label="Title" name="title" placeholder="Enter title, atlest 50 characters" required />
-        </div>
-
-
-        <div>
-            <label for="caption" class="block text-sm font-semibold text-gray-500 mb-2">
-                Caption
-            </label>
-            <textarea name="caption" id="caption" @if(old('category')==='image' ) required @endif
-                placeholder="Type your caption here ..." class="w-full px-4 py-3 border border-gray-300 rounded-lg
-                        focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50
-                        focus:border-gray-400 transition-shadow duration-300"></textarea>
-        </div>
-
-        <div class="mb-6">
-            <label for="file" class="block text-sm font-medium text-gray-500 mb-2">
-                File (Image / Video / PDF)
-            </label>
-            <div class="flex items-center justify-center w-full">
-                <label for="file"
-                    class="flex flex-col w-full  p-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
-
-                    <div class="flex flex-col items-center justify-center">
-                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-600" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M4 12l8-8m0 0l8 8m-8-8v12" />
-                        </svg>
-                        <p class="text-sm text-gray-600 text-center">
-                            <span class="font-semibold">Click to upload</span> or drag and drop
-                        </p>
-                        <p class="text-xs text-gray-500 text-center">PNG, JPG, MP4, PDF — Max 10MB</p>
-                    </div>
-
-                    <!-- File path text inside the padded label -->
-                    <p id="filePath" class="mt-3 text-sm font-medium text-teal-600 text-center break-words"></p>
-
-                    <input type="file" name="file" id="file" accept=".png,.jpg,.jpeg,.mp4,.pdf"
-                        class="hidden focus:outline-none" required>
-                </label>
-            </div>
-        </div>
-        <div>
-
-      <x-button type="submit" icon="fa-solid fa-floppy-disk">Upload Materials</x-button>
-
-        </div>
-    </form>
+    {{-- List Materials --}}
+    <a href="{{ route('materials.show') }}"
+        class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
+        {{ request()->routeIs('materials.show') 
+            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
+        List Materials
+    </a>
 </div>
 
 
+
+    <form id="uploadForm" method="POST" action="{{ route('materials.store') }}" enctype="multipart/form-data">
+        @csrf
+
+        {{-- Category --}}
+        <div class="mb-4">
+            <label for="category" class="text-gray-600 font-medium block mb-1">Category <span class="text-red-500">*</span></label>
+            <select name="category" id="category" class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-gray-200" required>
+                <option value="">-- Select Type --</option>
+                <option value="FB Ads">FB Ads</option>
+                <option value="Posting">Posting</option>
+                <option value="Stories">Stories</option>
+                <option value="Product">Product</option>
+                <option value="Cover Photo">Cover Photo</option>
+                <option value="Testimonial">Testimonial</option>
+            </select>
+        </div>
+
+        {{-- Caption --}}
+        <div class="mb-4">
+            <label for="caption" class="text-gray-600 font-medium block mb-1">Caption <span class="text-red-500">*</span></label>
+            <textarea name="caption" id="caption" rows="3" placeholder="Enter caption (optional)" class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-gray-200"></textarea>
+        </div>
+
+        {{-- File Upload --}}
+        <div class="mb-4">
+    <label for="file" class="text-gray-600 font-medium block mb-1">
+        Upload Image <span class="text-red-500">*</span>
+    </label>
+
+    <div id="uploadBox"
+         class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center 
+                bg-gray-50 hover:border-green-400 transition cursor-pointer">
+        
+        <input type="file" name="file" id="file" class="hidden" accept=".jpg,.jpeg,.png" required>
+
+        <label for="file" class="flex flex-col items-center justify-center text-gray-500 cursor-pointer">
+            <!-- Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6h.1a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+            <!-- Text -->
+            <p class="mb-1">Click to upload or drag image here</p>
+            <small class="text-gray-400">Only JPG or PNG (max 2MB)</small>
+        </label>
+
+        <!-- File path output -->
+        <p id="filePath" class="mt-2 text-blue-600 text-sm font-semibold"></p>
+    </div>
+</div>
+
 <script>
-// Select the input field and the element to show the file path
-const fileInput = document.getElementById('file');
-const filePathDisplay = document.getElementById('filePath');
-
-// Add event listener for when a file is selected
-fileInput.addEventListener('change', function() {
-    const file = fileInput.files[0];
-
+document.getElementById('file').addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    const filePath = document.getElementById('filePath');
     if (file) {
-        // Show the file path below the upload button in blue color
-        filePathDisplay.textContent = `File selected: ${file.name}`;
+        filePath.textContent = file.name;
     } else {
-        filePathDisplay.textContent = ''; // Clear if no file is selected
+        filePath.textContent = "";
     }
 });
 </script>
 
 
-<script>
-const categorySelect = document.getElementById('category');
-const captionField = document.getElementById('caption').parentElement;
-const titleWrapper = document.getElementById('title-wrapper');
-const titleInput = titleWrapper.querySelector('input[name="title"]');
+        {{-- Submit --}}
+        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center justify-center gap-2">
+            <i class="fas fa-save"></i> Save Image
+        </button>
 
-// Initial check
-toggleFields();
+    </form>
+</div>
 
-categorySelect.addEventListener('change', toggleFields);
-
-function toggleFields() {
-    const category = categorySelect.value;
-
-    // Caption field toggle (from existing logic)
-    if (category === 'Marketing Images') {
-        captionField.style.display = 'block';
-    } else {
-        captionField.style.display = 'none';
-        document.getElementById('caption').value = '';
-    }
-
-    // Title field toggle (hide for Marketing Images only)
-    if (category === 'Marketing Images') {
-        titleWrapper.style.display = 'none';
-        titleInput.value = '';
-        titleInput.required = false;
-    } else {
-        titleWrapper.style.display = 'block';
-        titleInput.required = true;
-    }
-
-}
-</script>
 
 @endsection
-
 
 @section('js')
 <script>
 document.getElementById('uploadForm').addEventListener('submit', function(e) {
     e.preventDefault();
+
     const form = this;
     const formData = new FormData(form);
 
+    Swal.fire({
+        title: 'Uploading...',
+        html: 'Please wait while we upload your image.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
     fetch(form.action, {
-            method: form.method,
+            method: 'POST',
             headers: {
-                'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'X-Requested-With': 'XMLHttpRequest'
             },
-            body: formData,
+            body: formData
         })
-        .then(res => {
-            if (!res.ok) throw new Error('Network error');
-            return res.json();
+        .then(response => {
+            if (!response.ok) throw new Error('Upload failed');
+            return response.json();
         })
         .then(data => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: data.message || 'Uploaded!',
-                showConfirmButton: true,
-            });
+            Swal.fire('Success', data.message || 'Uploaded!', 'success');
             form.reset();
             document.getElementById('filePath').textContent = '';
         })
-        .catch(err => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: err.message || 'Something went wrong',
-                showConfirmButton: true,
-            });
+        .catch(error => {
+            Swal.fire('Error', error.message || 'Something went wrong.', 'error');
         });
 });
 </script>

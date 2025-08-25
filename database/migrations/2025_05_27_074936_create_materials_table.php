@@ -14,13 +14,12 @@ class CreateMaterialsTable extends Migration
     public function up()
     {
        Schema::create('materials', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title', 255)->nullable();
+            $table->id();
             $table->string('file_path', 255);
-            $table->string('category', 255)->nullable();
             $table->text('caption')->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->string('category', 100)->nullable(); 
+            $table->timestamps();
+
         });
 
     }

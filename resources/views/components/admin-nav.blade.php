@@ -9,15 +9,12 @@
     $profilePictureExists = $user ? Storage::disk('public')->exists($profilePicturePath) : false;
 @endphp
 
-
-<nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px]">
+  <nav class="flex items-center justify-between pl-5 pr-5 sm:pr-8 py-[23px] sm:py-[14px]">
     <!-- Desktop Burger Icon -->
     <button id="pc-burger-icon" class="hidden lg:inline-block text-gray-700 mr-4">
-       <svg class="h-8 w-8 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-</svg>
-
+       <svg class="h-8 w-8 text-gray-400"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="16" height="16" rx="2" />  <line x1="9" y1="4" x2="9" y2="20" /></svg>
     </button>
+
 
     <!-- Mobile Burger Icon and Logo -->
     <div class="flex items-center lg:hidden space-x-2">
@@ -26,26 +23,38 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
         </button>
-
-        <a href="/dashboard" id="nav-logo" class="flex items-center space-x-2">
-            <img id="nav-logo-img" src="/assets/images/mylogo.png" 
-            alt="My Logo" class="h-8 w-auto ml-4 object-contain" />
-        </a>
     </div>
 
+    <div class="p-4 text-gray-500 text-based sm:text-xl font-bold">
+    @yield('title', 'Dashboard')
+   </div>
+
+
     <ul class="flex ml-auto items-center space-x-4">
-        <!-- Notification Icon -->
-        <li>
-            <button class="relative focus:outline-none mt-2" aria-label="Notifications">
-                <svg class="fi-icon-btn-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0">
-                    </path>
-                </svg>
-                <span class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
-            </button>
-        </li>
+       
+    <!-- Online Status -->
+        <div class="flex items-center gap-2">
+            <span id="server-status-dot" class="h-3 w-3 rounded-full bg-green-500"></span>
+            <span id="server-status-text" class="text-sm text-gray-600">Online</span>
+        </div>
+
+        <script>
+        function setAlwaysOnline() {
+            document.getElementById("server-status-dot").className = "h-3 w-3 rounded-full bg-green-500";
+            document.getElementById("server-status-text").textContent = "Online";
+        }
+
+        async function checkServerStatus() {
+            try {
+                await fetch("/ping", { cache: "no-store" });
+            } catch (e) {}
+            setAlwaysOnline();
+        }
+
+        setInterval(checkServerStatus, 5000);
+        checkServerStatus();
+        </script>
+
 
         <!-- Dropdown Menu -->
         <li class="relative">
@@ -104,88 +113,62 @@ document.addEventListener('click', function(event) {
 </script>
 
 <script>
-// Mobile Sidebar
-const burgerIcon = document.getElementById('mobile-burger-icon'); // Mobile burger icon
-const mobileSidebar = document.getElementById('mobile-sidebar');
-const overlay = document.getElementById('overlay');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('mobile-overlay');
+
+// ✅ MOBILE open
+const mobileBurger = document.getElementById('mobile-burger-icon');
+if (mobileBurger) {
+    mobileBurger.addEventListener('click', () => {
+        if (window.innerWidth < 992) {
+            sidebar.classList.remove('translate-x-[-100%]');
+            sidebar.classList.add('translate-x-0');
+
+            overlay.classList.remove('hidden', 'opacity-0');
+            setTimeout(() => overlay.classList.add('show'), 10);
+        }
+    });
+}
+
+// ✅ MOBILE close
 const closeSidebar = document.getElementById('close-sidebar');
+if (closeSidebar) closeSidebar.addEventListener('click', closeMobileSidebar);
+overlay.addEventListener('click', closeMobileSidebar);
 
+function closeMobileSidebar() {
+    sidebar.classList.remove('translate-x-0');
+    sidebar.classList.add('translate-x-[-100%]');
 
-// Toggle Mobile Sidebar
-burgerIcon.addEventListener('click', () => {
-    mobileSidebar.classList.toggle('translate-x-0');
-    mobileSidebar.classList.toggle('-translate-x-full');
-    overlay.classList.toggle('hidden');
-});
+    overlay.classList.remove('show');
+    overlay.classList.add('opacity-0');
+    setTimeout(() => overlay.classList.add('hidden'), 300);
+}
 
-// Close Mobile Sidebar when Overlay is clicked
-overlay.addEventListener('click', () => {
-    mobileSidebar.classList.add('-translate-x-full');
-    mobileSidebar.classList.remove('translate-x-0');
-    overlay.classList.add('hidden');
-});
+// ✅ DESKTOP collapse toggle
+const pcBurger = document.getElementById('pc-burger-icon');
+if (pcBurger) {
+    pcBurger.addEventListener('click', () => {
+        if (window.innerWidth >= 992) {
+            sidebar.classList.toggle('collapsed');
+        }
+    });
+}
 
-// Close Mobile Sidebar when Close Button is clicked
-closeSidebar.addEventListener('click', () => {
-    mobileSidebar.classList.add('-translate-x-full');
-    mobileSidebar.classList.remove('translate-x-0');
-    overlay.classList.add('hidden');
-});
+// ✅ Hover effect on nav items
+const links = document.querySelectorAll('#sidebar .nav-link');
+links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        if (!sidebar.classList.contains('collapsed')) {
+            link.style.backgroundColor = '{{ $theme->nav_hover_bg_color }}';
+            link.style.color = '{{ $theme->nav_text_hover_color }}';
+        }
+    });
 
-// PC Sidebar Toggle
-document.getElementById('pc-burger-icon').addEventListener('click', function() {
-    let sidebar = document.getElementById('sidebar');
-    let mainContent = document.getElementById('main-content');
-    let header = document.getElementById('main-header');
-    let texts = document.querySelectorAll('.sidebar-text');
-    let items = document.querySelectorAll('.sidebar-item');
-    let logoImg = document.getElementById('sidebar-logo-img');
-    let logoText = document.getElementById('logo-text');
-    let logoContainer = document.getElementById('sidebar-logo');
-
-    if (sidebar.classList.contains('w-[280px]')) {
-        sidebar.classList.remove('w-[280px]');
-        sidebar.classList.add('w-[96px]'); // Adjust width when collapsed
-        mainContent.classList.remove('lg:ml-[280px]');
-        mainContent.classList.add('lg:ml-[96px]'); // Adjust the margin for the collapsed sidebar
-        header.classList.remove('lg:ml-[280px]');
-        header.classList.add('lg:ml-[96px]'); // Adjust header margin for collapsed sidebar
-        texts.forEach(text => text.classList.add('hidden'));
-        items.forEach(item => {
-            item.classList.add('mt-1');
-            item.classList.add('p-3');
-            logoContainer.classList.remove('pl-2', 'pr-4');
-            logoContainer.classList.add('px-4'); 
-           logoContainer.classList.add('bg-gray-700', 'rounded', 'mt-2');
-
-        });
-
-        // Hide the logo image and show the letter "N" when collapsed
-        logoImg.classList.add('hidden'); // Hide the logo image
-        logoText.classList.remove('hidden'); // Show the letter "N"
-        logoText.classList.add('text-3xl'); // Make the letter "N" larger
-
-    } else {
-        sidebar.classList.remove('w-[96px]');
-        sidebar.classList.add('w-[280px]'); // Reset to original width when expanded
-        mainContent.classList.remove('lg:ml-[96px]');
-        mainContent.classList.add('lg:ml-[280px]'); // Reset the margin when sidebar expands
-        header.classList.remove('lg:ml-[96px]');
-        header.classList.add('lg:ml-[280px]'); // Reset header margin when sidebar expands
-        texts.forEach(text => text.classList.remove('hidden'));
-        items.forEach(item => {
-            item.classList.remove('mt-1');
-            item.classList.remove('p-3');
-            logoContainer.classList.remove('px-4');
-            logoContainer.classList.add('pl-2', 'pr-4');
-            logoContainer.classList.remove('bg-gray-700', 'rounded', 'mt-2');
-
-        });
-
-        // Reset to the original logo (image)
-        logoImg.classList.remove('hidden'); // Show the logo image
-        logoText.classList.add('hidden'); // Hide the letter "N"
-        logoText.classList.remove('text-3xl'); // Reset text size
-    }
+    link.addEventListener('mouseleave', () => {
+        if (!sidebar.classList.contains('collapsed')) {
+            link.style.backgroundColor = '';
+            link.style.color = '{{ $theme->nav_text_color }}';
+        }
+    });
 });
 </script>

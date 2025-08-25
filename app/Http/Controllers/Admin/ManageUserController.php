@@ -26,7 +26,7 @@ class ManageUserController extends Controller
         $totalPending = (clone $query)->where('is_approved', 0)->count();
 
 
-       return view('admin.manage-users', compact('users', 'totalApproved', 'totalPending'));
+       return view('admin.users.manage-users', compact('users', 'totalApproved', 'totalPending'));
 
     }
 

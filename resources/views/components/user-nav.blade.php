@@ -30,33 +30,35 @@
     @yield('title', 'Dashboard')
    </div>
 
-        <div class="relative w-full xl:w-[430px] hidden xl:block">
-        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white/30 text-sm"></i>
-        <input
-            id="search-input"
-            type="text"
-            placeholder="Search or type command..."
-            class="h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 placeholder:text-gray-400 
-                shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-none
-                dark:border-gray-800 dark:bg-dark-900 dark:bg-white/[0.03] dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-        />
-        </div>
-
+   
 
 
     <ul class="flex ml-auto items-center space-x-4">
-        <!-- Notification Icon -->
-        <li>
-            <button class="relative focus:outline-none mt-2" aria-label="Notifications">
-                <svg class="fi-icon-btn-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0">
-                    </path>
-                </svg>
-                <span class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
-            </button>
-        </li>
+
+    <!-- Online Status -->
+        <div class="flex items-center gap-2">
+            <span id="server-status-dot" class="h-3 w-3 rounded-full bg-green-500"></span>
+            <span id="server-status-text" class="text-sm text-gray-600">Online</span>
+        </div>
+
+        <script>
+        function setAlwaysOnline() {
+            document.getElementById("server-status-dot").className = "h-3 w-3 rounded-full bg-green-500";
+            document.getElementById("server-status-text").textContent = "Online";
+        }
+
+        async function checkServerStatus() {
+            try {
+                await fetch("/ping", { cache: "no-store" });
+            } catch (e) {}
+            setAlwaysOnline();
+        }
+
+        setInterval(checkServerStatus, 5000);
+        checkServerStatus();
+        </script>
+
+
 
         <!-- Dropdown Menu -->
         <li class="relative">
@@ -115,66 +117,62 @@ document.addEventListener('click', (event) => {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const mobileSidebar = document.getElementById("mobile-sidebar");
-  const mobileBurgerIcon = document.getElementById("mobile-burger-icon");
-  const closeSidebarIcons = document.querySelectorAll("#close-sidebar");
-  const mobileOverlay = document.getElementById("mobile-overlay");
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('mobile-overlay');
 
-  const desktopSidebar = document.getElementById("sidebar");
-  const pcBurgerIcon = document.getElementById("pc-burger-icon");
-  const logoText = document.querySelector("#logo-text");
-  const logoInitial = document.querySelector("#logo-initial");
-  const sidebarTexts = document.querySelectorAll(".sidebar-text");
+// ✅ MOBILE open
+const mobileBurger = document.getElementById('mobile-burger-icon');
+if (mobileBurger) {
+    mobileBurger.addEventListener('click', () => {
+        if (window.innerWidth < 992) {
+            sidebar.classList.remove('translate-x-[-100%]');
+            sidebar.classList.add('translate-x-0');
 
-  // MOBILE: Open
-  mobileBurgerIcon?.addEventListener("click", () => {
-    mobileSidebar.classList.remove("-translate-x-full");
-    mobileOverlay.classList.remove("hidden");
-  });
-
-  // MOBILE: Close
-  closeSidebarIcons.forEach(el => {
-    el.addEventListener("click", () => {
-      mobileSidebar.classList.add("-translate-x-full");
-      mobileOverlay.classList.add("hidden");
+            overlay.classList.remove('hidden', 'opacity-0');
+            setTimeout(() => overlay.classList.add('show'), 10);
+        }
     });
-  });
+}
 
-  // MOBILE: Close on overlay click
-  mobileOverlay?.addEventListener("click", () => {
-    mobileSidebar.classList.add("-translate-x-full");
-    mobileOverlay.classList.add("hidden");
-  });
+// ✅ MOBILE close
+const closeSidebar = document.getElementById('close-sidebar');
+if (closeSidebar) closeSidebar.addEventListener('click', closeMobileSidebar);
+overlay.addEventListener('click', closeMobileSidebar);
 
-  // DESKTOP: Collapse/Expand
-  let isCollapsed = false;
-  pcBurgerIcon?.addEventListener("click", () => {
-    isCollapsed = !isCollapsed;
-    desktopSidebar.classList.toggle("w-[280px]");
-    desktopSidebar.classList.toggle("w-[80px]");
+function closeMobileSidebar() {
+    sidebar.classList.remove('translate-x-0');
+    sidebar.classList.add('translate-x-[-100%]');
 
-    // Toggle logo text
-    if (logoText && logoInitial) {
-      logoText.classList.toggle("hidden");
-      logoInitial.classList.toggle("hidden");
-    }
+    overlay.classList.remove('show');
+    overlay.classList.add('opacity-0');
+    setTimeout(() => overlay.classList.add('hidden'), 300);
+}
 
-    // Toggle menu item text
-    sidebarTexts.forEach(span => {
-      span.classList.toggle("hidden");
+// ✅ DESKTOP collapse toggle
+const pcBurger = document.getElementById('pc-burger-icon');
+if (pcBurger) {
+    pcBurger.addEventListener('click', () => {
+        if (window.innerWidth >= 992) {
+            sidebar.classList.toggle('collapsed');
+        }
+    });
+}
+
+// ✅ Hover effect on nav items
+const links = document.querySelectorAll('#sidebar .nav-link');
+links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        if (!sidebar.classList.contains('collapsed')) {
+            link.style.backgroundColor = '{{ $theme->nav_hover_bg_color }}';
+            link.style.color = '{{ $theme->nav_text_hover_color }}';
+        }
     });
 
-  document.querySelectorAll(".sidebar-item").forEach(item => {
-    if (isCollapsed) {
-        item.classList.add("justify-center", "px-0", "hover:bg-transparent");
-        item.classList.remove("px-4", "hover:bg-slate-100");
-    } else {
-        item.classList.remove("justify-center", "px-0", "hover:bg-transparent");
-        item.classList.add("px-4", "hover:bg-slate-100");
-    }
-
+    link.addEventListener('mouseleave', () => {
+        if (!sidebar.classList.contains('collapsed')) {
+            link.style.backgroundColor = '';
+            link.style.color = '{{ $theme->nav_text_color }}';
+        }
     });
-  });
 });
 </script>

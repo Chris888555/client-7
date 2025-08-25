@@ -29,14 +29,13 @@
 
 </head>
 
-<body class="mt-4 min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-white">
+<body class="m-0 p-0 min-h-screen flex flex-col >
 
 
 
-   <main class="flex-grow">
-    @yield('content')
-</main>
-
+     <main class="flex-grow">
+        @yield('content')
+    </main>
 
     {{-- Additional Scripts --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -51,6 +50,12 @@
             });
         });
     </script>
+
+    {{-- ✅ Facebook Pixel Code Inject --}}
+    @if(!empty($funnel->custom_pixel_code))
+        {!! $funnel->custom_pixel_code !!}
+    @endif
+
     @yield('js')
 </body>
 

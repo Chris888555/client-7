@@ -10,12 +10,33 @@
    <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}">
 
    <style>
+   
+    #main-content {
+        scrollbar-width: thin; 
+        scrollbar-color: #D1D5DB transparent; 
+    }
+
+    #main-content::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    #main-content::-webkit-scrollbar-thumb {
+        background-color: #D1D5DB; 
+        border-radius: 10px;
+    }
+
+    #main-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
     .swal2-confirm,
     .swal2-cancel {
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
     }
+
     </style>
 
 
@@ -50,24 +71,21 @@
 
     {{-- Additional Scripts --}}
     @yield('head')
-</head>
 
-<body class="flex flex-col lg:flex-row overflow-hidden bg-gray-50 ">
+    </head>
 
+    <body class="flex flex-col lg:flex-row overflow-hidden bg-gray-50 ">
 
-
-    <x-sidebar /> {{-- Sidebar Component --}}
+         <x-sidebar /> 
 
     <div class="flex-1 overflow-y-auto ">
         <header id="main-header" class="bg-gray-50  flex-1 flex flex-col transition-all duration-300 ml-0 ">
-            <x-user-nav /> {{-- Navbar Component --}}
+            <x-user-nav /> 
         </header>
 
-        <main id="main-content" class="bg-gray-50  transition-all duration-300 mr-0  ml-0 overflow-y-auto" style="height: calc(100vh - 80px);">
-            @yield('content') {{-- Dynamic content --}}
+        <main id="main-content" class="bg-gray-50  transition-all duration-300 mr-0  ml-0 overflow-y-auto pb-[50px]" style="height: calc(100vh - 100px);">
+            @yield('content') 
         </main>
-
-       
     </div>
 
     {{-- JavaScript --}}

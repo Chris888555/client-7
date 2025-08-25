@@ -1,112 +1,250 @@
-<!-- Mobile Overlay -->
-<div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden xl:hidden"></div>
 
-<!-- Desktop Sidebar -->
-<aside id="sidebar" class="fixed w-[280px] border rounded-2xl inset-y-0 left-0 z-50 my-4 xl:ml-4 p-4 transition-all duration-200 xl:translate-x-0 transform -translate-x-full xl:relative bg-white">
-  <!-- Close Icon (mobile only) -->
-  <div class="relative h-16 flex items-center justify-between px-4 xl:hidden">
-    <span id="close-sidebar" class="material-icons text-slate-500 cursor-pointer text-lg opacity-70">close</span>
-  </div>
+<style>
+/* 🔵 SCROLLBAR */
+.sidebar-section *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+.sidebar-section *::-webkit-scrollbar-thumb {
+    background-color: {{ $theme->sidebar_bg }};
+    border-radius: 10px;
+}
 
-  <!-- Logo (Text Only) -->
-<a href="javascript:;" id="sidebar-logo" class="flex items-center px-4 py-4 transition-all duration-300 pl-2 pr-4 justify-start">
-  <span id="logo-text" class="text-lg font-bold transition-all duration-300">Rtech Solutions</span>
-  <span id="logo-initial" class="hidden text-2xl font-bold mx-auto transition-all duration-300">R</span>
-</a>
+/* 🔵 MOBILE: Slide-in/out behavior */
+.translate-start {
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+}
+.translate-show {
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+#mobile-overlay {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
 
-  <hr class="border-t border-slate-100 my-2">
-
-  <!-- Menu Items -->
-  <nav class="overflow-y-auto max-h-[calc(100vh-150px)]">
-    <ul class="flex flex-col space-y-1 px-2 text-sm font-medium text-slate-700">
-        
-      <li>
-        <a href="{{ route('admin.dashboard') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-slate-700 rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs">dashboard</span>
-          </div>
-          <span class="sidebar-text">Dashboard</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="{{ route('admin.manage-users') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs text-slate-700">manage_accounts</span>
-          </div>
-          <span class="sidebar-text">Manage Users</span>
-        </a>
-      </li>
-
-       <li>
-        <a href="{{ route('materials.create') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs text-slate-700">library_add</span>
-          </div>
-          <span class="sidebar-text">Create Materials</span>
-        </a>
-      </li>
-
-        <li>
-        <a href="{{ route('academy.create') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs text-slate-700">video_call</span>
-          </div>
-          <span class="sidebar-text">Create Academy</span>
-        </a>
-      </li>
-
-       <li>
-        <a href="{{ route('list.showtable') }}" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-white rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs text-slate-700">tune</span>
-          </div>
-          <span class="sidebar-text">Manage Funnel</span>
-        </a>
-      </li>
+#mobile-overlay.show {
+    opacity: 1; 
+}
 
 
-    </ul>
-  </nav>
-</aside>
 
-<!-- Mobile Sidebar -->
-<aside id="mobile-sidebar" class="xl:hidden fixed w-[280px] border rounded-2xl inset-y-0 left-0 z-50 ml-2 my-4 p-0 bg-white flex flex-col overflow-hidden transition-all duration-200 transform -translate-x-full">
-
-  <div class="relative h-16 flex items-center justify-between px-4">
-    <span id="close-sidebar" class="material-icons text-slate-500 cursor-pointer text-lg opacity-70">close</span>
-  </div>
-
-  <!-- Logo -->
-  <a href="javascript:;" id="sidebar-logo" class="flex items-center px-4 py-4 transition-all duration-300 pl-2 pr-4">
-    <span class="text-lg font-bold">Rtech Solutions</span>
-  </a>
-
-  <hr class="border-t border-slate-200 my-2">
-
-  <!-- Scrollable Menu -->
-  <nav class="overflow-y-auto flex-1 px-2 pb-4">
-    <ul class="flex flex-col space-y-1 text-sm font-medium text-slate-700">
-      <li>
-        <a href="../pages/dashboard.html" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-slate-700 rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs">dashboard</span>
-          </div>
-          <span class="sidebar-text">Dashboard</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="../pages/tables.html" class="sidebar-item flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-slate-100 transition">
-          <div class="bg-slate-100 text-slate-700 rounded-lg p-2 flex items-center justify-center">
-            <span class="material-icons text-xs">table_chart</span>
-          </div>
-          <span class="sidebar-text">Tables</span>
-        </a>
-      </li>
+#sidebar {
+    margin-left: 5px;
+}
 
 
-    </ul>
-  </nav>
-</aside>
 
+/* 🔵 DESKTOP MODE OVERRIDES */
+@media (min-width: 992px) {
+    #sidebar {
+        position: relative !important;
+        transform: none !important;
+        transition: width 0.3s ease, padding 0.3s ease;
+    }
+    #mobile-overlay {
+        display: none !important;
+    }
+
+
+/* 🔵 COLLAPSE behavior (desktop only) */
+#sidebar.collapsed {
+    width: 80px !important;
+    padding: 1rem 0.5rem !important;
+    overflow-x: hidden !important; 
+    overflow-y: auto !important;
+    
+}
+
+/* 🔵 Sidebar text fade/shrink */
+.sidebar-text {
+    display: inline-block;
+    opacity: 1;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, max-width 0.3s ease, transform 0.3s ease;
+
+}
+#sidebar.collapsed .sidebar-text {
+    opacity: 0;
+    max-width: 0;
+ }
+
+/* 🔵 Default: align logo to start */
+    .logo-container {
+        justify-content: flex-start !important;
+    }
+/* 🔵 Collapsed: center the logo */
+    #sidebar.collapsed .logo-container {
+        justify-content: center !important;
+    }
+    
+
+/*🔵 Shared logo styles */
+#logo-full,
+#logo-initial {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    opacity: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 🔵When collapsed: fade out full logo, fade in short logo */
+#sidebar.collapsed #logo-full {
+    opacity: 0;
+    max-width: 0;
+}
+#sidebar:not(.collapsed) #logo-initial {
+    opacity: 0;
+    max-width: 0;
+}
+
+}
+
+/* 🔵 Overlay color on top using ::before */
+.sidebar-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: {{ $theme->sidebar_bg }};
+    opacity: 0.8;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* 🔵 Ensure content is above overlay */
+.sidebar-overlay > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+</style>
+
+
+<!-- ✅ WRAPPER -->
+<section class="sidebar-section">
+    <!-- ✅ MOBILE OVERLAY -->
+    <div id="mobile-overlay"
+        class="fixed inset-0 bg-white bg-opacity-80 z-20 hidden lg:hidden opacity-0 transition-opacity duration-300">
+    </div>
+
+
+    <!-- ✅ SINGLE SIDEBAR -->
+    <aside id="sidebar"
+        class="fixed lg:relative top-0 bottom-0 left-0 z-30 border rounded-2xl my-2 ml-4 p-4 text-white sidebar-overlay translate-x-[-100%] transition-all duration-300"
+        style="
+            width: 280px;
+            height: calc(100vh - 1rem);
+            background-image: url('https://i.pinimg.com/originals/e6/53/f5/e653f5f2b28067b4d36fb537f2679ee4.jpg');
+            background-size: cover;
+            background-position: center;
+        "
+    >
+        <!-- ✅ CLOSE BUTTON - mobile only -->
+        <div class="flex lg:hidden justify-end mb-3">
+            <span id="close-sidebar" class="material-icons cursor-pointer" style="color: {{ $theme->logo_color }};">close</span>
+        </div>
+
+         <!-- ✅ LOGO -->
+        <div class="flex items-center justify-start mb-3 logo-container h-16">
+            <div class="rounded p-2 flex items-center justify-center mx-auto lg:mx-0">
+                <span id="logo-full" style="color: {{ $theme->logo_color }};" class="text-base font-bold">Grind & Lifestyle Club</span>
+                <span id="logo-initial" style="color: {{ $theme->logo_color }};" class="text-lg font-bold hidden">G</span>
+            </div>
+        </div>
+
+        <hr class="my-2 border-gray-500">
+
+        <!-- ✅ MENU -->
+        <nav class="overflow-y-auto overflow-x-hidden max-h-[calc(100vh-150px)]">
+            <ul class="flex flex-col text-sm font-semibold text-gray-300">
+
+          <li>
+            <a href="{{ route('admin.dashboard') }}"
+                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
+                    style="color: {{ $theme->nav_text_color }};"
+                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
+                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
+                    
+                    <div class="rounded-lg p-2 flex items-center justify-center"
+                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
+                        <span class="material-icons text-xs">dashboard</span>
+                    </div>
+                    <span class="sidebar-text text-base">Dashboard</span>
+                </a>
+            </li>
+
+
+              <li>
+            <a href="{{ route('admin.manage-users') }}"
+                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
+                    style="color: {{ $theme->nav_text_color }};"
+                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
+                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
+                    
+                    <div class="rounded-lg p-2 flex items-center justify-center"
+                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
+                        <span class="material-icons text-xs">group</span>
+                    </div>
+                    <span class="sidebar-text text-base">Manage Users</span>
+                </a>
+            </li>
+            
+
+              <li>
+            <a href="{{ route('materials.create') }}"
+                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
+                    style="color: {{ $theme->nav_text_color }};"
+                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
+                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
+                    
+                    <div class="rounded-lg p-2 flex items-center justify-center"
+                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
+                        <span class="material-icons text-xs">add_box</span>
+                    </div>
+                    <span class="sidebar-text text-base">Create Materials</span>
+                </a>
+            </li>
+
+               <li>
+            <a href="{{ route('packages.create') }}"
+                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
+                    style="color: {{ $theme->nav_text_color }};"
+                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
+                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
+                    
+                    <div class="rounded-lg p-2 flex items-center justify-center"
+                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
+                        <span class="material-icons text-xs">add_box</span>
+                    </div>
+                    <span class="sidebar-text text-base">Create Package</span>
+                </a>
+            </li>
+
+
+            <li>
+            <a href="{{ route('admin.theme.settings') }}"
+                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
+                    style="color: {{ $theme->nav_text_color }};"
+                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
+                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
+                    
+                    <div class="rounded-lg p-2 flex items-center justify-center"
+                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
+                        <span class="material-icons text-xs">settings</span>
+                    </div>
+                    <span class="sidebar-text text-base">Theme Setting</span>
+                </a>
+            </li>
+
+             
+
+
+            </ul>
+        </nav>
+    </aside>
+</section>

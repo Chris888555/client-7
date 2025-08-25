@@ -39,6 +39,27 @@
 </head>
 
 <style>
+
+    /* 🔵 Thin Gray Scrollbar for #main-content */
+#main-content {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #D1D5DB transparent; /* Firefox */
+}
+
+#main-content::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+#main-content::-webkit-scrollbar-thumb {
+    background-color: #D1D5DB; /* Tailwind gray-300 */
+    border-radius: 10px;
+}
+
+#main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 .swal2-confirm,
 .swal2-cancel {
   outline: none !important;
@@ -54,12 +75,12 @@
 
     <div class="flex-1 overflow-y-auto ">
         <header id="main-header" class="bg-gray-50  flex-1 flex flex-col transition-all duration-300 ml-0 ">
-            <x-user-nav /> {{-- Navbar Component --}}
+            <x-admin-nav /> {{-- Navbar Component --}}
         </header>
 
-        <main id="main-content" class="bg-gray-50  transition-all duration-300 mr-0  ml-0 overflow-y-auto" style="height: calc(100vh - 80px);">
+       <main id="main-content" class="bg-gray-50 transition-all duration-300 mr-0 ml-0 overflow-y-auto pb-6" style="height: calc(100vh - 80px);">
             @yield('content') {{-- Dynamic content --}}
-        </main>
+       </main>
 
         {{-- Success Alert Message --}}
       <x-alert-success />

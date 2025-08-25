@@ -3,52 +3,58 @@
 @section('title', 'Register')
 
 @section('content')
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white/5 backdrop-blur-md border border-white/30 rounded-xl p-8 w-full max-w-md shadow-lg">
+        <h1 class="text-3xl font-extrabold mb-8 text-center text-white">Register</h1>
 
-<div class="">
-    <h1 class="text-3xl font-extrabold mb-8 text-center text-gray-800">Register</h1>
+        <form id="registerForm" method="POST" action="{{ route('register.post') }}">
+            @csrf
 
-    <form id="registerForm" method="POST" action="{{ route('register.post') }}">
-        @csrf
+            <label class="block mb-2 text-white font-semibold">Name</label>
+            <input type="text" name="name" value="{{ old('name') }}" required
+                class="w-full p-3 border border-white/50 rounded-lg mb-6 bg-gray-100 text-gray-800 placeholder-gray-500
+                       focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                id="name" placeholder="Enter your name">
 
-        <label class="block mb-2 text-gray-700 font-semibold">Name</label>
-        <input type="text" name="name" value="{{ old('name') }}" required
-            class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            id="name">
+            <label class="block mb-2 text-white font-semibold">Email</label>
+            <input type="email" name="email" value="{{ old('email') }}" required
+                class="w-full p-3 border border-white/50 rounded-lg mb-6 bg-gray-100 text-gray-800 placeholder-gray-500
+                       focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                id="email" placeholder="Enter your email">
 
-        <label class="block mb-2 text-gray-700 font-semibold">Email</label>
-        <input type="email" name="email" value="{{ old('email') }}" required
-            class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            id="email">
+            <label class="block mb-2 text-white font-semibold">Password</label>
+            <div class="flex items-center mb-6 relative">
+                <input type="password" name="password" required
+                    class="flex-grow p-3 pr-10 border border-white/50 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500
+                           focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                    id="password" placeholder="Enter your password">
+                <span toggle="#password"
+                    class="material-icons absolute right-3 top-3 cursor-pointer text-gray-500 toggle-password">visibility</span>
+            </div>
 
-        <label class="block mb-2 text-gray-700 font-semibold">Password</label>
-        <div class="relative mb-6">
-            <input type="password" name="password" required
-                class="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                id="password">
-            <span toggle="#password"
-                class="material-icons absolute right-3 top-3 cursor-pointer text-gray-500 toggle-password">visibility</span>
-        </div>
+            <label class="block mb-2 text-white font-semibold">Confirm Password</label>
+            <div class="flex items-center mb-6 relative">
+                <input type="password" name="password_confirmation" required
+                    class="flex-grow p-3 pr-10 border border-white/50 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500
+                           focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                    id="password_confirmation" placeholder="Confirm your password">
+                <span toggle="#password_confirmation"
+                    class="material-icons absolute right-3 top-3 cursor-pointer text-gray-500 toggle-password">visibility</span>
+            </div>
 
-        <label class="block mb-2 text-gray-700 font-semibold">Confirm Password</label>
-        <div class="relative mb-6">
-            <input type="password" name="password_confirmation" required
-                class="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                id="password_confirmation">
-            <span toggle="#password_confirmation"
-                class="material-icons absolute right-3 top-3 cursor-pointer text-gray-500 toggle-password">visibility</span>
-        </div>
+            <button type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 
+                       focus:outline-none focus:ring-2 focus:ring-white 
+                       shadow-[0_0_10px_2px_rgba(255,255,255,0.5)] transition duration-300">
+                Register
+            </button>
+        </form>
 
-
-        <button type="submit"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
-            Register
-        </button>
-    </form>
-
-    <p class="mt-6 text-center text-gray-600">
-        Already have an account? <a href="{{ route('login') }}"
-            class="text-green-600 font-semibold underline hover:text-green-700">Login</a>
-    </p>
+        <p class="mt-6 text-center text-white/80">
+            Already have an account? 
+            <a href="{{ route('login') }}" class="text-gray-50 font-semibold underline hover:text-gray-50">Login</a>
+        </p>
+    </div>
 </div>
 @endsection
 
