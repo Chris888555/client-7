@@ -39,8 +39,80 @@
                 <p class="text-gray-400 text-center">No recent leads.</p>
             @endif
         </div>
-
     </div>
+
+
+
+<!-- Funnel Views Chart -->
+<div class="mt-8 bg-white rounded-xl shadow-sm border p-6">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-y-4 sm:gap-y-0 mb-4">
+        <h2 class="text-lg font-semibold">
+            Funnel Page Views ({{ \Carbon\Carbon::create($year, $month)->format('F Y') }})
+        </h2>
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+            <!-- Summary -->
+            <div class="text-sm text-center sm:text-left">
+                <div class="text-gray-700">
+                    <span class="font-semibold text-blue-600">{{ $totalViewsThisMonth }}</span> total views this month
+                </div>
+                <div class="text-gray-500">
+                    <span class="font-semibold">{{ $totalViewsAllTime }}</span> current and old views
+                </div>
+            </div>
+
+            <!-- Year + Month Selector -->
+            <form method="GET" action="{{ route('user.dashboard') }}" 
+                  class="flex flex-col sm:flex-row items-center gap-2">
+                <select name="year" class="w-full sm:w-auto px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring">
+                    @for ($y = now()->year; $y >= now()->year - 5; $y--)
+                        <option value="{{ $y }}" {{ $year == $y ? 'selected' : '' }}>{{ $y }}</option>
+                    @endfor
+                </select>
+                <select name="month" class="w-full sm:w-auto px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring"
+                    onchange="this.form.submit()">
+                    @for ($m = 1; $m <= 12; $m++)
+                        <option value="{{ $m }}" {{ $month == $m ? 'selected' : '' }}>
+                            {{ \Carbon\Carbon::create()->month($m)->format('F') }}
+                        </option>
+                    @endfor
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <canvas id="viewsChart" height="100"></canvas>
+</div>
+
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('viewsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [...Array({{ count($viewsCounts) }}).keys()].map(i => i + 1), // Days of month
+            datasets: [{
+                label: 'Page Views',
+                data: @json($viewsCounts),
+                backgroundColor: 'rgba(37, 99, 235, 0.7)',
+                borderRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: { title: { display: true, text: 'Day of Month' } },
+                y: { title: { display: true, text: 'Views' }, beginAtZero: true }
+            }
+        }
+    });
+</script>
+
 
 </div>
 @endsection

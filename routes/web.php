@@ -97,6 +97,10 @@ Route::post('/payment-method/delete', [PaymentMethodController::class, 'delete']
 
 
 Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+
+
+Route::get('/analytics/page-view', [LeadController::class, 'pageAnalytics'])->name('user.pageAnalytics');
+
 });
 
 
@@ -147,12 +151,11 @@ Route::middleware(['auth', 'adminsession'])->group(function () {
 
 
 
-
-Route::get('/admin/testimonials/create', [TestimonialController::class, 'createView'])->name('admin.testimonials.create');
-Route::post('/admin/testimonials/store', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
-Route::get('/admin/testimonials/list/', [TestimonialController::class, 'list'])->name('admin.testimonials.list');
-Route::post('/admin/testimonials/update/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
-Route::post('/admin/testimonials/bulk-delete', [TestimonialController::class, 'bulkDelete'])->name('admin.testimonials.bulkDelete');
+  Route::get('/admin/testimonials/create', [TestimonialController::class, 'createView'])->name('admin.testimonials.create');
+  Route::post('/admin/testimonials/store', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
+  Route::get('/admin/testimonials/list/', [TestimonialController::class, 'list'])->name('admin.testimonials.list');
+  Route::post('/admin/testimonials/update/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
+  Route::post('/admin/testimonials/bulk-delete', [TestimonialController::class, 'bulkDelete'])->name('admin.testimonials.bulkDelete');
 
 
 });
