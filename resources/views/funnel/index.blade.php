@@ -152,62 +152,68 @@
         });
     }
 
-    // Update Link button
-    const updateBtn = document.getElementById('updateLinkBtn');
-    if(updateBtn) {
-        updateBtn.addEventListener('click', () => {
-            Swal.fire({
-                title: 'Update Funnel Link',
-                input: 'text',
-              inputLabel: 'Enter any new page link (e.g., Juan)',
-                inputValue: '{{ $funnel->page_link ?? "" }}',
-                showCancelButton: true,
-                confirmButtonText: 'Update',
-                preConfirm: (newLink) => {
-                    if(!newLink) {
-                        Swal.showValidationMessage('Link cannot be empty');
+   // Update Link button
+const updateBtn = document.getElementById('updateLinkBtn');
+if(updateBtn) {
+    updateBtn.addEventListener('click', () => {
+        Swal.fire({
+            title: 'Update Funnel Link',
+            input: 'text',
+            inputLabel: 'Enter new page link (only letters, numbers, and ( - or dash ) allowed)',
+            inputValue: '{{ $funnel->page_link ?? "" }}',
+            showCancelButton: true,
+            confirmButtonText: 'Update',
+            preConfirm: (newLink) => {
+                if(!newLink) {
+                    Swal.showValidationMessage('Link cannot be empty');
+                    return false;
+                }
+                // ✅ Allow only letters, numbers, and dash
+                const regex = /^[a-zA-Z0-9-]+$/;
+                if(!regex.test(newLink)) {
+                    Swal.showValidationMessage('Only letters, numbers, and (- or dash) are allowed. Special characters like @ # . and soon are not allowed.');
+                    return false;
+                }
+                return newLink;
+            },
+            didOpen: () => {
+                const input = Swal.getInput();
+                if(input) input.select();
+            }
+        }).then((result) => {
+            if(result.isConfirmed) {
+                const newLink = result.value;
+                fetch('{{ route("funnel.updateLink") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ page_link: newLink })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Updated!',
+                            text: 'Funnel link updated successfully',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire('Error', data.message || 'Something went wrong', 'error');
                     }
-                    return newLink;
-                },
-                didOpen: () => {
-                    // optional: focus input
-                    const input = Swal.getInput();
-                    if(input) input.select();
-                }
-            }).then((result) => {
-                if(result.isConfirmed) {
-                    const newLink = result.value;
-                    fetch('{{ route("funnel.updateLink") }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({ page_link: newLink })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if(data.success) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Updated!',
-                                text: 'Funnel link updated successfully',
-                                timer: 1500,
-                                showConfirmButton: false
-                            }).then(() => {
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire('Error', data.message || 'Something went wrong', 'error');
-                        }
-                    })
-                    .catch(err => {
-                        Swal.fire('Error', 'Something went wrong', 'error');
-                    });
-                }
-            });
+                })
+                .catch(err => {
+                    Swal.fire('Error', 'Something went wrong', 'error');
+                });
+            }
         });
-    }
+    });
+}
 
 </script>
 

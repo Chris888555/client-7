@@ -9,15 +9,20 @@
 <body class="bg-white text-gray-800">
 
   <!-- Navbar -->
-  <nav class="bg-white shadow-sm fixed top-0 left-0 w-full z-50">
+  <nav class="bg-blue-600 shadow-sm fixed top-0 left-0 w-full z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">Grind & Lifestyle Club</h1>
-      <div class="space-x-6 hidden md:flex">
-        <a href="{{ route('login') }}" 
-          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-            Login
-        </a>
-      </div>
+     <!-- ✅ Logo Image -->
+    <a href="{{ url('/') }}" class="flex items-center">
+      <img id="logo-full" src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-14 w-auto">
+    </a>
+
+      <div class="space-x-6">
+      <a href="{{ route('login') }}" 
+        class="bg-gray-50 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-100">
+          Login
+      </a>
+    </div>
+
     </div>
   </nav>
 

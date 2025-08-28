@@ -5,6 +5,26 @@
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full space-y-8">
 
+<!-- ✅ Reminder Note Card -->
+    <div class="w-full mx-auto bg-yellow-50 border border-yellow-300 rounded-xl shadow-sm p-4">
+        <div class="flex items-start gap-3">
+            <!-- Icon (FAFA) -->
+            <div class="flex-shrink-0">
+                <i class="fas fa-circle-exclamation text-yellow-600 text-lg"></i>
+            </div>
+
+            <!-- Text -->
+            <div class="flex-1">
+                <h3 class="text-sm font-semibold text-yellow-800">Important Reminder</h3>
+                <p class="mt-1 text-sm text-yellow-700 leading-relaxed">
+                    Please make sure to <span class="font-semibold">update all button links</span> with the correct URLs 
+                    so users will be redirected to the proper pages. Double-check before saving.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
     <form id="buttonsForm" class="space-y-6">
         @csrf
 
@@ -53,10 +73,12 @@
             <label>Show Shop Button</label>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-            Update Buttons
+       <!-- Submit Button -->
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2">
+            <i class="fas fa-save"></i>
+            Save Changes
         </button>
+
 
     </form>
 </div>

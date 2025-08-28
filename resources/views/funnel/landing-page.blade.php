@@ -8,6 +8,12 @@
 
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/favicon/site.webmanifest') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}" type="image/x-icon">
+
 
      <!-- SEO Basic Meta -->
         <meta name="title" content="GutGuard SynBIOTIC+">
@@ -31,12 +37,10 @@
 <div id="announcementModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-2">
     <div class="bg-white rounded shadow-lg relative max-w-lg w-full p-1">
 
-        <!-- Close button -->
         <button id="closeModal" class="absolute top-0 right-0 text-white text-xl hover:text-gray-200 focus:outline-none">
             <i class="fas fa-circle-xmark text-red-600 text-2xl bg-white rounded-full "></i>
         </button>
 
-        <!-- Poster -->
         <div class="flex justify-center">
             <img src="{{ asset('storage/'.$announcement->poster) }}" alt="Poster" class="rounded">
         </div>
@@ -48,15 +52,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("announcementModal");
     const closeBtn = document.getElementById("closeModal");
 
-    // Auto show modal on page load
     modal.classList.remove("hidden");
 
-    // Close modal
     closeBtn.addEventListener("click", function() {
         modal.classList.add("hidden");
     });
-
-    // Click outside modal to close
     modal.addEventListener("click", function(e) {
         if (e.target === modal) {
             modal.classList.add("hidden");
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
          alt="Hero PC" 
          class="hidden md:block w-full h-auto object-cover">
 
-    <!-- Button for PC (absolute on image) -->
+    <!-- Button for PC  -->
     <a href="javascript:void(0)" 
     class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[7%] z-20 bg-blue-600 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl hover:bg-blue-700 transition rounded-lg openFormBtn">
       Learn More 
@@ -87,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
          alt="Hero Mobile" 
          class="block md:hidden w-full h-auto object-cover mt-0">
 
-    <!-- Button for Mobile (below image) -->
+    <!-- Button for Mobile  -->
     <a href="javascript:void(0)" 
-   class="block md:hidden flex items-center justify-center mt-4 bg-blue-600 text-white mt-8 px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl text-center hover:bg-blue-700 transition mx-auto w-max rounded-lg openFormBtn">
-    Learn More 
-    <i class="fas fa-arrow-right ml-2"></i>
-</a>
+    class="block md:hidden flex items-center justify-center mt-4 bg-blue-600 text-white mt-8 px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl text-center hover:bg-blue-700 transition mx-auto w-max rounded-lg openFormBtn">
+      Learn More 
+      <i class="fas fa-arrow-right ml-2"></i>
+  </a>
 </section>
 
 
@@ -123,16 +123,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
 <section class="p-6 sm:p-12 mx-auto ">
   <div class="flex flex-col md:flex-row items-center md:gap-12 gap-6 ">
 
-    <!-- Left: Product Image -->
-    <div class="w-full md:w-1/2 flex justify-center">
-      <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/68adc43b47df8_Untitleddesign25.png" 
-           alt="SynBIOTIC+ Bottle" 
-           class="w-full object-contain">
-    </div>
+   <!-- Left: Product Image -->
+  <div class="w-full md:w-1/2 flex justify-center">
+    <img src="{{ asset('assets/images/product-research-image.png') }}" 
+        alt="SynBIOTIC+ Bottle" 
+        class="w-full object-contain">
+  </div>
 
     <!-- Right: Text Content -->
     <div class="w-full md:w-1/2">
@@ -196,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <section class="p-6 sm:p-12 mx-auto">
   <div class="container mx-auto text-left">
-    <!-- Text Content -->
     <h3 class="text-4xl md:text-5xl font-bold text-blue-700 mb-6">
       Backed by <span class="text-blue-700">15 years</span> of scientific and medical research.
     </h3>
@@ -212,7 +210,6 @@ document.addEventListener("DOMContentLoaded", function() {
       </li>
     </ul>
 
-    <!-- Image Always Visible -->
     <div>
       <img src="{{ asset('assets/images/15-years-of-research.png') }}" 
            alt="15 Years of Research"
@@ -229,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <section class="max-w-6xl mx-auto p-6 mt-12">
   <div class="text-center mb-8">
     <h3 class="text-4xl md:text-5xl font-bold text-blue-600 mb-3">Paano Makakatulong ang SynBIOTIC+ sayo</h3>
-    <p class="text-gray-600 text-base max-w-2xl mx-auto text-2xl">Tingnan kung paano makakatulong ang SynBIOTIC+ sa kalusugan ng iyong tiyan at pangkalahatang lakas.</p>
+    <p class="text-gray-600 max-w-2xl mx-auto text-2xl">Tingnan kung paano makakatulong ang SynBIOTIC+ sa kalusugan ng iyong tiyan at pangkalahatang lakas.</p>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-gray-100">
@@ -276,12 +273,12 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- Feature -->
 <section class="w-full relative">
     <!-- Image for PC only -->
-    <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/68adc16dd73ca_BlueModernBuildingConstructionPresentation1080x400px3.png" 
+    <img src="{{ asset('assets/images/pc-feature-image.png') }}" 
          alt="Hero" 
          class="hidden md:block w-full h-auto object-cover">
 
     <!-- Image for Mobile only -->
-    <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/68adc2da1f0e7_ModernProfessionalCVResume21x40.7cm2.png"
+    <img src="{{ asset('assets/images/mobile-feature-image.png') }}"
          alt="Hero Mobile" 
          class="block md:hidden w-full h-auto object-cover mt-0">
 </section>
@@ -464,6 +461,27 @@ document.querySelectorAll(".openFormBtn").forEach(btn => {
     });
 });
 </script>
+
+<script>
+// Disable right click
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener("keydown", function(e) {
+    if (e.keyCode === 123) {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && (e.key === "u" || e.key === "U")) {
+        e.preventDefault();
+    }
+    if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j")) {
+        e.preventDefault();
+    }
+});
+</script>
+
+
 
 </body>
 </html>

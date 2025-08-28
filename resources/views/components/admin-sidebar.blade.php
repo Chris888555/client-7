@@ -149,10 +149,13 @@
             <span id="close-sidebar" class="material-icons cursor-pointer" style="color: {{ $theme->logo_color }};">close</span>
         </div>
 
-         <!-- ✅ LOGO -->
-        <div class="flex items-center justify-start mb-3 logo-container h-16">
+        <!-- ✅ LOGO -->
+        <div class="flex items-center justify-start mb-3 mt-3 logo-container h-16">
             <div class="rounded p-2 flex items-center justify-center mx-auto lg:mx-0">
-                <span id="logo-full" style="color: {{ $theme->logo_color }};" class="text-base font-bold">Grind & Lifestyle Club</span>
+                <!-- Full Logo (Image) -->
+                <img id="logo-full" src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-14 w-full">
+
+                <!-- Initial G -->
                 <span id="logo-initial" style="color: {{ $theme->logo_color }};" class="text-lg font-bold hidden">G</span>
             </div>
         </div>

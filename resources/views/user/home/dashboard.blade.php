@@ -10,8 +10,9 @@
         <!-- Left: Profile Card (centered) -->
         <div class="w-full md:w-1/3 bg-white  rounded-xl p-6 flex flex-col items-center">
             <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('assets/profile_picture/profile.png') }}"
-                 alt="Profile Photo"
-                 class="h-52 w-52 object-cover rounded-full border-8 border-gray-300 mb-4">
+                alt="Profile Photo"
+                class="h-32 w-32 sm:h-40 sm:w-40 md:h-52 md:w-52 object-cover rounded-full border-8 border-gray-300 mb-4">
+
 
             <div class="text-center">
                 <h1 class="text-3xl font-bold text-gray-900">Hello, {{ Auth::user()->name }}</h1>
