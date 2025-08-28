@@ -36,7 +36,7 @@
                 @empty
                     <tr>
                         <td colspan="6" class="px-4 py-6 text-center text-gray-500">
-                            No leads found yet.
+                           <x-no-data />
                         </td>
                     </tr>
                 @endforelse

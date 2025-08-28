@@ -3,7 +3,7 @@
 @section('title', 'Checkout')
 
 @section('content')
-<div class="container mx-auto px-4 py-10">
+<div class="container sm:max-w-[1000px] mx-auto px-4 py-10">
 
    <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-center mb-4">
         Select Your Package Now
@@ -102,7 +102,7 @@
                     @endforeach
                 </select>
 
-                <div id="paymentCard" class="hidden border rounded-xl shadow-md p-6 bg-white mb-6">
+                <div id="paymentCard" class="hidden border border-green-600 rounded-xl shadow-md p-6 bg-white mb-6">
                     <h3 class="text-lg font-semibold text-blue-600 mb-2" id="methodName"></h3>
                     <p class="text-gray-700 mb-1">Account Name: <span id="accountName"></span></p>
                     <p class="text-gray-700 mb-3">Account Number: <span id="bankNumber"></span></p>
@@ -126,13 +126,26 @@
                 <textarea name="address" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-200" rows="3" required></textarea>
             </div>
 
+            <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg shadow-sm mb-6">
+            <div class="flex items-start">
+                <i class="fas fa-info-circle text-blue-600 text-xl mt-1 mr-3"></i>
+                <div>
+                <p class="text-blue-800 font-semibold text-base">Important Reminder</p>
+                <p class="text-blue-700 text-sm leading-relaxed">
+                    Please upload a <strong>clear screenshot of your proof of payment</strong> 
+                    to ensure your account or order can be properly validated and processed.
+                </p>
+                </div>
+            </div>
+            </div>
+
             <div class="mb-4">
-    <label class="block font-medium mb-2 text-gray-700">Upload Proof of Payment</label>
-    <label id="uploadBox" 
-           class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-green-400 rounded-lg cursor-pointer hover:border-green-600 hover:bg-green-50 transition duration-300 text-green-700 relative">
-        <i class="fas fa-upload text-2xl mb-2 text-green-600"></i>
-        <span id="uploadText" class="text-sm">Click to upload or drag and drop</span>
-        <input id="payment_proof" type="file" name="payment_proof" class="hidden" accept="image/*" required>
+             <label class="block font-medium mb-2 text-gray-700">Upload Proof of Payment</label>
+                <label id="uploadBox" 
+                 class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-green-400 rounded-lg cursor-pointer hover:border-green-600 hover:bg-green-50 transition duration-300 text-green-700 relative">
+                    <i class="fas fa-upload text-2xl mb-2 text-green-600"></i>
+                 <span id="uploadText" class="text-sm">Click to upload or drag and drop</span>
+             <input id="payment_proof" type="file" name="payment_proof" class="hidden" accept="image/*" required>
     </label>
 </div>
 

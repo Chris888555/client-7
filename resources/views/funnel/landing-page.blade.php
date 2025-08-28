@@ -27,6 +27,46 @@
 </head>
 <body class="bg-white font-sans">
 
+@if($announcement && $announcement->poster)
+<div id="announcementModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-2">
+    <div class="bg-white rounded shadow-lg relative max-w-lg w-full p-1">
+
+        <!-- Close button -->
+        <button id="closeModal" class="absolute top-0 right-0 text-white text-xl hover:text-gray-200 focus:outline-none">
+            <i class="fas fa-circle-xmark text-red-600 text-2xl bg-white rounded-full "></i>
+        </button>
+
+        <!-- Poster -->
+        <div class="flex justify-center">
+            <img src="{{ asset('storage/'.$announcement->poster) }}" alt="Poster" class="rounded">
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("announcementModal");
+    const closeBtn = document.getElementById("closeModal");
+
+    // Auto show modal on page load
+    modal.classList.remove("hidden");
+
+    // Close modal
+    closeBtn.addEventListener("click", function() {
+        modal.classList.add("hidden");
+    });
+
+    // Click outside modal to close
+    modal.addEventListener("click", function(e) {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+        }
+    });
+});
+</script>
+@endif
+
+
 
 <!-- Hero / Caption -->
 <section class="w-full relative">
@@ -36,11 +76,11 @@
          class="hidden md:block w-full h-auto object-cover">
 
     <!-- Button for PC (absolute on image) -->
-   <a href="javascript:void(0)" 
-   class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[7%] z-20 bg-blue-600 text-white px-8 py-3 font-semibold hover:bg-blue-700 transition rounded-lg openFormBtn">
-    Learn More 
-    <i class="fas fa-arrow-right ml-2"></i>
-</a>
+    <a href="javascript:void(0)" 
+    class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[7%] z-20 bg-blue-600 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl hover:bg-blue-700 transition rounded-lg openFormBtn">
+      Learn More 
+      <i class="fas fa-arrow-right ml-2"></i>
+  </a>
 
     <!-- Image for Mobile only -->
     <img src="{{ asset('assets/images/mobile-hero-image.png') }}"
@@ -49,7 +89,7 @@
 
     <!-- Button for Mobile (below image) -->
     <a href="javascript:void(0)" 
-   class="block md:hidden flex items-center justify-center mt-4 bg-blue-600 text-white mt-8 px-8 py-3 font-semibold text-center hover:bg-blue-700 transition mx-auto w-max rounded-lg openFormBtn">
+   class="block md:hidden flex items-center justify-center mt-4 bg-blue-600 text-white mt-8 px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl text-center hover:bg-blue-700 transition mx-auto w-max rounded-lg openFormBtn">
     Learn More 
     <i class="fas fa-arrow-right ml-2"></i>
 </a>
@@ -60,14 +100,14 @@
 
 
 <!-- Video Section -->
-<section class="max-w-6xl mx-auto px-6 py-12 mt-5">
+<section class="w-full mx-auto px-6 py-16 ">
   <!-- Heading -->
   <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 bg-clip-text text-blue-600">
-    Watch How It Works
+    GOOD BYE MORPHIN - Dr. Jocelyn Aca, M.D.
   </h2>
 
   <!-- Video Wrapper -->
-  <div class="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+  <div class="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
     <video class="w-full h-auto rounded-2xl " controls>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
@@ -84,60 +124,103 @@
 
 
 
-<!-- SynBIOTIC+ Process Section with Number Icons in Circles -->
-<section class="max-w-6xl mx-auto p-6 mt-5">
-  <div class="flex flex-col md:flex-row items-center bg-white  p-6 md:gap-8 gap-4">
+<section class="p-6 sm:p-12 mx-auto ">
+  <div class="flex flex-col md:flex-row items-center md:gap-12 gap-6 ">
 
-    <!-- Left: Product Illustration -->
+    <!-- Left: Product Image -->
     <div class="w-full md:w-1/2 flex justify-center">
       <img src="https://d1yei2z3i6k35z.cloudfront.net/4624298/68adc43b47df8_Untitleddesign25.png" 
            alt="SynBIOTIC+ Bottle" 
-           class="w-full  object-contain">
+           class="w-full object-contain">
     </div>
 
     <!-- Right: Text Content -->
     <div class="w-full md:w-1/2">
-      <h3 class="text-3xl font-bold text-blue-700 mb-4">THE FUTURE OF HEALTH IS HERE</h3>
-      <p class="text-gray-700 mb-6">Backed by 15 years of scientific and medical research. Produced in a ₱1 Billion ISO-certified facility. Developed with 7 leading organizations.</p>
-      
-      <ul class="space-y-6 text-gray-800 text-base w-full">
+      <!-- Hook -->
+      <h3 class="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
+        Modern life is destroying your gut
+      </h3>
+      <ul class="text-gray-800 mb-6 space-y-3 text-xl md:text-2xl">
+        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Processed food</li>
+        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Excess sugar</li>
+        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Antibiotics</li>
+        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Stress</li>
+      </ul>
+      <p class="text-gray-700 mb-6 text-xl md:text-2xl">
+        These kill your good bacteria—leaving your immune system exposed. But don’t worry, help has arrived!
+      </p>
+
+     <!-- Process Steps -->
+      <ul class="space-y-6 text-gray-800 text-lg md:text-xl">
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center font-bold text-2xl">
             1
           </div>
-          <div><strong>Discover</strong> the power of 80 Billion CFU & 17 Strains</div>
+          <div class="text-xl md:text-2xl"><strong>Discover</strong> 80 Billion CFU & 17 Strains for ultimate gut health</div>
         </li>
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center font-bold text-2xl">
             2
           </div>
-          <div><strong>Activate</strong> your cells with Urolithin A + XOS + Tributyrin</div>
+          <div class="text-xl md:text-2xl"><strong>Activate</strong> cells with Urolithin A + XOS + Tributyrin</div>
         </li>
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center font-bold text-2xl">
             3
           </div>
-          <div><strong>Support</strong> full-body health with STEM CELL ACTIVATOR</div>
+          <div class="text-xl md:text-2xl"><strong>Support</strong> full-body health with STEM CELL ACTIVATOR</div>
         </li>
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center font-bold text-2xl">
             4
           </div>
-          <div><strong>Choose</strong> GutGuard SynBIOTIC+ — your health deserves the best</div>
+          <div class="text-xl md:text-2xl"><strong>Choose</strong> GutGuard SynBIOTIC+ — your health deserves the best</div>
         </li>
       </ul>
-      
-      <div class="mt-6 flex flex-wrap gap-4">
-        <a href="javascript:void(0)" 
-        class="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition openFormBtn">
-            Learn More
-            <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
+
+      <!-- CTA -->
+     <div class="mt-6 w-full max-w-[500px] mx-auto">
+      <a href="javascript:void(0)" 
+        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
+        Learn More
+        <i class="fas fa-arrow-right ml-2"></i>
+      </a>
     </div>
 
+
+    </div>
   </div>
 </section>
+
+
+
+<section class="p-6 sm:p-12 mx-auto">
+  <div class="container mx-auto text-left">
+    <!-- Text Content -->
+    <h3 class="text-4xl md:text-5xl font-bold text-blue-700 mb-6">
+      Backed by <span class="text-blue-700">15 years</span> of scientific and medical research.
+    </h3>
+
+    <ul class="space-y-4 mb-8">
+      <li class="flex items-start gap-3 text-2xl text-gray-700 leading-relaxed">
+        <i class="fas fa-angle-right text-blue-600 flex-shrink-0 mt-2"></i>
+        <span class="flex-1">Produced in a <strong class="text-blue-700">₱1 Billion ISO-certified facility</strong>.</span>
+      </li>
+      <li class="flex items-start gap-3 text-2xl text-gray-700 leading-relaxed">
+        <i class="fas fa-angle-right text-blue-600 flex-shrink-0 mt-2"></i>
+        <span class="flex-1">Developed with <strong class="text-blue-700">7 leading organizations</strong>.</span>
+      </li>
+    </ul>
+
+    <!-- Image Always Visible -->
+    <div>
+      <img src="{{ asset('assets/images/15-years-of-research.png') }}" 
+           alt="15 Years of Research"
+           class="w-full h-auto object-cover">
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -145,8 +228,8 @@
 <!-- Benefits Section: How SynBIOTIC+ Helps You -->
 <section class="max-w-6xl mx-auto p-6 mt-12">
   <div class="text-center mb-8">
-    <h3 class="text-3xl font-bold text-blue-600 mb-3">Paano Makakatulong ang SynBIOTIC+ sa Iyo</h3>
-    <p class="text-gray-600 text-base max-w-2xl mx-auto">Tingnan kung paano makakatulong ang SynBIOTIC+ sa kalusugan ng iyong tiyan at pangkalahatang lakas.</p>
+    <h3 class="text-4xl md:text-5xl font-bold text-blue-600 mb-3">Paano Makakatulong ang SynBIOTIC+ sayo</h3>
+    <p class="text-gray-600 text-base max-w-2xl mx-auto text-2xl">Tingnan kung paano makakatulong ang SynBIOTIC+ sa kalusugan ng iyong tiyan at pangkalahatang lakas.</p>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-gray-100">
@@ -175,12 +258,15 @@
     </div>
   </div>
 
-  <div class="mt-8 text-center">
-        <a href="javascript:void(0)" 
-        class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition openFormBtn">
-            <i class="fas fa-cart-plus"></i> Learn more
-        </a>
-  </div>
+
+   <div class="mt-8 w-full max-w-[500px] mx-auto">
+      <a href="javascript:void(0)" 
+        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
+        Learn More
+        <i class="fas fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+  
 </section>
 
 
@@ -205,8 +291,8 @@
 
 <!-- Scientific & Medical Advisory Board -->
     <section class="max-w-6xl mx-auto p-6 mt-12">
-    <h3 class="text-3xl font-bold mb-2 text-center text-blue-700">Our Scientific & Medical Advisory Board</h3>
-    <p class="text-center text-sm italic text-gray-500 mb-10">"We take care of your HEALTH"</p>
+    <h3 class="text-4xl md:text-5xl font-bold mb-2 text-center text-blue-700">Our Scientific & Medical Advisory Board</h3>
+    <p class="text-center text-2xl italic text-gray-500 mb-10">"We take care of your HEALTH"</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
 
@@ -266,13 +352,14 @@
 
     </div>
 
-        <div class="mt-8 text-center">
-        <a href="javascript:void(0)" 
-        class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition w-full md:w-auto md:max-w-[220px] mx-auto openFormBtn">
-            Learn More
-            <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-        </div>
+        
+        <div class="mt-8 w-full max-w-[500px] mx-auto">
+      <a href="javascript:void(0)" 
+        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
+        Learn More
+        <i class="fas fa-arrow-right ml-2"></i>
+      </a>
+    </div>
     </section>
 
 

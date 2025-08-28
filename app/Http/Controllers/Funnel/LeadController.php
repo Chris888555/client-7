@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\User\Users; 
 use App\Models\Admin\Testimonial;
 use App\Models\Funnel\FunnelView;
+use App\Models\Admin\Announcement;
 
 
 class LeadController extends Controller
@@ -21,28 +22,32 @@ class LeadController extends Controller
 // Show landing page and save page analytics user cookies 
 // ###################################################################
 // ###################################################################
-     public function landingPage($page_link, Request $request)
-    {
-        $funnel = UserFunnel::where('page_link', $page_link)->firstOrFail();
+   public function landingPage($page_link, Request $request)
+{
+    $funnel = UserFunnel::where('page_link', $page_link)->firstOrFail();
 
-        // Get or generate visitor cookie
-        $cookieName = 'visitor_id';
-        if ($request->hasCookie($cookieName)) {
-            $visitorCookie = $request->cookie($cookieName);
-        } else {
-            $visitorCookie = uniqid('visitor_', true);
-            cookie()->queue(cookie($cookieName, $visitorCookie, 60*24*30));
-        }
-
-        // Save view (1x per funnel + visitor)
-        FunnelView::firstOrCreate([
-            'user_id'     => $funnel->user_id,
-            'page_link'   => $page_link,
-            'user_cookie' => $visitorCookie,
-        ]);
-
-        return view('funnel.landing-page', compact('funnel'));
+    // Get or generate visitor cookie
+    $cookieName = 'visitor_id';
+    if ($request->hasCookie($cookieName)) {
+        $visitorCookie = $request->cookie($cookieName);
+    } else {
+        $visitorCookie = uniqid('visitor_', true);
+        cookie()->queue(cookie($cookieName, $visitorCookie, 60*24*30));
     }
+
+    // Save view (1x per funnel + visitor)
+    FunnelView::firstOrCreate([
+        'user_id'     => $funnel->user_id,
+        'page_link'   => $page_link,
+        'user_cookie' => $visitorCookie,
+    ]);
+
+   $announcement = Announcement::latest()->first();
+
+return view('funnel.landing-page', compact('funnel', 'announcement'));
+
+}
+
 
 
     // Store lead submission

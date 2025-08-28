@@ -4,7 +4,70 @@
 
 @section('content')
 <div class="p-8">
-    <h1 class="text-3xl font-bold mb-4">Welcome to Admin Dashboard</h1>
-    <p>This is the admin dashboard page without controller.</p>
+    <h1 class="text-3xl font-bold mb-6">Quick Actions ⚡</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Manage Users -->
+        <a href="{{ route('admin.manage-users') }}"
+           class="flex items-center gap-4 p-6 bg-white shadow rounded-xl transition hover:shadow-lg hover:scale-105">
+            <div class="rounded-lg p-3 flex items-center justify-center bg-blue-100 text-blue-800">
+                <span class="material-icons text-2xl">group</span>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg text-blue-800">Manage Users</h3>
+                <p class="text-sm text-gray-500">View and approve user accounts</p>
+            </div>
+        </a>
+
+        <!-- Create Materials -->
+        <a href="{{ route('materials.create') }}"
+           class="flex items-center gap-4 p-6 bg-white shadow rounded-xl transition hover:shadow-lg hover:scale-105">
+            <div class="rounded-lg p-3 flex items-center justify-center bg-blue-100 text-blue-800">
+                <span class="material-icons text-2xl">add_box</span>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg text-blue-800">Create Materials</h3>
+                <p class="text-sm text-gray-500">Upload new learning materials</p>
+            </div>
+        </a>
+
+        <!-- Create Package -->
+        <a href="{{ route('packages.create') }}"
+           class="flex items-center gap-4 p-6 bg-white shadow rounded-xl transition hover:shadow-lg hover:scale-105">
+            <div class="rounded-lg p-3 flex items-center justify-center bg-blue-100 text-blue-800">
+                <span class="material-icons text-2xl">inventory</span>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg text-blue-800">Create Package</h3>
+                <p class="text-sm text-gray-500">Add new product/service packages</p>
+            </div>
+        </a>
+
+        <!-- Create Testimonial -->
+        <a href="{{ route('admin.testimonials.create') }}"
+           class="flex items-center gap-4 p-6 bg-white shadow rounded-xl transition hover:shadow-lg hover:scale-105">
+            <div class="rounded-lg p-3 flex items-center justify-center bg-blue-100 text-blue-800">
+                <span class="material-icons text-2xl">chat</span>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg text-blue-800">Create Testimonial</h3>
+                <p class="text-sm text-gray-500">Add feedback from clients</p>
+            </div>
+        </a>
+
+        <!-- Theme Settings -->
+        <a href="{{ route('admin.theme.settings') }}"
+           class="flex items-center gap-4 p-6 bg-white shadow rounded-xl transition hover:shadow-lg hover:scale-105">
+            <div class="rounded-lg p-3 flex items-center justify-center bg-blue-100 text-blue-800">
+                <span class="material-icons text-2xl">settings</span>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg text-blue-800">Theme Settings</h3>
+                <p class="text-sm text-gray-500">Customize dashboard appearance</p>
+            </div>
+        </a>
+
+    </div>
 </div>
 @endsection

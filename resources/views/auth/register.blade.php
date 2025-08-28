@@ -3,9 +3,18 @@
 @section('title', 'Register')
 
 @section('content')
+
+
+<style>
+  .grecaptcha-badge {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+</style>
+
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-white/5 backdrop-blur-md border border-white/30 rounded-xl p-8 w-full max-w-md shadow-lg">
-        <h1 class="text-3xl font-extrabold mb-8 text-center text-white">Register</h1>
+        <h1 class="text-3xl font-extrabold mb-8 text-center text-white">Create Account</h1>
 
         <form id="registerForm" method="POST" action="{{ route('register.post') }}">
             @csrf
@@ -42,6 +51,7 @@
                     class="material-icons absolute right-3 top-3 cursor-pointer text-gray-500 toggle-password">visibility</span>
             </div>
 
+          
             <button type="submit"
                 class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 
                        focus:outline-none focus:ring-2 focus:ring-white 
@@ -56,63 +66,74 @@
         </p>
     </div>
 </div>
+
+  {{-- Invisible reCAPTCHA --}}
+    {!! NoCaptcha::renderJs() !!}
+    {!! NoCaptcha::display(['data-size' => 'invisible', 'data-callback' => 'onReCaptchaSuccess']) !!}
+
 @endsection
 
 @section('js')
 <script>
+function onReCaptchaSuccess(token) {
+    let form = $('#registerForm');
+    let data = form.serialize();
+
+    $('input').removeClass('border-red-500');
+
+    $.ajax({
+        url: form.attr('action'),
+        method: 'POST',
+        data: data,
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful!',
+                    text: 'Redirecting...',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    showConfirmButton: false, 
+                    didClose: () => {
+                        window.location.href = response.redirect;
+                    }
+                });
+            }
+        },
+        error: function(xhr) {
+            if (xhr.status === 422) {
+                let errors = xhr.responseJSON.errors;
+                let errorMessages = '';
+                for (let field in errors) {
+                    errorMessages += errors[field][0] + '\n';
+                    $(`[name="${field}"]`).addClass('border-red-500');
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Failed',
+                    text: errorMessages,
+                    showConfirmButton: false, 
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something went wrong',
+                    text: 'Please try again later.',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            }
+        }
+    });
+}
+
 $(document).ready(function() {
     $('#registerForm').on('submit', function(e) {
         e.preventDefault();
-
-        $('input').removeClass('border-red-500');
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function(response) {
-                if (response.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Registration Successful!',
-                        text: 'Redirecting...',
-                        timer: 2000,
-                        timerProgressBar: true,
-                        showConfirmButton: false, 
-                        didClose: () => {
-                            window.location.href = response.redirect;
-                        }
-                    });
-                }
-            },
-            error: function(xhr) {
-                if (xhr.status === 422) {
-                    let errors = xhr.responseJSON.errors;
-                    let errorMessages = '';
-                    for (let field in errors) {
-                        errorMessages += errors[field][0] + '\n';
-                        $(`[name="${field}"]`).addClass('border-red-500');
-                    }
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Registration Failed',
-                        text: errorMessages,
-                        showConfirmButton: false, 
-                        timer: 3000,               
-                        timerProgressBar: true
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Something went wrong',
-                        text: 'Please try again later.',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    });
-                }
-            }
-        });
+        grecaptcha.execute(); // trigger invisible recaptcha
     });
 });
 
@@ -123,4 +144,6 @@ $(document).on('click', '.toggle-password', function () {
     $(this).text(type === "password" ? "visibility" : "visibility_off");
 });
 </script>
+
+
 @endsection

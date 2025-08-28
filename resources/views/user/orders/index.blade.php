@@ -43,7 +43,7 @@
             @empty
             <tr>
                 <td colspan="4" class="px-4 py-6 text-center text-gray-500">
-                    No orders yet.
+                    <x-no-data />
                 </td>
             </tr>
             @endforelse

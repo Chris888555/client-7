@@ -91,7 +91,7 @@
             @empty
            <tr>
              <td colspan="100%" class="px-4 py-6 text-center text-gray-500">
-                   <x-no-materials />
+                 <x-no-data />
                </td>
             </tr>
             @endforelse

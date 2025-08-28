@@ -30,6 +30,8 @@ use App\Http\Controllers\User\OrderController;
 
 use App\Http\Controllers\Admin\TestimonialController;
 
+use App\Http\Controllers\Admin\AnnouncementController;
+
 Route::get('/', function () {
    return view('home');
 });
@@ -157,5 +159,8 @@ Route::middleware(['auth', 'adminsession'])->group(function () {
   Route::post('/admin/testimonials/update/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
   Route::post('/admin/testimonials/bulk-delete', [TestimonialController::class, 'bulkDelete'])->name('admin.testimonials.bulkDelete');
 
+  Route::get('admin/announcement/create', [AnnouncementController::class, 'create'])->name('admin.announcement.create');
+  Route::post('admin/announcement/store', [AnnouncementController::class, 'store'])->name('admin.announcement.store');
+  Route::delete('/admin/announcement/{id}', [AnnouncementController::class, 'destroy'])->name('admin.announcement.destroy');
 
 });

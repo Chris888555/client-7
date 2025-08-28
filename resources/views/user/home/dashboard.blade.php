@@ -35,9 +35,10 @@
                         </li>
                     @endforeach
                 </ul>
-            @else
-                <p class="text-gray-400 text-center">No recent leads.</p>
+           @else
+                <x-no-data />
             @endif
+
         </div>
     </div>
 

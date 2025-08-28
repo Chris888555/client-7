@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\Users;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApprovedNotificationMail;
+
 
 class ManageUserController extends Controller
 {
@@ -31,37 +34,49 @@ class ManageUserController extends Controller
     }
 
     public function bulkAction(Request $request)
-    {
-        $action = $request->input('action');
-        $userIds = $request->input('user_ids');
+{
+    $action = $request->input('action');
+    $userIds = $request->input('user_ids');
 
-        if (!in_array($action, ['approve', 'disapprove', 'make-admin', 'make-user', 'delete']) || !is_array($userIds)) {
-            return response()->json(['success' => false, 'message' => 'Invalid request.'], 400);
-        }
-
-        $users = Users::whereIn('id', $userIds)->get();
-
-        foreach ($users as $user) {
-            switch ($action) {
-                case 'approve':
-                    $user->is_approved = 1;
-                    break;
-                case 'disapprove':
-                    $user->is_approved = 0;
-                    break;
-                case 'make-admin':
-                    $user->role = 'admin';
-                    break;
-                case 'make-user':
-                    $user->role = 'user';
-                    break;
-                case 'delete':
-                    $user->delete();
-                    continue 2; // skip save() for deleted user
-            }
-            $user->save();
-        }
-
-        return response()->json(['success' => true, 'message' => 'Action applied successfully.']);
+    if (!in_array($action, ['approve', 'disapprove', 'make-admin', 'make-user', 'delete']) || !is_array($userIds)) {
+        return response()->json(['success' => false, 'message' => 'Invalid request.'], 400);
     }
+
+    $users = Users::whereIn('id', $userIds)->get();
+
+    foreach ($users as $user) {
+        switch ($action) {
+            case 'approve':
+                $user->is_approved = 1;
+                $user->save();
+
+                // send email notification
+                Mail::to($user->email)->send(new ApprovedNotificationMail($user));
+                break;
+
+            case 'disapprove':
+                $user->is_approved = 0;
+                $user->save();
+                break;
+
+            case 'make-admin':
+                $user->role = 'admin';
+                $user->save();
+                break;
+
+            case 'make-user':
+                $user->role = 'user';
+                $user->save();
+                break;
+
+            case 'delete':
+                $user->delete();
+                continue 2; 
+        }
+    }
+
+   
+    return response()->json(['success' => true, 'message' => 'Action applied successfully.']);
+}
+
 }
