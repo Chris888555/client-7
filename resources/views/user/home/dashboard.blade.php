@@ -20,27 +20,35 @@
             </div>
         </div>
 
-        <!-- Right: Recent Leads Card (larger) -->
-        <div class="w-full md:w-2/3 bg-white  rounded-xl p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Leads</h2>
+       <!-- Right: Recent Leads Card (larger) -->
+            <div class="w-full md:w-2/3 bg-white rounded-xl p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Leads</h2>
 
-            @if($recentLeads->count() > 0)
-                <ul class="space-y-3 max-h-[32rem] overflow-y-auto">
-                    @foreach($recentLeads as $lead)
-                        <li class="p-4 bg-gray-50 rounded-lg shadow flex justify-between items-center hover:bg-gray-100 transition">
-                            <div>
-                                <p class="font-semibold text-gray-900">{{ $lead->name }}</p>
-                                <p class="text-sm text-gray-500">{{ $lead->email }}</p>
-                            </div>
-                            <span class="text-sm text-gray-400">{{ $lead->created_at->format('M d, Y') }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-           @else
-                <x-no-data />
-            @endif
+                @if($recentLeads->count() > 0)
+                    <ul class="space-y-3 max-h-[32rem] overflow-y-auto">
+                        @foreach($recentLeads as $lead)
+                            <li class="p-4 bg-gray-50 rounded-lg shadow flex justify-between items-center hover:bg-gray-100 transition">
+                                <div>
+                                    <p class="font-semibold text-gray-900 flex items-center">
+                                        {{ $lead->name }}
+                                        @if($lead->created_at->isToday())
+                                            <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                NEW - Today
+                                            </span>
+                                        @endif
+                                    </p>
+                                    <p class="text-sm text-gray-500">{{ $lead->email }}</p>
+                                </div>
+                                <span class="text-sm text-gray-400">{{ $lead->created_at->format('M d, Y') }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <x-no-data />
+                @endif
 
-        </div>
+            </div>
+
     </div>
 
 

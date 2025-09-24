@@ -82,6 +82,8 @@ Route::post('/funnel/update-link', [FunnelController::class, 'updateLink'])->nam
 
 Route::get('funnel/buttons', [FunnelController::class, 'editButtons'])->name('funnel.editButtons');
 Route::post('funnel/buttons/update', [FunnelController::class, 'updateButtons'])->name('funnel.updateButtons');
+Route::post('/funnel/update-meta', [FunnelController::class, 'updateMetaPixel'])->name('funnel.update.meta');
+
 
 
 Route::get('/materials/images', [MaterialController::class, 'showByCategory'])->name('materials.showByCategory');
@@ -89,6 +91,7 @@ Route::get('/materials/images', [MaterialController::class, 'showByCategory'])->
 
 Route::get('/my-funnel/leads', [LeadController::class, 'myLeads'])->name('funnel.myLeads');
 Route::get('/user/leads/export', [LeadController::class, 'exportLeads'])->name('user.leads.export');
+
 
 
 Route::get('/payment-method/create', [PaymentMethodController::class, 'create'])->name('payment-method.create');
@@ -102,6 +105,8 @@ Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
 
 Route::get('/analytics/page-view', [LeadController::class, 'pageAnalytics'])->name('user.pageAnalytics');
+
+
 
 });
 

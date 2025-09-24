@@ -100,4 +100,26 @@ public function updateButtons(Request $request)
     return response()->json(['success' => true, 'message' => 'Buttons updated successfully!']);
 }
 
+
+
+
+
+// Update only the Meta Pixel Code via AJAX
+public function updateMetaPixel(Request $request)
+{
+    $request->validate([
+        'meta_pixel_code' => 'nullable|string'
+    ]);
+
+    $funnel = UserFunnel::where('user_id', Auth::id())->firstOrFail();
+    $funnel->meta_pixel_code = $request->meta_pixel_code;
+    $funnel->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Meta Pixel Code updated successfully!'
+    ]);
+}
+
+
 }

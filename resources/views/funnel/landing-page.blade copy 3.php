@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- Button for PC  -->
     <a href="javascript:void(0)" 
-    class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[9.4%] z-20 bg-blue-600 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl hover:bg-blue-700 transition rounded-lg openFormBtn">
+    class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[7%] z-20 bg-blue-600 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl hover:bg-blue-700 transition rounded-lg openFormBtn">
       Learn More 
       <i class="fas fa-arrow-right ml-2"></i>
   </a>
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- Video Section -->
 <section class="w-full mx-auto px-6 py-16 ">
   <!-- Heading -->
-  <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 bg-clip-text text-gray-800">
+  <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 bg-clip-text text-blue-600">
     GOOD BYE MORPHIN - Dr. Jocelyn Aca, M.D.
   </h2>
 
@@ -123,8 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-<section class="px-6 pb-12 pt-6 sm:px-12 sm:pb-16 sm:pt-6  mx-auto">
-   <div class="container mx-auto text-left">
+<section class="p-6 sm:p-12 mx-auto ">
   <div class="flex flex-col md:flex-row items-center md:gap-12 gap-6 ">
 
    <!-- Left: Product Image -->
@@ -137,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <!-- Right: Text Content -->
     <div class="w-full md:w-1/2">
       <!-- Hook -->
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+      <h3 class="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
         Modern life is destroying your gut
       </h3>
       <ul class="text-gray-800 mb-6 space-y-3 text-xl md:text-2xl">
@@ -153,28 +152,28 @@ document.addEventListener("DOMContentLoaded", function() {
       <!-- Process Steps -->
       <ul class="space-y-6 text-gray-800 text-lg md:text-xl">
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center">
             <i class="fas fa-check text-2xl"></i>
           </div>
           <div class="text-xl md:text-2xl"><strong>Discover</strong> 80 Billion CFU & 17 Strains for ultimate gut health</div>
         </li>
 
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center">
             <i class="fas fa-check text-2xl"></i>
           </div>
           <div class="text-xl md:text-2xl"><strong>Activate</strong> cells with Urolithin A + XOS + Tributyrin</div>
         </li>
 
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center">
             <i class="fas fa-check text-2xl"></i>
           </div>
           <div class="text-xl md:text-2xl"><strong>Support</strong> full-body health with STEM CELL ACTIVATOR</div>
         </li>
 
         <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
+          <div class="bg-blue-600 text-white rounded-full w-14 h-14 flex-shrink-0 flex items-center justify-center">
             <i class="fas fa-check text-2xl"></i>
           </div>
           <div class="text-xl md:text-2xl"><strong>Choose</strong> GutGuard SynBIOTIC+ — your health deserves the best</div>
@@ -191,57 +190,45 @@ document.addEventListener("DOMContentLoaded", function() {
       </a>
     </div>
 
-    </div>
+
     </div>
   </div>
 </section>
 
 
 
-<section class="px-6 py-12 sm:px-12 sm:py-16 mx-auto bg-gray-50">
-  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-    
-    <!-- Left Content -->
+<section class="p-6 sm:p-12 mx-auto">
+  <div class="container mx-auto text-left">
+   <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+    Backed by <span class="text-blue-700">15 years</span> of scientific and medical research.
+  </h3>
+
+
+    <ul class="space-y-4 mb-8">
+      <li class="flex items-start gap-3 text-2xl text-gray-700 leading-relaxed">
+        <i class="fas fa-angle-right text-blue-600 flex-shrink-0 mt-2"></i>
+        <span class="flex-1">Produced in a <strong class="text-blue-700">₱1 Billion ISO-certified facility</strong>.</span>
+      </li>
+      <li class="flex items-start gap-3 text-2xl text-gray-700 leading-relaxed">
+        <i class="fas fa-angle-right text-blue-600 flex-shrink-0 mt-2"></i>
+        <span class="flex-1">Developed with <strong class="text-blue-700">7 leading organizations</strong>.</span>
+      </li>
+    </ul>
+
     <div>
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-        Backed by <span class="text-blue-700">15 years</span> of scientific and medical research.
-      </h3>
-
-      <ul class="space-y-6 mb-8">
-        <li class="flex items-start gap-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-          <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-            <i class="fas fa-check text-base sm:text-lg"></i>
-          </div>
-          <span>Produced in a <strong class="text-blue-700">₱1 Billion ISO-certified facility</strong>.</span>
-        </li>
-        <li class="flex items-start gap-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-          <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-            <i class="fas fa-check text-base sm:text-lg"></i>
-          </div>
-          <span>Developed with <strong class="text-blue-700">7 leading organizations</strong>.</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right Image -->
-    <div class="flex justify-center">
       <img src="{{ asset('assets/images/15-years-of-research.png') }}" 
            alt="15 Years of Research"
-           class="w-full object-cover">
+           class="w-full h-auto object-cover">
     </div>
-
   </div>
 </section>
-
-
-
 
 
 
 
 
 <!-- Benefits Section: How SynBIOTIC+ Helps You -->
-<section class="px-6 py-12 sm:px-12 sm:py-16 mx-auto">
+<section class="p-6 sm:p-12 mx-auto">
    <div class="container mx-auto text-left">
   <h2 class="text-4xl md:text-5xl  font-bold text-left text-gray-800 mb-8">
     Bakit Para Sayo ang <span class="text-blue-600">GutGuard SynBIOTIC+</span>?
@@ -250,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <div class="space-y-8">
     <!-- 1 -->
     <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">1</div>
+      <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">1</div>
       <div>
         <h3 class="text-2xl font-bold text-gray-800">Gut & Digestion Issues</h3>
         <p class="text-gray-600 text-2xl">Nakakatulong sa bloating, constipation, diarrhea (IBS support), leaky gut, acid reflux, at indigestion.</p>
@@ -259,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- 2 -->
     <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">2</div>
+      <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">2</div>
       <div>
         <h3 class="text-2xl font-bold text-gray-800">Immune System Support</h3>
         <p class="text-gray-600 text-2xl">Para hindi madaling sipunin o ubuhin, at labanan ang low energy dahil sa weak immunity.</p>
@@ -268,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- 3 -->
     <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">3</div>
+      <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">3</div>
       <div>
         <h3 class="text-2xl font-bold text-gray-800">Inflammation-related Problems</h3>
         <p class="text-gray-600 text-2xl">Pwedeng makatulong sa joint pain, arthritis, body aches, at bawasan ang chronic low-grade inflammation.</p>
@@ -277,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- 4 -->
     <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">4</div>
+      <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">4</div>
       <div>
         <h3 class="text-2xl font-bold text-gray-800">Metabolic Health</h3>
         <p class="text-gray-600 text-2xl">Suporta sa cholesterol control, fatty liver prevention, at blood sugar regulation (type 2 diabetes risk management).</p>
@@ -286,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- 5 -->
     <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">5</div>
+      <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">5</div>
       <div>
         <h3 class="text-2xl font-bold text-gray-800">Cellular Aging / Longevity</h3>
         <p class="text-gray-600 text-2xl">Pinapalakas ang mitochondria repair at stem cell activation para sa anti-aging, mas mabilis na recovery, at dagdag energy.</p>
@@ -295,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- 6 -->
     <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">6</div>
+      <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">6</div>
       <div>
         <h3 class="text-2xl font-bold text-gray-800">Brain–Gut Connection</h3>
         <p class="text-gray-600 text-2xl">May epekto sa mood, anxiety, at sleep quality dahil sa gut–serotonin connection.</p>
@@ -332,13 +319,6 @@ document.addEventListener("DOMContentLoaded", function() {
          class="block md:hidden w-full h-auto object-cover mt-0">
 </section>
 
-
-<section class="px-2 py-12 sm:px-12 sm:py-16  ">
-    <div class="text-center">
-        <img src="{{ asset('assets/images/verified.png') }}" alt="Verified" class="w-full h-auto object-cover">
-      
-    </div>
-</section>
 
 
 
@@ -417,67 +397,49 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-center py-8 mt-24">
-      <div class="container mx-auto flex flex-col items-center space-y-4">
-          <!-- Logo -->
-          <img src="{{ asset('assets/images/logo.png') }}" 
-              alt="GutGuard SynBIOTIC+ Logo" 
-              class="h-12 w-auto">
-
-          <!-- Text -->
-          <p class="text-gray-300 text-sm">&copy; 2025 GutGuard SynBIOTIC+. All rights reserved.</p>
-      </div>
-  </footer>
-
+    <!-- Footer -->
+    <footer class="bg-gray-100 text-center py-6 mt-24">
+        <p class="text-gray-600">&copy; 2025 GutGuard SynBIOTIC+. All rights reserved.</p>
+    </footer>
 
     <!-- Modal (Order Form) -->
-<div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-lg p-8 relative">
-        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-        
-        <h2 class="text-2xl font-bold mb-6">Good news , dito hindi ka lang magiging healthy, pwede ka din kumita with our SynBIOTIC+</h2>
-        <p class="text-lg text-gray-600 mb-8">
-            Sign up now and get instant FREE access to PRESENTATION.
-        </p>
-
-        <form id="leadForm" class="space-y-4">
+        <div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-lg p-8 relative">
+                <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                <h2 class="text-2xl font-bold mb-6">Ready to Take the Next Step?</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                        Sign up now and get instant FREE access to exclusive insights.
+                    </p>
+            <form id="leadForm" class="space-y-4">
             @csrf
             <input type="hidden" name="page_link" value="{{ $funnel->page_link }}">
 
             <div>
-                <input type="text" name="name" placeholder="Enter Full Name"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" name="name" placeholder="Full Name"
+                    class="w-full px-4 py-2 border rounded-lg">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="name"></p>
             </div>
 
             <div>
-                <input type="email" name="email" placeholder="Enter Email"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="email" name="email" placeholder="Email"
+                    class="w-full px-4 py-2 border rounded-lg">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="email"></p>
             </div>
 
             <div>
-                <input type="text" name="phone" placeholder="Enter Phone Number"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" name="phone" placeholder="Phone"
+                    class="w-full px-4 py-2 border rounded-lg">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="phone"></p>
             </div>
 
             <button type="submit"
-                class="w-full py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600">
                 Get Instant Access
             </button>
         </form>
+
     </div>
 </div>
-
-
-<!-- ✅ Inject Meta Pixel Code -->
-@if(!empty($funnel->meta_pixel_code))
-    {!! $funnel->meta_pixel_code !!}
-@endif
-
-
 
 <script>
 document.getElementById("leadForm").addEventListener("submit", function(e){

@@ -1,6 +1,6 @@
 @extends('layouts.funnel')
 
-@section('title', 'Ace Brew Coffee Sales Page')
+@section('title', 'GutGuard SynBIOTIC+')
 
 @section('content')
 
@@ -8,21 +8,22 @@
 <section class="bg-gray-900 text-white py-20 px-6 lg:px-12">
   <div class="max-w-6xl mx-auto">
 
-      <!-- Congratulations / Hook -->
+      <!-- Hook -->
       <div class="text-center mb-16">
           <h1 class="text-3xl sm:text-5xl font-extrabold mb-6 leading-tight">
               Congratulations!
           </h1>
 
           <h2 class="text-3xl font-bold">
-              You’re one step closer to enjoying the rich flavor of   
-              <span class="text-blue-400 font-semibold">Ace Brew Coffee</span>.
+              You’re one step closer to restoring your gut health with   
+              <span class="text-blue-400 font-semibold">GutGuard SynBIOTIC+</span>.
           </h2>
 
           <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-4">
-              Watch this short presentation to discover how you can 
-              <span class="font-semibold text-blue-400">save more</span> 
-              and unlock <span class="font-semibold text-blue-400">exclusive perks</span>!
+              Watch this short presentation to discover how GutGuard can help 
+              <span class="font-semibold text-blue-400">beat bloating</span>, 
+              support <span class="font-semibold text-blue-400">digestion & immunity</span>, 
+              and bring back your daily confidence!
           </p>
       </div>
 
@@ -36,18 +37,18 @@
 
       <!-- Offer / Membership -->
       <div class="text-center space-y-6">
-          <h2 class="text-3xl font-bold"> Special Offer for You!</h2>
+          <h2 class="text-3xl font-bold"> Special Health Offer for You!</h2>
           <p class="text-gray-300 max-w-2xl mx-auto">
-              Become a member today and enjoy 
+              Become part of the GutGuard family and enjoy 
               <span class="font-semibold text-blue-400">exclusive discounts, free shipping, and priority access</span> 
-              to new blends only for loyal Ace Brew drinkers.
+              to our latest gut health solutions designed for long-term wellness.
           </p>
 
           <div class="flex flex-col sm:flex-row justify-center gap-6 mt-8">
               <!-- Member Button -->
               <a href="{{ route('buy.now.choose', $user->username) }}" 
                  class="bg-blue-400 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-md transition flex items-center gap-2">
-                  <i class="fas fa-users"></i> Become a Member
+                  <i class="fas fa-heartbeat"></i> Secure Your GutGuard Now
               </a>
 
               <!-- Referral Button -->
@@ -80,10 +81,14 @@
 <!-- ================= TESTIMONIALS SECTION ================= -->
 <section class="bg-white py-20 px-6 lg:px-12">
     <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-900">Hear from Our <span class="text-blue-600">Happy Customers</span></h2>
-            <p class="text-lg text-gray-600 mt-2">Real stories. Real brews. Real smiles.</p>
-        </div>
+       <div class="text-center mb-12">
+    <h2 class="text-4xl font-bold text-gray-900">
+        Hear from Our <span class="text-blue-600">GutGuard Users</span>
+        </h2>
+        <p class="text-lg text-gray-600 mt-2">
+            Real stories. Real healing. Real confidence.
+        </p>
+    </div>
 
         <!-- Testimonial Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

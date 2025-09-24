@@ -18,36 +18,44 @@
                 <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Actions</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
-            @forelse($orders as $order)
-            <tr>
-                <td class="px-4 py-3">{{ $order->full_name }}</td>
-                <td class="px-4 py-3">{{ $order->mobile }}</td>
-                <td class="px-4 py-3">{{ $order->address }}</td>
-                <td class="px-4 py-3">
-                    <button 
-                        class="viewOrderDetails bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700"
-                        data-full_name="{{ $order->full_name }}"
-                        data-mobile="{{ $order->mobile }}"
-                        data-address="{{ $order->address }}"
-                        data-package="{{ $order->package_name }}"
-                        data-price="{{ $order->package_price }}"
-                        data-payment_method="{{ $order->payment_method_name }}"
-                        data-account_name="{{ $order->payment_account_name }}"
-                        data-account_number="{{ $order->payment_account_number }}"
-                        data-proof="{{ $order->payment_proof }}">
-                        View Summary
-                    </button>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="4" class="px-4 py-6 text-center text-gray-500">
-                    <x-no-data />
-                </td>
-            </tr>
-            @endforelse
-        </tbody>
+                <tbody class="divide-y divide-gray-200">
+                @forelse($orders as $order)
+                <tr>
+                    <td class="px-4 py-3">
+                        {{ $order->full_name }}
+                        @if($order->created_at->isToday())
+                            <span class="ml-2 inline-block px-2 py-0.5 text-xs font-semibold text-white bg-green-500 rounded-full">
+                                NEW - Today
+                            </span>
+                        @endif
+                    </td>
+                    <td class="px-4 py-3">{{ $order->mobile }}</td>
+                    <td class="px-4 py-3">{{ $order->address }}</td>
+                    <td class="px-4 py-3">
+                        <button 
+                            class="viewOrderDetails bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700"
+                            data-full_name="{{ $order->full_name }}"
+                            data-mobile="{{ $order->mobile }}"
+                            data-address="{{ $order->address }}"
+                            data-package="{{ $order->package_name }}"
+                            data-price="{{ $order->package_price }}"
+                            data-payment_method="{{ $order->payment_method_name }}"
+                            data-account_name="{{ $order->payment_account_name }}"
+                            data-account_number="{{ $order->payment_account_number }}"
+                            data-proof="{{ $order->payment_proof }}">
+                            View Summary
+                        </button>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="4" class="px-4 py-6 text-center text-gray-500">
+                        <x-no-data />
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+
     </table>
     <x-paginations :paginator="$orders" />
 </div>

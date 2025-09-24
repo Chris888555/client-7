@@ -14,7 +14,7 @@
     </div>
 
     @if($materials->isEmpty())
-        <div class="px-4 py-3 bg-blue-100 text-blue-800 rounded">No materials found.</div>
+       <x-no-data />
     @else
     <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
 

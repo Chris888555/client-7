@@ -6,6 +6,44 @@
 
 <div class="container m-auto p-4 sm:p-8 max-w-full space-y-8">
 
+
+ <!-- Meta Pixel Helper -->
+    <button 
+        id="openMetaModal"
+        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        Setup Meta Pixel Code
+    </button>
+
+    <!-- Modal -->
+    <div id="metaModal" 
+        class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+    <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative z-60">
+        <h2 class="text-xl font-semibold mb-4">Add or Update Meta Pixel Code</h2>
+        <p class="mb-4 text-gray-600 text-sm leading-relaxed">
+        ⚠️ This setting is recommended only if you are familiar with 
+        <span class="font-medium">Meta Pixel</span> and how it connects to your 
+        <span class="font-medium">Facebook Ads</span>.  
+        With proper setup, you can track important events like 
+        <span class="italic">Page View</span>, <span class="italic">View Content</span>, — 
+        helping optimize your ad campaigns and measure results more accurately.  
+        If unsure, please consult your ads manager before making changes.
+        </p>
+
+
+        <textarea id="metaPixelInput" 
+                class="w-full border rounded-md p-3 h-40"
+                placeholder="Paste your Meta Pixel code here...">{{ $funnel->meta_pixel_code }}</textarea>
+
+        <div class="flex justify-end gap-3 mt-4">
+        <button id="closeMetaModal" class="px-4 py-2 bg-gray-300 rounded-lg">Cancel</button>
+        <button id="saveMetaPixel" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+        </div>
+    </div>
+    </div>
+
+
+
+
     <div class="w-full bg-white  rounded-3xl border border-gray-200 overflow-hidden">
         <!-- Card Header -->
         <div class="flex justify-between items-center px-6 py-4 bg-blue-600 text-white">
@@ -81,6 +119,41 @@
 </div>
 
 
+
+<!-- Meta Pixel Js -->
+<script>
+document.getElementById('openMetaModal').addEventListener('click', () => {
+  document.getElementById('metaModal').classList.remove('hidden');
+  document.getElementById('metaModal').classList.add('flex');
+});
+
+document.getElementById('closeMetaModal').addEventListener('click', () => {
+  document.getElementById('metaModal').classList.add('hidden');
+});
+
+// Save via AJAX
+document.getElementById('saveMetaPixel').addEventListener('click', () => {
+  let code = document.getElementById('metaPixelInput').value;
+
+  fetch("{{ route('funnel.update.meta') }}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": "{{ csrf_token() }}"
+    },
+    body: JSON.stringify({ meta_pixel_code: code })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      Swal.fire("Success", data.message, "success");
+      document.getElementById('metaModal').classList.add('hidden');
+    } else {
+      Swal.fire("Error", "Something went wrong!", "error");
+    }
+  });
+});
+</script>
 
 
 <!-- SweetAlert2 CDN -->

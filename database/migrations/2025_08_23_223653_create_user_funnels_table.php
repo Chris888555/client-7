@@ -12,16 +12,19 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('page_link')->unique();
+            $table->text('meta_pixel_code')->nullable();
 
             // Button URLs
-            $table->string('messenger_btn')->nullable()->default('https://m.me/yourpage');
-            $table->string('referral_btn')->nullable()->default('#');
-            $table->string('shop_btn')->nullable()->default('/shop');
+            $table->string('messenger_btn')->nullable()->default('https://your-link');
+            $table->string('referral_btn')->nullable()->default('https://your-link');
+            $table->string('shop_btn')->nullable()->default('https://your-link');
 
             // Button states: 0 = hide, 1 = show
             $table->boolean('messenger_btn_state')->default(1); 
             $table->boolean('referral_btn_state')->default(0);
             $table->boolean('shop_btn_state')->default(0);
+
+
 
             $table->timestamps();
 
