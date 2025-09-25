@@ -1,501 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GutGuard SynBIOTIC+</title>
-     @vite('resources/css/app.css')
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/favicon/site.webmanifest') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}" type="image/x-icon">
-
-
-     <!-- SEO Basic Meta -->
-        <meta name="title" content="GutGuard SynBIOTIC+">
-        <meta name="description" content="Feel the difference in 7 days—GutGuard SYNBIOTIC+ starts working for better gut health.">
-        <meta name="keywords" content="GutGuard, Synbiotic, Probiotics, Gut Health, Digestive Health">
-        <meta name="author" content="GutGuard Official">
-
-        <!-- Open Graph / Facebook Meta -->
-        <meta property="og:title" content="GutGuard SynBIOTIC+" />
-        <meta property="og:description" content="Feel the difference in 7 days—GutGuard SYNBIOTIC+ starts working for better gut health." />
-        <meta property="og:image" content="{{ asset('assets/images/pc-hero-image.png') }}" />
-        <meta property="og:url" content="{{ url()->current() }}" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="GutGuard" />
-
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Webinar Funnel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="bg-white font-sans">
 
-@if($announcement && $announcement->poster)
-<div id="announcementModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-2">
-    <div class="bg-white rounded shadow-lg relative max-w-lg w-full p-1">
+<style>
+/* Bounce animation only for elements with .bounce class */
+.bounce {
+  display: inline-block; 
+  animation: bounce 3s infinite;
+}
 
-        <button id="closeModal" class="absolute top-0 right-0 text-white text-xl hover:text-gray-200 focus:outline-none">
-            <i class="fas fa-circle-xmark text-red-600 text-2xl bg-white rounded-full "></i>
-        </button>
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
 
-        <div class="flex justify-center">
-            <img src="{{ asset('storage/'.$announcement->poster) }}" alt="Poster" class="rounded">
-        </div>
-    </div>
+</style>
+
+
+<body class="bg-gray-50 font-sans text-gray-800">
+
+
+
+<div class="w-full bg-yellow-400 text-gray-900 p-4 text-center shadow-lg z-50">
+  <span class="text-sm md:text-base">
+    Don’t miss this FREE webinar! 
+  </span>
+  <a href="#!" class="font-bold underline openFormBtn text-sm md:text-base">
+    Reserve Your Spot
+  </a>
 </div>
 
+
+
+<!-- Hero Section -->
+<section class="relative bg-indigo-600 text-white">
+    <div class="max-w-6xl mx-auto px-6 py-28 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Unlock Your Path to Financial Freedom!</h1>
+        <p class="text-xl md:text-2xl mb-8">Join our <span class="font-bold">FREE webinar</span> to learn how to earn stable income as a INFINITE partner.</p>
+        <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+            <i class="fas fa-rocket mr-2"></i> Reserve Your Spot
+        </a>
+    </div>
+</section>
+
+
+<!-- Multi-Layered Wavy Divider -->
+<div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-32 md:h-40">
+        <path d="M0,100 C300,80 900,120 1200,100 L1200,0 L0,0 Z" class="fill-indigo-600" style="opacity:0.25"></path>
+        <path d="M0,80 C400,60 800,100 1200,80 L1200,0 L0,0 Z" class="fill-indigo-600" style="opacity:0.5"></path>
+        <path d="M0,60 C350,90 850,30 1200,60 L1200,0 L0,0 Z" class="fill-indigo-600"></path>
+    </svg>
+</div>
+
+
+
+
+<!-- Benefits Section -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-16">
+        Ano ang Matututunan Mo sa FREE Webinar?
+    </h2>
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+
+        <!-- Benefit 1 -->
+        <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+            <i class="fa-solid fa-money-bill-wave text-indigo-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-3">Kumita ng Extra Income</h3>
+            <p class="text-gray-600">Madaling paraan para magkaroon ng dagdag na kita gamit ang simpleng steps.</p>
+        </div>
+
+        <!-- Benefit 2-->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+          <i class="fa-solid fa-lightbulb text-indigo-600 text-4xl mb-4"></i>
+          <h3 class="font-semibold text-2xl mb-3">Madaling Strategy</h3>
+          <p class="text-gray-600">Simpleng steps at proven strategies na pwedeng gawin kahit may full-time job ka.</p>
+      </div>
+
+        <!-- Benefit 3 -->
+        <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+            <i class="fa-solid fa-clock text-indigo-600 text-4xl mb-4"></i>
+            <h3 class="font-semibold text-2xl mb-3">Flexible Work Hours</h3>
+            <p class="text-gray-600">Pwede sa kahit anong oras at kahit saan, kaya swak sa kahit busy na schedule mo.</p>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- CTA Section -->
+<section class="bg-indigo-50 ">
+    <div class="max-w-6xl mx-auto px-6 py-20 text-center">
+      <p class="text-red-600 font-bold mb-4">⚡ Only <span id="spots">20</span> spots left! Sign up before they’re gone!</p>
+
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Reserve Your Free Spot Today!</h2>
+        <p class="mb-8 text-gray-700">Click below to access our exclusive webinar .</p>
+        <a href="#!" class="openFormBtn inline-block bounce bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-12 py-4 rounded-full shadow-lg transition transform hover:-translate-y-1">
+            <i class="fas fa-hand-pointer mr-2"></i> Reserve My Spot
+        </a>
+    </div>
+</section>
+
+
+
+<!-- Testimonials -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-16">What Our Partners Say</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl transition duration-300">
+            <i class="fas fa-user-circle text-indigo-600 text-5xl mb-4"></i>
+            <p class="mb-4">"Grabe, sobrang easy lang pala mag-start dito. Ngayon may extra income na ako every month!"</p>
+            <span class="font-bold text-gray-800">- Maria R.</span>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl transition duration-300">
+            <i class="fas fa-user-circle text-indigo-600 text-5xl mb-4"></i>
+            <p class="mb-4">"Super helpful ng mga mentors dito. Lagi silang nandyan kapag kailangan mo ng tips."</p>
+            <span class="font-bold text-gray-800">- John D.</span>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl transition duration-300">
+            <i class="fas fa-user-circle text-indigo-600 text-5xl mb-4"></i>
+            <p class="mb-4">"Akala ko mahirap, pero ngayon mas malaki income ko dito kaysa sa trabaho ko. Ang saya!"</p>
+            <span class="font-bold text-gray-800">- Anna L.</span>
+        </div>
+    </div>
+</section>
+
+<!-- Flipped Angled Top Divider -->
+<div class="top-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-indigo-600"></path>
+    </svg>
+</div>
+
+<!-- Final CTA -->
+<section class="bg-indigo-600 text-white  text-center mt-[-1px]">
+  <div class="max-w-6xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">Don’t Miss Out!</h2>
+    <p class="text-lg md:text-xl mb-8">Start your journey to financial freedom today!</p>
+    <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-12 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1">
+        <i class="fas fa-rocket mr-2"></i> Reserve My Free Spot
+    </a>
+     </div>
+</section>
+
+
+<!-- Flipped Angled Bottom  -->
+<div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-indigo-600"></path>
+    </svg>
+</div>
+
+<!-- FAQ Section -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <h2 class="text-4xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+
+  <div class="space-y-4">
+    <!-- FAQ Item 1 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Paano ako makaka-access sa webinar?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Pagkatapos mong mag-sign up gamit ang form, makakakuha ka agad ng access sa exclusive webinar.
+      </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Libre ba ang webinar?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! 100% libre ang access sa aming webinar para sa lahat ng gustong matuto kung paano kumita online, kahit busy ka o anuman ang ginagawa mo.
+      </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Para kanino ba ito?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Para ito sa iyo basta handa kang matuto at magpaturo. Tutulungan ka namin kung paano mo ito gagawin sa mas madaling paraan at epektibong strategy.
+      </div>
+    </div>
+
+    <!-- FAQ Item 4 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">May mga tools ba tayo?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! Lahat ng marketing materials, videos, sales funnel, trainings, at webinar ay provided para mapalago mo ang iyong business.
+      </div>
+    </div>
+
+    <!-- FAQ Item 5 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Sigurado ba akong kikita dito?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! 100% basta susundin mo ang mga guide at ang lahat ng ituturo ko sa iyo bilang mentor mo dito sa ating platform.
+      </div>
+    </div>
+
+    <!-- FAQ Item 6 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Ok lang ba kahit walang experience?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! Hindi mo kailangan ng experience. May step-by-step training kami kung paano mo gagawin, at higit sa lahat, nandito ako para gabayan ka sa bawat hakbang.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Footer / Disclaimer -->
+<footer class="bg-gray-100 text-gray-400 text-sm py-6 px-6 text-center">
+  <p class="mx-auto max-w-3xl">
+    Disclaimer: This webinar and training are for educational and informational purposes only. No specific income is guaranteed, and results depend on each participant's effort. The platform and content comply with Facebook Ads and Community Guidelines.
+  </p>
+</footer>
+
+
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const modal = document.getElementById("announcementModal");
-    const closeBtn = document.getElementById("closeModal");
+// Simple FAQ toggle
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('i');
 
-    modal.classList.remove("hidden");
-
-    closeBtn.addEventListener("click", function() {
-        modal.classList.add("hidden");
-    });
-    modal.addEventListener("click", function(e) {
-        if (e.target === modal) {
-            modal.classList.add("hidden");
-        }
-    });
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180'); // chevron rotation
+  });
 });
 </script>
-@endif
 
 
-
-<!-- Hero / Caption -->
-<section class="w-full relative">
-    <!-- Image for PC only -->
-    <img src="{{ asset('assets/images/pc-hero-image.png') }}" 
-         alt="Hero PC" 
-         class="hidden md:block w-full h-auto object-cover">
-
-    <!-- Button for PC  -->
-    <a href="javascript:void(0)" 
-    class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[9.4%] z-20 bg-blue-600 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl hover:bg-blue-700 transition rounded-lg openFormBtn">
-      Learn More 
-      <i class="fas fa-arrow-right ml-2"></i>
-  </a>
-
-    <!-- Image for Mobile only -->
-    <img src="{{ asset('assets/images/mobile-hero-image.png') }}"
-         alt="Hero Mobile" 
-         class="block md:hidden w-full h-auto object-cover mt-0">
-
-    <!-- Button for Mobile  -->
-    <a href="javascript:void(0)" 
-    class="block md:hidden flex items-center justify-center mt-4 bg-blue-600 text-white mt-8 px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl text-center hover:bg-blue-700 transition mx-auto w-max rounded-lg openFormBtn">
-      Learn More 
-      <i class="fas fa-arrow-right ml-2"></i>
-  </a>
-</section>
-
-
-
-
-
-<!-- Video Section -->
-<section class="w-full mx-auto px-6 py-16 ">
-  <!-- Heading -->
-  <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 bg-clip-text text-gray-800">
-    GOOD BYE MORPHIN - Dr. Jocelyn Aca, M.D.
-  </h2>
-
-  <!-- Video Wrapper -->
-  <div class="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
-    <video class="w-full h-auto rounded-2xl " controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
-  </div>
-
-  <!-- Caption -->
-  <p class="text-center mt-6 text-lg text-gray-700 max-w-2xl mx-auto">
-    Experience the <span class="font-semibold text-blue-600">Gutguard SYNBIOTIC+</span> difference in action.
-  </p>
-</section>
-
-
-
-
-<section class="px-6 pb-12 pt-6 sm:px-12 sm:pb-16 sm:pt-6  mx-auto">
-   <div class="container mx-auto text-left">
-  <div class="flex flex-col md:flex-row items-center md:gap-12 gap-6 ">
-
-   <!-- Left: Product Image -->
-  <div class="w-full md:w-1/2 flex justify-center">
-    <img src="{{ asset('assets/images/product-research-image.png') }}" 
-        alt="SynBIOTIC+ Bottle" 
-        class="w-full object-contain">
-  </div>
-
-    <!-- Right: Text Content -->
-    <div class="w-full md:w-1/2">
-      <!-- Hook -->
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-        Modern life is destroying your gut
-      </h3>
-      <ul class="text-gray-800 mb-6 space-y-3 text-xl md:text-2xl">
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Processed food</li>
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Excess sugar</li>
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Antibiotics</li>
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Stress</li>
-      </ul>
-      <p class="text-gray-700 mb-6 text-xl md:text-2xl">
-        These kill your good bacteria—leaving your immune system exposed. But don’t worry, help has arrived!
-      </p>
-
-      <!-- Process Steps -->
-      <ul class="space-y-6 text-gray-800 text-lg md:text-xl">
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Discover</strong> 80 Billion CFU & 17 Strains for ultimate gut health</div>
-        </li>
-
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Activate</strong> cells with Urolithin A + XOS + Tributyrin</div>
-        </li>
-
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Support</strong> full-body health with STEM CELL ACTIVATOR</div>
-        </li>
-
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Choose</strong> GutGuard SynBIOTIC+ — your health deserves the best</div>
-        </li>
-      </ul>
-
-
-      <!-- CTA -->
-     <div class="mt-6 w-full max-w-[500px] mx-auto">
-      <a href="javascript:void(0)" 
-        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
-        Learn More
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-
-    </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="px-6 py-12 sm:px-12 sm:py-16 mx-auto bg-gray-50">
-  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-    
-    <!-- Left Content -->
-    <div>
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-        Backed by <span class="text-blue-700">15 years</span> of scientific and medical research.
-      </h3>
-
-      <ul class="space-y-6 mb-8">
-        <li class="flex items-start gap-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-          <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-            <i class="fas fa-check text-base sm:text-lg"></i>
-          </div>
-          <span>Produced in a <strong class="text-blue-700">₱1 Billion ISO-certified facility</strong>.</span>
-        </li>
-        <li class="flex items-start gap-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-          <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-            <i class="fas fa-check text-base sm:text-lg"></i>
-          </div>
-          <span>Developed with <strong class="text-blue-700">7 leading organizations</strong>.</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right Image -->
-    <div class="flex justify-center">
-      <img src="{{ asset('assets/images/15-years-of-research.png') }}" 
-           alt="15 Years of Research"
-           class="w-full object-cover">
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
-<!-- Benefits Section: How SynBIOTIC+ Helps You -->
-<section class="px-6 py-12 sm:px-12 sm:py-16 mx-auto">
-   <div class="container mx-auto text-left">
-  <h2 class="text-4xl md:text-5xl  font-bold text-left text-gray-800 mb-8">
-    Bakit Para Sayo ang <span class="text-blue-600">GutGuard SynBIOTIC+</span>?
-  </h2>
-
-  <div class="space-y-8">
-    <!-- 1 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">1</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Gut & Digestion Issues</h3>
-        <p class="text-gray-600 text-2xl">Nakakatulong sa bloating, constipation, diarrhea (IBS support), leaky gut, acid reflux, at indigestion.</p>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">2</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Immune System Support</h3>
-        <p class="text-gray-600 text-2xl">Para hindi madaling sipunin o ubuhin, at labanan ang low energy dahil sa weak immunity.</p>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">3</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Inflammation-related Problems</h3>
-        <p class="text-gray-600 text-2xl">Pwedeng makatulong sa joint pain, arthritis, body aches, at bawasan ang chronic low-grade inflammation.</p>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">4</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Metabolic Health</h3>
-        <p class="text-gray-600 text-2xl">Suporta sa cholesterol control, fatty liver prevention, at blood sugar regulation (type 2 diabetes risk management).</p>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">5</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Cellular Aging / Longevity</h3>
-        <p class="text-gray-600 text-2xl">Pinapalakas ang mitochondria repair at stem cell activation para sa anti-aging, mas mabilis na recovery, at dagdag energy.</p>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">6</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Brain–Gut Connection</h3>
-        <p class="text-gray-600 text-2xl">May epekto sa mood, anxiety, at sleep quality dahil sa gut–serotonin connection.</p>
-      </div>
-    </div>
- 
-
-
-   <div class="mt-8 w-full max-w-[500px] mx-auto">
-      <a href="javascript:void(0)" 
-        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
-        Learn More
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-   </div>
-
-</section>
-
-
-
-
-
-<!-- Feature -->
-<section class="w-full relative">
-    <!-- Image for PC only -->
-    <img src="{{ asset('assets/images/pc-feature-image.png') }}" 
-         alt="Hero" 
-         class="hidden md:block w-full h-auto object-cover">
-
-    <!-- Image for Mobile only -->
-    <img src="{{ asset('assets/images/mobile-feature-image.png') }}"
-         alt="Hero Mobile" 
-         class="block md:hidden w-full h-auto object-cover mt-0">
-</section>
-
-
-<section class="px-2 py-12 sm:px-12 sm:py-16  ">
-    <div class="text-center">
-        <img src="{{ asset('assets/images/verified.png') }}" alt="Verified" class="w-full h-auto object-cover">
-      
-    </div>
-</section>
-
-
-
-<!-- Scientific & Medical Advisory Board -->
-    <section class="max-w-6xl mx-auto p-6 mt-12">
-    <h3 class="text-4xl md:text-5xl font-bold mb-2 text-center text-blue-700">Our Scientific & Medical Advisory Board</h3>
-    <p class="text-center text-2xl italic text-gray-500 mb-10">"We take care of your HEALTH"</p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-
-        <!-- Dr. Roly Michael L. Racsa -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Roly Racsa" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Roly Michael L. Racsa, CBE</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">UN Technical Advisor, Ex-Professor in Mechanical & Civil Engineering</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Roberto Malaluan -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Roberto Malaluan" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Roberto Malaluan</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">PhD in Chemical Engineering, NAST & PICHE Awardee</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Jocelyn Arboleda -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Jocelyn Arboleda" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Jocelyn Arboleda</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Board-Certified Internist, 30+ Years in Clinical Practice</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Joey M. Sinchicco -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Joey Sinchicco" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Joey M. Sinchicco</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Aesthetic & Functional Medicine, OB-GYN Perinatology</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. John C. Batacan -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. John Batacan" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. John C. Batacan</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Family Medicine Specialist, Medical Director at JCB Wellness</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Jimymiah Coching -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Jimymiah Coching" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Jimymiah Coching</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Colon Care Specialist, Certified Hydrotherapist & Wellness Coach</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-    </div>
-
-        
-        <div class="mt-8 w-full max-w-[500px] mx-auto">
-      <a href="javascript:void(0)" 
-        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
-        Learn More
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-    </section>
-
-
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-center py-8 mt-24">
-      <div class="container mx-auto flex flex-col items-center space-y-4">
-          <!-- Logo -->
-          <img src="{{ asset('assets/images/logo.png') }}" 
-              alt="GutGuard SynBIOTIC+ Logo" 
-              class="h-12 w-auto">
-
-          <!-- Text -->
-          <p class="text-gray-300 text-sm">&copy; 2025 GutGuard SynBIOTIC+. All rights reserved.</p>
-      </div>
-  </footer>
-
-
-    <!-- Modal (Order Form) -->
+<!-- Modal -->
 <div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-lg p-8 relative">
-        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-        
-        <h2 class="text-2xl font-bold mb-6">Good news , dito hindi ka lang magiging healthy, pwede ka din kumita with our SynBIOTIC+</h2>
-        <p class="text-lg text-gray-600 mb-8">
-            Sign up now and get instant FREE access to PRESENTATION.
-        </p>
+    <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-2xl p-10 relative">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+        <p class="text-red-600 font-bold mb-4">⚡ Only <span id="spots">20</span> spots left! Sign up before they’re gone!</p>
+        <h2 class="text-2xl font-bold mb-6 text-center">
+        Mag-sign Up para sa FREE Webinar at Alamin Kung Paano Kumita sa INFINITE PROGRAM!
+    </h2>
+    <p class="text-gray-600 mb-8 text-center">
+        Libre ang access sa aming webinar at mentorship tips para makapagsimula ka agad sa tamang paraan at matuto mula sa experts!
+    </p>
+
 
         <form id="leadForm" class="space-y-4">
             @csrf
             <input type="hidden" name="page_link" value="{{ $funnel->page_link }}">
-
+            
             <div>
-                <input type="text" name="name" placeholder="Enter Full Name"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" name="name" placeholder="Enter Full Name" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="name"></p>
             </div>
-
             <div>
-                <input type="email" name="email" placeholder="Enter Email"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="email" name="email" placeholder="Enter Email" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="email"></p>
             </div>
-
             <div>
-                <input type="text" name="phone" placeholder="Enter Phone Number"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" name="phone" placeholder="Enter Phone Number" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="phone"></p>
             </div>
-
-            <button type="submit"
-                class="w-full py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                Get Instant Access
+           
+            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold shadow-lg transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rocket"></i>
+              Get Instant Access
             </button>
         </form>
     </div>
 </div>
 
-
-<!-- ✅ Inject Meta Pixel Code -->
-@if(!empty($funnel->meta_pixel_code))
-    {!! $funnel->meta_pixel_code !!}
-@endif
-
-
-
 <script>
 document.getElementById("leadForm").addEventListener("submit", function(e){
     e.preventDefault();
-
-    // clear old errors
-    document.querySelectorAll(".error-message").forEach(el => {
-        el.classList.add("hidden");
-        el.textContent = "";
-    });
+    document.querySelectorAll(".error-message").forEach(el => { el.classList.add("hidden"); el.textContent = ""; });
 
     let formData = new FormData(this);
-
     fetch("{{ route('funnel.store') }}", {
         method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
-        },
+        headers: { "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value },
         body: formData
     })
     .then(res => res.json())
@@ -503,10 +319,7 @@ document.getElementById("leadForm").addEventListener("submit", function(e){
         if(data.status === "error"){
             Object.keys(data.errors).forEach(key => {
                 let errorEl = document.querySelector(`[data-error="${key}"]`);
-                if(errorEl){
-                    errorEl.textContent = data.errors[key][0];
-                    errorEl.classList.remove("hidden");
-                }
+                if(errorEl){ errorEl.textContent = data.errors[key][0]; errorEl.classList.remove("hidden"); }
             });
         }else if(data.status === "success"){
             window.location.href = data.redirect;
@@ -514,46 +327,18 @@ document.getElementById("leadForm").addEventListener("submit", function(e){
     })
     .catch(err => console.error(err));
 });
-</script>
 
-
-<script>
 document.addEventListener("DOMContentLoaded", function() {
-    function openModal() {
-        const modal = document.getElementById('formModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-    function closeModal() {
-        const modal = document.getElementById('formModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-
-    // expose closeModal sa global para gumana yung onclick sa button
+    function openModal(){ document.getElementById('formModal').classList.remove('hidden'); document.getElementById('formModal').classList.add('flex'); }
+    function closeModal(){ document.getElementById('formModal').classList.add('hidden'); document.getElementById('formModal').classList.remove('flex'); }
     window.closeModal = closeModal;
 
-    // open buttons
     document.querySelectorAll(".openFormBtn").forEach(btn => {
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            openModal();
-        });
+        btn.addEventListener("click", function(e){ e.preventDefault(); openModal(); });
     });
 
-    // close kapag nag click sa backdrop
-    const modal = document.getElementById('formModal');
-    modal.addEventListener("click", function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
+    document.getElementById('formModal').addEventListener("click", function(e){
+        if(e.target === this) closeModal();
     });
 });
 </script>
-
-
-
-
-
-</body>
-</html>

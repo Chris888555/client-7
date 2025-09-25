@@ -27,7 +27,7 @@
 </head>
 
 <body class="bg-gray-700 bg-cover bg-center" 
-      style="background-image: url('https://i.pinimg.com/736x/e7/2a/5b/e72a5b414d4a4503aec8126351002cd5.jpg');">
+      style="background-image: url('https://i.pinimg.com/originals/51/6b/34/516b3477d2e19e12344007e33ef6c69c.jpg');">
 
 
 <main class="min-h-screen flex items-center justify-center">

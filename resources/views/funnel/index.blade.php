@@ -7,10 +7,12 @@
 <div class="container m-auto p-4 sm:p-8 max-w-full space-y-8">
 
 
+
+
  <!-- Meta Pixel Helper -->
     <button 
         id="openMetaModal"
-        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        class="px-4 py-2 text-white rounded-lg bg-yellow-500 hover:bg-yellow-600">
         Setup Meta Pixel Code
     </button>
 
@@ -32,11 +34,11 @@
 
         <textarea id="metaPixelInput" 
                 class="w-full border rounded-md p-3 h-40"
-                placeholder="Paste your Meta Pixel code here...">{{ $funnel->meta_pixel_code }}</textarea>
+                placeholder="Paste your Meta Pixel code here...">{{ $funnel->meta_pixel_code ?? '' }}</textarea>
 
         <div class="flex justify-end gap-3 mt-4">
-        <button id="closeMetaModal" class="px-4 py-2 bg-gray-300 rounded-lg">Cancel</button>
-        <button id="saveMetaPixel" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+        <button id="closeMetaModal" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Cancel</button>
+        <button id="saveMetaPixel" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Save</button>
         </div>
     </div>
     </div>
@@ -46,7 +48,7 @@
 
     <div class="w-full bg-white  rounded-3xl border border-gray-200 overflow-hidden">
         <!-- Card Header -->
-        <div class="flex justify-between items-center px-6 py-4 bg-blue-600 text-white">
+        <div class="flex justify-between items-center px-6 py-4 bg-green-700 text-white">
             <h2 class="text-xl font-semibold">Update Page Buttons</h2>
             <a href="{{ route('funnel.editButtons') }}" 
                class="bg-white text-gray-500 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
@@ -74,10 +76,11 @@
                 <!-- Buttons responsive wrapper -->
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-4">
 
-                    <!-- Funnel Link Input -->
-                    <input id="funnelLink" type="text" value="{{ url($funnel->page_link) }}" readonly
-                           class="flex-1 border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer focus:outline-none "
-                           onclick="this.select();">
+                  <!-- Funnel Link Input -->
+                <input id="funnelLink" type="text" value="{{ url($funnel->page_link) }}" readonly
+                    class="flex-1 border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer focus:outline-none"
+                    onclick="window.open(this.value, '_blank'); this.select();">
+
 
                     <!-- Copy Button -->
                     <button id="copyButton" type="button"

@@ -53,7 +53,7 @@
 
           
             <button type="submit"
-                class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 
+                class="w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 
                        focus:outline-none focus:ring-2 focus:ring-white 
                        shadow-[0_0_10px_2px_rgba(255,255,255,0.5)] transition duration-300">
                 Register

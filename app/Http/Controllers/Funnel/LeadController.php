@@ -9,9 +9,8 @@ use App\Models\Funnel\UserFunnel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Models\User\Users; 
-use App\Models\Admin\Testimonial;
 use App\Models\Funnel\FunnelView;
-use App\Models\Admin\Announcement;
+
 
 
 class LeadController extends Controller
@@ -22,7 +21,7 @@ class LeadController extends Controller
 // Show landing page and save page analytics user cookies 
 // ###################################################################
 // ###################################################################
-   public function landingPage($page_link, Request $request)
+public function landingPage($page_link, Request $request)
 {
     $funnel = UserFunnel::where('page_link', $page_link)->firstOrFail();
 
@@ -42,11 +41,9 @@ class LeadController extends Controller
         'user_cookie' => $visitorCookie,
     ]);
 
-   $announcement = Announcement::latest()->first();
-
-return view('funnel.landing-page', compact('funnel', 'announcement'));
-
+    return view('funnel.landing-page', compact('funnel'));
 }
+
 
 
 
@@ -97,7 +94,7 @@ if ($validator->fails()) {
         ]);
     }
 
-    // Sales page after lead capture
+// Sales page after lead capture
 public function salesPage($page_link)
 {
     $funnel = UserFunnel::where('page_link', $page_link)->firstOrFail();
@@ -105,11 +102,11 @@ public function salesPage($page_link)
     // Get the user who owns this funnel
     $user = Users::find($funnel->user_id);
 
-    // Fetch all testimonials (general, for all users)
-    $testimonials = Testimonial::latest()->get(); // fetch all, no pagination
 
-    return view('funnel.sales-page', compact('funnel', 'user', 'testimonials'));
+
+    return view('funnel.sales-page', compact('funnel', 'user'));
 }
+
 
 
 
@@ -159,6 +156,23 @@ public function exportLeads()
 
     return Response::stream($callback, 200, $headers);
 }
+
+    // Delete Function
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids');
+
+        if(!$ids || count($ids) === 0){
+            return response()->json(['success' => false, 'message' => 'No leads selected.']);
+        }
+
+        FunnelLead::where('user_id', auth()->id())
+            ->whereIn('id', $ids)
+            ->delete();
+
+        return response()->json(['success' => true, 'message' => 'Selected leads deleted successfully.']);
+}
+
 
 
 }

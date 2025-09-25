@@ -224,12 +224,13 @@
                         style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
                         <span class="material-icons text-xs">add_box</span>
                     </div>
-                    <span class="sidebar-text text-base">Create Package</span>
+                    <span class="sidebar-text text-base">Create Packages</span>
                 </a>
             </li>
 
-                 <li>
-            <a href="{{ route('admin.testimonials.create') }}"
+
+              <li>
+            <a href="{{ route('academy.course.index') }}"
                     class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
                     style="color: {{ $theme->nav_text_color }};"
                     onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
@@ -239,25 +240,11 @@
                         style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
                         <span class="material-icons text-xs">add_box</span>
                     </div>
-                    <span class="sidebar-text text-base">Create Testi</span>
+                    <span class="sidebar-text text-base">Create Courses</span>
                 </a>
             </li>
 
-                    <li>
-            <a href="{{ route('admin.announcement.create') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">add_box</span>
-                    </div>
-                    <span class="sidebar-text text-base">Create Poster Event</span>
-                </a>
-            </li>
-
+           
 
             <li>
             <a href="{{ route('admin.theme.settings') }}"

@@ -139,28 +139,28 @@
             </div>
             </div>
 
-            <div class="mb-4">
-             <label class="block font-medium mb-2 text-gray-700">Upload Proof of Payment</label>
-                <label id="uploadBox" 
-                 class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-blue-400 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition duration-300 text-blue-700 relative">
-                    <i class="fas fa-upload text-2xl mb-2 text-blue-600"></i>
-                 <span id="uploadText" class="text-sm">Click to upload or drag and drop</span>
-             <input id="payment_proof" type="file" name="payment_proof" class="hidden" accept="image/*" required>
-    </label>
-</div>
+                <div class="mb-4">
+                <label class="block font-medium mb-2 text-gray-700">Upload Proof of Payment</label>
+                    <label id="uploadBox" 
+                    class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-blue-400 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition duration-300 text-blue-700 relative">
+                        <i class="fas fa-upload text-2xl mb-2 text-blue-600"></i>
+                    <span id="uploadText" class="text-sm">Click to upload or drag and drop</span>
+                        <input id="payment_proof" type="file" name="payment_proof" class="hidden" accept="image/*" required>
+                </label>
+            </div>
 
-<script>
-    const fileInput = document.getElementById('payment_proof');
-    const uploadText = document.getElementById('uploadText');
+            <script>
+                const fileInput = document.getElementById('payment_proof');
+                const uploadText = document.getElementById('uploadText');
 
-    fileInput.addEventListener('change', () => {
-        if(fileInput.files.length > 0){
-            uploadText.textContent = fileInput.files[0].name;
-        } else {
-            uploadText.textContent = "Click to upload or drag and drop";
-        }
-    });
-</script>
+                fileInput.addEventListener('change', () => {
+                    if(fileInput.files.length > 0){
+                        uploadText.textContent = fileInput.files[0].name;
+                    } else {
+                        uploadText.textContent = "Click to upload or drag and drop";
+                    }
+                });
+            </script>
 
             <!-- Buttons -->
             <div class="flex justify-between">
@@ -172,7 +172,8 @@
 </div>
 
 <script>
-    let username = "{{ $user->username ?? $funnel->user->username ?? '' }}";
+    // Use page_link instead of username
+    let pageLink = "{{ $funnel->page_link ?? '' }}";
 
     function goToStep2(packageId, name, price) {
         document.getElementById('step1').classList.add('hidden');
@@ -196,9 +197,13 @@
     const methodNameEl = document.getElementById('methodName');
     const bankNumberEl = document.getElementById('bankNumber');
     const accountNameEl = document.getElementById('accountName');
+
     select.addEventListener('change', () => {
         const selected = select.selectedOptions[0];
-        if (!selected.value) { card.classList.add('hidden'); return; }
+        if (!selected.value) {
+            card.classList.add('hidden');
+            return;
+        }
         card.classList.remove('hidden');
         methodNameEl.textContent = selected.getAttribute('data-method');
         accountNameEl.textContent = selected.getAttribute('data-account');
@@ -206,40 +211,45 @@
     });
 
     const form = document.getElementById('checkoutForm');
-form.addEventListener('submit', function(e){
-    e.preventDefault();
-    let formData = new FormData(this);
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
 
-    fetch("{{ route('checkout.store', $user->username) }}", {
-        method: 'POST',
-        body: formData,
-        headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-    })
-    .then(res => res.json())
-    .then(res => {
-        if(res.success){
-            Swal.fire({
-                icon: 'success',
-                title: 'Order Placed!',
-                text: res.success,
-                timer: 1500,
-                showConfirmButton: false,
-                willClose: () => {
-                    window.location.href = "{{ url('checkout/thank-you') }}/" + username;
+        fetch(`/checkout/store/${pageLink}`, {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+        })
+        .then(async res => {
+            if (!res.ok) {
+                let errorData;
+                try {
+                    errorData = await res.json();
+                } catch {
+                    errorData = { message: 'Something went wrong' };
                 }
-            });
-        }
-    })
-    .catch(err => {
-        err.json().then(errorData => {
-            let msg = errorData.message || 'Something went wrong';
-            Swal.fire('Error', msg, 'error');
-        }).catch(() => {
-            Swal.fire('Error', 'Something went wrong', 'error');
+                throw errorData;
+            }
+            return res.json();
+        })
+                .then(res => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Order Placed!',
+                    text: res.success,
+                    timer: 1500,
+                    showConfirmButton: false,
+                    willClose: () => {
+                        window.location.href = res.redirect_url;
+                    }
+                });
+            })
+
+        .catch(err => {
+            Swal.fire('Error', err.message || 'Something went wrong', 'error');
         });
     });
-});
-
 </script>
+
 
 @endsection

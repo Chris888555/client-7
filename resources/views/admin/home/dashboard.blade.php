@@ -39,20 +39,20 @@
                 <span class="material-icons text-2xl">inventory</span>
             </div>
             <div>
-                <h3 class="font-semibold text-lg text-blue-800">Create Package</h3>
+                <h3 class="font-semibold text-lg text-blue-800">Create Packages</h3>
                 <p class="text-sm text-gray-500">Add new product/service packages</p>
             </div>
         </a>
 
-        <!-- Create Testimonial -->
-        <a href="{{ route('admin.testimonials.create') }}"
+        <!-- Academy Courses -->
+        <a href="{{ route('academy.course.index') }}"
            class="flex items-center gap-4 p-6 bg-white shadow rounded-xl transition hover:shadow-lg hover:scale-105">
             <div class="rounded-lg p-3 flex items-center justify-center bg-blue-100 text-blue-800">
-                <span class="material-icons text-2xl">chat</span>
+                <span class="material-icons text-2xl">school</span>
             </div>
             <div>
-                <h3 class="font-semibold text-lg text-blue-800">Create Testimonial</h3>
-                <p class="text-sm text-gray-500">Add feedback from clients</p>
+                <h3 class="font-semibold text-lg text-blue-800">Academy Courses</h3>
+                <p class="text-sm text-gray-500">Manage courses, modules & lessons</p>
             </div>
         </a>
 

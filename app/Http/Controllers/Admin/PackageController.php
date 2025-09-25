@@ -8,17 +8,21 @@ use App\Models\Mop\PaymentMethod;
 use App\Models\User\Users; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Funnel\UserFunnel;
 
 class PackageController extends Controller
 {
-    public function choose($username)
-    {
-        $packages = Package::all();
-        $user = Users::where('username', $username)->firstOrFail();
-        $mops = PaymentMethod::where('user_id', $user->id)->get();
+  public function choose($page_link)
+{
+    $packages = Package::all();
+    $funnel   = UserFunnel::where('page_link', $page_link)->firstOrFail();
+    $user     = $funnel->user;
+    $mops     = PaymentMethod::where('user_id', $user->id)->get();
 
-        return view('buy-now.choose-package', compact('packages', 'mops', 'user'));
-    }
+    // kahit nasa "buy-now" folder yung blade, wala yang effect sa URL
+    return view('buy-now.choose-package', compact('packages', 'mops', 'user', 'funnel'));
+}
+
 
     public function create()
     {

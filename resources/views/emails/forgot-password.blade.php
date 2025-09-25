@@ -49,6 +49,6 @@
 
     <p>Please keep your password safe.</p>
 
-    <p>Thanks,<br />C.D Marketing Solutions</p>
+    <p>Thanks,<br />- Admin</p>
 </body>
 </html>

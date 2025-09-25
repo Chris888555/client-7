@@ -74,7 +74,7 @@
         </div>
 
        <!-- Submit Button -->
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2">
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2">
             <i class="fas fa-save"></i>
             Save Changes
         </button>
