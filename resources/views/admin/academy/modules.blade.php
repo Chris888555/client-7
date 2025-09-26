@@ -13,7 +13,7 @@
     <input type="text" name="module_name" id="module_name" placeholder="Module Name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-200">
 
     <div class="mt-4">
-        <button type="submit" id="submitModuleBtn" class="inline-block mt-4 bg-green-600 text-white px-4 py-2 rounded">Save Module</button>
+        <button type="submit" id="submitModuleBtn" class="inline-block mt-4 bg-teal-600 text-white px-4 py-2 rounded">Save Module</button>
         <button type="button" id="cancelModuleBtn" class="inline-block bg-gray-500 text-white px-4 py-2 rounded ml-2 hidden">Cancel</button>
     </div>
 </form>
@@ -37,7 +37,7 @@
                     <td class="px-4 py-3">{{ $module->module_name }}</td>
                     <td class="px-4 py-3">{{ $module->lessons->count() }}</td>
                     <td class="px-4 py-3 space-x-2">
-                        <a href="{{ route('academy.manageLessons', $module->module_id) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-xs">Manage Lessons</a>
+                        <a href="{{ route('academy.manageLessons', $module->module_id) }}" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs">Manage Lessons</a>
 
                         <button type="button"
                             class="editModuleBtn bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded text-xs"

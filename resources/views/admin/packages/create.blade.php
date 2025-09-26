@@ -12,7 +12,7 @@
     <a href="{{ route('packages.create') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('packages.create') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         Create Packages
     </a>
@@ -21,7 +21,7 @@
     <a href="{{ route('packages.list') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('packages.list') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         List Packages
     </a>
@@ -105,13 +105,11 @@
         });
         </script>
 
-        <!-- Submit -->
-       <button type="submit" 
-            class="w-full py-3 bg-blue-600 hover:bg-blue-700 
-                text-white font-semibold rounded-xl shadow transition flex items-center justify-center gap-2">
-            <i class="fas fa-floppy-disk"></i>
+       {{-- Submit --}}
+        <x-button type="submit" icon="fa-solid fa-floppy-disk">
             Save Package
-        </button>
+        </x-button>
+
 
     </form>
     </div>

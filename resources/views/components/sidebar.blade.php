@@ -134,9 +134,9 @@
 
 
     <!-- ✅ SINGLE SIDEBAR -->
-   <aside id="sidebar" class="fixed lg:relative top-0 bottom-0 left-0 z-30 border rounded-2xl my-2 ml-4 p-4 text-white sidebar-overlay translate-x-[-100%] transition-all duration-300 flex flex-col" 
-    style="width: 280px; height: calc(100vh - 1rem); background-image: 
-    url('https://i.pinimg.com/originals/e6/53/f5/e653f5f2b28067b4d36fb537f2679ee4.jpg'); background-size: cover; background-position: center;">
+   <aside id="sidebar" 
+    class="fixed top-0 bottom-0 left-0 z-30 border rounded-2xl my-2 ml-4 p-4 text-white sidebar-overlay translate-x-[-100%] transition-all duration-300 flex flex-col" 
+    style="width: 280px; height: calc(100vh - 1rem); background-color: #2b6f6d;">
     
         <!-- ✅ CLOSE BUTTON - mobile only -->
         <div class="flex lg:hidden justify-end mb-3">
@@ -219,7 +219,7 @@
                         style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
                         <span class="material-icons text-xs">people</span>
                     </div>
-                    <span class="sidebar-text text-base">My Leads</span>
+                    <span class="sidebar-text text-base">Prospect List</span>
                 </a>
             </li>
 
@@ -236,7 +236,7 @@
                         style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
                         <span class="material-icons text-xs">local_fire_department</span>
                     </div>
-                    <span class="sidebar-text text-base">My Orders</span>
+                    <span class="sidebar-text text-base">Client Payments</span>
                 </a>
             </li>
             
@@ -267,7 +267,7 @@
                         style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
                         <span class="material-icons text-xs">school</span>
                     </div>
-                    <span class="sidebar-text text-base">My Courses</span>
+                    <span class="sidebar-text text-base">Academy</span>
                 </a>
             </li>
 

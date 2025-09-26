@@ -11,7 +11,7 @@
     <a href="{{ route('payment-method.create') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('payment-method.create') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         Add Mop
     </a>
@@ -20,7 +20,7 @@
     <a href="{{ route('payment-method.list') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('payment-method.list') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         List Mop
     </a>

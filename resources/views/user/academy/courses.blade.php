@@ -8,19 +8,26 @@
         {{-- You can add header buttons or filters here --}}
     </div>
 
-    <div class="relative">
-        {{-- ✅ Hero Banner --}}
-        <div class="text-center text-white py-16" style="
+<div class="relative">
+    {{-- ✅ Hero Banner --}}
+    <div class="relative text-center text-white py-16"
+        style="
             background-image: url('https://static.vecteezy.com/system/resources/previews/016/102/699/original/digital-technology-banner-blue-green-background-concept-cyber-polygonal-technology-abstract-tech-innovation-future-data-internet-network-ai-big-data-lines-dots-connection-illustration-free-vector.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         ">
-            <div class="py-10 md:py-14 px-4">
-                <h1 class="text-4xl md:text-5xl font-bold mb-3">Explore Premium Courses</h1>
-                <p class="text-white/70 text-lg mb-6">
-                    Curated lessons designed to level up your skills and career.
-                </p>
+        
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black/50"></div>
+
+                <!-- Content (above overlay) -->
+                <div class="relative z-10 py-10 md:py-14 px-4">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-3">Explore Premium Courses</h1>
+                    <p class="text-white/70 text-lg mb-6">
+                        Curated lessons designed to level up your skills and career.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -80,13 +87,13 @@
 
                             @if($totalLessons > 0)
                                 <div class="w-full h-2 bg-slate-200 rounded mb-3">
-                                    <div class="h-2 bg-green-500 rounded" style="width: {{ $percent }}%"></div>
+                                    <div class="h-2 bg-blue-500 rounded" style="width: {{ $percent }}%"></div>
                                 </div>
                             @endif
 
                           @forelse ($course->modules as $module)
                                 <a href="{{ route('academy.module.lessons', $module->module_id) }}"
-                                class="mt-auto inline-block text-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition"
+                                class="mt-auto inline-block text-center px-4 py-2 bg-teal-600 text-white text-sm font-semibold rounded-md hover:bg-teal-700 transition"
                                 data-course-id="{{ $course->course_id }}">
                                     @if($allCompleted)
                                         Re-watch →

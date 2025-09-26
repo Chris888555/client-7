@@ -5,7 +5,7 @@
 @section('content')
 <div class="container sm:max-w-[1000px] mx-auto px-4 py-10">
 
-   <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-center mb-4 text-blue-700">
+   <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-center mb-4 text-teal-700">
         Select Your Package Now
     </h2>
     <h3 class="text-lg sm:text-xl md:text-2xl text-center text-gray-700 mb-10">
@@ -17,7 +17,7 @@
 <div class="flex justify-center mb-16 w-full max-w-md mx-auto">
     <!-- Step 1 -->
     <div class="flex-1 relative">
-        <div id="step1Indicator" class="w-full h-3 rounded-l-full bg-blue-600 transition-all"></div>
+        <div id="step1Indicator" class="w-full h-3 rounded-l-full bg-teal-600 transition-all"></div>
         <div class="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs font-semibold text-gray-800">
             Choose Package
         </div>
@@ -48,7 +48,7 @@
 
                 <div class="flex items-center justify-between mb-4 mt-4">
                         <h3 class="text-lg font-semibold text-gray-800">{{ $package->name }}</h3>
-                        <span class="text-xl font-bold text-blue-600">₱{{ number_format($package->price, 2) }}</span>
+                        <span class="text-xl font-bold text-teal-600">₱{{ number_format($package->price, 2) }}</span>
                     </div>
                  @php
                         $features = is_string($package->features) ? json_decode($package->features, true) : $package->features;
@@ -57,17 +57,20 @@
                         <ul class="space-y-2 text-gray-700 mb-6 text-sm">
                             @foreach($features as $feature)
                                 <li class="flex items-center gap-2">
-                                    <i class="fa-solid fa-circle-check text-blue-600 text-base"></i>
+                                    <i class="fa-solid fa-circle-check text-teal-600 text-base"></i>
                                     {{ $feature }}
                                 </li>
                             @endforeach
                         </ul>
                     @endif
 
-                <button type="button" class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg"
-                        onclick="goToStep2({{ $package->id }}, '{{ $package->name }}', '₱{{ number_format($package->price, 2) }}')">
+                <button type="button" 
+                    class="mt-3 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-lg flex items-center justify-center gap-2 font-semibold"
+                    onclick="goToStep2({{ $package->id }}, '{{ $package->name }}', '₱{{ number_format($package->price, 2) }}')">
+                    <i class="fa-solid fa-cart-shopping"></i>
                     Buy Now
                 </button>
+
             </div>
             @endforeach
         </div>
@@ -75,12 +78,12 @@
 
     <!-- STEP 2: Payment + Buyer Details -->
     <div id="step2" class="hidden">
-        <h3 class="text-xl font-semibold mb-4 text-blue-700">Payment & Basic Info</h3>
+        <h3 class="text-xl font-semibold mb-4 text-teal-700">Payment & Basic Info</h3>
 
         <!-- Package Summary -->
         <div id="packageSummary" class="mb-6 border rounded-xl p-4 bg-gray-50 shadow-sm">
             <h4 class="font-semibold text-lg text-gray-800" id="summaryName"></h4>
-            <p class="text-blue-600 font-bold text-base" id="summaryPrice"></p>
+            <p class="text-teal-600 font-bold text-base" id="summaryPrice"></p>
         </div>
 
         <form id="checkoutForm" method="POST" enctype="multipart/form-data" class="space-y-4">
@@ -90,7 +93,7 @@
             <!-- Payment Method -->
             <div>
                 <label class="block font-medium mb-1">Select Payment Method</label>
-                <select id="paymentSelect" name="payment_method_id" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200 mb-4" required>
+                <select id="paymentSelect" name="payment_method_id" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-teal-200 mb-4" required>
                     <option value="">-- Select Payment Method --</option>
                     @foreach($mops as $mop)
                         <option value="{{ $mop->id }}" 
@@ -102,28 +105,28 @@
                     @endforeach
                 </select>
 
-                <div id="paymentCard" class="hidden border border-blue-600 rounded-xl shadow-md p-6 bg-white mb-6">
+                <div id="paymentCard" class="hidden border border-teal-600 rounded-xl shadow-md p-6 bg-white mb-6">
                     <h3 class="text-lg font-semibold text-blue-600 mb-2" id="methodName"></h3>
                     <p class="text-gray-700 mb-1">Account Name: <span id="accountName"></span></p>
                     <p class="text-gray-700 mb-3">Account Number: <span id="bankNumber"></span></p>
-                    <p class="text-sm text-blue-500">Send your payment to this account.</p>
+                    <p class="text-sm text-teal-500">Send your payment to this account.</p>
                 </div>
             </div>
 
             <!-- Buyer Details -->
             <div>
                 <label class="block font-medium mb-1">Full Name</label>
-                <input type="text" name="full_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200" required>
+                <input type="text" name="full_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-teal-200" required>
             </div>
 
             <div>
                 <label class="block font-medium mb-1">Mobile Number</label>
-                <input type="text" name="mobile" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200" required>
+                <input type="text" name="mobile" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-teal-200" required>
             </div>
 
             <div>
                 <label class="block font-medium mb-1">Complete Shipping Address</label>
-                <textarea name="address" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200" rows="3" required></textarea>
+                <textarea name="address" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-teal-200" rows="3" required></textarea>
             </div>
 
             <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg shadow-sm mb-6">
@@ -165,7 +168,7 @@
             <!-- Buttons -->
             <div class="flex justify-between">
                 <button type="button" onclick="goBackStep1()" class="bg-gray-300 px-4 py-2 rounded-lg">← Back</button>
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Submit Order</button>
+                <button type="submit" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg">Submit Order</button>
             </div>
         </form>
     </div>
@@ -179,7 +182,7 @@
         document.getElementById('step1').classList.add('hidden');
         document.getElementById('step2').classList.remove('hidden');
         document.getElementById('step1Indicator').className = "px-4 py-2 rounded-full bg-gray-200 text-gray-700";
-        document.getElementById('step2Indicator').className = "px-4 py-2 rounded-full bg-blue-600 text-white";
+        document.getElementById('step2Indicator').className = "px-4 py-2 rounded-full bg-teal-600 text-white";
         document.getElementById('packageInput').value = packageId;
         document.getElementById('summaryName').textContent = name;
         document.getElementById('summaryPrice').textContent = price;
@@ -188,7 +191,7 @@
     function goBackStep1() {
         document.getElementById('step2').classList.add('hidden');
         document.getElementById('step1').classList.remove('hidden');
-        document.getElementById('step1Indicator').className = "px-4 py-2 rounded-full bg-blue-600 text-white";
+        document.getElementById('step1Indicator').className = "px-4 py-2 rounded-full bg-teal-600 text-white";
         document.getElementById('step2Indicator').className = "px-4 py-2 rounded-full bg-gray-200 text-gray-700";
     }
 

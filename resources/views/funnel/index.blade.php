@@ -4,123 +4,172 @@
 
 @section('content')
 
+
+<style>
+/* Continuous spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-gear {
+  animation: spin 2s linear infinite; /* umiikot nonstop */
+}
+</style>
+
 <div class="container m-auto p-4 sm:p-8 max-w-full space-y-8">
-
-
-
-
- <!-- Meta Pixel Helper -->
-    <button 
-        id="openMetaModal"
-        class="px-4 py-2 text-white rounded-lg bg-yellow-500 hover:bg-yellow-600">
-        Setup Meta Pixel Code
-    </button>
 
     <!-- Modal -->
     <div id="metaModal" 
         class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
-    <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative z-60">
-        <h2 class="text-xl font-semibold mb-4">Add or Update Meta Pixel Code</h2>
-        <p class="mb-4 text-gray-600 text-sm leading-relaxed">
-        ⚠️ This setting is recommended only if you are familiar with 
-        <span class="font-medium">Meta Pixel</span> and how it connects to your 
-        <span class="font-medium">Facebook Ads</span>.  
-        With proper setup, you can track important events like 
-        <span class="italic">Page View</span>, <span class="italic">View Content</span>, — 
-        helping optimize your ad campaigns and measure results more accurately.  
-        If unsure, please consult your ads manager before making changes.
-        </p>
+        <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative z-60">
+            <h2 class="text-xl font-semibold mb-4">Add or Update Meta Pixel Code</h2>
+            <p class="mb-4 text-gray-600 text-sm leading-relaxed">
+                ⚠️ This setting is recommended only if you are familiar with 
+                <span class="font-medium">Meta Pixel</span> and how it connects to your 
+                <span class="font-medium">Facebook Ads</span>.  
+                With proper setup, you can track important events like 
+                <span class="italic">Page View</span>, <span class="italic">View Content</span>, — 
+                helping optimize your ad campaigns and measure results more accurately.  
+                If unsure, please consult your ads manager before making changes.
+            </p>
 
-
-        <textarea id="metaPixelInput" 
+            <textarea id="metaPixelInput" 
                 class="w-full border rounded-md p-3 h-40"
                 placeholder="Paste your Meta Pixel code here...">{{ $funnel->meta_pixel_code ?? '' }}</textarea>
 
-        <div class="flex justify-end gap-3 mt-4">
-        <button id="closeMetaModal" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Cancel</button>
-        <button id="saveMetaPixel" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Save</button>
-        </div>
-    </div>
-    </div>
-
-
-
-
-    <div class="w-full bg-white  rounded-3xl border border-gray-200 overflow-hidden">
-        <!-- Card Header -->
-        <div class="flex justify-between items-center px-6 py-4 bg-green-700 text-white">
-            <h2 class="text-xl font-semibold">Update Page Buttons</h2>
-            <a href="{{ route('funnel.editButtons') }}" 
-               class="bg-white text-gray-500 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
-               Edit 
-            </a>
-        </div>
-
-        <!-- Card Body -->
-        <div class="px-6 py-6 space-y-6 relative">
-          <!-- Trust Indicator -->
-            <div class="flex items-center justify-center gap-3 text-gray-700 font-medium mt-8">
-                <span class="material-symbols-outlined text-purple-500 text-3xl sm:text-4xl">auto_mode</span>
-                <span class="text-sm sm:text-lg md:text-xl">Smart Funnels Trusted by <span class="font-semibold">1M+ Users</span></span>
+            <div class="flex justify-end gap-3 mt-4">
+                <button id="closeMetaModal" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Cancel</button>
+                <button id="saveMetaPixel" class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">Save</button>
             </div>
+        </div>
+    </div>
 
+    <div class="w-full bg-white rounded-3xl border border-gray-200 overflow-hidden">
+        <!-- Card Header -->
+        <div class="flex justify-between items-center px-6 py-4 bg-teal-800 text-white">
+            <h2 class="text-xl font-semibold">My Sales Funnel</h2>
 
-            <!-- Funnel Title -->
-           <h3 class="text-xl font-bold text-center text-gray-800 mt-6">
-            Grab Your Funnel & Turn Visitors Into Paying Customers!
-            </h3>
+           <!-- Gear Dropdown -->
+                <div class="relative inline-block text-left">
+                    <button id="gearMenuBtn" type="button"
+                        class="bg-white text-gray-600 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition"
+                        aria-expanded="false" aria-haspopup="true">
+                        <i class="fa-solid fa-gear spin-gear"></i>
+                    </button>
+                
 
+                <!-- Dropdown Menu -->
+                <div id="gearDropdown"
+                    class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                    <div class="py-1">
+                        <a href="{{ route('funnel.editButtons') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <i class="fa-solid fa-pen me-2"></i> Edit Buttons
+                        </a>
+                        <button id="openMetaModal"
+                            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <i class="fa-brands fa-meta me-2"></i> Setup Meta Pixel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Content -->
+        <div class="px-6 py-6">
+            <!-- Promo -->
+            <div class="mb-6">
+                <p class="text-sm text-gray-600 mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-green-600"></i>
+                    <span class="text-green-600 font-semibold">Trusted by 1M+ Users</span>
+                </p>
+                <p class="text-lg font-medium text-gray-800">
+                    Launch Your Funnel in Minutes — <span class="text-navy font-semibold">No Tech Skills Needed!</span>
+                </p>
+            </div>
 
             @if($funnel)
                 <!-- Buttons responsive wrapper -->
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-4">
-
-                  <!-- Funnel Link Input -->
-                <input id="funnelLink" type="text" value="{{ url($funnel->page_link) }}" readonly
-                    class="flex-1 border border-gray-300 rounded-2xl px-4 py-3 cursor-pointer focus:outline-none"
-                    onclick="window.open(this.value, '_blank'); this.select();">
-
+                <div class="flex flex-col sm:flex-row gap-2 mb-6">
+                    <!-- Funnel Link Input -->
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-link absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input id="funnelLink" type="text" value="{{ url($funnel->page_link) }}" readonly
+                            onclick="window.open(this.value, '_blank'); this.select();"
+                            class="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-navy transition cursor-pointer">
+                    </div>
 
                     <!-- Copy Button -->
                     <button id="copyButton" type="button"
-                        class="w-full sm:w-auto px-5 py-3 bg-green-600 hover:bg-green-700 text-white rounded-2xl
-                               shadow-md hover:shadow-lg
-                               flex items-center gap-2 justify-center font-semibold">
-                        <i class="fa-solid fa-copy"></i>
-                        Copy Link
+                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-copy"></i> Copy Link
                     </button>
 
                     <!-- Update Link Button -->
                     <button id="updateLinkBtn" type="button"
-                        class="w-full sm:w-auto px-5 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-2xl
-                               shadow-md flex items-center gap-2 justify-center font-semibold">
-                        <i class="fa-solid fa-pencil"></i>
-                        Update Link
+                        class="px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i> Update Link
                     </button>
                 </div>
             @else
                 <!-- Activate Funnel Button -->
                 <form id="activateFunnelForm" method="POST" action="{{ route('funnel.activate') }}">
                     @csrf
-                   <button type="submit"
-                        class="w-full max-w-md md:max-w-lg py-4 bg-green-600 hover:bg-green-700
+                    <button type="submit"
+                        class="w-full max-w-md md:max-w-lg py-4 bg-teal-600 hover:bg-teal-700
                             text-white font-semibold rounded-2xl shadow-lg transition-all duration-300 
                             flex items-center justify-center gap-3 mx-auto">
-                    <span class="material-symbols-outlined text-white">smart_toy</span>
-                    Activate My AI Funnel
-                </button>
-
+                        <span class="material-symbols-outlined text-white">smart_toy</span>
+                        Activate My AI Funnel
+                    </button>
                 </form>
             @endif
 
             <!-- Footer -->
-            <p class="text-xs text-gray-400 text-center mt-4">Powered by GLC · No credit card needed · Instant setup</p>
-
+            <p class="text-xs text-gray-400 text-center mt-4">Powered by AI · No credit card needed · Instant setup</p>
         </div>
     </div>
 </div>
 
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const gearBtn = document.getElementById("gearMenuBtn");
+    const dropdown = document.getElementById("gearDropdown");
+
+    gearBtn.addEventListener("click", () => {
+        dropdown.classList.toggle("hidden");
+    });
+
+    // Close kapag nag-click sa labas
+    window.addEventListener("click", function(e) {
+        if (!gearBtn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.add("hidden");
+        }
+    });
+
+    // Meta Modal logic
+    const openMetaModal = document.getElementById("openMetaModal");
+    const closeMetaModal = document.getElementById("closeMetaModal");
+    const metaModal = document.getElementById("metaModal");
+
+    if(openMetaModal){
+        openMetaModal.addEventListener("click", () => {
+            metaModal.classList.remove("hidden");
+            dropdown.classList.add("hidden");
+        });
+    }
+
+    if(closeMetaModal){
+        closeMetaModal.addEventListener("click", () => {
+            metaModal.classList.add("hidden");
+        });
+    }
+});
+</script>
 
 
 <!-- Meta Pixel Js -->

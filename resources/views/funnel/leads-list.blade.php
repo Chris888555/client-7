@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'My Leads')
+@section('title', 'Prospect List')
 
 @section('content')
 <div class="container mx-auto p-4 sm:p-8 max-w-full">
@@ -11,20 +11,20 @@
     <div id="leadsTable" class="overflow-x-auto bg-white rounded-xl shadow-sm border">
 
    <!-- Bulk Action -->
-<div class="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-6 px-4 pb-4">
-    <h2 class="text-lg font-semibold text-gray-700">My Leads</h2>
-    <div class="flex items-center gap-2">
-        <a href="{{ route('user.leads.export') }}"
-           class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center gap-2">
-           <span class="material-symbols-outlined">download</span>
-           Export CSV
-        </a>
-        <button id="bulkDeleteBtn" 
-                class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
-            Delete Selected
-        </button>
-    </div>
-</div>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4">
+            <h2 class="text-lg font-semibold text-gray-700">My Leads</h2>
+            <div class="flex items-center gap-2">
+                <a href="{{ route('user.leads.export') }}"
+                class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition flex items-center gap-2">
+                <span class="material-symbols-outlined">download</span>
+                Export CSV
+                </a>
+                <button id="bulkDeleteBtn" 
+                        class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+                    Delete Selected
+                </button>
+            </div>
+        </div>
 
 
 

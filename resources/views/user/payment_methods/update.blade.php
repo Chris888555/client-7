@@ -12,7 +12,7 @@
     <a href="{{ route('payment-method.create') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('payment-method.create') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         Add Mop
     </a>
@@ -21,7 +21,7 @@
     <a href="{{ route('payment-method.list') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('payment-method.list') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         List Mop
     </a>
@@ -33,13 +33,19 @@
         <div class="p-0">
 
             {{-- ✅ Toolbar --}}
-            <div class="flex justify-between items-center px-3 py-3 border-b border-gray-200">
-                <div class="flex gap-2 items-center">
-                    <button id="bulkDeleteBtn" class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
-                        <i class="fas fa-trash-alt"></i> Delete Mop
-                    </button>
-                </div>
-            </div>
+<div class="flex justify-between items-center px-3 py-3 border-b border-gray-200">
+    <!-- Left Side -->
+    <h2 class="text-lg font-semibold text-gray-700">List</h2>
+
+    <!-- Right Side -->
+    <div class="flex gap-2 items-center">
+        <button id="bulkDeleteBtn" 
+            class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
+            <i class="fas fa-trash-alt"></i> Delete Selected
+        </button>
+    </div>
+</div>
+
 
             {{-- ✅ Table Wrapper --}}
             <div class="overflow-x-auto max-h-[600px]">

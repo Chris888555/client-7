@@ -1,20 +1,22 @@
 @extends('layouts.users')
 
-@section('title', 'My Orders')
+@section('title', 'Client Payments')
 
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
 
     <!-- Orders Table -->
-    <div id="ordersTable" class="overflow-x-auto bg-white rounded-xl shadow-sm border mb-6">
-    <!-- Bulk Action -->
-    <div class="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-6 px-4 pb-4">
-        <h2 class="text-lg font-semibold text-gray-700">My Orders</h2>
-        <button id="bulkDeleteBtn" 
-                class="w-auto self-start sm:self-auto bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
-            Delete Selected
-        </button>
-    </div>
+    <div id="ordersTable" class="overflow-x-auto bg-white rounded-xl shadow-sm border ">
+
+    
+        <!-- Bulk Action -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 ">
+            <h2 class="text-lg font-semibold text-gray-700">List</h2>
+            <button id="bulkDeleteBtn" 
+                    class="w-auto self-start sm:self-auto bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+                Delete Selected
+            </button>
+        </div>
 
         <table class="min-w-full divide-y divide-gray-200 whitespace-nowrap">
             <thead class="bg-gray-100">
@@ -46,7 +48,7 @@
                     <td class="px-4 py-3">{{ $order->address }}</td>
                     <td class="px-4 py-3">
                         <button 
-                            class="viewOrderDetails bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700"
+                            class="viewOrderDetails bg-teal-600 text-white px-3 py-1 rounded-md hover:bg-teal-700"
                             data-id="{{ $order->id }}">
                             View All Details
                         </button>
@@ -68,7 +70,7 @@
     @foreach($orders as $order)
     <div id="order-details-{{ $order->id }}" class="orderDetails hidden w-full mx-auto bg-white rounded-xl shadow p-6 transition">
         <button class="backToTable mb-4 text-sm text-gray-700 bg-gray-200 border border-transparent rounded-lg px-3 py-1 
-                       hover:border-gray-300 hover:bg-transparent transition">
+                       hover:border-teal-600 hover:bg-transparent transition">
             &larr; Back
         </button>
 

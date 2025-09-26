@@ -10,14 +10,14 @@
     <a href="{{ route('packages.create') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('packages.create') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         Create Packages
     </a>
     <a href="{{ route('packages.list') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('packages.list') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         List Packages
     </a>

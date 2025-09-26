@@ -72,7 +72,7 @@
 
 
         <div>
-            <button type="submit" id="submitLessonBtn" style="background-color: #16a34a; color: #ffffff;" class="inline-block mt-4 px-4 py-2 rounded">Add Lesson</button>
+            <button type="submit" id="submitLessonBtn"class="bg-teal-600 text-white inline-block mt-4 px-4 py-2 rounded">Add Lesson</button>
             <button type="button" id="cancelLessonBtn" style="background-color: #6b7280; color: #ffffff;" class="inline-block px-4 py-2 rounded ml-2 hidden">Cancel</button>
         </div>
     </form>
@@ -195,7 +195,7 @@
             </div>
 
             <div class="mt-5">
-                <button type="submit" class="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">
+                <button type="submit" class="bg-teal-600 text-white px-5 py-2 rounded hover:bg-teal-700">
                     Save Order
                 </button>
             </div>

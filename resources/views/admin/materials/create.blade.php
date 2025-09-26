@@ -13,7 +13,7 @@
     <a href="{{ route('materials.create') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('materials.create') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         Create Materials
     </a>
@@ -22,7 +22,7 @@
     <a href="{{ route('materials.show') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
         {{ request()->routeIs('materials.show') 
-            ? 'bg-blue-600 text-white hover:bg-blue-700' 
+            ? 'bg-teal-600 text-white hover:bg-teal-700' 
             : 'bg-gray-100 hover:bg-gray-200 text-gray-700' }}">
         List Materials
     </a>
@@ -94,10 +94,11 @@ document.getElementById('file').addEventListener('change', function (e) {
 </script>
 
 
-        {{-- Submit --}}
-        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center justify-center gap-2">
-            <i class="fas fa-save"></i> Save Image
-        </button>
+       {{-- Submit --}}
+        <x-button type="submit" icon="fa-solid fa-floppy-disk">
+            Save Image
+        </x-button>
+        >
 
     </form>
 </div>
