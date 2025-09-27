@@ -5,8 +5,96 @@
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
 
+<form id="clearCacheForm" class="inline">
+    @csrf
+    <button id="clearCacheBtn" type="button" class="bg-red-600 text-white px-4 py-2 rounded-lg">
+        Clear Cache
+    </button>
+</form>
 
-    <form id="themeForm" class="space-y-4">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('clearCacheBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: 'Clear cache now?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, clear it'
+    }).then(result => {
+        if (!result.isConfirmed) return;
+
+        fetch("{{ route('clear.cache') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin' // ensure cookies/session sent
+        })
+        .then(async res => {
+            const text = await res.text();
+            let data = null;
+            try { data = JSON.parse(text); } catch(e) { /* non-json */ }
+
+            if (res.ok && data && data.success) {
+                Swal.fire({ icon: 'success', title: data.message, timer: 1500, showConfirmButton: false });
+            } else {
+                console.error('Clear cache failed', res.status, text);
+                const msg = (data && data.message) ? data.message : `Error ${res.status}`;
+                Swal.fire({ icon: 'error', title: msg });
+            }
+        })
+        .catch(err => {
+            console.error('Network/Fetch error', err);
+            Swal.fire({ icon: 'error', title: 'Network error. Check console.' });
+        });
+    });
+});
+</script>
+
+<button id="refreshStorageBtn" 
+    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+    Refresh Storage 
+</button>
+
+<script>
+document.getElementById('refreshStorageBtn').addEventListener('click', function() {
+    Swal.fire({
+        title: 'Reconnect storage?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, reconnect'
+    }).then(result => {
+        if (!result.isConfirmed) return;
+
+        fetch("{{ route('refresh.storage') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({ icon: 'success', title: data.message, timer: 2000, showConfirmButton: false });
+            } else {
+                Swal.fire({ icon: 'error', title: data.message });
+            }
+        })
+        .catch(() => {
+            Swal.fire({ icon: 'error', title: 'Something went wrong!' });
+        });
+    });
+});
+</script>
+
+
+
+    <form id="themeForm" class="space-y-4 mt-8">
         @csrf
         @method('POST')
 

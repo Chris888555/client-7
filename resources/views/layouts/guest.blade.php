@@ -29,6 +29,8 @@
 <body class="bg-gray-700 bg-cover bg-center" 
       style="background-image: url('https://i.pinimg.com/originals/51/6b/34/516b3477d2e19e12344007e33ef6c69c.jpg');">
 
+{{-- Page Loader Component --}}
+    <x-page-loader />
 
 <main class="min-h-screen flex items-center justify-center">
     <div class="w-full max-w-xl px-4">

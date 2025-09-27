@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Webinar Funnel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Journey to Financial Freedom | Free Webinar</title>
+    @vite('resources/css/app.css')
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/favicon/site.webmanifest') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}" type="image/x-icon">
+
+    <!-- SEO Basic Meta -->
+    <meta name="title" content="Start Your Journey to Financial Freedom | Free Webinar">
+    <meta name="description" content="Learn how to earn extra ₱20,000+ monthly income even with no experience. Join our FREE webinar and start your path to financial freedom today.">
+    <meta name="keywords" content="income opportunity, extra income, online business, work from home, financial freedom, free webinar, earn money online">
+    <meta name="author" content="Success Academy">
+
+    <!-- Open Graph / Facebook Meta -->
+    <meta property="og:title" content="Start Your Journey to Financial Freedom | Free Webinar" />
+    <meta property="og:description" content="Learn how to earn extra ₱20,000+ monthly income even with no experience. Join our FREE webinar and start your path to financial freedom today." />
+    <meta property="og:image" content="{{ asset('assets/images/income-opportunity-banner.png') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Success Academy" />
 </head>
+
 
 <style>
 /* Bounce animation only for elements with .bounce class */
@@ -46,7 +68,7 @@
 
 
 <!-- Hero Section -->
-<section class="relative bg-teal-800 text-white">
+<section class="relative bg-teal-900 text-white">
     <div class="max-w-6xl mx-auto px-6 pb-8 pt-16 md:pb-16 md:pt-28 text-center">
         <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
             Gusto mo bang <span class="text-yellow-400">KUMITA ng ADDITIONAL</span> income kahit nasa bahay ka lang? 
@@ -68,9 +90,9 @@
 <!-- Multi-Layered Wavy Divider -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-32 md:h-40">
-        <path d="M0,100 C300,80 900,120 1200,100 L1200,0 L0,0 Z" class="fill-teal-800" style="opacity:0.25"></path>
-        <path d="M0,80 C400,60 800,100 1200,80 L1200,0 L0,0 Z" class="fill-teal-800" style="opacity:0.5"></path>
-        <path d="M0,60 C350,90 850,30 1200,60 L1200,0 L0,0 Z" class="fill-teal-800"></path>
+        <path d="M0,100 C300,80 900,120 1200,100 L1200,0 L0,0 Z" class="fill-teal-900" style="opacity:0.25"></path>
+        <path d="M0,80 C400,60 800,100 1200,80 L1200,0 L0,0 Z" class="fill-teal-900" style="opacity:0.5"></path>
+        <path d="M0,60 C350,90 850,30 1200,60 L1200,0 L0,0 Z" class="fill-teal-900"></path>
     </svg>
 </div>
 
@@ -277,12 +299,12 @@
 <!-- Flipped Angled Top Divider -->
 <div class="top-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-teal-800"></path>
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-teal-900"></path>
     </svg>
 </div>
 
 <!-- Final CTA -->
-<section class="bg-teal-800 text-white text-center mt-[-1px]">
+<section class="bg-teal-900 text-white text-center mt-[-1px]">
   <div class="max-w-6xl mx-auto px-6 py-20 text-center">
     <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Something New!</h2>
     <p class="text-lg md:text-xl mb-8">Start with hope — this opportunity can change your life. Don’t miss out!</p>
@@ -297,7 +319,7 @@
 <!-- Flipped Angled Bottom  -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-teal-800"></path>
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-teal-900"></path>
     </svg>
 </div>
 

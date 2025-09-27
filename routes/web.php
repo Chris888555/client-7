@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\UtilityController;
+
 use App\Http\Controllers\ThemeSettingController;
 
 use App\Http\Controllers\AuthController;
@@ -29,6 +31,9 @@ use App\Http\Controllers\User\PaymentMethodController;
 use App\Http\Controllers\User\OrderController;
 
 use App\Http\Controllers\Academy\AcademyController;
+
+use App\Http\Controllers\Funnel\FollowupTemplateController;
+use App\Http\Controllers\FollowupController;
 
 Route::get('/', function () {
    return view('home');
@@ -117,6 +122,19 @@ Route::get('/academy/module/{module}/check-completion', [AcademyController::clas
 Route::get('/academy/module/{module}/certificate', [AcademyController::class, 'viewCertificate']);
 
 
+// Follow-up route
+Route::get('/followup/create', [FollowupTemplateController::class, 'index'])->name('followup.templates');
+Route::post('/followup/store', [FollowupTemplateController::class, 'store'])->name('followup.templates.store');
+
+Route::get('/followup/mails', [FollowupTemplateController::class, 'mails'])->name('followup.mails');
+Route::post('/followup/send-all/{id}', [FollowupTemplateController::class, 'sendMailToAll'])->name('followup.sendAll');Route::get('/followup/preview/{id}', [FollowupTemplateController::class, 'preview'])->name('followup.preview');
+Route::get('/followup/mail_preview', [FollowupTemplateController::class, 'preview'])->name('followup.preview');
+
+
+
+
+
+
 });
 
 
@@ -196,3 +214,18 @@ Route::middleware(['auth', 'adminsession'])->group(function () {
   Route::post('/admin/module/{module_id}/lessons/reorder', [AcademyController::class, 'reorderLessons'])->name('academy.lesson.reorder');
 
 });
+
+
+
+
+
+
+
+
+    Route::post('/clear-cache', [UtilityController::class, 'clearCache'])
+    ->name('clear.cache')
+    ->middleware('auth'); // require login; remove if not needed
+
+    Route::post('/refresh-storage', [UtilityController::class, 'refreshStorage'])
+    ->name('refresh.storage')
+    ->middleware('auth');

@@ -9,10 +9,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 </head>
+
+{{-- Page Loader Component --}}
+    <x-page-loader />
+    
 <body class="bg-white text-gray-800">
 
   <!-- Navbar -->
-<nav class="bg-emerald-700 shadow-sm fixed top-0 left-0 w-full z-50">
+<nav class="bg-teal-900 shadow-sm fixed top-0 left-0 w-full z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     
     <!-- Logo -->
@@ -23,9 +27,18 @@
 
     <div class="space-x-6">
       <a href="{{ route('login') }}" 
-         class="bg-yellow-400 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-100">
-        Login
+   class="w-fit flex items-center justify-center gap-2 px-4 py-2 font-bold text-white rounded-full cursor-pointer
+          text-center 
+          [text-shadow:2px_2px_3px_rgb(120_90_0_/_60%)]
+          bg-[linear-gradient(15deg,#a67c00,#bf9b30,#f1c01c,#ffdb58,#f1c01c,#bf9b30,#a67c00)] 
+          bg-[length:300%] bg-left-center transition-all duration-500 hover:bg-[length:320%] hover:bg-right">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            class="w-[23px] transition-all duration-300 fill-white group-hover:fill-[#4d3b00]">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        <span>Login</span>
       </a>
+
     </div>
     
   </div>
@@ -46,11 +59,19 @@
       </p>
 
         <div class="space-x-4">
-          <a href="{{ route('login') }}">
-            <button class="bg-emerald-700 text-yellow-400 font-semibold px-6 py-3 rounded-lg shadow hover:bg-emerald-700">
-              Join Our Community
-            </button>
-          </a>
+        <a href="{{ route('login') }}"
+          class="flex items-center justify-center gap-2 px-6 py-3 font-bold text-white rounded-full cursor-pointer 
+                  text-center w-fit
+                  [text-shadow:2px_2px_3px_rgb(0_60_0_/_50%)]
+                  bg-[linear-gradient(15deg,#052F28,#0d4d3b,#146b4e,#1d8a62,#27a876,#1d8a62,#146b4e,#0d4d3b,#052F28)] 
+                  bg-[length:300%] bg-left-center transition-all duration-300 hover:bg-[length:320%] hover:bg-right">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              class="w-[23px] transition-all duration-300 fill-[#27a876] group-hover:fill-white">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          <span>Join Our Community</span>
+        </a>
+        
         </div>
       </div>
       <div class="">
@@ -62,13 +83,13 @@
 <!-- Opposite Flipped Angled Bottom -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0] mb-[-1px]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-emerald-700"></path>
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-teal-900"></path>
     </svg>
 </div>
 
 
 <!-- Mission & Vision Section -->
-<section class="bg-emerald-700 py-20">
+<section class="bg-teal-900 py-20">
   <div class="max-w-7xl mx-auto px-6 text-center">
     <h3 class="text-3xl font-bold mb-12 text-yellow-400">Our Mission</h3>
     <p class="text-white mb-12">
@@ -85,7 +106,7 @@
 <!-- Flipped Angled Bottom  -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-emerald-700"></path>
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-teal-900"></path>
     </svg>
 </div>
 
@@ -120,18 +141,45 @@
 </section>
 
   
-
-  <!-- Footer -->
-  <footer class="bg-green-800 text-white py-8">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-      <p>&copy; 2025 Global Entrepreneurs. All rights reserved.</p>
-      <div class="space-x-4 mt-4 md:mt-0">
-        <a href="#" class="hover:text-blue-400">Facebook</a>
-        <a href="#" class="hover:text-blue-400">Twitter</a>
-        <a href="#" class="hover:text-blue-400">Instagram</a>
-      </div>
+<!-- Footer -->
+<footer class="bg-teal-900 text-white py-10">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <!-- Company Info -->
+    <div>
+      <h2 class="text-xl font-bold mb-4">Global Entrepreneurs</h2>
+      <p class="text-sm text-gray-300">
+        Building connections and opportunities worldwide.  
+        Join our mission to empower entrepreneurs globally.
+      </p>
     </div>
-  </footer>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">📞 Contact</h3>
+      <ul class="space-y-2 text-sm">
+        <li><span class="font-semibold">Email:</span> <a href="mailto:marymayfullon@yahoo.com" class="hover:underline">marymayfullon@yahoo.com</a></li>
+        <li><span class="font-semibold">Phone:</span> <a href="tel:+447519087551" class="hover:underline">+44 7519 087551</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">🌐 Connect with Us</h3>
+      <ul class="space-y-2 text-sm">
+        <li><span class="font-semibold">Facebook Main:</span> <a href="#" class="hover:text-blue-400">May Fullon Balisnomo</a></li>
+        <li><span class="font-semibold">Business Page:</span> <a href="#" class="hover:text-blue-400">Global Entrepreneurs</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="mt-10 border-t border-gray-600 pt-4 text-center text-xs text-gray-400">
+    &copy; 2025 Global Entrepreneurs. All rights reserved.
+  </div>
+</footer>
+
 
 </body>
 </html>
