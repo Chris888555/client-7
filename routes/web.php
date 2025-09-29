@@ -32,8 +32,6 @@ use App\Http\Controllers\User\OrderController;
 
 use App\Http\Controllers\Academy\AcademyController;
 
-use App\Http\Controllers\Funnel\FollowupTemplateController;
-use App\Http\Controllers\FollowupController;
 
 Route::get('/', function () {
    return view('home');
@@ -81,6 +79,8 @@ Route::put('/profile/update-password', [ProfileController::class, 'updatePasswor
 Route::get('/my-funnel', [FunnelController::class, 'index'])->name('funnel.index');
 Route::post('/my-funnel/activate', [FunnelController::class, 'activate'])->name('funnel.activate');
 Route::post('/funnel/update-link', [FunnelController::class, 'updateLink'])->name('funnel.updateLink');
+Route::post('/funnel/update-username', [FunnelController::class, 'updateUsername'])->name('funnel.updateUsername');
+
 
 
 Route::get('funnel/buttons', [FunnelController::class, 'editButtons'])->name('funnel.editButtons');
@@ -122,14 +122,6 @@ Route::get('/academy/module/{module}/check-completion', [AcademyController::clas
 Route::get('/academy/module/{module}/certificate', [AcademyController::class, 'viewCertificate']);
 
 
-// Follow-up route
-Route::get('/followup/create', [FollowupTemplateController::class, 'index'])->name('followup.templates');
-Route::post('/followup/store', [FollowupTemplateController::class, 'store'])->name('followup.templates.store');
-
-Route::get('/followup/mails', [FollowupTemplateController::class, 'mails'])->name('followup.mails');
-Route::post('/followup/send-all/{id}', [FollowupTemplateController::class, 'sendMailToAll'])->name('followup.sendAll');Route::get('/followup/preview/{id}', [FollowupTemplateController::class, 'preview'])->name('followup.preview');
-Route::get('/followup/mail_preview', [FollowupTemplateController::class, 'preview'])->name('followup.preview');
-
 
 
 
@@ -138,7 +130,12 @@ Route::get('/followup/mail_preview', [FollowupTemplateController::class, 'previe
 });
 
 
-Route::get('/{page_link}', [LeadController::class, 'landingPage'])->name('funnel.landingPage');
+Route::domain('{username}.localhost')->group(function () {
+Route::get('/{page_link}', [LeadController::class, 'landingPage']);
+
+});
+
+// Route::get('/{page_link}', [LeadController::class, 'landingPage'])->name('funnel.landingPage');
 Route::post('/store', [LeadController::class, 'store'])->name('funnel.store');
 Route::get('/sales/{page_link}', [LeadController::class, 'salesPage'])->name('funnel.salesPage');
 

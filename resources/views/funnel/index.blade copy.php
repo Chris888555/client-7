@@ -35,7 +35,7 @@
             </p>
 
             <textarea id="metaPixelInput" 
-                class="w-full border rounded-md p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 p-3 h-40"
+                class="w-full border rounded-md p-3 h-40"
                 placeholder="Paste your Meta Pixel code here...">{{ $funnel->meta_pixel_code ?? '' }}</textarea>
 
             <div class="flex justify-end gap-3 mt-4">
@@ -44,29 +44,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Update Username Modal -->
-        <div id="usernameModal" 
-            class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
-            <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative z-60">
-                <h2 class="text-xl font-semibold mb-4">Update Your Username</h2>
-                <p class="mb-4 text-gray-600 text-sm">
-                    Changing your username will also update your funnel link.
-                    Only letters, numbers, and dash (-) are allowed.
-                </p>
-
-                <input id="usernameInput" 
-                    type="text" 
-                    value="{{ $user->username }}" 
-                    class="w-full border rounded-md p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
-                    placeholder="Enter new username">
-
-                <div class="flex justify-end gap-3 mt-4">
-                    <button id="closeUsernameModal" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Cancel</button>
-                    <button id="saveUsername" class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">Save</button>
-                </div>
-            </div>
-        </div>
 
     <div class="w-full bg-white rounded-3xl border border-gray-200 overflow-hidden">
         <!-- Card Header -->
@@ -80,28 +57,22 @@
                         aria-expanded="false" aria-haspopup="true">
                         <i class="fa-solid fa-gear spin-gear"></i>
                     </button>
-                    
                 
 
                 <!-- Dropdown Menu -->
-                    <div id="gearDropdown"
-                        class="hidden absolute right-0 mt-2 w-60 bg-white rounded-md shadow-lg border border-gray-200 z-50"> <!-- Increased width -->
-                        <div class="py-2"> <!-- More vertical padding -->
-                            <a href="{{ route('funnel.editButtons') }}"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"> <!-- Increased py -->
-                                <i class="fa-solid fa-pen me-2"></i> Edit Buttons
-                            </a>
-                            <button id="openMetaModal"
-                                class="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
-                                <i class="fa-brands fa-meta me-2"></i> Setup Meta Pixel
-                            </button>
-                            <button id="openUsernameModal"
-                                class="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
-                                <i class="fa-solid fa-user me-2"></i> Update Subdomain
-                            </button>
-                        </div>
+                <div id="gearDropdown"
+                    class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                    <div class="py-1">
+                        <a href="{{ route('funnel.editButtons') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <i class="fa-solid fa-pen me-2"></i> Edit Buttons
+                        </a>
+                        <button id="openMetaModal"
+                            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <i class="fa-brands fa-meta me-2"></i> Setup Meta Pixel
+                        </button>
                     </div>
-
+                </div>
             </div>
         </div>
 
@@ -124,11 +95,9 @@
                     <!-- Funnel Link Input -->
                     <div class="relative flex-1">
                         <i class="fa-solid fa-link absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        <input id="funnelLink" type="text" 
-                        value="http://{{ $user->username }}.localhost:8000/{{ $funnel->page_link }}" readonly
-                        onclick="window.open(this.value, '_blank'); this.select();"
-                        class="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-navy transition cursor-pointer">
-
+                        <input id="funnelLink" type="text" value="{{ url($funnel->page_link) }}" readonly
+                            onclick="window.open(this.value, '_blank'); this.select();"
+                            class="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-navy transition cursor-pointer">
                     </div>
 
                     <!-- Copy Button -->
@@ -308,7 +277,7 @@ document.getElementById('saveMetaPixel').addEventListener('click', () => {
         });
     }
 
-// Update Link button
+   // Update Link button
 const updateBtn = document.getElementById('updateLinkBtn');
 if(updateBtn) {
     updateBtn.addEventListener('click', () => {
@@ -319,17 +288,15 @@ if(updateBtn) {
             inputValue: '{{ $funnel->page_link ?? "" }}',
             showCancelButton: true,
             confirmButtonText: 'Update',
-            cancelButtonText: 'Cancel', // optional text
-            confirmButtonColor: '#3085d6', // blue confirm
-            cancelButtonColor: '#d33',      // red cancel
             preConfirm: (newLink) => {
                 if(!newLink) {
                     Swal.showValidationMessage('Link cannot be empty');
                     return false;
                 }
+                // ✅ Allow only letters, numbers, and dash
                 const regex = /^[a-zA-Z0-9-]+$/;
                 if(!regex.test(newLink)) {
-                    Swal.showValidationMessage('Only letters, numbers, and (- or dash) are allowed.');
+                    Swal.showValidationMessage('Only letters, numbers, and (- or dash) are allowed. Special characters like @ # . and soon are not allowed.');
                     return false;
                 }
                 return newLink;
@@ -358,78 +325,20 @@ if(updateBtn) {
                             text: 'Funnel link updated successfully',
                             timer: 1500,
                             showConfirmButton: false
-                        }).then(() => location.reload());
+                        }).then(() => {
+                            location.reload();
+                        });
                     } else {
                         Swal.fire('Error', data.message || 'Something went wrong', 'error');
                     }
                 })
-                .catch(err => Swal.fire('Error', 'Something went wrong', 'error'));
+                .catch(err => {
+                    Swal.fire('Error', 'Something went wrong', 'error');
+                });
             }
         });
     });
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Open / Close Modal
-    const usernameModal = document.getElementById("usernameModal");
-    const openUsernameModal = document.getElementById("openUsernameModal");
-    const closeUsernameModal = document.getElementById("closeUsernameModal");
-
-    openUsernameModal.addEventListener("click", () => {
-        usernameModal.classList.remove("hidden");
-        usernameModal.classList.add("flex");
-        dropdown.classList.add("hidden"); // Close gear dropdown
-    });
-
-    closeUsernameModal.addEventListener("click", () => {
-        usernameModal.classList.add("hidden");
-    });
-
-    // Save via AJAX
-    const saveUsernameBtn = document.getElementById("saveUsername");
-    saveUsernameBtn.addEventListener("click", () => {
-        let newUsername = document.getElementById("usernameInput").value.trim();
-        const regex = /^[a-zA-Z0-9-]+$/;
-
-        if(!newUsername) {
-            Swal.fire('Error', 'Username cannot be empty', 'error');
-            return;
-        }
-        if(!regex.test(newUsername)) {
-            Swal.fire('Error', 'Only letters, numbers, and dash (-) allowed', 'error');
-            return;
-        }
-
-        fetch("{{ route('funnel.updateUsername') }}", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify({ username: newUsername })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Updated!',
-                    text: data.message,
-                    timer: 1500,
-                    showConfirmButton: false
-                }).then(() => {
-                    location.reload(); // Refresh to update links
-                });
-            } else {
-                Swal.fire('Error', data.message || 'Something went wrong', 'error');
-            }
-        })
-        .catch(err => {
-            Swal.fire('Error', 'Something went wrong', 'error');
-        });
-    });
-});
 
 </script>
 

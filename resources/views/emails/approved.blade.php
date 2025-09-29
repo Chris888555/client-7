@@ -39,7 +39,7 @@
     <a href="{{ url('/login') }}" class="btn">Login Now</a>
     <p style="margin-top:30px;">
     Thanks,<br>
-    - Admin
+    - GlobalPreneurs
     </p>
 </div>
 </body>

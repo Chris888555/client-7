@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class FunnelController extends Controller
 {
     // Show funnel dashboard for logged-in user
-   public function index()
+    public function index()
     {
         $funnel = UserFunnel::where('user_id', Auth::id())->first();
-        $user = Auth::user(); // Kunin ang username
-        return view('funnel.index', compact('funnel', 'user'));
+        return view('funnel.index', compact('funnel'));
     }
 
     // Activate funnel
@@ -119,24 +118,6 @@ public function updateMetaPixel(Request $request)
     return response()->json([
         'success' => true,
         'message' => 'Meta Pixel Code updated successfully!'
-    ]);
-}
-
-
-// Update username
-public function updateUsername(Request $request)
-{
-    $request->validate([
-        'username' => 'required|string|alpha_dash|unique:users,username,' . Auth::id(),
-    ]);
-
-    $user = Auth::user();
-    $user->username = $request->username;
-    $user->save();
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Username updated successfully!'
     ]);
 }
 

@@ -49,6 +49,6 @@
 
     <p>Please keep your password safe.</p>
 
-    <p>Thanks,<br />- Admin</p>
+    <p>Thanks,<br />- GlobalPreneurs</p>
 </body>
 </html>
