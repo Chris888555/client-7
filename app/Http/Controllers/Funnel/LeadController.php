@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Models\User\Users; 
 use App\Models\Funnel\FunnelView;
-
+use App\Models\Funnel\WhoIAmSection;
 
 
 class LeadController extends Controller
@@ -21,35 +21,40 @@ class LeadController extends Controller
 // Show landing page and save page analytics user cookies 
 // ###################################################################
 // ###################################################################
-public function landingPage($username, $page_link, Request $request)
-{
-    // Hanapin user based sa subdomain
-    $user = Users::where('username', $username)->firstOrFail();
 
+    public function landingPage($username, $page_link, Request $request)
+    {
+        // Hanapin user based sa subdomain
+        $user = Users::where('username', $username)->firstOrFail();
 
-    // Hanapin funnel sa user
-    $funnel = UserFunnel::where('user_id', $user->id)
-                        ->where('page_link', $page_link)
-                        ->firstOrFail();
+        // Hanapin funnel sa user
+        $funnel = UserFunnel::where('user_id', $user->id)
+                            ->where('page_link', $page_link)
+                            ->firstOrFail();
 
-    // Visitor cookie
-    $cookieName = 'visitor_id';
-    if ($request->hasCookie($cookieName)) {
-        $visitorCookie = $request->cookie($cookieName);
-    } else {
-        $visitorCookie = uniqid('visitor_', true);
-        cookie()->queue(cookie($cookieName, $visitorCookie, 60*24*30));
+        // Fetch Who I Am section
+        $whoIamSection = WhoIAmSection::where('user_id', $user->id)->first();
+
+        // Visitor cookie
+        $cookieName = 'visitor_id';
+        if ($request->hasCookie($cookieName)) {
+            $visitorCookie = $request->cookie($cookieName);
+        } else {
+            $visitorCookie = uniqid('visitor_', true);
+            cookie()->queue(cookie($cookieName, $visitorCookie, 60*24*30));
+        }
+
+        // Save view (1x per funnel + visitor)
+        FunnelView::firstOrCreate([
+            'user_id'     => $user->id,
+            'page_link'   => $page_link,
+            'user_cookie' => $visitorCookie,
+        ]);
+
+        // Pass Who I Am section to view
+        return view('funnel.landing-page', compact('funnel', 'user', 'whoIamSection'));
     }
 
-    // Save view (1x per funnel + visitor)
-    FunnelView::firstOrCreate([
-        'user_id'     => $user->id,
-        'page_link'   => $page_link,
-        'user_cookie' => $visitorCookie,
-    ]);
-
-    return view('funnel.landing-page', compact('funnel', 'user'));
-}
 
 
 

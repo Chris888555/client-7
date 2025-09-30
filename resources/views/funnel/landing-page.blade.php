@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Your Journey to Financial Freedom | Free Webinar</title>
+    <title>Kumita ng ADDITIONAL Income kahit nasa bahay lang</title>
     @vite('resources/css/app.css')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,18 +16,18 @@
     <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}" type="image/x-icon">
 
     <!-- SEO Basic Meta -->
-    <meta name="title" content="Start Your Journey to Financial Freedom | Free Webinar">
-    <meta name="description" content="Learn how to earn extra ₱20,000+ monthly income even with no experience. Join our FREE webinar and start your path to financial freedom today.">
+    <meta name="title" content="Kumita ng ADDITIONAL Income kahit nasa bahay lang">
+    <meta name="description" content="Learn how to earn extra ₱1,880 up to 50,000 daily income even with no experience. Join our FREE webinar and start your path to financial freedom today.">
     <meta name="keywords" content="income opportunity, extra income, online business, work from home, financial freedom, free webinar, earn money online">
-    <meta name="author" content="Success Academy">
+    <meta name="author" content="GlobalPreneursBusiness">
 
     <!-- Open Graph / Facebook Meta -->
-    <meta property="og:title" content="Start Your Journey to Financial Freedom | Free Webinar" />
-    <meta property="og:description" content="Learn how to earn extra ₱20,000+ monthly income even with no experience. Join our FREE webinar and start your path to financial freedom today." />
-    <meta property="og:image" content="{{ asset('assets/images/income-opportunity-banner.png') }}" />
+    <meta property="og:title" content="Kumita ng ADDITIONAL Income kahit nasa bahay lang" />
+    <meta property="og:description" content="Learn how to earn extra ₱1,880 up to 50,000 daily income even with no experience. Join our FREE webinar and start your path to financial freedom today." />
+    <meta property="og:image" content="{{ asset('assets/images/social-media-banner.jpg') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Success Academy" />
+    <meta property="og:site_name" content="GlobalPreneursBusiness" />
 </head>
 
 
@@ -57,7 +57,7 @@
 
 
 
-<div class="w-full bg-yellow-400 text-gray-900 p-4 text-center shadow-lg z-50">
+<div class="w-full bg-red-600 text-yellow-400 p-4 text-center shadow-lg z-50">
   <span class="text-sm md:text-base">
     Don’t miss this FREE webinar! 
   </span>
@@ -98,72 +98,47 @@
 
 
 
-
 <!-- Benefits Section -->
-<section class="max-w-6xl mx-auto px-6 py-20">
+<section class="mx-auto px-6 py-20 ">
+  <div class="max-w-6xl mx-auto">
+    
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-        Ano ang Matututunan Mo sa FREE Webinar?
+      Ano ang Matututunan Mo sa <span class="text-teal-600">FREE Webinar?</span>
     </h2>
+
     <div class="grid md:grid-cols-3 gap-12 text-center">
 
-        <!-- Benefit 1 -->
-        <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
-            <i class="fa-solid fa-people-group text-teal-600 text-4xl mb-4"></i>
-            <h3 class="text-2xl font-semibold mb-2">Magandang Opportunity</h3>
-            <p class="text-gray-600 text-xl">Alamin ang best opportunity na swak sa kahit anong status—OFWs, nanay, business owners, freelancers, employees, at iba pa.</p>
-        </div>
+      <!-- Benefit 1 -->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+        <i class="fa-solid fa-people-group text-teal-600 text-4xl mb-4"></i>
+        <h3 class="text-2xl font-semibold mb-2">Magandang Opportunity</h3>
+        <p class="text-gray-600 text-lg">
+          Alamin ang best opportunity na swak sa kahit anong status—OFWs, nanay, business owners, freelancers, employees, at iba pa.
+        </p>
+      </div>
 
-        <!-- Benefit 2 -->
-        <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
-            <i class="fa-solid fa-lightbulb text-teal-600 text-4xl mb-4"></i>
-            <h3 class="text-2xl font-semibold mb-2">Proven Strategies & Tools</h3>
-            <p class="text-gray-600 text-xl">Makakakuha ka ng ready-to-use strategies at tools na pwede mong kopyahin para palaguin ang negosyo gaya ng mga natulungan naming kumita sa community.</p>
-        </div>
+      <!-- Benefit 2 -->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+        <i class="fa-solid fa-lightbulb text-teal-600 text-4xl mb-4"></i>
+        <h3 class="text-2xl font-semibold mb-2">Proven Strategies & Tools</h3>
+        <p class="text-gray-600 text-lg">
+          Makakakuha ka ng ready-to-use strategies at tools na pwede mong kopyahin para palaguin ang negosyo gaya ng mga natulungan naming kumita sa community.
+        </p>
+      </div>
 
-        <!-- Benefit 3 -->
-        <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
-            <i class="fa-solid fa-rocket text-teal-600 text-4xl mb-4"></i>
-            <h3 class="text-2xl font-semibold mb-2">Become an INFINITE Partner</h3>
-            <p class="text-gray-600 text-xl">Matutunan kung paano maging INFINITE partner at simulan kumita ng additional income kahit sa bahay lang gamit ang strategies at tools na ipapakita sa webinar.</p>
-        </div>
+      <!-- Benefit 3 -->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+        <i class="fa-solid fa-rocket text-teal-600 text-4xl mb-4"></i>
+        <h3 class="text-2xl font-semibold mb-2">Become an INFINITE Partner</h3>
+        <p class="text-gray-600 text-lg">
+          Matutunan kung paano maging INFINITE partner at simulan kumita ng additional income kahit sa bahay lang gamit ang strategies at tools na ipapakita sa webinar.
+        </p>
+      </div>
 
     </div>
-</section>
 
-
-<!-- Ergency Call to action Section -->
-<section class="max-w-5xl mx-auto px-6 mt-8">
-  <div class="relative overflow-visible text-center">
-      <!-- Card -->
-      <div class="bg-yellow-400 text-gray-900 relative z-10 rounded-2xl shadow-lg shadow-gray-800/50 px-4 py-16 md:py-20">
-          <h3 class="text-3xl md:text-4xl font-bold mb-6">
-              Don’t Miss This Opportunity!
-          </h3>
-          <p class="text-lg md:text-xl mb-6">
-              Make sure mag-sign up ka **today** para mapanoon mo ang <span class="font-bold">exclusive FREE webinar</span> <br class="hidden md:block">at hindi masayang ang opportunity na naghihintay sayo.
-          </p>
-          <p class="text-lg md:text-xl mb-6">
-              Imagine kung kikita ka ng <span class="font-bold">₱20K–₱100K per month</span> sa business na ito.<br class="hidden md:block"> Ano ang maitutulong nito sayo at sa pamilya mo?
-          </p>
-          <p class="text-lg md:text-xl mb-8 font-semibold">
-              Sign up now at watch the FREE exclusive webinar. <span class="text-red-600 font-bold">Only 10 slots left!</span> <br class="hidden md:block">Para sa mga gusto ma-guided.
-          </p>
-          <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
-            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
-        </a>
-      </div>
-
-      <!-- peak -->
-      <div class="absolute top-0 left-0 w-full -translate-y-1/2 z-20">
-          <svg viewBox="0 0 1200 100" preserveAspectRatio="none" class="w-full h-16">
-              <path d="M0,100 L600,0 L1200,100 Z" class="fill-yellow-400"/>
-          </svg>
-      </div>
   </div>
 </section>
-
-
-
 
 
 
@@ -172,105 +147,84 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-<!-- Testimonial Carousel -->
-<section class=" mx-auto px-6 py-16 md:py-28">
- <div class="max-w-5xl mx-auto "> 
-  <h3 class="text-3xl md:text-4xl font-bold mb-6 text-center">
-             What Our Partner Says!
-          </h3>
+<!-- Auto-Slide Image Section -->
+<section class="mx-auto px-6 py-20 bg-gray-100">
+  <div class="max-w-5xl mx-auto">
+   <h3 class="text-3xl md:text-4xl font-sans font-semibold mb-6 text-center leading-snug">
+    Our community members are earning daily — from 
+    <strong class="font-bold text-red-500">₱1,800 up to ₱50,000</strong> — 
+    using our proven and effective business system powered by the 
+    <strong class="font-bold text-red-500">Automated Sales Process System</strong>!
+  </h3>
+
+ <div class="swiper mySwiper max-w-3xl mx-auto mt-16">
+      <div class="swiper-wrapper">
+
+        <!-- Image 1 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019e7cdf30_17.png" alt="Slide 1" class="w-full rounded-lg object-cover">
+        </div>
+
+        <!-- Image 2 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019eea2cdd_16.png" alt="Slide 2" class="w-full rounded-lg object-cover">
+        </div>
+
+        <!-- Image 3 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/68501a146d5aa_15.png" alt="Slide 3" class="w-full rounded-lg object-cover">
+        </div>
+
+        <!-- Image 4 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019f4447a4_14.png" alt="Slide 4" class="w-full rounded-lg object-cover">
+        </div>
+
+      </div>
+
+         <!-- Controls -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+
+        <style>
+          .swiper-button-prev,
+          .swiper-button-next {
+            color: white !important; 
+            background-color: #0d9488; 
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+          }
+
+          .swiper-button-prev:hover,
+          .swiper-button-next:hover {
+            background-color: #0f766e; 
+          }
+
+          
+          .swiper-button-prev::after,
+          .swiper-button-next::after {
+            font-size: 18px;
+          }
       
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper ">
-
-      <!-- First Testimonial -->
-      <div class="swiper-slide">
-        <div class="md:px-16"> 
-        <div class="p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start gap-6">
-          <!-- Image -->
-          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria R." class="w-24 h-24 rounded-full object-cover flex-shrink-0">
-          <!-- Text -->
-          <div class="text-center md:text-left">
-            <h3 class="font-bold text-lg">Maria R.</h3>
-            <p class="text-teal-600 font-medium mb-2">Entrepreneur</p>
-            <div class="flex justify-center md:justify-start mb-4 text-yellow-500">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p class="text-gray-600">"Grabe, sobrang easy lang pala mag-start dito. Ngayon may extra income na ako every month!"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <!-- Second Testimonial -->
-      <div class="swiper-slide">
-        <div class="md:px-16"> 
-        <div class="p-8  md:p-12 flex flex-col md:flex-row items-center md:items-start gap-6">
-          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="John D." class="w-24 h-24 rounded-full object-cover flex-shrink-0">
-          <div class="text-center md:text-left">
-            <h3 class="font-bold text-lg">John D.</h3>
-            <p class="text-teal-600 font-medium mb-2">Freelancer</p>
-            <div class="flex justify-center md:justify-start mb-4 text-yellow-500">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p class="text-gray-600">"Super helpful ng mga mentors dito. Lagi silang nandyan kapag kailangan mo ng tips."</p>
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <!-- Third Testimonial -->
-      <div class="swiper-slide">
-        <div class="md:px-16"> 
-        <div class="p-8  md:p-12 flex flex-col md:flex-row items-center md:items-start gap-6">
-          <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Anna L." class="w-24 h-24 rounded-full object-cover flex-shrink-0">
-          <div class="text-center md:text-left">
-            <h3 class="font-bold text-lg">Anna L.</h3>
-            <p class="text-teal-600 font-medium mb-2">Online Seller</p>
-            <div class="flex justify-center md:justify-start mb-4 text-yellow-500">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <p class="text-gray-600">"Akala ko mahirap, pero ngayon mas malaki income ko dito kaysa sa trabaho ko. Ang saya!"</p>
-          </div>
-        </div>
-      </div>
+  
+        .swiper-pagination-bullet {
+          background-color: #0d9488 !important;
+          opacity: 0.5 !important;
+        }
+        .swiper-pagination-bullet-active {
+          background-color: #0d9488 !important;
+          opacity: 1 !important;
+        }
+      </style>
     </div>
   </div>
-
-   <!-- Controls -->
-    <div class="swiper-button-prev text-teal-600"></div>
-    <div class="swiper-button-next text-teal-600"></div>
-    <div class="swiper-pagination"></div>
-    <style>
-    .swiper-button-prev,
-    .swiper-button-next {
-      color: #0d9488 !important; /* teal-600 */
-    }
-
-    .swiper-pagination-bullet {
-      background-color: #0d9488 !important; /* teal-600 */
-      opacity: 0.5 !important; /* default inactive look */
-    }
-
-    .swiper-pagination-bullet-active {
-      background-color: #0d9488 !important; /* teal-600 */
-      opacity: 1 !important;
-    }
-    </style>
-
-
-   </div>
 </section>
 
 <!-- Swiper Init -->
@@ -293,6 +247,164 @@
 </script>
 
 
+<!-- Who I Am Section -->
+@if($whoIamSection)
+<section class="mx-auto px-6 py-16 md:py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+    <!-- Image -->
+    <div class="md:w-1/2 flex justify-center md:justify-start">
+      @if($whoIamSection->image_path)
+        <img src="{{ asset('storage/' . $whoIamSection->image_path) }}" 
+             alt="{{ $whoIamSection->name }}" 
+             class="w-80 md:w-full object-cover ">
+      @endif
+    </div>
+
+    <!-- Text Content -->
+    <div class="md:w-1/2 text-left space-y-4">
+
+
+      <!-- Hook -->
+      <p class="text-red-600 font-bold text-xl md:text-2xl">
+        {!! $whoIamSection->hook !!}
+      </p>
+
+      <!-- Title -->
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+        I’m <span class="text-teal-600">{{ $whoIamSection->name }}</span>
+      </h2>
+
+      <!-- Intro Paragraph -->
+      <p class="text-gray-700 text-lg md:text-base leading-relaxed">
+        {!! $whoIamSection->intro !!}
+      </p>
+
+      <!-- Transition Paragraph -->
+      <p class="text-gray-700 text-lg md:text-base leading-relaxed">
+        {!! $whoIamSection->transition !!}
+      </p>
+
+      <!-- Bullets -->
+      @if(!empty($whoIamSection->bullets))
+        <ul class="text-gray-700 text-lg md:text-base leading-relaxed list-none pl-0 space-y-2">
+          @foreach($whoIamSection->bullets as $bullet)
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot mt-1 text-teal-600"></i>
+              <span>{!! $bullet !!}</span>
+            </li>
+          @endforeach
+        </ul>
+      @endif
+
+
+
+      <!-- Motivation -->
+      <p class="text-red-600 text-lg md:text-base leading-relaxed font-semibold mt-4">
+        {!! $whoIamSection->motivation !!}
+      </p>
+
+      <!-- Testimonial -->
+      @if($whoIamSection->testimonial)
+        <p class="mt-4 text-gray-600 italic">
+          {!! $whoIamSection->testimonial !!}
+        </p>
+      @endif
+
+      <!-- Call-to-Action -->
+      <div class="mt-6 md:mt-8 flex justify-center md:justify-start">
+        <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+          <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+@endif
+
+
+
+
+
+<!-- Ergency Call to action Section -->
+<section class="mx-auto  px-6 pb-20 pt-28 bg-red-700">
+  <div class="relative overflow-visible text-center max-w-5xl mx-auto ">
+      <!-- Card -->
+      <div class="bg-yellow-400 text-gray-900 relative z-10 rounded-2xl shadow-lg shadow-gray-800/50 px-4 py-16 md:py-20">
+          <h3 class="text-3xl md:text-4xl font-bold mb-6">
+              Don’t Miss This Opportunity!
+          </h3>
+          <p class="text-lg md:text-xl mb-6">
+              Make sure mag-sign up ka **today** para mapanoon mo ang <span class="font-bold text-red-600">exclusive FREE webinar</span> <br class="hidden md:block">at hindi masayang ang opportunity na naghihintay sayo.
+          </p>
+          <p class="text-lg md:text-xl mb-6">
+              Imagine kung kikita ka ng <span class="font-bold text-red-600">₱20K–₱100K per month</span> sa business na ito.<br class="hidden md:block"> Ano ang maitutulong nito sayo at sa pamilya mo?
+          </p>
+          <p class="text-lg md:text-xl mb-8 font-semibold">
+              Sign up now at watch the FREE exclusive webinar. <span class="text-red-600 font-bold">Only 10 slots left!</span> <br class="hidden md:block">Para sa mga gusto ma-guided.
+          </p>
+          <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+        </a>
+      </div>
+
+      <!-- peak -->
+      <div class="absolute top-0 left-0 w-full -translate-y-1/2 z-20">
+          <svg viewBox="0 0 1200 100" preserveAspectRatio="none" class="w-full h-16">
+              <path d="M0,100 L600,0 L1200,100 Z" class="fill-yellow-400"/>
+          </svg>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Testimonials Section -->
+<section class="bg-gray-50 py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12">What People Are Saying</h2>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
+        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/cHe2EMmLiV4" 
+            title="Testimonial 1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p class="text-gray-700 italic">“I am a breadwinner, now kumikita through online gamit ang proven system.”</p>
+        <h4 class="mt-4 font-semibold text-gray-900">Mary May Balisnomo</h4>
+        <span class="text-sm text-gray-500">Health Care Employee in UK</span>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
+        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/NoBO_DzX4HI" 
+            title="Testimonial 2" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p class="text-gray-700 italic">“Talagang sulit yung effort. Ang dami kong natutunan at higit sa lahat kumikita ako even online.”</p>
+        <h4 class="mt-4 font-semibold text-gray-900">Genilyn Farinas</h4>
+        <span class="text-sm text-gray-500">Health Care Employee in UK</span>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
+        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/KHvGSlKMSFk" 
+            title="Testimonial 3" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p class="text-gray-700 italic">“Sa una nagduda ako, pero pagkatapos nakita ko ang results — natuwa ako.”</p>
+        <h4 class="mt-4 font-semibold text-gray-900">Irene Perez</h4>
+        <span class="text-sm text-gray-500">Nurse in UK</span>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 
@@ -330,7 +442,7 @@
   <div class="space-y-4">
     <!-- FAQ Item 1 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
         <span class="font-semibold text-lg">Paano ako makaka-access sa webinar?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
@@ -341,7 +453,7 @@
 
     <!-- FAQ Item 2 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
         <span class="font-semibold text-lg">Libre ba ang webinar?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
@@ -352,7 +464,7 @@
 
     <!-- FAQ Item 3 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
         <span class="font-semibold text-lg">Para kanino ba ito?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
@@ -363,7 +475,7 @@
 
     <!-- FAQ Item 4 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
         <span class="font-semibold text-lg">May mga tools ba tayo?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
@@ -374,7 +486,7 @@
 
     <!-- FAQ Item 5 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
         <span class="font-semibold text-lg">Sigurado ba akong kikita dito?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
@@ -385,7 +497,7 @@
 
     <!-- FAQ Item 6 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-indigo-50 flex justify-between items-center faq-btn">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
         <span class="font-semibold text-lg">Ok lang ba kahit walang experience?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
@@ -398,8 +510,76 @@
 </section>
 
 
+
+<!-- Messenger Floating Button + Card -->
+<div class="fixed bottom-2 right-2 sm:bottom-6 sm:right-6 z-50" id="messengerWrapper">
+  <!-- Floating Button -->
+  <button id="messengerBtn"
+    class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition"
+    aria-label="Open Messenger">
+    <i class="fab fa-facebook-messenger text-2xl"></i>
+  </button>
+
+  <!-- Messenger Card -->
+  <div id="messengerCard"
+       class="hidden mt-3 w-72 bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+    <div class="flex justify-between items-start">
+      <h4 class="text-sm font-semibold text-gray-800">Need Help?</h4>
+      <button id="closeMessenger" class="text-gray-400 hover:text-gray-600">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <p class="text-sm text-gray-600 mt-2">
+      May concern or question? Pwede mo akong i-contact here directly.
+    </p>
+
+    <a href="{{ $funnel['messenger_btn'] }}" target="_blank" rel="noopener"
+       class="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition shadow">
+      <i class="fab fa-facebook-messenger"></i>
+      <span class="font-medium text-sm">Message Admin</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("messengerBtn");
+    const card = document.getElementById("messengerCard");
+    const close = document.getElementById("closeMessenger");
+    const wrapper = document.getElementById("messengerWrapper");
+
+    // Open card
+    btn.addEventListener("click", () => {
+      btn.classList.add("hidden");
+      card.classList.remove("hidden");
+    });
+
+    // Close via X button
+    close.addEventListener("click", () => {
+      card.classList.add("hidden");
+      btn.classList.remove("hidden");
+    });
+
+    // Close if click outside card
+    document.addEventListener("click", (e) => {
+      if (!wrapper.contains(e.target) && !card.classList.contains("hidden")) {
+        card.classList.add("hidden");
+        btn.classList.remove("hidden");
+      }
+    });
+  });
+</script>
+
+
+
+
 <!-- Footer / Disclaimer -->
-<footer class="bg-gray-100 text-gray-400 text-sm py-6 px-6 text-center">
+<footer class="bg-gray-100 text-gray-400 text-sm py-6 px-6 text-center space-y-3">
+  <div class="flex justify-center">
+    <img id="logo-full" src="{{ asset('assets/images/funnel-logo.png') }}" alt="Logo" class="h-14 w-auto">
+  </div>
+  <p class="font-semibold text-gray-600">© 2025 Global Entrepreneurs Official.</p>
   <p class="mx-auto max-w-3xl">
     Disclaimer: This webinar and training are for educational and informational purposes only. No specific income is guaranteed, and results depend on each participant's effort. The platform and content comply with Facebook Ads and Community Guidelines.
   </p>
@@ -502,4 +682,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if(e.target === this) closeModal();
     });
 });
+
+
+
+
 </script>

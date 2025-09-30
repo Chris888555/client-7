@@ -86,6 +86,134 @@
     </section>
 
 
+    
+<!-- Swiper CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- Testimonial Carousel -->
+<section class=" mx-auto px-6 py-16 md:py-20">
+ <div class="max-w-5xl mx-auto "> 
+  <h3 class="text-3xl md:text-4xl font-bold mb-6 text-center">
+             What Our Partner Says!
+          </h3>
+      
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper ">
+
+      <!-- First Testimonial -->
+      <div class="swiper-slide">
+        <div class="md:px-16"> 
+        <div class="p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start gap-6">
+          <!-- Image -->
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria R." class="w-24 h-24 rounded-full object-cover flex-shrink-0">
+          <!-- Text -->
+          <div class="text-center md:text-left">
+            <h3 class="font-bold text-lg">Maria R.</h3>
+            <p class="text-teal-600 font-medium mb-2">Entrepreneur</p>
+            <div class="flex justify-center md:justify-start mb-4 text-yellow-500">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text-gray-600">"Grabe, sobrang easy lang pala mag-start dito. Ngayon may extra income na ako every month!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Second Testimonial -->
+      <div class="swiper-slide">
+        <div class="md:px-16"> 
+        <div class="p-8  md:p-12 flex flex-col md:flex-row items-center md:items-start gap-6">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="John D." class="w-24 h-24 rounded-full object-cover flex-shrink-0">
+          <div class="text-center md:text-left">
+            <h3 class="font-bold text-lg">John D.</h3>
+            <p class="text-teal-600 font-medium mb-2">Freelancer</p>
+            <div class="flex justify-center md:justify-start mb-4 text-yellow-500">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-600">"Super helpful ng mga mentors dito. Lagi silang nandyan kapag kailangan mo ng tips."</p>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Third Testimonial -->
+      <div class="swiper-slide">
+        <div class="md:px-16"> 
+        <div class="p-8  md:p-12 flex flex-col md:flex-row items-center md:items-start gap-6">
+          <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Anna L." class="w-24 h-24 rounded-full object-cover flex-shrink-0">
+          <div class="text-center md:text-left">
+            <h3 class="font-bold text-lg">Anna L.</h3>
+            <p class="text-teal-600 font-medium mb-2">Online Seller</p>
+            <div class="flex justify-center md:justify-start mb-4 text-yellow-500">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text-gray-600">"Akala ko mahirap, pero ngayon mas malaki income ko dito kaysa sa trabaho ko. Ang saya!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Controls -->
+    <div class="swiper-button-prev text-teal-600"></div>
+    <div class="swiper-button-next text-teal-600"></div>
+    <div class="swiper-pagination"></div>
+    <style>
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #0d9488 !important; /* teal-600 */
+    }
+
+    .swiper-pagination-bullet {
+      background-color: #0d9488 !important; /* teal-600 */
+      opacity: 0.5 !important; /* default inactive look */
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #0d9488 !important; /* teal-600 */
+      opacity: 1 !important;
+    }
+    </style>
+
+
+   </div>
+</section>
+
+<!-- Swiper Init -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
+
+
+
 
     <!-- Techniques / Modules Grid -->
     <section id="techniques" class="bg-gray-800 py-16">

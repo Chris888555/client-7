@@ -8,6 +8,7 @@ use App\Models\Funnel\UserFunnel;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
+
 class FunnelController extends Controller
 {
     // Show funnel dashboard for logged-in user

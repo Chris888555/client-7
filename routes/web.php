@@ -32,6 +32,7 @@ use App\Http\Controllers\User\OrderController;
 
 use App\Http\Controllers\Academy\AcademyController;
 
+use App\Http\Controllers\Funnel\WhoIAmSectionController;
 
 Route::get('/', function () {
    return view('home');
@@ -123,8 +124,11 @@ Route::get('/academy/module/{module}/certificate', [AcademyController::class, 'v
 
 
 
-
-
+Route::get('funnel/create-section', [WhoIAmSectionController::class, 'create'])->name('whoiam.create');
+Route::post('funnel/store', [WhoIAmSectionController::class, 'store'])->name('funnel.whoiam.store');
+Route::post('funnel/update', [WhoIAmSectionController::class,'update'])->name('funnel.whoiam.update');
+Route::post('funnel/delete', [WhoIAmSectionController::class,'delete'])->name('funnel.whoiam.delete');
+Route::get('funnel/whoiam/{id}', [WhoIAmSectionController::class, 'show']);
 
 
 });

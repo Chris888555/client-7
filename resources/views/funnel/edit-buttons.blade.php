@@ -43,8 +43,7 @@
             <label>Show Messenger Button</label>
         </div>
 
-        <!-- Referral Button URL -->
-        <x-input-text 
+        <!-- <x-input-text 
             label="Referral Button URL" 
             name="referral_btn" 
             type="url" 
@@ -52,13 +51,11 @@
             error-id="referralError"
         />
 
-        <!-- Referral Button State -->
         <div class="flex items-center gap-2">
             <input type="checkbox" name="referral_btn_state" value="1" {{ $funnel->referral_btn_state ? 'checked' : '' }}>
             <label>Show Referral Button</label>
         </div>
 
-        <!-- Shop Button URL -->
         <x-input-text 
             label="Shop Button URL" 
             name="shop_btn" 
@@ -67,16 +64,16 @@
             error-id="shopError"
         />
 
-        <!-- Shop Button State -->
+    
         <div class="flex items-center gap-2">
             <input type="checkbox" name="shop_btn_state" value="1" {{ $funnel->shop_btn_state ? 'checked' : '' }}>
             <label>Show Shop Button</label>
-        </div>
+        </div> -->
 
       <!-- Submit Button -->
-<x-button type="submit" icon="fa-solid fa-floppy-disk">
-    Save Changes
-</x-button>
+        <x-button type="submit" icon="fa-solid fa-floppy-disk">
+            Save Changes
+        </x-button>
 
 
 

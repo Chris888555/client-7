@@ -59,7 +59,7 @@
                     type="text" 
                     value="{{ $user->username }}" 
                     class="w-full border rounded-md p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
-                    placeholder="Enter new username">
+                  
 
                 <div class="flex justify-end gap-3 mt-4">
                     <button id="closeUsernameModal" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Cancel</button>
@@ -89,7 +89,7 @@
                         <div class="py-2"> <!-- More vertical padding -->
                             <a href="{{ route('funnel.editButtons') }}"
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"> <!-- Increased py -->
-                                <i class="fa-solid fa-pen me-2"></i> Edit Buttons
+                                <i class="fa-solid fa-pen me-2"></i> Edit Funnel Button
                             </a>
                             <button id="openMetaModal"
                                 class="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
@@ -99,6 +99,11 @@
                                 class="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-user me-2"></i> Update Subdomain
                             </button>
+
+                             <a href="{{ route('whoiam.create') }}"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-user-plus me-2"></i> Create Who I Am
+                            </a>
                         </div>
                     </div>
 

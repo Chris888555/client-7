@@ -4,6 +4,8 @@
 
 @section('content')
 <div class="container m-auto p-4 sm:p-8 max-w-full">
+
+
    
      {{-- ✅ Buttons --}}
 <div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
@@ -25,6 +27,15 @@
         List Mop
     </a>
 </div>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md mt-6">
+    <h4 class="text-sm font-semibold text-yellow-800">Note</h4>
+    <p class="text-sm text-yellow-700 mt-1">
+        You need to <span class="font-medium">create your Mode of Payment</span> first.  
+        This will be linked and used on your sales funnel checkout page so your customers can complete their orders.
+    </p>
+    </div>
+
 
     <form id="payment-method-form" class="space-y-4">
         @csrf
