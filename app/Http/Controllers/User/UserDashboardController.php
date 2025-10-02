@@ -15,7 +15,7 @@ class UserDashboardController extends Controller
         $recentLeads = FunnelLead::with('funnel')
             ->where('user_id', Auth::id())
             ->latest()
-            ->take(5)
+            ->take(6)
             ->get();
 
         // Defaults = current year & month

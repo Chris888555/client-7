@@ -2,7 +2,7 @@
 @section('title', 'Lessons for ' . $module->module_name)
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
     
     <div class="rounded-md bg-blue-50 border border-blue-200 p-4 text-sm text-blue-800">

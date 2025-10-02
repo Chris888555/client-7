@@ -3,11 +3,8 @@
 @section('title', 'My Courses')
 
 @section('content')
-<div class="px-3 py-4">
-    <div class="flex justify-between items-center mb-4">
-        {{-- You can add header buttons or filters here --}}
-    </div>
 
+ 
 <div class="relative">
     {{-- ✅ Hero Banner --}}
     <div class="relative text-center text-white py-16"
@@ -18,14 +15,19 @@
             background-repeat: no-repeat;
         ">
         
+
+        <div class="container mx-auto p-4 sm:p-8 max-w-full">
             <!-- Overlay -->
             <div class="absolute inset-0 bg-black/50"></div>
 
                 <!-- Content (above overlay) -->
                 <div class="relative z-10 py-10 md:py-14 px-4">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-3">Explore Premium Courses</h1>
+                  <h1 class="text-4xl md:text-5xl font-bold mb-3">
+                        Global Entrepreneurs <span class="text-red-500">Masterclass</span>
+                    </h1>
+
                     <p class="text-white/70 text-lg mb-6">
-                        Curated lessons designed to level up your skills and career.
+                        Curated lessons designed to level up your skills and boost your confidence.
                     </p>
                 </div>
             </div>

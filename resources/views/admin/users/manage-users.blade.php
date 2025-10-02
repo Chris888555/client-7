@@ -3,8 +3,7 @@
 @section('title', 'Manage Users')
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
-   
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
 <!-- Filter -->
 <div class="flex flex-col md:flex-row md:items-center gap-4 mb-6">

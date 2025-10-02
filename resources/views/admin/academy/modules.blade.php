@@ -2,7 +2,7 @@
 @section('title', 'Modules for ' . $course->course_name)
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
  
     {{-- Create / Update Form --}}
     <form id="createModuleForm" method="POST" action="{{ route('academy.module.store', $course->course_id) }}" class="space-y-2 mb-10">

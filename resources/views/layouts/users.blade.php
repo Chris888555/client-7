@@ -78,19 +78,18 @@
 
     </head>
 
-    <body class="flex flex-col lg:flex-row overflow-hidden bg-gray-50 ">
+ <body class="flex flex-col lg:flex-row h-screen bg-gray-50">
 
-         <x-sidebar /> 
+    <x-sidebar />
 
-    <div class="flex-1 overflow-y-auto ">
-        <header id="main-header" class="bg-gray-50  flex-1 flex flex-col transition-all duration-300 ml-0 ">
-            <x-user-nav /> 
-        </header>
-
-        <main id="main-content" class="bg-gray-50  transition-all duration-300 mr-0  ml-0 overflow-y-auto pb-[50px]" style="height: calc(100vh - 100px);">
-            @yield('content') 
+       <!-- Main content -->
+        <main id="main-content" class="flex-1 md:ml-[280px] pt-[70px] overflow-y-auto">
+            @yield('content')
         </main>
+
     </div>
+
+
 
     {{-- JavaScript --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>

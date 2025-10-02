@@ -3,7 +3,11 @@
 @section('title', 'Update Buttons')
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full space-y-8">
+
+
+<div class="container mx-auto p-4 sm:p-8 max-w-full space-y-8">
+
+
 
 <!-- ✅ Reminder Note Card -->
     <div class="w-full mx-auto bg-yellow-50 border border-yellow-300 rounded-xl shadow-sm p-4">

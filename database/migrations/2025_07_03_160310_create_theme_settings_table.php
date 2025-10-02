@@ -24,18 +24,19 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // ✅ Insert default values
-       DB::table('theme_settings')->insert([
-            'sidebar_bg' => '#1e3a8a',           // Dark Blue
-            'nav_hover_bg_color' => '#e5e7eb',   // Light Gray
-            'icon_bg_color' => '#e5e7eb',        // Light Gray
-            'nav_text_color' => '#e5e7eb',       // Light Gray
-            'nav_text_hover_color' => '#1e3a8a', // Dark Blue
-            'icon_text' => '#1e3a8a',            // Dark Blue
-            'logo_color' => '#e5e7eb',           // Light Gray
+      // ✅ Insert default values (matched to image)
+        DB::table('theme_settings')->insert([
+            'sidebar_bg' => '#143f47',          // Sidebar Background
+            'nav_hover_bg_color' => '#18484e',  // Nav Hover BG Color
+            'icon_bg_color' => '#c8c7cc',       // Icon Background
+            'nav_text_color' => '#c8c7cc',      // Nav Text Color
+            'nav_text_hover_color' => '#c8c7cc',// Nav Hover Text Color
+            'icon_text' => '#c8c7cc',           // Icon Text Color
+            'logo_color' => '#c8c7cc',          // Logo Color (same as icons/texts)
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
 
 
 

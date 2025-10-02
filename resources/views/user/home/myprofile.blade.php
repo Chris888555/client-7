@@ -5,10 +5,9 @@
 @section('content')
 
 
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
  
-
     <div class="flex items-center justify-center bg-gray-50">
         <div class="w-full  bg-white p-6 sm:p-10 rounded-2xl border border-gray-200 flex flex-col md:flex-row gap-10">
 
@@ -223,6 +222,7 @@ closeModalBtn.addEventListener('click', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Personal Info Form
     document.getElementById('formPersonal').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -230,42 +230,44 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(form);
 
         fetch(form.action, {
-                method: form.method,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: formData,
-            })
-            .then(async res => {
-                const data = await res.json();
+            method: form.method,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            },
+            body: formData,
+        })
+        .then(async res => {
+            const data = await res.json();
 
-                if (res.status === 422) {
-                    const messages = Object.values(data.errors).flat();
-                    throw new Error(messages.join(
-                        '\n')); // Show all validation messages
-                }
+            if (res.status === 422) {
+                const messages = Object.values(data.errors).flat();
+                throw new Error(messages.join('\n')); 
+            }
 
-                if (!res.ok) throw new Error('Something went wrong.');
+            if (!res.ok) throw new Error('Something went wrong.');
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: data.message || 'Information Updated!',
-                    showConfirmButton: true,
-                });
-            })
-            .catch(err => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: err.message || 'Something went wrong',
-                    showConfirmButton: true,
-                });
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: data.message || 'Information Updated!',
+                showConfirmButton: true,
+            }).then(() => {
+                // Reload page after successful update
+                window.location.reload();
             });
+        })
+        .catch(err => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: err.message || 'Something went wrong',
+                showConfirmButton: true,
+            });
+        });
     });
 
-    // Handle Password Update Form
+    // Password Update Form
     document.getElementById('formPassword').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -273,46 +275,44 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(form);
 
         fetch(form.action, {
-                method: form.method,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-                },
-                body: formData
-            })
-            .then(async res => {
-                const data = await res.json();
+            method: form.method,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            },
+            body: formData
+        })
+        .then(async res => {
+            const data = await res.json();
 
-                if (res.status === 422) {
-                    // Collect validation errors
-                    let messages = Object.values(data.errors).map(errArr => errArr[0]);
-                    throw new Error(messages.join('\n'));
-                }
+            if (res.status === 422) {
+                let messages = Object.values(data.errors).map(errArr => errArr[0]);
+                throw new Error(messages.join('\n'));
+            }
 
-                if (!res.ok) {
-                    throw new Error(data.message || 'Something went wrong.');
-                }
+            if (!res.ok) throw new Error(data.message || 'Something went wrong.');
 
-                // Success response
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: data.message,
-                    timer: 2000,
-                    showConfirmButton: false
-                });
-                form.reset();
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: error.message || 'Something went wrong.',
-                });
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: data.message,
+                showConfirmButton: true,
+            }).then(() => {
+                // Reload page after password update as well
+                window.location.reload();
             });
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message || 'Something went wrong.',
+            });
+        });
     });
 });
 </script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

@@ -4,11 +4,11 @@
 
 @section('content')
 
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
  
 {{-- ✅ Buttons --}}
-<div class="flex items-center justify-center max-w-[350px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
+<div class="flex items-center justify-center max-w-[380px] mx-auto p-2 bg-gray-50 rounded-2xl border gap-2">
     {{-- Create Materials --}}
     <a href="{{ route('materials.create') }}"
         class="w-full text-center px-5 py-2 rounded-xl transition cursor-pointer 
@@ -98,7 +98,7 @@ document.getElementById('file').addEventListener('change', function (e) {
         <x-button type="submit" icon="fa-solid fa-floppy-disk">
             Save Image
         </x-button>
-        >
+        
 
     </form>
 </div>

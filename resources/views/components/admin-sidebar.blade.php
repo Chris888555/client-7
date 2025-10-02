@@ -1,263 +1,491 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sidebar with Main Content</title>
 
-<style>
-/* 🔵 SCROLLBAR */
-.sidebar-section *::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
-.sidebar-section *::-webkit-scrollbar-thumb {
-    background-color: {{ $theme->sidebar_bg }};
-    border-radius: 10px;
-}
+  @vite('resources/css/app.css')
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-/* 🔵 MOBILE: Slide-in/out behavior */
-.translate-start {
-    transform: translateX(-100%);
-    transition: all 0.3s ease;
-}
-.translate-show {
-    transform: translateX(0);
-    transition: all 0.3s ease;
-}
-#mobile-overlay {
-    transition: opacity 0.3s ease;
-    opacity: 0;
-}
-
-#mobile-overlay.show {
-    opacity: 1; 
-}
-
-
-
-#sidebar {
-    margin-left: 5px;
-}
-
-
-
-/* 🔵 DESKTOP MODE OVERRIDES */
-@media (min-width: 992px) {
-    #sidebar {
-        position: relative !important;
-        transform: none !important;
-        transition: width 0.3s ease, padding 0.3s ease;
-    }
-    #mobile-overlay {
-        display: none !important;
+  <style>
+  
+    .sidebar-frame::-webkit-scrollbar {
+      width: 2px;  
     }
 
+    .sidebar-frame::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-/* 🔵 COLLAPSE behavior (desktop only) */
-#sidebar.collapsed {
-    width: 80px !important;
-    padding: 1rem 0.5rem !important;
-    overflow-x: hidden !important; 
-    overflow-y: auto !important;
+    .sidebar-frame::-webkit-scrollbar-thumb {
+      background-color: rgba(255,255,255,0.15); 
+      border-radius: 2px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar-frame::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+
+    .sidebar-frame {
+      scrollbar-width: thin;  
+      scrollbar-color: rgba(255,255,255,0.15) transparent;
+    }
+
+   :root {
+    --sidebar-top: {{ $theme->sidebar_bg }};
+    --sidebar-bottom: {{ $theme->sidebar_bg }};
+    --sidebar-accent: {{ $theme->icon_bg_color }};
+    --sidebar-text: {{ $theme->nav_text_color }};
+    --sidebar-sub: {{ $theme->nav_text_hover_color }};
+    --hover-bg: {{ $theme->nav_hover_bg_color }};
+    --active-bg: {{ $theme->nav_hover_bg_color }};
+    --inner-icon-color: {{ $theme->icon_text }};
+}
+
+    body { 
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
+      min-height:100vh; 
+      margin:0;
+      padding:0;
+      display:flex; 
+    }
+
+    .sidebar-frame{
+        width: 280px;
+        background: linear-gradient(180deg, var(--sidebar-top), var(--sidebar-bottom));
+        padding: 20px 14px;
+        color: var(--sidebar-text);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 50;
+        overflow-y: auto;
+        overflow-x: hidden;  
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+    }
+
     
-}
-
-/* 🔵 Sidebar text fade/shrink */
-.sidebar-text {
-    display: inline-block;
-    opacity: 1;
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    transition: opacity 0.3s ease, max-width 0.3s ease, transform 0.3s ease;
-
-}
-#sidebar.collapsed .sidebar-text {
-    opacity: 0;
-    max-width: 0;
- }
-
-/* 🔵 Default: align logo to start */
-    .logo-container {
-        justify-content: flex-start !important;
+    .sidebar-hidden {
+      transform: translateX(-100%);
     }
-/* 🔵 Collapsed: center the logo */
-    #sidebar.collapsed .logo-container {
-        justify-content: center !important;
+
+    .sidebar-frame::after{
+      content: "";
+      position: absolute;
+      right: -42px;
+      top: 36px;
+      width: 100px;
+      height: calc(100% - 72px);
+      background: transparent;
+      border-radius: 0 22px 22px 0;
+      box-shadow: inset -8px 0 0 rgba(0,0,0,0.08);
+      pointer-events: none;
+      
     }
     
 
-/*🔵 Shared logo styles */
-#logo-full,
-#logo-initial {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-    opacity: 1;
-    overflow: hidden;
-    white-space: nowrap;
+  
+
+    nav.menu{ margin-top:18px; display:flex; flex-direction:column; gap:6px; flex-grow:1; }
+
+    .menu-item{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:10px;
+      color:var(--sidebar-text);
+      cursor:pointer;
+      position:relative;
+      overflow:visible;
+    }
+
+    .menu-item::before{
+      content: "";
+      position: absolute;
+      left: -8px;
+      width: 8px;
+      height: 36px;
+      background: transparent;
+      border-radius: 8px;
+      transform: translateX(-6px);
+      transition: all 200ms ease;
+      opacity: 0;
+    }
+
+    .menu-item:hover{
+      background: var(--hover-bg);
+      transform: translateX(6px);
+      margin-right:6px;
+    }
+
+    .menu-item:hover::before{
+      background: var(--sidebar-accent);
+      transform: translateX(0);
+      opacity: 1;
+      box-shadow: 0 6px 16px rgba(2,8,10,0.12);
+    }
+
+    .menu-item .icon{
+      width:38px;
+      height:38px;
+      min-width:38px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.02);
+      color: var(--inner-icon-color);
+      transition: all 160ms ease;
+    }
+
+    .menu-item .label{ font-weight:500; color:var(--sidebar-text); font-size:15px; }
+
+    .menu-item:hover .label {
+    color: var(--sidebar-sub);
 }
 
-/* 🔵When collapsed: fade out full logo, fade in short logo */
-#sidebar.collapsed #logo-full {
-    opacity: 0;
-    max-width: 0;
+    .menu-item.active .label {
+        color: var(--sidebar-accent);
+    
+    }
+
+
+    .menu-item:hover .icon {
+        color: var(--sidebar-sub);
+    
+    }
+
+    .menu-item.active{
+      background: var(--active-bg);
+      transform: translateX(6px);
+      margin-right:6px;
+      
+    }
+
+    .menu-item.active::before{
+      background: var(--sidebar-accent);
+      transform: translateX(0);
+      opacity:1;
+      box-shadow: 0 8px 20px rgba(2,8,10,0.12);
+      
+    }
+
+    .menu-item.active .icon{
+      background: var(--sidebar-accent);
+      color: var(--hover-bg);
+      box-shadow: 0 6px 18px rgba(2,8,10,0.12);
+    }
+
+    nav ul li a.active {
+      background-color: #374151;
+      color: #ffffff;
+    }
+
+    .menu-item .sub { 
+    margin-left: auto; 
+    font-size: 12px; 
+    color: var(--sidebar-sub);
+    padding-right: 6px; 
 }
-#sidebar:not(.collapsed) #logo-initial {
-    opacity: 0;
-    max-width: 0;
-}
-
-}
-
-/* 🔵 Overlay color on top using ::before */
-.sidebar-overlay::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: {{ $theme->sidebar_bg }};
-    opacity: 0.8;
-    border-radius: inherit;
-    z-index: 1;
-}
-
-/* 🔵 Ensure content is above overlay */
-.sidebar-overlay > * {
-    position: relative;
-    z-index: 2;
-}
 
 
-</style>
+    .sidebar-footer{ margin-top:auto; }
+
+    .logout{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--sidebar-sub);
+      padding:8px 12px;
+      border-radius:8px;
+      transition: all 160ms ease;
+    }
+
+    .logout:hover{ background: var(--hover-bg); color:var(--sidebar-text); transform: translateX(6px); }
+    .logout .dot{ width:8px; height:8px; background: rgba(255,255,255,0.06); border-radius:9999px; margin-left:6px; }
+
+    @media (max-width:768px){
+      .sidebar-frame { width: 240px; }
+    }
+    
+
+    .sidebar-frame {
+        transition: transform 0.3s ease;
+        }
+
+        /* Mobile - sidebar hidden */
+    .sidebar-hidden {
+        transform: translateX(-100%);
+        }
+
+     
+    @media (min-width: 768px) {
+    .sidebar-frame {
+            transform: translateX(0) !important; 
+            transition: none !important;  
+        }
+        }
+
+  </style>
+</head>
+<body>
+
+<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 md:hidden"></div>
 
 
-<!-- ✅ WRAPPER -->
-<section class="sidebar-section">
-    <!-- ✅ MOBILE OVERLAY -->
-    <div id="mobile-overlay"
-        class="fixed inset-0 bg-white bg-opacity-80 z-20 hidden lg:hidden opacity-0 transition-opacity duration-300">
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar-frame sidebar-hidden md:translate-x-0">  
+
+<button id="closeSidebar" class="absolute top-3 right-3 md:hidden p-1 rounded-full hover:bg-gray-200 transition-colors">
+    <svg 
+        class="h-8 w-8 text-slate-500" 
+        width="24" 
+        height="24" 
+        viewBox="0 0 24 24" 
+        stroke-width="2" 
+        stroke="currentColor" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <polyline points="11 7 6 12 11 17" />
+        <polyline points="17 7 12 12 17 17" />
+    </svg>
+</button>
+
+
+
+@php
+    use Illuminate\Support\Facades\Auth;
+
+    $user = Auth::user();
+    $fullName = $user?->name ?? 'User';
+    $profileImage = $user && $user->profile_picture 
+                    ? asset('storage/' . $user->profile_picture) 
+                    : asset('assets/profile_picture/profile.png');
+                    $avatarUrl = 'https://ui-avatars.com/api/?name=' . urlencode($fullName) . '&background=18484e&color=ffffff&rounded=true&size=64';
+@endphp
+
+<!-- Profile -->
+<div class="profile-card mt-8 md:mt-0 flex flex-col items-center text-center bg-white/5 border border-white/5 rounded-lg p-4 relative gap-2">
+    <!-- Avatar -->
+    <div class="avatar w-16 h-16 rounded-full p-[3px] grid place-items-center shadow-[0_6px_18px_rgba(2,8,10,0.18)] border-2 border-white/6 mb-2">
+        <img src="{{ $profileImage }}" alt="User avatar" class="w-14 h-14 rounded-full object-cover block" />
     </div>
 
-
-    <!-- ✅ SINGLE SIDEBAR -->
-  <aside id="sidebar" 
-    class="fixed top-0 bottom-0 left-0 z-30 border rounded-2xl my-2 ml-4 p-4 text-white sidebar-overlay translate-x-[-100%] transition-all duration-300 flex flex-col" 
-    style="width: 280px; height: calc(100vh - 1rem); background-color: #2b6f6d;">
-        <!-- ✅ CLOSE BUTTON - mobile only -->
-        <div class="flex lg:hidden justify-end mb-3">
-            <span id="close-sidebar" class="material-icons cursor-pointer" style="color: {{ $theme->logo_color }};">close</span>
-        </div>
-
-        <!-- ✅ LOGO -->
-        <div class="flex items-center justify-start mb-3 mt-3 logo-container h-16">
-            <div class="rounded p-2 flex items-center justify-center mx-auto lg:mx-0">
-                <!-- Full Logo (Image) -->
-                <img id="logo-full" src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-14 w-full">
-
-                <!-- Initial G -->
-                <span id="logo-initial" style="color: {{ $theme->logo_color }};" class="text-lg font-bold hidden">G</span>
-            </div>
-        </div>
-
-        <hr class="my-2 border-gray-500">
-
-        <!-- ✅ MENU -->
-        <nav class="overflow-y-auto overflow-x-hidden max-h-[calc(100vh-150px)]">
-            <ul class="flex flex-col text-sm font-semibold text-gray-300">
-
-          <li>
-            <a href="{{ route('admin.dashboard') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">dashboard</span>
-                    </div>
-                    <span class="sidebar-text text-base">Dashboard</span>
-                </a>
-            </li>
+    <!-- Profile Info -->
+    <div class="profile-info">
+        <div class="name font-semibold text-white tracking-[0.2px]">{{ $fullName }}</div>
+        @if($user?->email)
+            <div class="email text-[13px] text-white/70 mt-1">{{ $user->email }}</div>
+        @endif
+    </div>
+</div>
 
 
-              <li>
-            <a href="{{ route('admin.manage-users') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">group</span>
-                    </div>
-                    <span class="sidebar-text text-base">Manage Users</span>
-                </a>
-            </li>
+
+
+
+<!-- Menu start code -->
+<nav class="menu">
+
+  <!-- Dashboard -->
+  <a href="{{ route('admin.dashboard') }}" class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+      <span class="icon"><span class="material-icons">dashboard</span></span>
+      <span class="label">Dashboard</span>
+  </a>
+
+  <!-- Manage Users -->
+  <a href="{{ route('admin.manage-users') }}" class="menu-item {{ request()->routeIs('admin.manage-users') ? 'active' : '' }}">
+      <span class="icon"><span class="material-icons">people</span></span>
+      <span class="label">Manage Users</span>
+  </a>
+
+  <!-- Materials -->
+  <a href="{{ route('materials.create') }}" class="menu-item {{ request()->routeIs('materials.create') ? 'active' : '' }}">
+      <span class="icon"><span class="material-icons">folder</span></span>
+      <span class="label">Create Materials</span>
+  </a>
+
+  <!-- Packages -->
+  <a href="{{ route('packages.create') }}" class="menu-item {{ request()->routeIs('packages.create') ? 'active' : '' }}">
+      <span class="icon"><span class="material-icons">inventory_2</span></span>
+      <span class="label">Create Packages</span>
+  </a>
+
+  <!-- Courses -->
+  <a href="{{ route('academy.course.index') }}" class="menu-item {{ request()->routeIs('academy.course.index') ? 'active' : '' }}">
+      <span class="icon"><span class="material-icons">school</span></span>
+      <span class="label">Create Courses</span>
+  </a>
+
+  <!-- Theme Settings -->
+  <a href="{{ route('admin.theme.settings') }}" class="menu-item {{ request()->routeIs('admin.theme.settings') ? 'active' : '' }}">
+      <span class="icon"><span class="material-icons">color_lens</span></span>
+      <span class="label">Theme Settings</span>
+  </a>
+
+
+
+
+
+
+
+
+<!-- Footer start code-->
+<div class="sidebar-footer">
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg 
+                text-[15px] font-semibold text-[rgba(255,255,255,0.72)] 
+                hover:bg-[rgba(255,255,255,0.04)] hover:text-white transition-all">
             
-
-              <li>
-            <a href="{{ route('materials.create') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">add_box</span>
-                    </div>
-                    <span class="sidebar-text text-base">Create Materials</span>
-                </a>
-            </li>
-
-               <li>
-            <a href="{{ route('packages.create') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">add_box</span>
-                    </div>
-                    <span class="sidebar-text text-base">Create Packages</span>
-                </a>
-            </li>
+            <!-- Power icon using Material Icons -->
+            <span class="w-9 h-9 min-w-9 flex items-center justify-center rounded-lg bg-transparent text-[rgba(255,255,255,0.7)]">
+                <span class="material-icons">power_settings_new</span>
+            </span>
+            
+            <span>Logout</span>
+            
+            <span class="w-2 h-2 bg-[rgba(255,255,255,0.06)] rounded-full ml-auto"></span>
+        </button>
+    </form>
+</div>
 
 
-              <li>
-            <a href="{{ route('academy.course.index') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">add_box</span>
-                    </div>
-                    <span class="sidebar-text text-base">Create Courses</span>
-                </a>
-            </li>
-
-           
-
-            <li>
-            <a href="{{ route('admin.theme.settings') }}"
-                    class="sidebar-item flex items-center gap-4 px-3 py-2 transition rounded-lg"
-                    style="color: {{ $theme->nav_text_color }};"
-                    onmouseover="this.style.backgroundColor='{{ $theme->nav_hover_bg_color }}'; this.style.color='{{ $theme->nav_text_hover_color }}';"
-                    onmouseout="this.style.backgroundColor=''; this.style.color='{{ $theme->nav_text_color }}';">
-                    
-                    <div class="rounded-lg p-2 flex items-center justify-center"
-                        style="background-color: {{ $theme->icon_bg_color }}; color: {{ $theme->icon_text }};">
-                        <span class="material-icons text-xs">settings</span>
-                    </div>
-                    <span class="sidebar-text text-base">Theme Setting</span>
-                </a>
-            </li>
-
-             
+</aside>
 
 
-            </ul>
-        </nav>
-    </aside>
-</section>
+<!-- Topbar start code-->
+<header class="bg-gray-50 fixed top-0 right-0 h-[70px] flex items-center justify-between px-4 sm:px-8 z-40 
+               w-full md:w-[calc(100%-280px)] md:ml-[280px] ">
+  <!-- Left -->
+  <div class="flex items-center gap-3">
+    <button id="toggleSidebar" class="md:hidden p-2 transition">
+        <svg class="h-8 w-8 text-teal-800" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z"/>
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="14" y2="12" />
+            <line x1="4" y1="18" x2="18" y2="18" />
+        </svg>
+    </button>
+
+    <h1 class="text-lg font-semibold text-gray-700"></h1>
+
+  </div>
+  <!-- Right -->
+  <div class="relative flex items-center gap-4">
+
+    <input type="text" placeholder="Search..." class="hidden sm:block px-3 py-1 border rounded-md text-sm focus:outline-none focus:ring focus:ring-gray-50">
+
+
+    <button class=" w-9 h-9 rounded-full flex items-center justify-center">
+    <span class="material-icons text-yellow-500">notifications</span>
+    </button>
+
+
+    <!-- Initials Avatar Name-->
+    <div id="avatarDropdownBtn" class="w-9 h-9 rounded-full border cursor-pointer overflow-hidden">
+     <img src="{{ $avatarUrl }}" alt="{{ $fullName }}" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Dropdown Menu -->
+    <ul id="dropdownMenu" class="absolute right-0 top-12 w-64 bg-white border rounded-lg shadow-lg hidden z-50">
+      <li class="px-4 py-2 border-b text-gray-500 select-none cursor-default flex items-center space-x-2">
+        <i class="fas fa-user-circle text-gray-400"></i>
+        <span>{{ $fullName }}</span>
+      </li>
+      
+      <li>
+        <form method="POST" action="/logout">
+          @csrf
+          <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 text-gray-500">
+            <i class="fas fa-sign-out-alt text-gray-400"></i>
+            <span>Logout</span>
+          </button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</header>
+
+
+
+<!-- Dropdown js -->
+<script>
+  const avatarBtn = document.getElementById('avatarDropdownBtn');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  avatarBtn.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
+
+
+  document.addEventListener('click', (e) => {
+    if (!avatarBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+</script>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const menuItems = document.querySelectorAll(".menu-item");
+    const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.getElementById("toggleSidebar");
+    const closeBtn = document.getElementById("closeSidebar");
+    const overlay = document.getElementById("overlay");
+    const topbarTitle = document.querySelector("header h1");
+
+    // --- Set initial topbar title on page load ---
+    const activeItem = document.querySelector(".menu-item.active");
+    if (activeItem) {
+        topbarTitle.innerText = activeItem.dataset.title || activeItem.querySelector(".label").innerText;
+    }
+
+    // --- Click menu item: set active + topbar title + close sidebar on mobile ---
+    menuItems.forEach(item => {
+        item.addEventListener("click", function () {
+            menuItems.forEach(i => i.classList.remove("active"));
+            this.classList.add("active");
+
+            topbarTitle.innerText = this.dataset.title || this.querySelector(".label").innerText;
+
+            if (window.innerWidth < 768) {
+                sidebar.classList.add("sidebar-hidden");
+                overlay.classList.add("hidden");
+            }
+        });
+    });
+
+    // --- Sidebar toggle for mobile ---
+    toggleBtn.addEventListener("click", () => {
+        sidebar.classList.remove("sidebar-hidden");
+        overlay.classList.remove("hidden");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.add("sidebar-hidden");
+        overlay.classList.add("hidden");
+    });
+
+    overlay.addEventListener("click", () => {
+        sidebar.classList.add("sidebar-hidden");
+        overlay.classList.add("hidden");
+    });
+});
+
+
+</script>
+
+
+</body>
+</html>

@@ -17,7 +17,10 @@
 }
 </style>
 
-<div class="container m-auto p-4 sm:p-8 max-w-full space-y-8">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
+
+
+
 
     <!-- Modal -->
     <div id="metaModal" 
@@ -89,7 +92,7 @@
                         <div class="py-2"> <!-- More vertical padding -->
                             <a href="{{ route('funnel.editButtons') }}"
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"> <!-- Increased py -->
-                                <i class="fa-solid fa-pen me-2"></i> Edit Funnel Button
+                                <i class="fa-solid fa-pen me-2"></i> Connect Messenger Link
                             </a>
                             <button id="openMetaModal"
                                 class="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
@@ -166,10 +169,23 @@
             <p class="text-xs text-gray-400 text-center mt-4">Powered by AI · No credit card needed · Instant setup</p>
         </div>
     </div>
+
+
+<div class="bg-teal-50 border-l-4 border-teal-400 p-4 rounded-md my-6">
+    <h2 class="text-base font-semibold text-teal-800">How to Use Your Sales Funnel Effectively</h2>
+    <p class="text-sm text-teal-700 mt-1">
+        Your sales funnel is designed to guide potential customers step by step, turning leads into buying customers. Here’s how you can use it:
+    </p>
+    <ul class="text-sm text-teal-700 mt-2 list-disc list-inside space-y-1">
+        <li>Run Facebook Ads and connect your funnel directly or via your FB Page.</li>
+        <li>Manual posting and reaching out to leads is also effective.</li>
+        <li>Focus on the goal: <strong>hook, educate, and convert leads into buying customers</strong>.</li>
+        <li>Use your funnel strategically to guide prospects toward making a purchase.</li>
+    </ul>
 </div>
 
 
-
+</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {

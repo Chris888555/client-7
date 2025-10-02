@@ -4,7 +4,9 @@
 
 @section('content')
 
-<div class="container mx-auto py-4 px-3 material-section">
+<div class="container mx-auto p-4 sm:p-8 max-w-full material-section">
+
+    
 
     {{-- ✅ HEADER --}}
     <div class="flex justify-between items-center mb-4">

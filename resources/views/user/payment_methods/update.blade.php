@@ -3,7 +3,7 @@
 @section('title', 'Update Payment Method')
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
  
      {{-- ✅ Buttons --}}
@@ -33,18 +33,18 @@
         <div class="p-0">
 
             {{-- ✅ Toolbar --}}
-<div class="flex justify-between items-center px-3 py-3 border-b border-gray-200">
-    <!-- Left Side -->
-    <h2 class="text-lg font-semibold text-gray-700">List</h2>
+            <div class="flex justify-between items-center px-3 py-3 border-b border-gray-200">
+                <!-- Left Side -->
+                <h2 class="text-lg font-semibold text-gray-700">List</h2>
 
-    <!-- Right Side -->
-    <div class="flex gap-2 items-center">
-        <button id="bulkDeleteBtn" 
-            class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
-            <i class="fas fa-trash-alt"></i> Delete Selected
-        </button>
-    </div>
-</div>
+                <!-- Right Side -->
+                <div class="flex gap-2 items-center">
+                    <button id="bulkDeleteBtn" 
+                        class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
+                        <i class="fas fa-trash-alt"></i> Delete Selected
+                    </button>
+                </div>
+            </div>
 
 
             {{-- ✅ Table Wrapper --}}

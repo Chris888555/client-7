@@ -3,8 +3,7 @@
 @section('title', 'Payment Method')
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
-
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
    
      {{-- ✅ Buttons --}}

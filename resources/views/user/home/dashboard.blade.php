@@ -3,29 +3,141 @@
 @section('title', 'Dashboard')
 
 @section('content')
+
+
+
+<section class="container max-w-full  flex justify-center items-center ">
+    <div class="">
+        <img src="{{ asset('assets/images/header.png') }}" alt="Header Image" class="w-full h-auto ">
+    </div>
+</section>
+
+
+
 <div class="container mx-auto p-4 sm:p-8 max-w-full">
+  <div class="flex flex-col md:flex-row gap-6">
+        
 
-    <div class="flex flex-col md:flex-row gap-6">
+<div class="w-full sm:max-w-[430px] mx-auto flex flex-col items-center">
+    
+<div class="flex justify-start py-6">
+    <p class="text-gray-700 text-sm">
+        📌 Note: You can download your partnership poster here.
+    </p>
+</div>
 
-        <!-- Left: Profile Card (centered) -->
-        <div class="w-full md:w-1/3 bg-white  rounded-xl p-6 flex flex-col items-center">
-            <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('assets/profile_picture/profile.png') }}"
-                alt="Profile Photo"
-                class="h-32 w-32 sm:h-40 sm:w-40 md:h-52 md:w-52 object-cover rounded-full border-8 border-gray-300 mb-4">
 
+    <!-- Profile Card 1 for view-->
+    <div class="w-full sm:max-w-[430px] sm:max-h-[430px] rounded-xl flex flex-col items-center justify-center overflow-hidden"
+         style="background-image: url('{{ asset('assets/images/user-poster.jpg') }}'); background-size: cover; background-position: center; aspect-ratio: 1/1;">
 
-            <div class="text-center">
-                <h1 class="text-3xl font-bold text-gray-900">Hello, {{ Auth::user()->name }}</h1>
-                <p class="text-gray-700 mt-1">{{ Auth::user()->email }}</p>
-            </div>
+        <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('assets/profile_picture/profile.png') }}"
+             alt="Profile Photo"
+             class="h-32 w-32 sm:h-[180px] sm:w-[180px] object-cover rounded-full border-8 border-white mb-[20px] sm:mb-[55px]">
+
+        <div class="text-center mb-4">
+            <h1 class="text-base sm:text-2xl font-bold text-white mt-[40px] sm:mt-4">{{ Auth::user()->name }}</h1>
         </div>
+    </div>
+
+
+   
+
+       <!-- Profile Card 2 - Fixed Size -->
+    <div id="profileCard"
+     class="absolute m-8 rounded-xl flex flex-col items-center justify-center overflow-hidden "
+     style="
+        width: 1500px;       /* fixed width */
+        height: 1500px;      /* fixed height */
+        background-image: url('{{ asset('assets/images/user-poster.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        left: -9999px; 
+        top: -9999px;
+     ">
+
+    <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('assets/profile_picture/profile.png') }}"
+         alt="Profile Photo"
+         style="
+            width: 640px;   /* fixed size */
+            height: 640px;
+            border-radius: 50%;
+            border: 20px solid white; 
+            margin-top: -400px;
+         ">
+
+        <div class="text-center mb-4">
+            <h1 class="absolute bottom-[320px] right-[27%] text-7xl font-bold text-white ">{{ Auth::user()->name }}</h1>
+        </div>
+    </div>
+
+
+   <!-- Download Button -->
+   <!-- Download Button -->
+<button id="downloadBtn" class="mt-4 px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition flex items-center gap-2">
+    <i class="fas fa-download"></i>
+    <span id="downloadText">Download as Image</span>
+</button>
+
+
+</div>
+
+<!-- html2canvas CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+<script>
+document.getElementById('downloadBtn').addEventListener('click', async function() {
+    const btn = this;
+    const textSpan = document.getElementById('downloadText');
+    const card = document.getElementById('profileCard');
+
+    // Change button text
+    textSpan.textContent = 'Downloading...';
+    btn.disabled = true;
+
+    try {
+        const canvas = await html2canvas(card, {
+            useCORS: true,
+            backgroundColor: null
+        });
+
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'profile-card.png';
+        link.click();
+
+        // Show success alert
+        Swal.fire({
+            icon: 'success',
+            title: 'NICE',
+            text: 'Downloaded successfully.',
+            showConfirmButton: true
+        });
+    } catch (err) {
+        console.error('Download failed', err);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Failed to download image.'
+        });
+    } finally {
+        // Revert button text
+        textSpan.textContent = 'Download as Image';
+        btn.disabled = false;
+    }
+});
+</script>
+
+
+
 
        <!-- Right: Recent Leads Card (larger) -->
             <div class="w-full md:w-2/3 bg-white rounded-xl p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Leads</h2>
 
                 @if($recentLeads->count() > 0)
-                    <ul class="space-y-3 max-h-[32rem] overflow-y-auto">
+                    <ul class="space-y-3 max-h-[32rem] overflow-y-auto text-sm">
                         @foreach($recentLeads as $lead)
                             <li class="p-4 bg-gray-50 rounded-lg shadow flex justify-between items-center hover:bg-gray-100 transition">
                                 <div>

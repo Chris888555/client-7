@@ -3,7 +3,7 @@
 @section('title', 'Client Payments')
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
     <!-- Orders Table -->
     <div id="ordersTable" class="overflow-x-auto bg-white rounded-xl shadow-sm border ">

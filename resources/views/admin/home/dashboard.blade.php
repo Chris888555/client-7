@@ -3,8 +3,11 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-<div class="p-8">
-    <h1 class="text-3xl font-bold mb-6">Quick Actions ⚡</h1>
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
+
+    <h1 class=" font-bold mb-6">Quick Actions ⚡</h1>
+
+
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 

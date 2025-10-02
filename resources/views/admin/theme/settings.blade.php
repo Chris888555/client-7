@@ -3,7 +3,7 @@
 @section('title', 'Theme Settings')
 
 @section('content')
-<div class="container m-auto p-4 sm:p-8 max-w-full">
+<div class="container mx-auto p-4 sm:p-8 max-w-full">
 
 <form id="clearCacheForm" class="inline">
     @csrf
@@ -106,7 +106,7 @@ document.getElementById('refreshStorageBtn').addEventListener('click', function(
                 'nav_text_color' => 'Nav Text Color',
                 'nav_text_hover_color' => 'Nav Hover Text Color',
                 'icon_text' => 'Icon Text Color',
-                'logo_color' => 'Logo Text Color',
+             
             ];
         @endphp
 
