@@ -73,7 +73,7 @@
 
     <div class="w-full bg-white rounded-3xl border border-gray-200 overflow-hidden">
         <!-- Card Header -->
-        <div class="flex justify-between items-center px-6 py-4 bg-teal-800 text-white">
+        <div class="flex justify-between items-center px-6 py-4 bg-slate-800 text-white">
             <h2 class="text-xl font-semibold">My Sales Funnel</h2>
 
            <!-- Gear Dropdown -->
@@ -124,6 +124,48 @@
                 <p class="text-lg font-medium text-gray-800">
                     Launch Your Funnel in Minutes — <span class="text-navy font-semibold">No Tech Skills Needed!</span>
                 </p>
+
+                 <div class="bg-white p-6">
+               
+
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 mt-0.5 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500 shadow-sm">
+                        <i class="fa-solid fa-file-powerpoint text-white"></i>
+                    </span>
+                    <div class="font-medium text-slate-700">Sales Presentation</div>
+                    </li>
+
+                    <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 mt-0.5 w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 shadow-sm">
+                        <i class="fa-brands fa-facebook-messenger text-white"></i>
+                    </span>
+                    <div class="font-medium text-slate-700">Messenger Link Integration</div>
+                    </li>
+
+                    <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 mt-0.5 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 shadow-sm">
+                        <i class="fa-solid fa-chart-line text-white"></i>
+                    </span>
+                    <div class="font-medium text-slate-700">Page Analytics</div>
+                    </li>
+
+                    <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 mt-0.5 w-8 h-8 flex items-center justify-center rounded-full bg-rose-500 shadow-sm">
+                        <i class="fa-solid fa-address-book text-white"></i>
+                    </span>
+                    <div class="font-medium text-slate-700">Collect Contact Leads</div>
+                    </li>
+
+                    <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 mt-0.5 w-8 h-8 flex items-center justify-center rounded-full bg-orange-500 shadow-sm">
+                        <i class="fa-solid fa-credit-card text-white"></i>
+                    </span>
+                    <div class="font-medium text-slate-700">Ready-Made Payment Form</div>
+                    </li>
+                </ul>
+                </div>
+
             </div>
 
             @if($funnel)
@@ -160,7 +202,7 @@
                             text-white font-semibold rounded-2xl shadow-lg transition-all duration-300 
                             flex items-center justify-center gap-3 mx-auto">
                         <span class="material-symbols-outlined text-white">smart_toy</span>
-                        Activate My AI Funnel
+                        Activate My Funnel
                     </button>
                 </form>
             @endif

@@ -7,9 +7,17 @@
 
 <!-- Mobile sidebar toggle button -->
 <div class="md:hidden p-2 bg-white border-b shadow-sm flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-    <button id="sidebarToggle" class="text-slate-700 font-semibold px-3 py-1 rounded ">
-        ☰ View Lessons
+    <button id="sidebarToggle" class="flex items-center gap-2 text-slate-700 font-semibold px-3 py-1 rounded hover:bg-gray-100 transition">
+    <svg class="h-6 w-6 text-red-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <line x1="4" y1="6" x2="20" y2="6" />
+        <line x1="4" y1="12" x2="14" y2="12" />
+        <line x1="4" y1="18" x2="18" y2="18" />
+    </svg>
+    View Lessons
+ 
     </button>
+
    
 </div>
 
@@ -17,7 +25,7 @@
    <div class="flex">
     {{-- Sidebar --}}
    <div id="sidebar"
-        class="fixed top-0 left-0 h-full bg-gray-800  border-r shadow-sm p-4 overflow-y-auto
+        class="fixed top-0 left-0 h-full bg-slate-900  border-r shadow-sm p-4 overflow-y-auto
                transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out
                z-40 pt-16 md:pt-4"
         style="width: 100vw; max-width: 450px;"
@@ -26,7 +34,7 @@
     <div class="pb-3 mb-4 border-b border-slate-700">
 
                 <div class="pb-3 mb-2">
-                    <a href="{{ route('user.academy.courses') }}" class="hidden md:inline-flex items-center gap-2 px-3 py-1.5 text-sm text-white border hover:bg-gray-700 transition rounded-md">
+                    <a href="{{ route('user.academy.courses') }}" class="hidden md:inline-flex items-center gap-2 px-3 py-1.5 text-sm text-white border hover:bg-yellow-600 transition rounded-md">
                     <i class="fas fa-arrow-left text-sm"></i>
                     Back
                 </a>
@@ -56,7 +64,7 @@
                 <span>{{ $completed }}/{{ $total }}</span>
             </div>
             <div class="w-full h-1.5 bg-slate-100 rounded">
-                <div class="h-1.5 bg-green-600 rounded" style="width: {{ $percent }}%"></div>
+                <div class="h-1.5 bg-green-500 rounded" style="width: {{ $percent }}%"></div>
             </div>
         </div>
 
@@ -72,7 +80,7 @@
                 @php $counter = 1; @endphp
                 <li class="list-none">
                     <button
-                        class="mt-4 flex justify-between items-center w-full text-left px-3 py-2 rounded-md text-gray-100 bg-gray-500 font-semibold hover:text-gray-700 hover:bg-gray-200 transition toggle-category"
+                        class="mt-4 flex justify-between items-center w-full text-left px-3 py-2 rounded-md text-gray-100 bg-yellow-600 font-semibold hover:text-gray-700 hover:bg-gray-200 transition toggle-category"
                         data-category="{{ $category }}"
                     >
                         <span>{{ $category }}</span>
@@ -89,10 +97,10 @@
                                 data-lesson-id="lesson-{{ $lesson->lesson_id }}"
                             >
                                 <span class="flex items-center gap-2">
-                                        <span class="font-mono w-6 text-white group-[.active]:text-green-600 group-[.active]:font-bold">
+                                        <span class="font-mono w-6 text-white group-[.active]:text-yellow-600 group-[.active]:font-bold">
                                             {{ str_pad($counter, 2, '0', STR_PAD_LEFT) }}
                                         </span>
-                                        <span class="truncate text-white group-[.active]:text-green-600 group-[.active]:font-bold">
+                                        <span class="truncate text-white group-[.active]:text-green-500 group-[.active]:font-bold">
                                             {{ $lesson->lesson_name }}
                                         </span>
                                 </span>

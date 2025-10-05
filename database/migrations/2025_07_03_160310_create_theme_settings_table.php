@@ -26,13 +26,13 @@ return new class extends Migration
 
       // ✅ Insert default values (matched to image)
         DB::table('theme_settings')->insert([
-            'sidebar_bg' => '#143f47',          // Sidebar Background
-            'nav_hover_bg_color' => '#18484e',  // Nav Hover BG Color
-            'icon_bg_color' => '#c8c7cc',       // Icon Background
-            'nav_text_color' => '#c8c7cc',      // Nav Text Color
-            'nav_text_hover_color' => '#c8c7cc',// Nav Hover Text Color
-            'icon_text' => '#c8c7cc',           // Icon Text Color
-            'logo_color' => '#c8c7cc',          // Logo Color (same as icons/texts)
+            'sidebar_bg' => '#0c0c0c',          // Sidebar Background
+            'nav_hover_bg_color' => '#212121',  // Nav Hover BG Color
+            'icon_bg_color' => '#dcdbe1',       // Icon Background
+            'nav_text_color' => '#dcdbe1',      // Nav Text Color
+            'nav_text_hover_color' => '#dcdbe1',// Nav Hover Text Color
+            'icon_text' => '#dcdbe1',           // Icon Text Color
+            'logo_color' => '#dcdbe1',          // Logo Color (same as icons/texts)
             'created_at' => now(),
             'updated_at' => now(),
         ]);

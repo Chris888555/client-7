@@ -33,7 +33,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'file' => 'required|image|mimes:jpg,jpeg,png',
             'caption' => 'nullable|string',
             'category' => 'required|string|max:100',
         ]);
@@ -49,13 +49,21 @@ class MaterialController extends Controller
         return response()->json(['message' => 'Image uploaded successfully.']);
     }
 
-public function showByCategory()
-{
-    $materials = Material::all();
-    $category = 'All'; // or null, your choice
+    public function showByCategory(Request $request)
+        {
+            $category = $request->get('category', 'All');
 
-    return view('user.materials.images', compact('materials', 'category'));
-}
+            if ($category === 'All') {
+                $materials = Material::all();
+            } else {
+                $materials = Material::where('category', $category)->get();
+            }
+
+            $categories = Material::select('category')->distinct()->pluck('category');
+
+            return view('user.materials.images', compact('materials', 'category', 'categories'));
+        }
+
 
 
 public function showpage(Request $request)

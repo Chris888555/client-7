@@ -54,7 +54,7 @@
                 <span class="material-icons text-2xl">school</span>
             </div>
             <div>
-                <h3 class="font-semibold text-lg text-teal-700">Academy Courses</h3>
+                <h3 class="font-semibold text-lg text-teal-700">Create Courses</h3>
                 <p class="text-sm text-gray-500">Manage courses, modules & lessons</p>
             </div>
         </a>

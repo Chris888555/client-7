@@ -268,7 +268,7 @@
     $profileImage = $user && $user->profile_picture 
                     ? asset('storage/' . $user->profile_picture) 
                     : asset('assets/profile_picture/profile.png');
-                    $avatarUrl = 'https://ui-avatars.com/api/?name=' . urlencode($fullName) . '&background=18484e&color=ffffff&rounded=true&size=64';
+                    $avatarUrl = 'https://ui-avatars.com/api/?name=' . urlencode($fullName) . '&background=1e293b&color=ffffff&rounded=true&size=64';
 @endphp
 
 <!-- Profile -->

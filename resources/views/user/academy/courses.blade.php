@@ -89,13 +89,13 @@
 
                             @if($totalLessons > 0)
                                 <div class="w-full h-2 bg-slate-200 rounded mb-3">
-                                    <div class="h-2 bg-blue-500 rounded" style="width: {{ $percent }}%"></div>
+                                    <div class="h-2 bg-green-500 rounded" style="width: {{ $percent }}%"></div>
                                 </div>
                             @endif
 
                           @forelse ($course->modules as $module)
                                 <a href="{{ route('academy.module.lessons', $module->module_id) }}"
-                                class="mt-auto inline-block text-center px-4 py-2 bg-teal-600 text-white text-sm font-semibold rounded-md hover:bg-teal-700 transition"
+                                class="mt-auto inline-block text-center px-4 py-2 bg-slate-800 text-white text-sm font-semibold rounded-md hover:bg-slate-900 transition"
                                 data-course-id="{{ $course->course_id }}">
                                     @if($allCompleted)
                                         Re-watch →
@@ -117,7 +117,7 @@
                     <div class="flex flex-col items-center justify-center text-center bg-white p-10 rounded-2xl shadow" style="min-height: 250px; box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);">
                         <i class="fas fa-face-smile-beam text-4xl text-blue-400 mb-3"></i>
                         <h5 class="mb-2 font-semibold text-lg">No Courses Available</h5>
-                        <p class="text-slate-500 text-sm">Please check back later or contact support for help.</p>
+                        <p class="text-slate-500 text-sm">Please check back later.</p>
                     </div>
                 </div>
             @endforelse

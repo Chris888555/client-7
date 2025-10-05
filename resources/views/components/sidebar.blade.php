@@ -268,7 +268,7 @@
     $profileImage = $user && $user->profile_picture 
                     ? asset('storage/' . $user->profile_picture) 
                     : asset('assets/profile_picture/profile.png');
-                    $avatarUrl = 'https://ui-avatars.com/api/?name=' . urlencode($fullName) . '&background=18484e&color=ffffff&rounded=true&size=64';
+                    $avatarUrl = 'https://ui-avatars.com/api/?name=' . urlencode($fullName) . '&background=1e293b&color=ffffff&rounded=true&size=64';
 @endphp
 
 <!-- Profile -->
@@ -309,8 +309,14 @@
 
 <!-- Funnel -->
 <a href="{{ route('funnel.index') }}" class="menu-item {{ request()->routeIs('funnel.index') ? 'active' : '' }}">
-    <span class="icon"><span class="material-icons">insights</span></span>
+    <span class="icon"><span class="material-icons">filter_alt</span></span>
     <span class="label">Funnel</span>
+</a>
+
+<!-- Payment Method -->
+<a href="{{ route('payment-method.create') }}" class="menu-item {{ request()->routeIs('payment-method.create') ? 'active' : '' }}">
+    <span class="icon"><span class="material-icons">credit_card</span></span>
+    <span class="label">Create MOP</span>
 </a>
 
 <!-- My Leads -->
@@ -325,11 +331,6 @@
     <span class="label">Orders</span>
 </a>
 
-<!-- Payment Method -->
-<a href="{{ route('payment-method.create') }}" class="menu-item {{ request()->routeIs('payment-method.create') ? 'active' : '' }}">
-    <span class="icon"><span class="material-icons">credit_card</span></span>
-    <span class="label">Create MOP</span>
-</a>
 
 <!-- Courses -->
 <a href="{{ route('user.academy.courses') }}" class="menu-item {{ request()->routeIs('user.academy.courses') ? 'active' : '' }}">
@@ -389,7 +390,7 @@
   </div>
   <!-- Right -->
   <div class="relative flex items-center gap-4">
-    <input type="text" placeholder="Search..." class="hidden sm:block px-3 py-1 border rounded-md text-sm focus:outline-none focus:ring focus:ring-blue-300">
+    <input type="text" placeholder="Search..." class="hidden sm:block px-3 py-1 border rounded-md text-sm focus:outline-none focus:ring focus:ring-gray-50">
 
        <button class=" w-9 h-9 rounded-full flex items-center justify-center">
          <span class="material-icons text-yellow-500">notifications</span>

@@ -36,16 +36,23 @@
         <div class="rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="p-0">
 
-                {{-- ✅ Toolbar --}}
-                <div class="flex justify-between items-center px-3 py-3 border-b border-gray-200">
-                    <div class="flex gap-2 items-center">
+             {{-- ✅ Toolbar --}}
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border-b border-gray-200">
+                    {{-- ✅ Title --}}
+                    <h3 class="text-based font-semibold text-gray-700">Materials</h3>
 
-                        <button id="bulkDeleteBtn" class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
-                            <i class="fas fa-trash-alt"></i> Delete Selected
+                    {{-- ✅ Actions (always inline) --}}
+                    <div class="flex items-center gap-2">
+                        <button id="bulkDeleteBtn" 
+                            class="flex items-center gap-2 w-auto bg-red-600 text-white text-sm px-4 py-2 rounded-md hover:bg-red-700 transition">
+                            <i class="fa-solid fa-trash"></i>
+                            Delete 
                         </button>
 
-                        <form method="GET" action="{{ route('materials.show') }}" class="flex items-center gap-2">
-                            <select name="category" class="border border-gray-300 text-gray-700 text-sm rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-gray-200 w-auto" onchange="this.form.submit()">
+                        <form method="GET" action="{{ route('materials.show') }}" class="flex items-center">
+                            <select name="category"
+                                class="border border-gray-300 text-gray-700 text-sm rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-gray-200 w-auto"
+                                onchange="this.form.submit()">
                                 <option value="">All Categories</option>
                                 @foreach($categories as $category)
                                 <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>
@@ -54,7 +61,6 @@
                                 @endforeach
                             </select>
                         </form>
-
                     </div>
                 </div>
 
@@ -63,21 +69,21 @@
                     <table class="w-full text-left border-collapse whitespace-nowrap">
                         <thead class="bg-gray-100 ">
                             <tr>
-                                <th class="px-3 py-4"><input type="checkbox" id="checkAll" class="rounded"></th>
-                                <th class="px-3 py-3">Preview</th>
-                                <th class="px-3 py-3">Caption</th>
-                                <th class="px-3 py-3">Category</th>
-                                <th class="px-3 py-3 w-[120px]">Actions</th>
+                                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase"><input type="checkbox" id="checkAll" class="rounded"></th>
+                                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Preview</th>
+                                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Caption</th>
+                                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Category</th>
+                                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase w-[120px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($materials as $material)
                             <tr class="border-b border-gray-200" data-category="{{ $material->category }}">
-                                <td class="px-3 py-2"><input type="checkbox" class="checkItem rounded" value="{{ $material->id }}"></td>
-                                <td class="px-3 py-2">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600"><input type="checkbox" class="checkItem rounded" value="{{ $material->id }}"></td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                                     <img src="{{ asset('storage/' . $material->file_path) }}" class="rounded-md" width="40" alt="Preview">
                                 </td>
-                                <td class="px-3 py-2" title="{{ $material->caption }}">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600" title="{{ $material->caption }}">
                                     <span class="inline md:hidden">
                                         {{ strlen($material->caption) > 10 ? substr($material->caption, 0, 10) . '...' : $material->caption }}
                                     </span>
@@ -85,8 +91,8 @@
                                         {{ strlen($material->caption) > 50 ? substr($material->caption, 0, 50) . '...' : $material->caption }}
                                     </span>
                                 </td>
-                                <td class="px-3 py-2">{{ $material->category }}</td>
-                                <td class="px-3 py-2">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $material->category }}</td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                                    <button class="text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm border shadow-sm transition duration-300 ease-in-out w-full editBtn flex items-center justify-center gap-1"
                                     data-id="{{ $material->id }}"
                                     data-caption="{{ $material->caption }}"
@@ -98,11 +104,11 @@
                                 </td>
                             </tr>
                             @empty
-                            <tr>
-                                <td colspan="100%">
-                                    <x-no-data />
-                                </td>
-                            </tr>
+                             <tr>
+                        <td colspan="7" class="px-4 py-6 text-center text-gray-500">
+                            <x-no-data />
+                        </td>
+                    </tr>
                             @endforelse
                         </tbody>
                     </table>

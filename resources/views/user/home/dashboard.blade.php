@@ -6,6 +6,7 @@
 
 
 
+
 <section class="container max-w-full  flex justify-center items-center ">
     <div class="">
         <img src="{{ asset('assets/images/header.png') }}" alt="Header Image" class="w-full h-auto ">
@@ -72,7 +73,7 @@
     </div>
 
 
-   <!-- Download Button -->
+  
    <!-- Download Button -->
 <button id="downloadBtn" class="mt-4 px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition flex items-center gap-2">
     <i class="fas fa-download"></i>

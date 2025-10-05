@@ -60,51 +60,53 @@ class LeadController extends Controller
 
 
     // Store lead submission
-    public function store(Request $request)
-    {
+public function store(Request $request)
+{
     $validator = \Validator::make($request->all(), [
-    'page_link' => 'required|string',
-    'name'      => 'required|string|max:255',
-    'email'     => [
-        'required',
-        'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i', 
-    ],
-    'phone'     => [
-        'required',
-        'regex:/^[0-9]{11,15}$/', 
-    ],
-], [
-    'email.regex'   => 'The email must be a valid Gmail address (e.g., juan@gmail.com).',
-    'phone.regex'   => 'The phone number must be between 11 to 15 digits.',
-]);
+        'page_link' => 'required|string',
+        'name'      => 'required|string|max:255',
+        'email'     => [
+            'required',
+            'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i',
+        ],
+        'phone'     => [
+            'required',
+            'regex:/^[0-9]{11,15}$/',
+        ],
+        'role'      => 'required|string|max:255',
+    ], [
+        'email.regex' => 'The email must be a valid Gmail address (e.g., juan@gmail.com).',
+        'phone.regex' => 'The phone number must be between 11 to 15 digits.',
+        'role.required' => 'Please select your profile type.',
+    ]);
 
-// ✅ Kung validation failed, return JSON errors
-if ($validator->fails()) {
-    return response()->json([
-        'status' => 'error',
-        'errors' => $validator->errors()
-    ], 422);
-}
-
-
-        // ✅ Find funnel
-        $funnel = UserFunnel::where('page_link', $request->page_link)->firstOrFail();
-
-        // ✅ Create lead
-        FunnelLead::create([
-            'user_funnel_id' => $funnel->id,
-            'user_id'        => $funnel->user_id,
-            'name'           => $request->name,
-            'email'          => $request->email,
-            'phone'          => $request->phone,
-        ]);
-
-        // ✅ Return success JSON (AJAX)
+    // ✅ Validation failed
+    if ($validator->fails()) {
         return response()->json([
-            'status'  => 'success',
-            'redirect' => route('funnel.salesPage', ['page_link' => $funnel->page_link])
-        ]);
+            'status' => 'error',
+            'errors' => $validator->errors()
+        ], 422);
     }
+
+    // ✅ Find funnel
+    $funnel = UserFunnel::where('page_link', $request->page_link)->firstOrFail();
+
+    // ✅ Save new lead
+    FunnelLead::create([
+        'user_funnel_id' => $funnel->id,
+        'user_id'        => $funnel->user_id,
+        'name'           => $request->name,
+        'email'          => $request->email,
+        'phone'          => $request->phone,
+        'role'           => $request->role, 
+    ]);
+
+    // ✅ Return success JSON
+    return response()->json([
+        'status'  => 'success',
+        'redirect' => route('funnel.salesPage', ['page_link' => $funnel->page_link])
+    ]);
+}
 
 // Sales page after lead capture
 public function salesPage($page_link)

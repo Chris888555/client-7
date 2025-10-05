@@ -11,11 +11,13 @@
     
         <!-- Bulk Action -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 ">
-            <h2 class="text-lg font-semibold text-gray-700">List</h2>
+            <h2 class="text-based font-semibold text-gray-700">List</h2>
             <button id="bulkDeleteBtn" 
-                    class="w-auto self-start sm:self-auto bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+                class="flex items-center gap-2 w-auto self-start sm:self-auto bg-red-600 text-white text-sm px-4 py-2 rounded-md hover:bg-red-700 transition">
+                <i class="fa-solid fa-trash"></i>
                 Delete Selected
             </button>
+
         </div>
 
         <table class="min-w-full divide-y divide-gray-200 whitespace-nowrap">
@@ -24,19 +26,19 @@
                     <th class="px-4 py-6 text-left">
                         <input type="checkbox" id="checkAll">
                     </th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Full Name</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Mobile</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Address</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Actions</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Full Name</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Mobile</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Address</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Actions</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse($orders as $order)
                 <tr>
-                    <td class="px-4 py-3">
+                    <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                         <input type="checkbox" class="orderCheckbox" value="{{ $order->id }}">
                     </td>
-                    <td class="px-4 py-3">
+                    <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                         {{ $order->full_name }}
                         @if($order->created_at->isToday())
                             <span class="ml-2 inline-block px-2 py-0.5 text-xs font-semibold text-white bg-green-500 rounded-full">
@@ -44,11 +46,11 @@
                             </span>
                         @endif
                     </td>
-                    <td class="px-4 py-3">{{ $order->mobile }}</td>
-                    <td class="px-4 py-3">{{ $order->address }}</td>
-                    <td class="px-4 py-3">
+                    <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $order->mobile }}</td>
+                    <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $order->address }}</td>
+                    <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                         <button 
-                            class="viewOrderDetails bg-teal-600 text-white px-3 py-1 rounded-md hover:bg-teal-700"
+                            class="viewOrderDetails bg-slate-800 text-white px-3 py-1 rounded-md hover:bg-slate-900"
                             data-id="{{ $order->id }}">
                             View All Details
                         </button>
@@ -69,8 +71,8 @@
     <!-- Order Details Wrapper (per order) -->
     @foreach($orders as $order)
     <div id="order-details-{{ $order->id }}" class="orderDetails hidden w-full mx-auto bg-white rounded-xl shadow p-6 transition">
-        <button class="backToTable mb-4 text-sm text-gray-700 bg-gray-200 border border-transparent rounded-lg px-3 py-1 
-                       hover:border-teal-600 hover:bg-transparent transition">
+        <button class="backToTable mb-4 text-sm text-gray-700 bg-red-400 border border-transparent rounded-lg px-3 py-1 
+                       hover:border-slate-800 hover:bg-transparent transition">
             &larr; Back
         </button>
 
@@ -105,7 +107,7 @@
                 </a>
                 <div class="mt-2">
                     <a href="{{ asset('storage/'.$order->payment_proof) }}" target="_blank" 
-                       class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                       class="inline-block bg-slate-800 text-white px-4 py-2 rounded-md hover:bg-slate-900 transition">
                         View Full Image
                     </a>
                 </div>

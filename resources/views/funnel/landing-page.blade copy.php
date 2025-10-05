@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GutGuard SynBIOTIC+</title>
-     @vite('resources/css/app.css')
+    <title>Kumita ng ADDITIONAL Income kahit nasa bahay lang</title>
+    @vite('resources/css/app.css')
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
@@ -14,455 +15,646 @@
     <link rel="manifest" href="{{ asset('assets/favicon/site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}" type="image/x-icon">
 
+    <!-- SEO Basic Meta -->
+    <meta name="title" content="Kumita ng ADDITIONAL Income kahit nasa bahay lang">
+    <meta name="description" content="Learn how to earn extra ₱1,880 up to 50,000 daily income even with no experience. Join our FREE webinar and start your path to financial freedom today.">
+    <meta name="keywords" content="income opportunity, extra income, online business, work from home, financial freedom, free webinar, earn money online">
+    <meta name="author" content="GlobalPreneursBusiness">
 
-     <!-- SEO Basic Meta -->
-        <meta name="title" content="GutGuard SynBIOTIC+">
-        <meta name="description" content="Feel the difference in 7 days—GutGuard SYNBIOTIC+ starts working for better gut health.">
-        <meta name="keywords" content="GutGuard, Synbiotic, Probiotics, Gut Health, Digestive Health">
-        <meta name="author" content="GutGuard Official">
-
-        <!-- Open Graph / Facebook Meta -->
-        <meta property="og:title" content="GutGuard SynBIOTIC+" />
-        <meta property="og:description" content="Feel the difference in 7 days—GutGuard SYNBIOTIC+ starts working for better gut health." />
-        <meta property="og:image" content="{{ asset('assets/images/pc-hero-image.png') }}" />
-        <meta property="og:url" content="{{ url()->current() }}" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="GutGuard" />
-
-    
+    <!-- Open Graph / Facebook Meta -->
+    <meta property="og:title" content="Kumita ng ADDITIONAL Income kahit nasa bahay lang" />
+    <meta property="og:description" content="Learn how to earn extra ₱1,880 up to 50,000 daily income even with no experience. Join our FREE webinar and start your path to financial freedom today." />
+    <meta property="og:image" content="{{ asset('assets/images/social-media-banner.jpg') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalPreneursBusiness" />
 </head>
-<body class="bg-white font-sans">
+
+
+<style>
+/* Bounce animation only for elements with .bounce class */
+.bounce {
+  display: inline-block; 
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+</style>
+
+
+<body class="bg-gray-50 font-sans text-gray-800">
 
 
 
-<!-- Hero / Caption -->
-<section class="w-full relative">
-    <!-- Image for PC only -->
-    <img src="{{ asset('assets/images/pc-hero-image.png') }}" 
-         alt="Hero PC" 
-         class="hidden md:block w-full h-auto object-cover">
-
-    <!-- Button for PC  -->
-    <a href="javascript:void(0)" 
-    class="hidden md:flex items-center md:absolute md:top-[65%] md:left-[9.4%] z-20 bg-blue-600 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl hover:bg-blue-700 transition rounded-lg openFormBtn">
-      Learn More 
-      <i class="fas fa-arrow-right ml-2"></i>
+<div class="w-full bg-red-600 text-white p-4 text-center shadow-lg z-50">
+  <span class="text-sm md:text-base">
+    Don’t miss this FREE webinar! 
+  </span>
+  <a href="#!" class="font-bold underline openFormBtn text-sm md:text-base">
+    Reserve Your Spot
   </a>
+</div>
 
-    <!-- Image for Mobile only -->
-    <img src="{{ asset('assets/images/mobile-hero-image.png') }}"
-         alt="Hero Mobile" 
-         class="block md:hidden w-full h-auto object-cover mt-0">
 
-    <!-- Button for Mobile  -->
-    <a href="javascript:void(0)" 
-    class="block md:hidden flex items-center justify-center mt-4 bg-blue-600 text-white mt-8 px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl text-center hover:bg-blue-700 transition mx-auto w-max rounded-lg openFormBtn">
-      Learn More 
-      <i class="fas fa-arrow-right ml-2"></i>
-  </a>
+<!-- Hero Section -->
+<section class="relative bg-black text-white">
+    <div class="max-w-6xl mx-auto px-6 pb-8 pt-16 md:pb-16 md:pt-28 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+            REVEALED: <span class="text-yellow-500">How Ordinary Filipinos</span> Are Earning 
+            <span class="text-yellow-500">₱50,000–₱100,000/Month Online</span> — Without a Product, Without a Team, and Without Tech Skills.
+        </h1>
+        <p class="text-xl md:text-3xl mb-8">
+            Join our <span class="font-bold">FREE webinar</span> and discover the proven system to earn stable <br class="hidden md:block"> online income even if you're a complete beginner.
+        </p>
+
+        <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+        </a>
+        <p class="text-white font-bold mb-4 mt-6">⚡ Seats are filling fast — reserve your slot today!</p>
+
+    </div>
 </section>
 
 
 
 
+<!-- Multi-Layered Wavy Divider -->
+<div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-32 md:h-40">
+        <path d="M0,100 C300,80 900,120 1200,100 L1200,0 L0,0 Z" class="fill-black" style="opacity:0.25"></path>
+        <path d="M0,80 C400,60 800,100 1200,80 L1200,0 L0,0 Z" class="fill-black" style="opacity:0.5"></path>
+        <path d="M0,60 C350,90 850,30 1200,60 L1200,0 L0,0 Z" class="fill-black"></path>
+    </svg>
+</div>
 
-<!-- Video Section -->
-<section class="w-full mx-auto px-6 py-16 ">
-  <!-- Heading -->
-  <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 bg-clip-text text-gray-800">
-    GOOD BYE MORPHIN - Dr. Jocelyn Aca, M.D.
-  </h2>
 
-  <!-- Video Wrapper -->
-  <div class="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
-    <video class="w-full h-auto rounded-2xl " controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
+
+<!-- Benefits Section -->
+<section class="mx-auto px-6 py-20 ">
+  <div class="max-w-6xl mx-auto">
+    
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
+      Ano ang Matututunan Mo sa <span class="text-teal-600">FREE Webinar?</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+
+      <!-- Benefit 1 -->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+        <i class="fa-solid fa-people-group text-teal-600 text-4xl mb-4"></i>
+        <h3 class="text-2xl font-semibold mb-2">Magandang Opportunity</h3>
+        <p class="text-gray-600 text-lg">
+          Alamin ang best opportunity na swak sa kahit anong status—OFWs, nanay, business owners, freelancers, employees, at iba pa.
+        </p>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+        <i class="fa-solid fa-lightbulb text-teal-600 text-4xl mb-4"></i>
+        <h3 class="text-2xl font-semibold mb-2">Proven Strategies & Tools</h3>
+        <p class="text-gray-600 text-lg">
+          Makakakuha ka ng ready-to-use strategies at tools na pwede mong kopyahin para palaguin ang negosyo gaya ng mga natulungan naming kumita sa community.
+        </p>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition duration-300">
+        <i class="fa-solid fa-rocket text-teal-600 text-4xl mb-4"></i>
+        <h3 class="text-2xl font-semibold mb-2">Become an INFINITE Partner</h3>
+        <p class="text-gray-600 text-lg">
+          Matutunan kung paano maging INFINITE partner at simulan kumita ng additional income kahit sa bahay lang gamit ang strategies at tools na ipapakita sa webinar.
+        </p>
+      </div>
+
+    </div>
+
   </div>
-
-  <!-- Caption -->
-  <p class="text-center mt-6 text-lg text-gray-700 max-w-2xl mx-auto">
-    Experience the <span class="font-semibold text-blue-600">Gutguard SYNBIOTIC+</span> difference in action.
-  </p>
 </section>
 
 
 
 
-<section class="px-6 pb-12 pt-6 sm:px-12 sm:pb-16 sm:pt-6  mx-auto">
-   <div class="container mx-auto text-left">
-  <div class="flex flex-col md:flex-row items-center md:gap-12 gap-6 ">
+<!-- Swiper CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-   <!-- Left: Product Image -->
-  <div class="w-full md:w-1/2 flex justify-center">
-    <img src="{{ asset('assets/images/product-research-image.png') }}" 
-        alt="SynBIOTIC+ Bottle" 
-        class="w-full object-contain">
+<!-- Auto-Slide Image Section -->
+<section class="mx-auto px-6 py-20 bg-gray-100">
+  <div class="max-w-5xl mx-auto">
+   <h3 class="text-3xl md:text-4xl font-sans font-semibold mb-6 text-center leading-snug">
+    Our community members are earning daily — from 
+    <strong class="font-bold text-red-500">₱1,800 up to ₱50,000</strong> — 
+    using our proven and effective business system powered by the 
+    <strong class="font-bold text-red-500">Automated Sales Process System</strong>!
+  </h3>
+
+ <div class="swiper mySwiper max-w-3xl mx-auto mt-16">
+      <div class="swiper-wrapper">
+
+        <!-- Image 1 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019e7cdf30_17.png" alt="Slide 1" class="w-full rounded-lg object-cover">
+        </div>
+
+        <!-- Image 2 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019eea2cdd_16.png" alt="Slide 2" class="w-full rounded-lg object-cover">
+        </div>
+
+        <!-- Image 3 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/68501a146d5aa_15.png" alt="Slide 3" class="w-full rounded-lg object-cover">
+        </div>
+
+        <!-- Image 4 -->
+        <div class="swiper-slide">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019f4447a4_14.png" alt="Slide 4" class="w-full rounded-lg object-cover">
+        </div>
+
+      </div>
+
+         <!-- Controls -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+
+        <style>
+          .swiper-button-prev,
+          .swiper-button-next {
+            color: white !important; 
+            background-color: #0d9488; 
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+          }
+
+          .swiper-button-prev:hover,
+          .swiper-button-next:hover {
+            background-color: #0f766e; 
+          }
+
+          
+          .swiper-button-prev::after,
+          .swiper-button-next::after {
+            font-size: 18px;
+          }
+      
+  
+        .swiper-pagination-bullet {
+          background-color: #0d9488 !important;
+          opacity: 0.5 !important;
+        }
+        .swiper-pagination-bullet-active {
+          background-color: #0d9488 !important;
+          opacity: 1 !important;
+        }
+      </style>
+    </div>
   </div>
+</section>
 
-    <!-- Right: Text Content -->
-    <div class="w-full md:w-1/2">
+<!-- Swiper Init -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
+
+<!-- Who I Am Section -->
+@if($whoIamSection)
+<section class="mx-auto px-6 py-16 md:py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+    <!-- Image -->
+    <div class="md:w-1/2 flex justify-center md:justify-start">
+      @if($whoIamSection->image_path)
+        <img src="{{ asset('storage/' . $whoIamSection->image_path) }}" 
+             alt="{{ $whoIamSection->name }}" 
+             class="w-80 md:w-full object-cover ">
+      @endif
+    </div>
+
+    <!-- Text Content -->
+    <div class="md:w-1/2 text-left space-y-4">
+
+
       <!-- Hook -->
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-        Modern life is destroying your gut
-      </h3>
-      <ul class="text-gray-800 mb-6 space-y-3 text-xl md:text-2xl">
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Processed food</li>
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Excess sugar</li>
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Antibiotics</li>
-        <li class="flex items-center gap-3"><span class="text-red-500 font-bold">❌</span> Stress</li>
-      </ul>
-      <p class="text-gray-700 mb-6 text-xl md:text-2xl">
-        These kill your good bacteria—leaving your immune system exposed. But don’t worry, help has arrived!
+      <p class="text-red-600 font-bold text-xl md:text-2xl">
+        {!! $whoIamSection->hook !!}
       </p>
 
-      <!-- Process Steps -->
-      <ul class="space-y-6 text-gray-800 text-lg md:text-xl">
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Discover</strong> 80 Billion CFU & 17 Strains for ultimate gut health</div>
-        </li>
+      <!-- Title -->
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+        I’m <span class="text-teal-600">{{ $whoIamSection->name }}</span>
+      </h2>
 
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Activate</strong> cells with Urolithin A + XOS + Tributyrin</div>
-        </li>
+      <!-- Intro Paragraph -->
+      <p class="text-gray-700 text-lg md:text-base leading-relaxed">
+        {!! $whoIamSection->intro !!}
+      </p>
 
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Support</strong> full-body health with STEM CELL ACTIVATOR</div>
-        </li>
+      <!-- Transition Paragraph -->
+      <p class="text-gray-700 text-lg md:text-base leading-relaxed">
+        {!! $whoIamSection->transition !!}
+      </p>
 
-        <li class="flex items-start gap-4 flex-nowrap">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-            <i class="fas fa-check text-2xl"></i>
-          </div>
-          <div class="text-xl md:text-2xl"><strong>Choose</strong> GutGuard SynBIOTIC+ — your health deserves the best</div>
-        </li>
-      </ul>
-
-
-      <!-- CTA -->
-     <div class="mt-6 w-full max-w-[500px] mx-auto">
-      <a href="javascript:void(0)" 
-        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
-        Learn More
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-
-    </div>
-    </div>
-  </div>
-</section>
+      <!-- Bullets -->
+      @if(!empty($whoIamSection->bullets))
+        <ul class="text-gray-700 text-lg md:text-base leading-relaxed list-none pl-0 space-y-2">
+          @foreach($whoIamSection->bullets as $bullet)
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot mt-1 text-teal-600"></i>
+              <span>{!! $bullet !!}</span>
+            </li>
+          @endforeach
+        </ul>
+      @endif
 
 
 
-<section class="px-6 py-12 sm:px-12 sm:py-16 mx-auto bg-gray-50">
-  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-    
-    <!-- Left Content -->
-    <div>
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-        Backed by <span class="text-blue-700">15 years</span> of scientific and medical research.
-      </h3>
+      <!-- Motivation -->
+      <p class="text-red-600 text-lg md:text-base leading-relaxed font-semibold mt-4">
+        {!! $whoIamSection->motivation !!}
+      </p>
 
-      <ul class="space-y-6 mb-8">
-        <li class="flex items-start gap-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-          <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-            <i class="fas fa-check text-base sm:text-lg"></i>
-          </div>
-          <span>Produced in a <strong class="text-blue-700">₱1 Billion ISO-certified facility</strong>.</span>
-        </li>
-        <li class="flex items-start gap-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-          <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-            <i class="fas fa-check text-base sm:text-lg"></i>
-          </div>
-          <span>Developed with <strong class="text-blue-700">7 leading organizations</strong>.</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right Image -->
-    <div class="flex justify-center">
-      <img src="{{ asset('assets/images/15-years-of-research.png') }}" 
-           alt="15 Years of Research"
-           class="w-full object-cover">
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
-<!-- Benefits Section: How SynBIOTIC+ Helps You -->
-<section class="px-6 py-12 sm:px-12 sm:py-16 mx-auto">
-   <div class="container mx-auto text-left">
-  <h2 class="text-4xl md:text-5xl  font-bold text-left text-gray-800 mb-8">
-    Bakit Para Sayo ang <span class="text-blue-600">GutGuard SynBIOTIC+</span>?
-  </h2>
-
-  <div class="space-y-8">
-    <!-- 1 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">1</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Gut & Digestion Issues</h3>
-        <p class="text-gray-600 text-2xl">Nakakatulong sa bloating, constipation, diarrhea (IBS support), leaky gut, acid reflux, at indigestion.</p>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">2</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Immune System Support</h3>
-        <p class="text-gray-600 text-2xl">Para hindi madaling sipunin o ubuhin, at labanan ang low energy dahil sa weak immunity.</p>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">3</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Inflammation-related Problems</h3>
-        <p class="text-gray-600 text-2xl">Pwedeng makatulong sa joint pain, arthritis, body aches, at bawasan ang chronic low-grade inflammation.</p>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">4</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Metabolic Health</h3>
-        <p class="text-gray-600 text-2xl">Suporta sa cholesterol control, fatty liver prevention, at blood sugar regulation (type 2 diabetes risk management).</p>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">5</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Cellular Aging / Longevity</h3>
-        <p class="text-gray-600 text-2xl">Pinapalakas ang mitochondria repair at stem cell activation para sa anti-aging, mas mabilis na recovery, at dagdag energy.</p>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="flex items-start gap-4">
-      <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">6</div>
-      <div>
-        <h3 class="text-2xl font-bold text-gray-800">Brain–Gut Connection</h3>
-        <p class="text-gray-600 text-2xl">May epekto sa mood, anxiety, at sleep quality dahil sa gut–serotonin connection.</p>
-      </div>
-    </div>
- 
-
-
-   <div class="mt-8 w-full max-w-[500px] mx-auto">
-      <a href="javascript:void(0)" 
-        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
-        Learn More
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-   </div>
-
-</section>
-
-
-
-
-
-<!-- Feature -->
-<section class="w-full relative">
-    <!-- Image for PC only -->
-    <img src="{{ asset('assets/images/pc-feature-image.png') }}" 
-         alt="Hero" 
-         class="hidden md:block w-full h-auto object-cover">
-
-    <!-- Image for Mobile only -->
-    <img src="{{ asset('assets/images/mobile-feature-image.png') }}"
-         alt="Hero Mobile" 
-         class="block md:hidden w-full h-auto object-cover mt-0">
-</section>
-
-
-<section class="px-2 py-12 sm:px-12 sm:py-16  ">
-    <div class="text-center">
-        <img src="{{ asset('assets/images/verified.png') }}" alt="Verified" class="w-full h-auto object-cover">
-      
-    </div>
-</section>
-
-
-
-<!-- Scientific & Medical Advisory Board -->
-    <section class="max-w-6xl mx-auto p-6 mt-12">
-    <h3 class="text-4xl md:text-5xl font-bold mb-2 text-center text-blue-700">Our Scientific & Medical Advisory Board</h3>
-    <p class="text-center text-2xl italic text-gray-500 mb-10">"We take care of your HEALTH"</p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-
-        <!-- Dr. Roly Michael L. Racsa -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Roly Racsa" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Roly Michael L. Racsa, CBE</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">UN Technical Advisor, Ex-Professor in Mechanical & Civil Engineering</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Roberto Malaluan -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Roberto Malaluan" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Roberto Malaluan</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">PhD in Chemical Engineering, NAST & PICHE Awardee</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Jocelyn Arboleda -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Jocelyn Arboleda" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Jocelyn Arboleda</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Board-Certified Internist, 30+ Years in Clinical Practice</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Joey M. Sinchicco -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Joey Sinchicco" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Joey M. Sinchicco</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Aesthetic & Functional Medicine, OB-GYN Perinatology</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. John C. Batacan -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. John Batacan" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. John C. Batacan</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Family Medicine Specialist, Medical Director at JCB Wellness</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-        <!-- Dr. Jimymiah Coching -->
-        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 text-center text-gray-100">
-        <img src="https://img.freepik.com/premium-photo/indian-doctor_714173-1916.jpg" alt="Dr. Jimymiah Coching" class="h-32 w-32 object-cover mx-auto rounded-full ring-4 ring-blue-500 shadow-md mb-4">
-        <h4 class="font-semibold text-xl mb-2">Dr. Jimymiah Coching</h4>
-        <div class="h-0.5 w-16 bg-blue-500 mx-auto mb-2 rounded"></div>
-        <p class="text-sm text-gray-300">Colon Care Specialist, Certified Hydrotherapist & Wellness Coach</p>
-        <p class="italic text-xs text-gray-400 mt-2">"We take care of your HEALTH"</p>
-        </div>
-
-    </div>
-
-        
-        <div class="mt-8 w-full max-w-[500px] mx-auto">
-      <a href="javascript:void(0)" 
-        class="openFormBtn flex items-center w-full bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-lg font-semibold text-xl md:text-2xl transition justify-center">
-        Learn More
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-    </section>
-
-
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-center py-8 mt-24">
-      <div class="container mx-auto flex flex-col items-center space-y-4">
-          <!-- Logo -->
-          <img src="{{ asset('assets/images/logo.png') }}" 
-              alt="GutGuard SynBIOTIC+ Logo" 
-              class="h-12 w-auto">
-
-          <!-- Text -->
-          <p class="text-gray-300 text-sm">&copy; 2025 GutGuard SynBIOTIC+. All rights reserved.</p>
-      </div>
-  </footer>
-
-
-    <!-- Modal (Order Form) -->
-<div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-lg p-8 relative">
-        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-        
-        <h2 class="text-2xl font-bold mb-6">Good news , dito hindi ka lang magiging healthy, pwede ka din kumita with our SynBIOTIC+</h2>
-        <p class="text-lg text-gray-600 mb-8">
-            Sign up now and get instant FREE access to PRESENTATION.
+      <!-- Testimonial -->
+      @if($whoIamSection->testimonial)
+        <p class="mt-4 text-gray-600 italic">
+          {!! $whoIamSection->testimonial !!}
         </p>
+      @endif
+
+      <!-- Call-to-Action -->
+      <div class="mt-6 md:mt-8 flex justify-center md:justify-start">
+        <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+          <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+@endif
+
+
+
+
+
+<!-- Ergency Call to action Section -->
+<section class="mx-auto  px-6 pb-20 pt-28 bg-red-700">
+  <div class="relative overflow-visible text-center max-w-5xl mx-auto ">
+      <!-- Card -->
+      <div class="bg-yellow-400 text-gray-900 relative z-10 rounded-2xl shadow-lg shadow-gray-800/50 px-4 py-16 md:py-20">
+          <h3 class="text-3xl md:text-4xl font-bold mb-6">
+              Don’t Miss This Opportunity!
+          </h3>
+          <p class="text-lg md:text-xl mb-6">
+              Make sure mag-sign up ka **today** para mapanoon mo ang <span class="font-bold text-red-600">exclusive FREE webinar</span> <br class="hidden md:block">at hindi masayang ang opportunity na naghihintay sayo.
+          </p>
+          <p class="text-lg md:text-xl mb-6">
+              Imagine kung kikita ka ng <span class="font-bold text-red-600">₱20K–₱100K per month</span> sa business na ito.<br class="hidden md:block"> Ano ang maitutulong nito sayo at sa pamilya mo?
+          </p>
+          <p class="text-lg md:text-xl mb-8 font-semibold">
+              Sign up now at watch the FREE exclusive webinar. <span class="text-red-600 font-bold">Only 10 slots left!</span> <br class="hidden md:block">Para sa mga gusto ma-guided.
+          </p>
+          <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+        </a>
+      </div>
+
+      <!-- peak -->
+      <div class="absolute top-0 left-0 w-full -translate-y-1/2 z-20">
+          <svg viewBox="0 0 1200 100" preserveAspectRatio="none" class="w-full h-16">
+              <path d="M0,100 L600,0 L1200,100 Z" class="fill-yellow-400"/>
+          </svg>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Testimonials Section -->
+<section class="bg-gray-50 py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12">What People Are Saying</h2>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
+        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/cHe2EMmLiV4" 
+            title="Testimonial 1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p class="text-gray-700 italic">“I am a breadwinner, now kumikita through online gamit ang proven system.”</p>
+        <h4 class="mt-4 font-semibold text-gray-900">Mary May Balisnomo</h4>
+        <span class="text-sm text-gray-500">Health Care Employee in UK</span>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
+        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/NoBO_DzX4HI" 
+            title="Testimonial 2" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p class="text-gray-700 italic">“Talagang sulit yung effort. Ang dami kong natutunan at higit sa lahat kumikita ako even online.”</p>
+        <h4 class="mt-4 font-semibold text-gray-900">Genilyn Farinas</h4>
+        <span class="text-sm text-gray-500">Health Care Employee in UK</span>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
+        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/KHvGSlKMSFk" 
+            title="Testimonial 3" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p class="text-gray-700 italic">“Sa una nagduda ako, pero pagkatapos nakita ko ang results — natuwa ako.”</p>
+        <h4 class="mt-4 font-semibold text-gray-900">Irene Perez</h4>
+        <span class="text-sm text-gray-500">Nurse in UK</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Flipped Angled Top Divider -->
+<div class="top-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-teal-900"></path>
+    </svg>
+</div>
+
+<!-- Final CTA -->
+<section class="bg-teal-900 text-white text-center mt-[-1px]">
+  <div class="max-w-6xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Something New!</h2>
+    <p class="text-lg md:text-xl mb-8">Start with hope — this opportunity can change your life. Don’t miss out!</p>
+    <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Sign Up Now & Watch the FREE Webinar
+    </a>
+  </div>
+</section>
+
+
+
+<!-- Flipped Angled Bottom  -->
+<div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-teal-900"></path>
+    </svg>
+</div>
+
+<!-- FAQ Section -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <h2 class="text-4xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+
+  <div class="space-y-4">
+    <!-- FAQ Item 1 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Paano ako makaka-access sa webinar?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Pagkatapos mong mag-sign up gamit ang form, makakakuha ka agad ng access sa exclusive webinar.
+      </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Libre ba ang webinar?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! 100% libre ang access sa aming webinar para sa lahat ng gustong matuto kung paano kumita online, kahit busy ka o anuman ang ginagawa mo.
+      </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Para kanino ba ito?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Para ito sa iyo basta handa kang matuto at magpaturo. Tutulungan ka namin kung paano mo ito gagawin sa mas madaling paraan at epektibong strategy.
+      </div>
+    </div>
+
+    <!-- FAQ Item 4 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">May mga tools ba tayo?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! Lahat ng marketing materials, videos, sales funnel, trainings, at webinar ay provided para mapalago mo ang iyong business.
+      </div>
+    </div>
+
+    <!-- FAQ Item 5 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Sigurado ba akong kikita dito?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! 100% basta susundin mo ang mga guide at ang lahat ng ituturo ko sa iyo bilang mentor mo dito sa ating platform.
+      </div>
+    </div>
+
+    <!-- FAQ Item 6 -->
+    <div class="border rounded-2xl overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Ok lang ba kahit walang experience?</span>
+        <i class="fas fa-chevron-down transition-transform"></i>
+      </button>
+      <div class="faq-content px-6 py-4 bg-white hidden">
+        Oo! Hindi mo kailangan ng experience. May step-by-step training kami kung paano mo gagawin, at higit sa lahat, nandito ako para gabayan ka sa bawat hakbang.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Messenger Floating Button + Card -->
+<div class="fixed bottom-2 right-2 sm:bottom-6 sm:right-6 z-50" id="messengerWrapper">
+  <!-- Floating Button -->
+  <button id="messengerBtn"
+    class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition"
+    aria-label="Open Messenger">
+    <i class="fab fa-facebook-messenger text-2xl"></i>
+  </button>
+
+  <!-- Messenger Card -->
+  <div id="messengerCard"
+       class="hidden mt-3 w-72 bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+    <div class="flex justify-between items-start">
+      <h4 class="text-sm font-semibold text-gray-800">Need Help?</h4>
+      <button id="closeMessenger" class="text-gray-400 hover:text-gray-600">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <p class="text-sm text-gray-600 mt-2">
+      May concern or question? Pwede mo akong i-contact here directly.
+    </p>
+
+    <a href="{{ $funnel['messenger_btn'] }}" target="_blank" rel="noopener"
+       class="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition shadow">
+      <i class="fab fa-facebook-messenger"></i>
+      <span class="font-medium text-sm">Message Admin</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("messengerBtn");
+    const card = document.getElementById("messengerCard");
+    const close = document.getElementById("closeMessenger");
+    const wrapper = document.getElementById("messengerWrapper");
+
+    // Open card
+    btn.addEventListener("click", () => {
+      btn.classList.add("hidden");
+      card.classList.remove("hidden");
+    });
+
+    // Close via X button
+    close.addEventListener("click", () => {
+      card.classList.add("hidden");
+      btn.classList.remove("hidden");
+    });
+
+    // Close if click outside card
+    document.addEventListener("click", (e) => {
+      if (!wrapper.contains(e.target) && !card.classList.contains("hidden")) {
+        card.classList.add("hidden");
+        btn.classList.remove("hidden");
+      }
+    });
+  });
+</script>
+
+
+
+
+<!-- Footer / Disclaimer -->
+<footer class="bg-gray-100 text-gray-400 text-sm py-6 px-6 text-center space-y-3">
+  <div class="flex justify-center">
+    <img id="logo-full" src="{{ asset('assets/images/funnel-logo.png') }}" alt="Logo" class="h-14 w-auto">
+  </div>
+  <p class="font-semibold text-gray-600">© 2025 Global Entrepreneurs Official.</p>
+  <p class="mx-auto max-w-3xl">
+    Disclaimer: This webinar and training are for educational and informational purposes only. No specific income is guaranteed, and results depend on each participant's effort. The platform and content comply with Facebook Ads and Community Guidelines.
+  </p>
+</footer>
+
+
+
+
+<script>
+// Simple FAQ toggle
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('i');
+
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180'); // chevron rotation
+  });
+});
+</script>
+
+
+<!-- Modal -->
+<div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-2xl p-10 relative">
+
+       <button onclick="closeModal()" 
+        class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600 text-2xl shadow-md transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+
+
+        <p class="text-red-500 font-bold mb-4 mt-6 text-center">⚡ Seats are filling fast — reserve your slot today!</p>
+        <h2 class="text-2xl font-bold mb-6 text-center">
+            Don’t overthink — just learn the system that’s already working.
+        </h2>
+
 
         <form id="leadForm" class="space-y-4">
             @csrf
             <input type="hidden" name="page_link" value="{{ $funnel->page_link }}">
-
+            
             <div>
-                <input type="text" name="name" placeholder="Enter Full Name"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" name="name" placeholder="Enter Full Name" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="name"></p>
             </div>
-
             <div>
-                <input type="email" name="email" placeholder="Enter Email"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="email" name="email" placeholder="Enter Email" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="email"></p>
             </div>
-
             <div>
-                <input type="text" name="phone" placeholder="Enter Phone Number"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" name="phone" placeholder="Enter Phone Number" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
                 <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="phone"></p>
             </div>
-
-            <button type="submit"
-                class="w-full py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                Get Instant Access
+           
+            <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold shadow-lg transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rocket"></i>
+              Get Instant Access
             </button>
         </form>
     </div>
 </div>
 
-
-<!-- ✅ Inject Meta Pixel Code -->
-@if(!empty($funnel->meta_pixel_code))
-    {!! $funnel->meta_pixel_code !!}
-@endif
-
-
-
 <script>
 document.getElementById("leadForm").addEventListener("submit", function(e){
     e.preventDefault();
-
-    // clear old errors
-    document.querySelectorAll(".error-message").forEach(el => {
-        el.classList.add("hidden");
-        el.textContent = "";
-    });
+    document.querySelectorAll(".error-message").forEach(el => { el.classList.add("hidden"); el.textContent = ""; });
 
     let formData = new FormData(this);
-
     fetch("{{ route('funnel.store') }}", {
         method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
-        },
+        headers: { "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value },
         body: formData
     })
     .then(res => res.json())
@@ -470,10 +662,7 @@ document.getElementById("leadForm").addEventListener("submit", function(e){
         if(data.status === "error"){
             Object.keys(data.errors).forEach(key => {
                 let errorEl = document.querySelector(`[data-error="${key}"]`);
-                if(errorEl){
-                    errorEl.textContent = data.errors[key][0];
-                    errorEl.classList.remove("hidden");
-                }
+                if(errorEl){ errorEl.textContent = data.errors[key][0]; errorEl.classList.remove("hidden"); }
             });
         }else if(data.status === "success"){
             window.location.href = data.redirect;
@@ -481,46 +670,22 @@ document.getElementById("leadForm").addEventListener("submit", function(e){
     })
     .catch(err => console.error(err));
 });
-</script>
 
-
-<script>
 document.addEventListener("DOMContentLoaded", function() {
-    function openModal() {
-        const modal = document.getElementById('formModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-    function closeModal() {
-        const modal = document.getElementById('formModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-
-    
+    function openModal(){ document.getElementById('formModal').classList.remove('hidden'); document.getElementById('formModal').classList.add('flex'); }
+    function closeModal(){ document.getElementById('formModal').classList.add('hidden'); document.getElementById('formModal').classList.remove('flex'); }
     window.closeModal = closeModal;
 
-    // open buttons
     document.querySelectorAll(".openFormBtn").forEach(btn => {
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            openModal();
-        });
+        btn.addEventListener("click", function(e){ e.preventDefault(); openModal(); });
     });
 
-    // close kapag nag click sa backdrop
-    const modal = document.getElementById('formModal');
-    modal.addEventListener("click", function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
+    document.getElementById('formModal').addEventListener("click", function(e){
+        if(e.target === this) closeModal();
     });
 });
+
+
+
+
 </script>
-
-
-
-
-
-</body>
-</html>

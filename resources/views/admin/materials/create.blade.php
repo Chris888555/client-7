@@ -42,7 +42,6 @@
                 <option value="Posting">Posting</option>
                 <option value="Stories">Stories</option>
                 <option value="Product">Product</option>
-                <option value="Cover Photo">Cover Photo</option>
                 <option value="Testimonial">Testimonial</option>
             </select>
         </div>

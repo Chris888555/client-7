@@ -40,8 +40,8 @@
                 <!-- Right Side -->
                 <div class="flex gap-2 items-center">
                     <button id="bulkDeleteBtn" 
-                        class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
-                        <i class="fas fa-trash-alt"></i> Delete Selected
+                        class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-trash"></i> Delete Selected
                     </button>
                 </div>
             </div>
@@ -52,21 +52,21 @@
                 <table class="w-full text-left border-collapse whitespace-nowrap">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-3 py-4"><input type="checkbox" id="checkAll" class="rounded"></th>
-                            <th class="px-3 py-3">Method Name</th>
-                            <th class="px-3 py-3">Account Name</th>
-                            <th class="px-3 py-3">Account Number</th>
-                            <th class="px-3 py-3 w-[120px]">Actions</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase"><input type="checkbox" id="checkAll" class="rounded"></th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Method Name</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Account Name</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Account Number</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase w-[120px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($methods as $method)
                             <tr class="border-b border-gray-200" id="row-{{ $method->id }}">
-                                <td class="px-3 py-2"><input type="checkbox" class="rowCheckbox rounded" value="{{ $method->id }}"></td>
-                                <td class="px-3 py-2 text-sm">{{ $method->method_name }}</td>
-                                <td class="px-3 py-2 text-sm">{{ $method->account_name }}</td>
-                                <td class="px-3 py-2 text-sm">{{ $method->account_number }}</td>
-                                <td class="px-3 py-2">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600"><input type="checkbox" class="rowCheckbox rounded" value="{{ $method->id }}"></td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $method->method_name }}</td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $method->account_name }}</td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $method->account_number }}</td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                                     <button class="edit-btn text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm border shadow-sm transition duration-300 ease-in-out w-full flex items-center justify-center gap-1"
                                         data-id="{{ $method->id }}"
                                         data-method_name="{{ $method->method_name }}"
@@ -78,11 +78,11 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="100%">
+                                <td colspan="7" class="px-4 py-6 text-center text-gray-500">
                                     <x-no-data />
                                 </td>
                             </tr>
-                        @endforelse
+                    @endforelse
                     </tbody>
                 </table>
             </div>

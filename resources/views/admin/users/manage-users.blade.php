@@ -43,7 +43,7 @@
             <option value="make-user">Make User</option>
             <option value="delete">Delete</option>
         </select>
-        <button id="apply-action" class="rounded-md bg-teal-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-teal-700 hover:bg-teal-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">Apply</button>
+        <button id="apply-action" class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-teal-700 hover:bg-slate-900 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">Apply</button>
     </div>
 </div>
 
@@ -63,29 +63,29 @@
     <table class="min-w-full divide-y divide-gray-200 whitespace-nowrap">
              <thead class="bg-gray-100 whitespace-nowrap">
             <tr class="bg-gray-100 text-left">
-                <th class="px-4 py-3 text-left">
+                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">
                     <input type="checkbox" id="select-all">
                 </th>
-                <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Name</th>
-                <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Email</th>
-                <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Password</th> 
-                <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Status</th>
-                <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Role</th>
+                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Name</th>
+                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Email</th>
+                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Password</th> 
+                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Status</th>
+                <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Role</th>
             </tr>
         </thead>
         <tbody>
             @forelse($users as $user)
             <tr class="border-t whitespace-nowrap ">
-                <td class="px-4 py-3 text-sm text-left">
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                     <input type="checkbox" class="user-checkbox" value="{{ $user->id }}">
                 </td>
-                <td class="px-4 py-3 text-sm text-left">{{ $user->name }}</td>
-                <td class="px-4 py-3 text-sm text-left">{{ $user->email }}</td>
-                <td class="px-4 py-3 text-sm text-left text-red-600">{{ $user->dpassword ?? 'N/A' }}</td> <!-- Display plaintext password -->
-                <td class="px-4 py-3 text-sm text-left {{ $user->is_approved ? 'text-green-600' : 'text-yellow-600' }}">
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $user->name }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $user->email }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600 text-red-600">{{ $user->dpassword ?? 'N/A' }}</td> <!-- Display plaintext password -->
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600 {{ $user->is_approved ? 'text-green-600' : 'text-yellow-600' }}">
                     {{ $user->is_approved ? 'Approved' : 'Pending' }}
                 </td>
-                <td class="px-4 py-3 text-sm">{{ ucfirst($user->role) }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ ucfirst($user->role) }}</td>
             </tr>
             @empty
            <tr>
@@ -96,10 +96,12 @@
             @endforelse
         </tbody>
     </table>
+
+     <!-- Pagination -->
+  <x-paginations :paginator="$users" />
 </div>
 
-  <!-- Pagination -->
-  <x-paginations :paginator="$users" />
+ 
 
 </div>
 

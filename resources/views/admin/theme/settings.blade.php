@@ -126,9 +126,11 @@ document.getElementById('refreshStorageBtn').addEventListener('click', function(
         </div>
         @endforeach
 
-        <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700">
+        <button type="submit" class="bg-slate-800 text-white px-4 py-2 rounded-md hover:bg-slate-900 flex items-center gap-2">
+            <i class="fa fa-save"></i>
             Save Theme
         </button>
+
     </form>
 </div>
 @endsection

@@ -12,43 +12,47 @@
 
    <!-- Bulk Action -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4">
-            <h2 class="text-lg font-semibold text-gray-700">My Leads</h2>
+            <h2 class="text-based font-semibold text-gray-700">My Leads</h2>
             <div class="flex items-center gap-2">
-                <a href="{{ route('user.leads.export') }}"
-                class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition flex items-center gap-2">
-                <span class="material-symbols-outlined">download</span>
-                Export CSV
+               <a href="{{ route('user.leads.export') }}"
+                    class="flex items-center gap-2 w-auto self-start sm:self-auto bg-slate-800 text-white text-sm px-4 py-2 rounded-md hover:bg-slate-900 transition">
+                    <i class="fa-solid fa-file-export"></i>
+                    Export CSV
                 </a>
+
                 <button id="bulkDeleteBtn" 
-                        class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+                    class="flex items-center gap-2 w-auto self-start sm:self-auto bg-red-600 text-white text-sm px-4 py-2 rounded-md hover:bg-red-700 transition">
+                    <i class="fa-solid fa-trash"></i>
                     Delete Selected
                 </button>
+
             </div>
         </div>
 
 
 
-        <table class="min-w-full divide-y divide-gray-200 whitespace-nowrap">
+        <table class="w-full min-w-full divide-y divide-gray-200 whitespace-nowrap">
             <thead class="bg-gray-100">
                 <tr>
                     <th class="px-4 py-6 text-left">
                         <input type="checkbox" id="checkAll">
                     </th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">No.</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Name</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Email</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Phone</th>
-                    <th class="px-4 py-6 text-left text-xs font-medium text-gray-600 uppercase">Date Submitted</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">No.</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Name</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Email</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Phone</th>
+                     <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Lead Background</th>
+                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Date Submitted</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse($leads as $index => $lead)
                     <tr>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                             <input type="checkbox" class="leadCheckbox" value="{{ $lead->id }}">
                         </td>
-                        <td class="px-4 py-3">{{ $index + 1 }}</td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $index + 1 }}</td>
+                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                             {{ $lead->name }}
                             @if($lead->created_at->isToday())
                                 <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
@@ -56,17 +60,18 @@
                                 </span>
                             @endif
                         </td>
-                        <td class="px-4 py-3">{{ $lead->email }}</td>
-                        <td class="px-4 py-3">{{ $lead->phone }}</td>
-                        <td class="px-4 py-3">{{ $lead->created_at->format('M d, Y H:i') }}</td>
+                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->email }}</td>
+                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->phone }}</td>
+                         <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->role ?? '—' }}  </td>
+                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->created_at->format('M d, Y H:i') }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="px-4 py-6 text-center text-gray-500">
-                           <x-no-data />
+                        <td colspan="7" class="px-4 py-6 text-center text-gray-500">
+                            <x-no-data />
                         </td>
                     </tr>
-                @endforelse
+                    @endforelse
             </tbody>
         </table>
         <x-paginations :paginator="$leads" />

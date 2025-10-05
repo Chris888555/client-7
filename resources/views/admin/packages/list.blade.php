@@ -27,48 +27,60 @@
 <div id="packageTable" class="mt-6">
     <div class="rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="p-0">
-            <div class="flex justify-between items-center px-3 py-3 border-b border-gray-200">
-                <div class="flex gap-2 items-center">
-                    <button id="bulkDeleteBtn" class="bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-1">
-                        <i class="fas fa-trash-alt"></i> Delete Selected
+          {{-- ✅ Toolbar --}}
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-3 py-3 border-b border-gray-200">
+                
+                {{-- ✅ Title --}}
+                <h3 class="text-based font-semibold text-gray-700">
+                    Packages
+                </h3>
+
+                {{-- ✅ Actions --}}
+                <div class="flex items-center gap-2">
+                    <button id="bulkDeleteBtn" 
+                        class="flex items-center gap-2 bg-red-600 text-white text-sm px-3 py-2 rounded-md hover:bg-red-700 transition">
+                        <i class="fa-solid fa-trash"></i>
+                        Delete Selected
                     </button>
                 </div>
+
             </div>
+
 
             {{-- ✅ Table Wrapper --}}
             <div class="overflow-x-auto max-h-[600px]">
                 <table class="w-full text-left border-collapse whitespace-nowrap">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-3 py-4"><input type="checkbox" id="checkAll" class="rounded"></th>
-                            <th class="px-3 py-3">Image</th>
-                            <th class="px-3 py-3">Name</th>
-                            <th class="px-3 py-3">Price</th>
-                            <th class="px-3 py-3">Features</th>
-                            <th class="px-3 py-3 w-[120px]">Actions</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase"><input type="checkbox" id="checkAll" class="rounded"></th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Image</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Name</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Price</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Features</th>
+                            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase w-[120px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($packages as $pkg)
                             <tr class="border-b border-gray-200" id="row-{{ $pkg->id }}">
-                                <td class="px-3 py-2"><input type="checkbox" class="rowCheckbox rounded" value="{{ $pkg->id }}"></td>
-                                <td class="px-3 py-2">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600"><input type="checkbox" class="rowCheckbox rounded" value="{{ $pkg->id }}"></td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                                     @if($pkg->image)
                                         <img src="{{ asset('storage/'.$pkg->image) }}" class="w-14 h-14 object-cover rounded-lg border">
                                     @else
                                         <span class="text-gray-400 text-xs">No Image</span>
                                     @endif
                                 </td>
-                                <td class="px-3 py-2 text-sm">{{ $pkg->name }}</td>
-                                <td class="px-3 py-2 text-sm">₱{{ number_format($pkg->price, 2) }}</td>
-                                <td class="px-3 py-2 text-sm">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $pkg->name }}</td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">₱{{ number_format($pkg->price, 2) }}</td>
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                                     <ul class="list-disc ml-5">
                                         @foreach ((array) $pkg->features as $f)
                                             <li>{{ $f }}</li>
                                         @endforeach
                                     </ul>
                                 </td>
-                                <td class="px-3 py-2">
+                                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
                                     <button class="edit-btn text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm border shadow-sm transition w-full flex items-center justify-center gap-1"
                                         data-id="{{ $pkg->id }}"
                                         data-name="{{ $pkg->name }}"
@@ -80,7 +92,11 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="100%"><x-no-data /></td></tr>
+                            <tr>
+                        <td colspan="7" class="px-4 py-6 text-center text-gray-500">
+                            <x-no-data />
+                        </td>
+                    </tr>
                         @endforelse
                     </tbody>
                 </table>
