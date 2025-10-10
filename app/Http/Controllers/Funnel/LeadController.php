@@ -59,28 +59,31 @@ class LeadController extends Controller
 
 
 
-    // Store lead submission
+ // Store lead submission
 public function store(Request $request)
 {
     $validator = \Validator::make($request->all(), [
-        'page_link' => 'required|string',
-        'name'      => 'required|string|max:255',
-        'email'     => [
+        'page_link'   => 'required|string',
+        'name'        => 'required|string|max:255',
+        'email'       => [
             'required',
             'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i',
         ],
-        'phone'     => [
+        'phone'       => [
             'required',
             'regex:/^[0-9]{11,15}$/',
         ],
-        'role'      => 'required|string|max:255',
+        'role'        => 'required|string|max:255',       // Step 1
+        'capital'     => 'nullable|string|max:255',       // Step 2
+        'goal'        => 'nullable|string|max:255',       // Step 3
+        'commitment'  => 'nullable|string|max:255',       // Step 4
     ], [
         'email.regex' => 'The email must be a valid Gmail address (e.g., juan@gmail.com).',
         'phone.regex' => 'The phone number must be between 11 to 15 digits.',
         'role.required' => 'Please select your profile type.',
     ]);
 
-    // ✅ Validation failed
+    // ❌ Validation failed
     if ($validator->fails()) {
         return response()->json([
             'status' => 'error',
@@ -98,15 +101,19 @@ public function store(Request $request)
         'name'           => $request->name,
         'email'          => $request->email,
         'phone'          => $request->phone,
-        'role'           => $request->role, 
+        'role'           => $request->role,
+        'capital'        => $request->capital,
+        'goal'           => $request->goal,
+        'commitment'     => $request->commitment,
     ]);
 
     // ✅ Return success JSON
     return response()->json([
-        'status'  => 'success',
-        'redirect' => route('funnel.salesPage', ['page_link' => $funnel->page_link])
+        'status'   => 'success',
+        'redirect' => route('funnel.salesPage', ['page_link' => $funnel->page_link]),
     ]);
 }
+
 
 // Sales page after lead capture
 public function salesPage($page_link)

@@ -69,22 +69,28 @@
 
 <!-- Hero Section -->
 <section class="relative bg-black text-white">
-    <div class="max-w-6xl mx-auto px-6 pb-8 pt-16 md:pb-16 md:pt-28 text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
-            REVEALED: <span class="text-yellow-500">How Ordinary Filipinos</span> Are Earning 
-            <span class="text-yellow-500">₱50,000–₱100,000/Month Online</span> — Without a Product, Without a Team, and Without Tech Skills.
-        </h1>
-        <p class="text-xl md:text-3xl mb-8">
-            Join our <span class="font-bold">FREE webinar</span> and discover the proven system to earn stable <br class="hidden md:block"> online income even if you're a complete beginner.
-        </p>
+  <div class="max-w-6xl mx-auto px-6 pb-8 pt-16 md:pb-16 md:pt-28 text-center">
+    <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+      Tired of Working Hard But Still Short Every Month?<br>
+      <span class="text-yellow-500">
+        Discover the Smart New Way Filipinos Are Earning ₱50,000–₱100,000/Month Online — Even With Zero Experience.
+      </span>
+    </h1>
 
-        <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl font-semibold px-10 py-4 rounded-3xl shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
-            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
-        </a>
-        <p class="text-white font-bold mb-4 mt-6">⚡ Seats are filling fast — reserve your slot today!</p>
+    <p class="text-xl md:text-3xl mb-8">
+      Join our <span class="font-bold">FREE webinar</span> and discover the step-by-step system that lets beginners earn real, stable online income — no prior experience needed.
+    </p>
 
-    </div>
+    <a href="#!" class="openFormBtn inline-block bounce  bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl sm:text-2xl font-bold uppercase px-10 py-4 rounded-md  shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+    </a>
+
+    <p class="text-teal-600 font-bold mb-4 mt-6">
+      ⚡ Seats are filling fast — reserve your slot today!
+    </p>
+  </div>
 </section>
+
 
 
 
@@ -100,65 +106,43 @@
 
 
 
-<!-- 
-<section class="mx-auto px-6 py-20 bg-gradient-to-b from-white to-gray-100">
-  <div class="max-w-6xl mx-auto">
-    
-   
-    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-16 leading-snug">
-      💥 What You’ll Discover Inside This <span class="text-yellow-500">FREE 30-Minute Video</span>
+
+<section class="relative py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <!-- Heading -->
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-8">
+      Learn the Smart Way to Start Your Business
     </h2>
 
-   
-    <div class="grid md:grid-cols-3 gap-10 text-center">
+     <h3 class="text-2xl font-extrabold text-red-500 mb-8">Watch the video now!</h3>
 
-   
-    <div class="bg-white rounded-2xl shadow-lg p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-yellow-400">
-        <i class="fa-solid fa-hand-holding-dollar text-yellow-500 text-5xl mb-5"></i>
-        <h3 class="text-2xl font-semibold mb-3">How Smart Filipinos Are Making ₱50k–₱100k/Month Online — Even Without Sales or Marketing Experience!</h3>
-        <p class="text-gray-600 leading-relaxed">
-            Discover the *same step-by-step system* na ginagamit ng mga smart Filipinos — from  employees, students, OFWs, single parents, freelancers, o even business owners — para kumita online.
-        </p>
+    <!-- Video Container -->
+    <div class="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl">
+      <video 
+        class="w-full h-auto rounded-2xl" 
+        controls 
+        loop 
+        playsinline 
+        preload="auto"
+      >
+        <source src="{{ asset('assets/videos/landing_video.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Overlay gradient (optional aesthetic) -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
     </div>
 
-
-     
-      <div class="bg-white rounded-2xl shadow-lg p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-yellow-400">
-        <i class="fa-solid fa-network-wired text-yellow-500 text-5xl mb-5"></i>
-        <h3 class="text-2xl font-semibold mb-3">The Proven “Smart Duplication” System</h3>
-        <p class="text-gray-600 leading-relaxed">
-          Matutunan mo kung paano nagagawa ng mga top earners na kumita kahit natutulog — gamit ang simpleng 3-step duplication formula na kayang sundan ng kahit sino.
-        </p>
-      </div>
-
- 
-      <div class="bg-white rounded-2xl shadow-lg p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-yellow-400">
-        <i class="fa-solid fa-lightbulb text-yellow-500 text-5xl mb-5"></i>
-        <h3 class="text-2xl font-semibold mb-3">How to Start Without Quitting Your Job</h3>
-        <p class="text-gray-600 leading-relaxed">
-          Perfect para sa mga gusto munang mag-side income habang nagtatrabaho. Learn how to grow your network online using your phone — part-time lang!
-        </p>
-      </div>
-
+    <!-- CTA below video -->
+    <div class="mt-10">
+      <a href="#!" class="openFormBtn inline-block bounce  bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl sm:text-2xl font-bold uppercase px-10 py-4 rounded-md  shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+    </a>
+      <p class="text-teal-600 font-bold mb-4 mt-6">⚡ Seats are filling fast — reserve your slot today!</p>
     </div>
-
-  
-    <div class="text-center mt-16">
-      <p class="text-lg md:text-xl text-gray-700 mb-6 font-medium">
-        ⚡ Stop guessing. Learn the exact roadmap used by real people earning 6-figures a month!
-      </p>
-       <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
-            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
-        </a>
-      
-        <p class="text-red-500 font-bold mb-4 mt-6">⚡ Seats are filling fast — reserve your slot today!</p>
-      
-    </div>
-
   </div>
 </section>
 
- -->
 
 
 
@@ -166,46 +150,75 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-<!-- Auto-Slide Image Section -->
-<section class="mx-auto px-6 py-20 bg-gray-100">
-  <div class="max-w-5xl mx-auto">
-    <h3 class="text-3xl md:text-4xl font-sans font-semibold mb-6 text-center leading-snug">
-  From ₱0 to <strong class="font-bold text-red-500">₱50,000–₱100,000/Month</strong> — Real Stories of Ordinary Filipinos Winning Online!
-</h3>
+
+<!-- Flipped Angled Top Divider -->
+<div class="top-0 left-0 w-full overflow-hidden leading-[0] mb-[-2px]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-black"></path>
+    </svg>
+</div>
+
+<!-- Opportunity & Reveal Section -->
+<section class="mx-auto px-6 py-20 bg-black">
+  <div class="max-w-5xl mx-auto text-center text-white">
+
+    <!-- Hook / Intro -->
+    <p class="text-2xl md:text-3xl font-sans font-semibold leading-relaxed mb-4">
+      If you’ve been praying for an <strong class="text-yellow-400">opportunity to earn more</strong> without sacrificing your time or family, this might be it.
+    </p>
+
+    <p class="text-2xl md:text-3xl font-sans font-semibold leading-relaxed mb-4">
+      Many <strong class="text-yellow-400">professionals and OFWs</strong> are now quietly learning how to turn their free hours into <strong class="text-yellow-400">real income</strong> — through a simple system that works for anyone who follows it.
+    </p>
+
+    <!-- Reveal -->
+    <p class="text-2xl md:text-3xl font-sans font-semibold leading-relaxed mb-4">
+      Inside, you’ll discover the exact process that allows ordinary Filipinos to build a steady <strong class="text-yellow-400">₱50,000–₱100,000/month</strong> income online.
+    </p>
+
+    <p class="text-2xl md:text-3xl font-sans font-semibold leading-relaxed mb-4">
+      Even if they have <strong class="text-yellow-400">zero experience</strong>.
+    </p>
 
   </div>
-</section>
 
 
- <div class="swiper mySwiper max-w-3xl mx-auto mt-16">
+
+ <div class="swiper mySwiper max-w-2xl mx-auto mt-16 ">
       <div class="swiper-wrapper">
 
-        <!-- Image 1 -->
+      <!-- Image 1 -->
         <div class="swiper-slide">
-          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019e7cdf30_17.png" alt="Slide 1" class="w-full rounded-lg object-cover">
+          <img src="/assets/testi-images/testi-1.jpg" alt="Testimonial 1" class="w-full rounded-lg object-cover border-4 border-white">
         </div>
 
         <!-- Image 2 -->
         <div class="swiper-slide">
-          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019eea2cdd_16.png" alt="Slide 2" class="w-full rounded-lg object-cover">
+          <img src="/assets/testi-images/testi-2.jpg" alt="Testimonial 2" class="w-full rounded-lg object-cover border-4 border-white">
         </div>
 
         <!-- Image 3 -->
         <div class="swiper-slide">
-          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/68501a146d5aa_15.png" alt="Slide 3" class="w-full rounded-lg object-cover">
+          <img src="/assets/testi-images/testi-3.jpg" alt="Testimonial 3" class="w-full rounded-lg object-cover border-4 border-white">
         </div>
 
         <!-- Image 4 -->
         <div class="swiper-slide">
-          <img src="https://d1yei2z3i6k35z.cloudfront.net/7579088/685019f4447a4_14.png" alt="Slide 4" class="w-full rounded-lg object-cover">
+          <img src="/assets/testi-images/testi-4.jpg" alt="Testimonial 4" class="w-full rounded-lg object-cover border-4 border-white">
         </div>
 
+
+
       </div>
+      
 
          <!-- Controls -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
-      <div class="swiper-pagination"></div>
+
+      <div class="swiper-pagination mt-2"></div>
+
+
 
         <style>
           .swiper-button-prev,
@@ -233,7 +246,11 @@
             font-size: 18px;
           }
       
-  
+            .swiper-pagination {
+          position: relative !important; 
+          bottom: auto !important;
+        }
+        
         .swiper-pagination-bullet {
           background-color: #0d9488 !important;
           opacity: 0.5 !important;
@@ -245,9 +262,8 @@
       </style>
     </div>
   </div>
-</section>
 
-<!-- Swiper Init -->
+  <!-- Swiper Init -->
 <script>
   var swiper = new Swiper(".mySwiper", {
     loop: true,
@@ -265,6 +281,26 @@
     },
   });
 </script>
+
+<div class="text-center mt-12">
+  <a href="#!" class="openFormBtn inline-block bounce  bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl sm:text-2xl font-bold uppercase px-10 py-4 rounded-md  shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+    </a>
+
+  <p class="text-teal-600 font-bold mb-4 mt-6">
+    ⚡ Seats are filling fast — reserve your slot today!
+  </p>
+</div>
+
+</section>
+
+<!-- Flipped Angled Bottom  -->
+<div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-black"></path>
+    </svg>
+</div>
+
 
 
 <!-- Who I Am Section -->
@@ -286,7 +322,7 @@
 
 
       <!-- Hook -->
-      <p class="text-red-600 font-bold text-xl md:text-2xl">
+      <p class="text-gray-800 font-bold text-xl md:text-2xl">
         {!! $whoIamSection->hook !!}
       </p>
 
@@ -320,7 +356,7 @@
 
 
       <!-- Motivation -->
-      <p class="text-red-600 text-lg md:text-base leading-relaxed font-semibold mt-4">
+      <p class="text-gray-800 text-lg md:text-base leading-relaxed font-semibold mt-4">
         {!! $whoIamSection->motivation !!}
       </p>
 
@@ -333,9 +369,11 @@
 
       <!-- Call-to-Action -->
       <div class="mt-6 md:mt-8 flex justify-center md:justify-start">
-        <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
-          <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
-        </a>
+          <a href="#!" class="openFormBtn inline-block bounce text-center bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl sm:text-2xl font-bold uppercase px-10 py-4 rounded-md  shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+    </a>
+
+          
       </div>
 
     </div>
@@ -347,102 +385,31 @@
 
 
 
-<!-- Ergency Call to action Section -->
-<section class="mx-auto  px-6 pb-20 pt-28 bg-red-700">
-  <div class="relative overflow-visible text-center max-w-5xl mx-auto ">
-      <!-- Card -->
-      <div class="bg-yellow-400 text-gray-900 relative z-10 rounded-2xl shadow-lg shadow-gray-800/50 px-4 py-16 md:py-20">
-          <h3 class="text-3xl md:text-4xl font-bold mb-6">
-              Don’t Miss This Opportunity!
-          </h3>
-          <p class="text-lg md:text-xl mb-6">
-              Make sure mag-sign up ka **today** para mapanoon mo ang <span class="font-bold text-red-600">exclusive FREE webinar</span> <br class="hidden md:block">at hindi masayang ang opportunity na naghihintay sayo.
-          </p>
-          <p class="text-lg md:text-xl mb-6">
-              Imagine kung kikita ka ng <span class="font-bold text-red-600">₱20K–₱100K per month</span> sa business na ito.<br class="hidden md:block"> Ano ang maitutulong nito sayo at sa pamilya mo?
-          </p>
-          <p class="text-lg md:text-xl mb-8 font-semibold">
-              Sign up now at watch the FREE exclusive webinar. <span class="text-red-600 font-bold">Only 10 slots left!</span> <br class="hidden md:block">Para sa mga gusto ma-guided.
-          </p>
-          <a href="#!" class="openFormBtn inline-block bounce bg-teal-700 hover:bg-teal-800 text-white text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
-            <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
-        </a>
-      </div>
-
-      <!-- peak -->
-      <div class="absolute top-0 left-0 w-full -translate-y-1/2 z-20">
-          <svg viewBox="0 0 1200 100" preserveAspectRatio="none" class="w-full h-16">
-              <path d="M0,100 L600,0 L1200,100 Z" class="fill-yellow-400"/>
-          </svg>
-      </div>
-  </div>
-</section>
 
 
 
 
 
-<!-- Testimonials Section -->
-<section class="bg-gray-50 py-20 px-6">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-3xl md:text-4xl font-bold mb-12">What People Are Saying</h2>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      
-      <!-- Testimonial 1 -->
-      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
-        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/cHe2EMmLiV4" 
-            title="Testimonial 1" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <p class="text-gray-700 italic">“I am a breadwinner, now kumikita through online gamit ang proven system.”</p>
-        <h4 class="mt-4 font-semibold text-gray-900">Mary May Balisnomo</h4>
-        <span class="text-sm text-gray-500">Health Care Employee in UK</span>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
-        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/NoBO_DzX4HI" 
-            title="Testimonial 2" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <p class="text-gray-700 italic">“Talagang sulit yung effort. Ang dami kong natutunan at higit sa lahat kumikita ako even online.”</p>
-        <h4 class="mt-4 font-semibold text-gray-900">Genilyn Farinas</h4>
-        <span class="text-sm text-gray-500">Health Care Employee in UK</span>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
-        <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/KHvGSlKMSFk" 
-            title="Testimonial 3" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <p class="text-gray-700 italic">“Sa una nagduda ako, pero pagkatapos nakita ko ang results — natuwa ako.”</p>
-        <h4 class="mt-4 font-semibold text-gray-900">Irene Perez</h4>
-        <span class="text-sm text-gray-500">Nurse in UK</span>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 
 <!-- Flipped Angled Top Divider -->
 <div class="top-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-teal-900"></path>
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-black"></path>
     </svg>
 </div>
 
 <!-- Final CTA -->
-<section class="bg-teal-900 text-white text-center mt-[-1px]">
+<section class="bg-black text-white text-center mt-[-1px]">
   <div class="max-w-6xl mx-auto px-6 py-20 text-center">
     <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Something New!</h2>
     <p class="text-lg md:text-xl mb-8">Start with hope — this opportunity can change your life. Don’t miss out!</p>
-    <a href="#!" class="openFormBtn inline-block bounce bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-xl font-semibold px-10 py-4 rounded-full shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
-      <i class="fas fa-rocket mr-2"></i> Sign Up Now & Watch the FREE Webinar
+     <a href="#!" class="openFormBtn inline-block bounce  bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl sm:text-2xl font-bold uppercase px-10 py-4 rounded-md  shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
     </a>
+
+           <p class="text-teal-600 font-bold mb-4 mt-6">⚡ Seats are filling fast — reserve your slot today!</p>
   </div>
 </section>
 
@@ -451,7 +418,7 @@
 <!-- Flipped Angled Bottom  -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-teal-900"></path>
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-black"></path>
     </svg>
 </div>
 
@@ -462,73 +429,70 @@
   <div class="space-y-4">
     <!-- FAQ Item 1 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
-        <span class="font-semibold text-lg">Paano ako makaka-access sa webinar?</span>
+      <button class="w-full text-left px-6 py-4 bg-black text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Paano ginagawa ng mga students natin para kumita ng extra kahit busy o may trabaho?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
       <div class="faq-content px-6 py-4 bg-white hidden">
-        Pagkatapos mong mag-sign up gamit ang form, makakakuha ka agad ng access sa exclusive webinar.
+       Simple lang — sinundan lang nila ‘yung step-by-step system na tinuturo namin.
+May automation tools na nagtatrabaho kahit wala sila, kaya kahit OFW, employee, o parent, kaya nilang mag-run ng business part-time.
       </div>
     </div>
 
+  
+
     <!-- FAQ Item 2 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
-        <span class="font-semibold text-lg">Libre ba ang webinar?</span>
+      <button class="w-full text-left px-6 py-4 bg-black text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Bakit ang bilis ng resulta ng iba kahit baguhan sila?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
       <div class="faq-content px-6 py-4 bg-white hidden">
-        Oo! 100% libre ang access sa aming webinar para sa lahat ng gustong matuto kung paano kumita online, kahit busy ka o anuman ang ginagawa mo.
+       Kasi hindi sila nagsimula mag-isa.
+From day one, may mentorship, training, at community na naggaguide sa kanila.
+So instead of trial and error, direkta silang tinuturuan kung ano gumagana.
       </div>
     </div>
 
     <!-- FAQ Item 3 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
-        <span class="font-semibold text-lg">Para kanino ba ito?</span>
+      <button class="w-full text-left px-6 py-4 bg-black text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Gano ka-secure ‘tong opportunity na ‘to?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
       <div class="faq-content px-6 py-4 bg-white hidden">
-        Para ito sa iyo basta handa kang matuto at magpaturo. Tutulungan ka namin kung paano mo ito gagawin sa mas madaling paraan at epektibong strategy.
+      Solid — kasi hindi ito hype o “quick money” na gawa-gawa lang.
+Ito ay real business model, real products, at real results.
+Kung kaya ng iba na ordinaryong tao, kaya mo rin basta committed ka.
       </div>
     </div>
+
 
     <!-- FAQ Item 4 -->
     <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
-        <span class="font-semibold text-lg">May mga tools ba tayo?</span>
+      <button class="w-full text-left px-6 py-4 bg-black text-white flex justify-between items-center faq-btn">
+        <span class="font-semibold text-lg">Ano usually ang nagbabago sa mga sumali dito?</span>
         <i class="fas fa-chevron-down transition-transform"></i>
       </button>
       <div class="faq-content px-6 py-4 bg-white hidden">
-        Oo! Lahat ng marketing materials, videos, sales funnel, trainings, at webinar ay provided para mapalago mo ang iyong business.
+       Bukod sa extra income, nagbabago mindset nila.
+Mas nagiging confident, mas nagiging goal-driven, at mas natutong mag-create ng income online.
+Yung iba, nagsimula lang curious — ngayon sila na yung inspiration ng iba.
       </div>
     </div>
 
-    <!-- FAQ Item 5 -->
-    <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
-        <span class="font-semibold text-lg">Sigurado ba akong kikita dito?</span>
-        <i class="fas fa-chevron-down transition-transform"></i>
-      </button>
-      <div class="faq-content px-6 py-4 bg-white hidden">
-        Oo! 100% basta susundin mo ang mga guide at ang lahat ng ituturo ko sa iyo bilang mentor mo dito sa ating platform.
-      </div>
-    </div>
-
-    <!-- FAQ Item 6 -->
-    <div class="border rounded-2xl overflow-hidden">
-      <button class="w-full text-left px-6 py-4 bg-teal-800 text-white flex justify-between items-center faq-btn">
-        <span class="font-semibold text-lg">Ok lang ba kahit walang experience?</span>
-        <i class="fas fa-chevron-down transition-transform"></i>
-      </button>
-      <div class="faq-content px-6 py-4 bg-white hidden">
-        Oo! Hindi mo kailangan ng experience. May step-by-step training kami kung paano mo gagawin, at higit sa lahat, nandito ako para gabayan ka sa bawat hakbang.
-      </div>
-    </div>
-
+    
   </div>
 </section>
 
+  <!-- CTA Button + Note -->
+  <div class="mx-auto text-center mb-12 p-6">
+    <a href="#!" class="openFormBtn inline-block bounce  bg-yellow-400 hover:bg-yellow-500 hover:shadow-yellow-300 text-gray-900 text-xl sm:text-2xl font-bold uppercase px-10 py-4 rounded-md  shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl">
+      <i class="fas fa-rocket mr-2"></i> Yes! Show Me How To Earn
+    </a>
+
+    <p class="text-teal-600 font-bold mb-4 mt-6">⚡ Seats are filling fast — reserve your slot today!</p>
+  </div>
 
 
 <!-- Messenger Floating Button + Card -->
@@ -632,19 +596,17 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
 
     <!-- STEP 1 -->
     <div id="step1">
-      <h2 class="text-2xl font-bold mb-2 text-center">
-      We want to help you build your dream lifestyle. 
-      <span class="text-blue-600">Tell us a bit about you</span> so we can guide you better.
-    </h2>
+      <h2 class="text-2xl font-bold mb-6 text-left">
+        We want to help you build your dream lifestyle.
+        <span class="text-red-500">Tell us a bit about you</span> so we can guide you better.
+      </h2>
 
-
-      <div class="space-y-3">
+      <div class="space-y-3 mb-4">
         <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
           <input type="radio" name="profile_type" value="Business Owner" class="mr-2"> Business Owner
         </label>
         <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
-          <input type="radio" name="profile_type" value="Solopreneur / Agent / Distributor" class="mr-2">
-          Solopreneur / Agent / Distributor
+          <input type="radio" name="profile_type" value="Solopreneur / Agent / Distributor" class="mr-2"> Solopreneur / Agent / Distributor
         </label>
         <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
           <input type="radio" name="profile_type" value="OFW" class="mr-2"> OFW
@@ -652,13 +614,12 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
         <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
           <input type="radio" name="profile_type" value="Employee" class="mr-2"> Employee
         </label>
-
         <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
           <input type="radio" name="profile_type" value="Student" class="mr-2"> Student
         </label>
       </div>
 
-      <button id="nextBtn"
+      <button id="next1"
         class="mt-6 w-full py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-semibold transition">
         NEXT →
       </button>
@@ -666,16 +627,91 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
 
     <!-- STEP 2 -->
     <div id="step2" class="hidden">
-      <p class="text-red-500 font-bold mb-4 mt-2 text-center">⚡ Seats are filling fast — reserve your slot today!</p>
-      <h2 class="text-2xl font-bold mb-6 text-center">
-        Don’t overthink — just learn the system that’s already working.
+      <h2 class="text-2xl font-bold mb-6 text-left">
+        If given the chance to start a business that could help you achieve your goals, 
+        <span class="text-red-500">how much capital do you currently have saved in the bank?</span>
+      </h2>
+
+
+      <div class="space-y-3 mb-6">
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="capital" value="Less than ₱20k" class="mr-2"> Less than ₱20k
+        </label>
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="capital" value="₱20k - ₱50k" class="mr-2"> ₱20k - ₱50k
+        </label>
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="capital" value="₱50k - ₱100k" class="mr-2"> ₱50k - ₱100k
+        </label>
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="capital" value="₱100k - ₱200k above" class="mr-2"> ₱100k - ₱200k above
+        </label>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <button id="back1"
+          class="w-1/2 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition">
+          ← Back
+        </button>
+        <button id="next2"
+          class="w-1/2 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-semibold transition">
+          NEXT →
+        </button>
+      </div>
+    </div>
+
+
+    <!-- STEP 3 -->
+    <div id="step3" class="hidden">
+      <h2 class="text-2xl font-bold mb-6 text-left">
+      What’s your main reason for wanting to 
+      <span class="text-red-500">start an online business?</span>
+    </h2>
+
+      <div class="space-y-3 mb-6">
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="goal" value="To earn extra income" class="mr-2"> To create additional side income
+        </label>
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="goal" value="To build a business" class="mr-2"> To prepare for retirement / long-term security
+        </label>
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="goal" value="To replace my job income" class="mr-2"> To replace my current job income eventually
+        </label>
+        <label class="block border rounded-xl px-4 py-3 cursor-pointer hover:bg-gray-50">
+          <input type="radio" name="goal" value="To replace my job income" class="mr-2"> To provide more for my family
+        </label>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <button id="back2"
+          class="w-1/2 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition">
+          ← Back
+        </button>
+        <button id="next3"
+          class="w-1/2 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-semibold transition">
+          NEXT →
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div id="step4" class="hidden">
+      <p class="text-teal-600 font-bold mb-4 mt-2 text-left">
+    ⚡ Seats are filling fast — reserve your slot today!
+      </p>
+      <h2 class="text-2xl font-bold mb-6 text-left">
+        Don’t overthink — just 
+        <span class="text-red-500">learn the system that’s already working.</span>
       </h2>
 
       <form id="leadForm" class="space-y-4">
         @csrf
         <input type="hidden" name="page_link" value="{{ $funnel->page_link }}">
         <input type="hidden" name="role" id="profile_type">
-
+        <input type="hidden" name="capital" id="capital_selected">
+        <input type="hidden" name="goal" id="goal_selected">
+        <input type="hidden" name="commitment" value="Interested">
 
         <div>
           <input type="text" name="name" placeholder="Enter Full Name"
@@ -695,93 +731,93 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
           <p class="error-message text-red-500 text-sm mt-1 hidden" data-error="phone"></p>
         </div>
 
-        <button type="submit"
-          class="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-semibold shadow-lg transition flex items-center justify-center gap-2">
-          <i class="fa-solid fa-rocket"></i>
-          Get Instant Access
-        </button>
+        <div class="flex justify-between items-center gap-3 pt-4">
+          <button type="button" id="back3"
+            class="w-1/2 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition">
+            ← Back
+          </button>
+          <button type="submit"
+            class="w-1/2 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-semibold shadow-lg transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-rocket"></i> Get Instant Access
+          </button>
+        </div>
       </form>
     </div>
   </div>
 </div>
 
-<!-- SweetAlert2 CDN -->
+<!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const step1 = document.getElementById('step1');
-  const step2 = document.getElementById('step2');
-  const nextBtn = document.getElementById('nextBtn');
-  const profileInput = document.getElementById('profile_type');
+document.addEventListener("DOMContentLoaded", () => {
+  const s1 = step1, s2 = step2, s3 = step3, s4 = step4;
+  const profile = document.getElementById('profile_type');
+  const capital = document.getElementById('capital_selected');
+  const goal = document.getElementById('goal_selected');
+  const next1 = document.getElementById('next1');
+  const next2 = document.getElementById('next2');
+  const next3 = document.getElementById('next3');
+  const back1 = document.getElementById('back1');
+  const back2 = document.getElementById('back2');
+  const back3 = document.getElementById('back3');
 
-  // ✅ SweetAlert for missing selection
-  nextBtn.addEventListener("click", () => {
-    const selected = document.querySelector('input[name="profile_type"]:checked');
-    if (!selected) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Please select an option first',
-        text: 'Kindly choose which best describes you before proceeding.',
-        confirmButtonColor: '#0d9488', // teal color
-        confirmButtonText: 'Got it!',
-      });
-      return;
-    }
-
-    profileInput.value = selected.value;
-    step1.classList.add("hidden");
-    step2.classList.remove("hidden");
-  });
-
-  // ✅ Modal controls
-  function openModal() {
-    document.getElementById('formModal').classList.remove('hidden');
-    document.getElementById('formModal').classList.add('flex');
-  }
-  function closeModal() {
-    document.getElementById('formModal').classList.add('hidden');
-    document.getElementById('formModal').classList.remove('flex');
-    step1.classList.remove("hidden");
-    step2.classList.add("hidden");
-  }
-  window.closeModal = closeModal;
-
-  document.querySelectorAll(".openFormBtn").forEach(btn => {
-    btn.addEventListener("click", e => {
-      e.preventDefault();
-      openModal();
+  // Hide NEXT if Less than ₱20k
+  document.querySelectorAll('input[name="capital"]').forEach(r => {
+    r.addEventListener('change', () => {
+      if (r.value === 'Less than ₱20k' && r.checked) {
+        next2.classList.add('hidden');
+        Swal.fire({
+          icon: 'info',
+          title: 'We’re looking for partners with a bit more starting capital.',
+          text: 'If your capital is under ₱20k, we recommend saving a little more before joining the program.',
+          confirmButtonColor: '#0d9488',
+        });
+      } else next2.classList.remove('hidden');
     });
   });
 
-  document.getElementById('formModal').addEventListener("click", e => {
-    if (e.target === e.currentTarget) closeModal();
-  });
+  next1.onclick = () => {
+    const p = document.querySelector('input[name="profile_type"]:checked');
+    if (!p) return Swal.fire({icon:'warning',title:'Select your profile first',confirmButtonColor:'#0d9488'});
+    profile.value = p.value; s1.classList.add('hidden'); s2.classList.remove('hidden');
+  };
 
-  // ✅ Submit form via AJAX
-  document.getElementById("leadForm").addEventListener("submit", function(e){
+  next2.onclick = () => {
+    const c = document.querySelector('input[name="capital"]:checked');
+    if (!c) return Swal.fire({icon:'warning',title:'Please select your capital range',confirmButtonColor:'#0d9488'});
+    capital.value = c.value; s2.classList.add('hidden'); s3.classList.remove('hidden');
+  };
+
+  next3.onclick = () => {
+    const g = document.querySelector('input[name="goal"]:checked');
+    if (!g) return Swal.fire({icon:'warning',title:'Please select your goal',confirmButtonColor:'#0d9488'});
+    goal.value = g.value; s3.classList.add('hidden'); s4.classList.remove('hidden');
+  };
+
+  back1.onclick = () => { s2.classList.add('hidden'); s1.classList.remove('hidden'); };
+  back2.onclick = () => { s3.classList.add('hidden'); s2.classList.remove('hidden'); };
+  back3.onclick = () => { s4.classList.add('hidden'); s3.classList.remove('hidden'); };
+
+  function openModal(){formModal.classList.remove('hidden');formModal.classList.add('flex');}
+  function closeModal(){formModal.classList.add('hidden');formModal.classList.remove('flex');s1.classList.remove('hidden');[s2,s3,s4].forEach(e=>e.classList.add('hidden'));}
+  window.closeModal = closeModal;
+  document.querySelectorAll(".openFormBtn").forEach(b=>b.onclick=e=>{e.preventDefault();openModal();});
+  formModal.addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+
+  leadForm.addEventListener('submit',e=>{
     e.preventDefault();
-    document.querySelectorAll(".error-message").forEach(el => { el.classList.add("hidden"); el.textContent = ""; });
-
-    let formData = new FormData(this);
-    fetch("{{ route('funnel.store') }}", {
-      method: "POST",
-      headers: { "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value },
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.status === "error"){
-        Object.keys(data.errors).forEach(key => {
-          let errorEl = document.querySelector(`[data-error="${key}"]`);
-          if(errorEl){ errorEl.textContent = data.errors[key][0]; errorEl.classList.remove("hidden"); }
-        });
-      } else if(data.status === "success"){
-        window.location.href = data.redirect;
-      }
-    })
-    .catch(err => console.error(err));
+    document.querySelectorAll(".error-message").forEach(el=>{el.classList.add("hidden");el.textContent="";});
+    let fd=new FormData(e.target);
+    fetch("{{ route('funnel.store') }}",{method:"POST",headers:{"X-CSRF-TOKEN":document.querySelector('input[name=\"_token\"]').value},body:fd})
+      .then(r=>r.json()).then(d=>{
+        if(d.status==="error"){
+          Object.keys(d.errors).forEach(k=>{
+            let el=document.querySelector(`[data-error=\"${k}\"]`);
+            if(el){el.textContent=d.errors[k][0];el.classList.remove("hidden");}
+          });
+        }else if(d.status==="success"){window.location.href=d.redirect;}
+      });
   });
 });
 </script>

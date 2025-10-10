@@ -31,49 +31,60 @@
 
 
 
-        <table class="w-full min-w-full divide-y divide-gray-200 whitespace-nowrap">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-4 py-6 text-left">
-                        <input type="checkbox" id="checkAll">
-                    </th>
-                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">No.</th>
-                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Name</th>
-                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Email</th>
-                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Phone</th>
-                     <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Lead Background</th>
-                    <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Date Submitted</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                @forelse($leads as $index => $lead)
-                    <tr>
-                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
-                            <input type="checkbox" class="leadCheckbox" value="{{ $lead->id }}">
-                        </td>
-                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $index + 1 }}</td>
-                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
-                            {{ $lead->name }}
-                            @if($lead->created_at->isToday())
-                                <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    NEW - Today
-                                </span>
-                            @endif
-                        </td>
-                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->email }}</td>
-                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->phone }}</td>
-                         <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->role ?? '—' }}  </td>
-                        <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->created_at->format('M d, Y H:i') }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="7" class="px-4 py-6 text-center text-gray-500">
-                            <x-no-data />
-                        </td>
-                    </tr>
-                    @endforelse
-            </tbody>
-        </table>
+      <table class="w-full min-w-full divide-y divide-gray-200 whitespace-nowrap">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="px-4 py-6 text-left">
+                <input type="checkbox" id="checkAll">
+            </th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">No.</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Name</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Email</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Phone</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Lead Background</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Capital</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Goal</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Commitment</th>
+            <th class="px-4 py-6 text-left text-sm font-medium text-gray-600 uppercase">Date Submitted</th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+        @forelse($leads as $index => $lead)
+            <tr>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
+                    <input type="checkbox" class="leadCheckbox" value="{{ $lead->id }}">
+                </td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $index + 1 }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
+                    {{ $lead->name }}
+                    @if($lead->created_at->isToday())
+                        <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            NEW - Today
+                        </span>
+                    @endif
+                </td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->email }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->phone }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->role ?? '—' }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->capital ?? '—' }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->goal ?? '—' }}</td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">
+                    <span class="inline-block px-3 py-1 rounded-full bg-green-500 text-white">
+                        {{ $lead->commitment ?? '—' }}
+                    </span>
+                </td>
+                <td class="px-4 py-6 text-left text-sm font-medium text-gray-600">{{ $lead->created_at->format('M d, Y H:i') }}</td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="10" class="px-4 py-6 text-center text-gray-500">
+                    <x-no-data />
+                </td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
         <x-paginations :paginator="$leads" />
     </div>
 

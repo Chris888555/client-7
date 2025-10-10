@@ -9,11 +9,21 @@ return new class extends Migration {
         Schema::create('funnel_leads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_funnel_id');
-            $table->unsignedBigInteger('user_id')->nullable(); // added user_id
+            $table->unsignedBigInteger('user_id')->nullable();
+            
+            // Step data
             $table->string('name');
             $table->string('email');
             $table->string('phone')->nullable();
-            $table->string('role')->nullable();
+
+            // Step 1–4 answers
+            $table->string('role')->nullable(); // from step 1
+            $table->string('capital')->nullable(); // from step 2
+            $table->string('goal')->nullable(); // from step 3
+            $table->string('commitment')->nullable(); // from step 4
+
+            // optional tracking
+            $table->string('page_link')->nullable();
             $table->timestamps();
 
             $table->foreign('user_funnel_id')
@@ -22,7 +32,7 @@ return new class extends Migration {
 
             $table->foreign('user_id')
                   ->references('id')->on('users')
-                  ->onDelete('set null'); // keep lead even if user is deleted
+                  ->onDelete('set null');
         });
     }
 

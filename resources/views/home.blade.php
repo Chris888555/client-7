@@ -16,7 +16,7 @@
 <body class="bg-white text-gray-800">
 
   <!-- Navbar -->
-<nav class="bg-teal-900 shadow-sm fixed top-0 left-0 w-full z-50">
+<nav class="bg-slate-900 shadow-sm fixed top-0 left-0 w-full z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     
     <!-- Logo -->
@@ -83,13 +83,13 @@
 <!-- Opposite Flipped Angled Bottom -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0] mb-[-1px]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-teal-900"></path>
+        <path d="M0,40 L0,120 L1200,120 L1200,40 L600,0 Z" class="fill-slate-900"></path>
     </svg>
 </div>
 
 
 <!-- Mission & Vision Section -->
-<section class="bg-teal-900 py-20">
+<section class="bg-slate-900 py-20">
   <div class="max-w-7xl mx-auto px-6 text-center">
     <h3 class="text-3xl font-bold mb-12 text-yellow-400">Our Mission</h3>
     <p class="text-white mb-12">
@@ -106,7 +106,7 @@
 <!-- Flipped Angled Bottom  -->
 <div class="bottom-0 left-0 w-full overflow-hidden leading-[0]">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-15 md:h-12">
-        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-teal-900"></path>
+        <path d="M0,80 L0,0 L1200,0 L1200,80 L600,120 Z" class="fill-slate-900"></path>
     </svg>
 </div>
 
@@ -142,7 +142,7 @@
 
   
 <!-- Footer -->
-<footer class="bg-teal-900 text-white py-10">
+<footer class="bg-slate-900 text-white py-10">
   <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     
     <!-- Company Info -->

@@ -17,7 +17,10 @@ class FunnelLead extends Model
         'name',
         'email',
         'phone',
-        'role',
+        'role',          // step 1
+        'capital',       // step 2
+        'goal',          // step 3
+        'commitment',    // step 4
     ];
 
     // Lead belongs to a user
